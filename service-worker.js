@@ -1,11 +1,19 @@
-const CACHE_NAME = 'vatsal-lol-cache-v1';
+const CACHE_NAME = 'vatsal-lol-cache-v2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
+  '/offline.html',
   '/style.css',
   '/script.js',
   '/manifest.json',
-  '/assets/logo.png',
+  '/favicon.ico',
+  '/favicon-16.png',
+  '/favicon-32.png',
+  '/apple-touch-icon.png',
+  '/assets/icons/icon-192.png',
+  '/assets/icons/icon-512.png',
+  '/assets/icons/icon-maskable-512.png',
+  '/assets/icons/icon-1024.png',
   '/assets/mobile-v3.css',
   '/assets/vatsal-footer-v25.css',
   '/assets/vatsal-footer-v25.js',
@@ -15,11 +23,79 @@ const PRECACHE_ASSETS = [
   '/assets/insta.jpg',
   '/assets/telegram.png',
   '/assets/youtube.png',
+  '/assets/thumbcircle/2048.webp',
+  '/assets/thumbcircle/adjustme.webp',
+  '/assets/thumbcircle/bubbles.webp',
+  '/assets/thumbcircle/bugsmash.webp',
+  '/assets/thumbcircle/can-you-guess-indian-mom.webp',
+  '/assets/thumbcircle/chaotic-fortune-teller.webp',
+  '/assets/thumbcircle/checklist.webp',
+  '/assets/thumbcircle/draw-a-circle.webp',
+  '/assets/thumbcircle/emojis-2-movies.webp',
+  '/assets/thumbcircle/everything-is-progressing.webp',
+  '/assets/thumbcircle/flash-memory.webp',
+  '/assets/thumbcircle/focus.webp',
+  '/assets/thumbcircle/guess-the-lie.webp',
+  '/assets/thumbcircle/hardword.webp',
+  '/assets/thumbcircle/jokes-if-you-handle.webp',
+  '/assets/thumbcircle/lets-settle.webp',
+  '/assets/thumbcircle/mastermind.webp',
+  '/assets/thumbcircle/memory-tiles.webp',
+  '/assets/thumbcircle/onelightday.webp',
+  '/assets/thumbcircle/paddleclub.webp',
+  '/assets/thumbcircle/snake.webp',
+  '/assets/thumbcircle/spend-bill-gates-money.webp',
+  '/assets/thumbcircle/spot.webp',
+  '/assets/thumbcircle/stacking.webp',
+  '/assets/thumbcircle/sudoku.webp',
+  '/assets/thumbcircle/tetris.webp',
+  '/assets/thumbcircle/tower-of-hanoi.webp',
+  '/assets/thumbcircle/under-limit.webp',
+  '/assets/thumbcircle/which-number.webp',
+  '/assets/thumbcircle/wordle.webp',
+  '/assets/thumbcircle/would-you-press-the-button.webp',
+  '/assets/thumbcircle/xo.webp',
+  '/assets/thumbcircle/your-life-in-numbers.webp',
+  '/assets/thumbnails/2048.webp',
+  '/assets/thumbnails/adjustme.webp',
+  '/assets/thumbnails/bubbles.webp',
+  '/assets/thumbnails/bugsmash.webp',
+  '/assets/thumbnails/can-you-guess-indian-mom.webp',
+  '/assets/thumbnails/chaotic-fortune-teller.webp',
+  '/assets/thumbnails/checklist.webp',
+  '/assets/thumbnails/draw-a-circle.webp',
+  '/assets/thumbnails/emojis-2-movies.webp',
+  '/assets/thumbnails/everything-is-progressing.webp',
+  '/assets/thumbnails/flash-memory.webp',
+  '/assets/thumbnails/focus.webp',
+  '/assets/thumbnails/guess-the-lie.webp',
+  '/assets/thumbnails/hardword.webp',
+  '/assets/thumbnails/jokes-if-you-handle.webp',
+  '/assets/thumbnails/lets-settle.webp',
+  '/assets/thumbnails/mastermind.webp',
+  '/assets/thumbnails/memory-tiles.webp',
+  '/assets/thumbnails/onelightday.webp',
+  '/assets/thumbnails/paddleclub.webp',
+  '/assets/thumbnails/snake.webp',
+  '/assets/thumbnails/spend-bill-gates-money.webp',
+  '/assets/thumbnails/spot.webp',
+  '/assets/thumbnails/stacking.webp',
+  '/assets/thumbnails/sudoku.webp',
+  '/assets/thumbnails/tetris.webp',
+  '/assets/thumbnails/tower-of-hanoi.webp',
+  '/assets/thumbnails/under-limit.webp',
+  '/assets/thumbnails/which-number.webp',
+  '/assets/thumbnails/wordle.webp',
+  '/assets/thumbnails/would-you-press-the-button.webp',
+  '/assets/thumbnails/xo.webp',
+  '/assets/thumbnails/your-life-in-numbers.webp',
   '/assets/data/flashhero.png',
   '/assets/data/flashrunning.png',
   '/assets/data/flashlighting.png',
+  '/assets/data/flashsound.mp3',
   '/assets/data/FFCommaTrial-Regular.ttf',
-  '/assets/data/vatsal-logo-font.ttf'
+  '/assets/data/vatsal-logo-font.ttf',
+  '/assets/data/vns.otf'
 ];
 
 // Install Event
@@ -54,6 +130,16 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
+  // Only handle GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
+  // Check if this is an HTML navigation request
+  const isNavigation = event.request.mode === 'navigate' || 
+                       url.pathname.endsWith('.html') || 
+                       url.pathname.endsWith('/');
+
   // Only cache requests to our own origin OR specific external CDNs
   const isSelf = url.origin === self.location.origin;
   const isExternalResource = url.hostname.includes('fonts.googleapis.com') ||
@@ -62,15 +148,7 @@ self.addEventListener('fetch', event => {
                              url.hostname.includes('unpkg.com') ||
                              url.hostname.includes('wikimedia.org');
 
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
   if (isSelf || isExternalResource) {
-    const isNavigation = event.request.mode === 'navigate' || 
-                         url.pathname.endsWith('.html') || 
-                         url.pathname.endsWith('/');
-
     if (isNavigation && isSelf) {
       // Network-First Strategy for local HTML/Navigation
       event.respondWith(
@@ -84,7 +162,13 @@ self.addEventListener('fetch', event => {
             }
             return response;
           })
-          .catch(() => caches.match(event.request))
+          .catch(() => {
+            // Network failed, try to serve navigation from cache, fallback to offline.html
+            return caches.match(event.request)
+              .then(cachedResponse => {
+                return cachedResponse || caches.match('/offline.html');
+              });
+          })
       );
     } else {
       // Cache-First Strategy for static assets (local & trusted CDNs)
@@ -96,7 +180,6 @@ self.addEventListener('fetch', event => {
             }
 
             return fetch(event.request).then(response => {
-              // Cache valid responses (both basic and opaque cors responses)
               const isStatusValid = response.status === 200 || response.status === 0;
               if (isStatusValid) {
                 const responseToCache = response.clone();
@@ -109,5 +192,12 @@ self.addEventListener('fetch', event => {
           })
       );
     }
+  }
+});
+
+// Listen for message to skip waiting
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
 });

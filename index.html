@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vatsal.lol</title>
 <link rel="canonical" href="https://vatsal.lol/">
-<link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
 <meta name="description" content="Small experiments. Big ideas. Game on instantly.">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/assets/logo.png">
   <meta name="theme-color" content="#000000">
   <meta property="og:title" content="VATSAL.LOL">
   <meta property="og:description" content="Small experiments. Big ideas. Game on instantly. No install. No login. Just fun.">
@@ -21,6 +18,11 @@
   <meta name="twitter:title" content="VATSAL.LOL">
   <meta name="twitter:description" content="Small experiments. Big ideas. Game on instantly. No install. No login. Just fun.">
   <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body class="view-launcher">
 
@@ -80,11 +82,11 @@
               <h2>Contact Me</h2>
               <p class="vatsal-v2-link-label">My Links</p>
               <ul class="vatsal-v2-links">
-                <li><a href="https://www.youtube.com/@ytgamingbolly" target="_blank"><img src="assets/youtube.png"></a></li>
-                <li><a href="https://www.instagram.com/vatsal.lol/" target="_blank"><img src="assets/insta.jpg"></a></li>
-                <li><a href="mailto:ytgamingvatsal@gmail.com"><img src="assets/email.png"></a></li>
-                <li><a href="https://t.me/freehdbackup" target="_blank"><img src="assets/telegram.png"></a></li>
-                <li><button class="vatsal-v2-coffee-trigger" type="button"><img src="assets/coffee.png"></button></li>
+                <li><a href="https://www.youtube.com/@ytgamingbolly" target="_blank" aria-label="YouTube Channel"><img src="assets/youtube.png" alt="YouTube" width="24" height="24"></a></li>
+                <li><a href="https://www.instagram.com/vatsal.lol/" target="_blank" aria-label="Instagram Profile"><img src="assets/insta.jpg" alt="Instagram" width="24" height="24"></a></li>
+                <li><a href="mailto:ytgamingvatsal@gmail.com" aria-label="Send Email"><img src="assets/email.png" alt="Email" width="24" height="24"></a></li>
+                <li><a href="https://t.me/freehdbackup" target="_blank" aria-label="Telegram Channel"><img src="assets/telegram.png" alt="Telegram" width="42" height="24"></a></li>
+                <li><button class="vatsal-v2-coffee-trigger" type="button" aria-label="Buy me a coffee"><img src="assets/coffee.png" alt="Coffee" width="24" height="24"></button></li>
               </ul>
             </div>
         </footer>
@@ -94,10 +96,10 @@
 <div class="v2-footer-fixed">
     <div class="v2-credits">Built by Vatsal with 😍</div>
     <div class="flash-mascot" id="flashMascot">
-        <img src="assets/data/flashhero.png" alt="Flash" class="f-char" id="flashImg">
+        <img data-src="assets/data/flashhero.png" alt="Flash Mascot" class="f-char" id="flashImg">
         <div class="f-sprint-container" id="fSprint">
-            <img src="assets/data/flashrunning.png" alt="" class="f-running-img">
-            <div class="f-lightning" style="background-image: url('assets/data/flashlighting.png');"></div>
+            <img data-src="assets/data/flashrunning.png" alt="Flash Running Mascot" class="f-running-img">
+            <div class="f-lightning"></div>
         </div>
     </div>
 </div>
@@ -109,25 +111,112 @@
         <h3>Contact Me</h3>
         <p>Want to chat games or ideas?</p>
         <div class="panel-links">
-            <a href="https://www.youtube.com/@ytgamingbolly" target="_blank"><img src="assets/youtube.png"></a>
-            <a href="https://www.instagram.com/vatsal.lol/" target="_blank"><img src="assets/insta.jpg"></a>
-            <a href="mailto:ytgamingvatsal@gmail.com"><img src="assets/email.png"></a>
-            <a href="https://t.me/freehdbackup" target="_blank"><img src="assets/telegram.png"></a>
-            <button class="vatsal-v2-coffee-trigger"><img src="assets/coffee.png"></button>
+            <a href="https://www.youtube.com/@ytgamingbolly" target="_blank" aria-label="YouTube Channel"><img src="assets/youtube.png" alt="YouTube" width="24" height="24"></a>
+            <a href="https://www.instagram.com/vatsal.lol/" target="_blank" aria-label="Instagram Profile"><img src="assets/insta.jpg" alt="Instagram" width="24" height="24"></a>
+            <a href="mailto:ytgamingvatsal@gmail.com" aria-label="Send Email"><img src="assets/email.png" alt="Email" width="24" height="24"></a>
+            <a href="https://t.me/freehdbackup" target="_blank" aria-label="Telegram Channel"><img src="assets/telegram.png" alt="Telegram" width="42" height="24"></a>
+            <button class="vatsal-v2-coffee-trigger" aria-label="Buy me a coffee"><img src="assets/coffee.png" alt="Coffee" width="24" height="24"></button>
         </div>
     </div>
 </div>
 
-<script src="script.js"></script>
-  <!-- PWA Service Worker Registration -->
+<script src="script.js" defer></script>
+  <!-- PWA Service Worker Registration & Update Notification -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('Service Worker registered', reg))
+          .then(reg => {
+            console.log('Service Worker registered', reg);
+            
+            // Check for updates
+            reg.addEventListener('updatefound', () => {
+              const newWorker = reg.installing;
+              newWorker.addEventListener('statechange', () => {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  showUpdateToast(reg);
+                }
+              });
+            });
+
+            // If there's already a waiting worker
+            if (reg.waiting) {
+              showUpdateToast(reg);
+            }
+          })
           .catch(err => console.error('Service Worker registration failed', err));
       });
+
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (!refreshing) {
+          refreshing = true;
+          window.location.reload();
+        }
+      });
+    }
+
+    function showUpdateToast(reg) {
+      if (document.getElementById('pwa-update-toast')) return;
+      
+      const toast = document.createElement('div');
+      toast.id = 'pwa-update-toast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(10, 10, 20, 0.95);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        padding: 16px 20px;
+        color: #fff;
+        font-family: system-ui, -apple-system, sans-serif;
+        font-size: 14px;
+        z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-sizing: border-box;
+      `;
+
+      if (window.innerWidth < 768) {
+        toast.style.left = '20px';
+        toast.style.right = '20px';
+        toast.style.bottom = '20px';
+        toast.style.maxWidth = 'calc(100% - 40px)';
+      }
+
+      toast.innerHTML = `
+        <div style="font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+          <span style="width: 8px; height: 8px; background: #5500ff; border-radius: 50%;"></span>
+          Update Available
+        </div>
+        <div style="color: #aaa; font-size: 13px; line-height: 1.4;">A new version of VATSAL.LOL is available.</div>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 4px;">
+          <button id="pwa-later-btn" style="background: transparent; border: none; color: #aaa; font-weight: 500; cursor: pointer; padding: 6px 12px; font-size: 13px; outline: none;">Later</button>
+          <button id="pwa-refresh-btn" style="background: #fff; border: none; color: #000; font-weight: 600; cursor: pointer; padding: 6px 16px; border-radius: 8px; font-size: 13px; outline: none; box-shadow: 0 2px 8px rgba(255,255,255,0.2);">Refresh</button>
+        </div>
+      `;
+
+      document.body.appendChild(toast);
+
+      document.getElementById('pwa-later-btn').onclick = () => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      };
+
+      document.getElementById('pwa-refresh-btn').onclick = () => {
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+      };
     }
   </script>
+
 </body>
 </html>

@@ -119,7 +119,7 @@ el.innerHTML = `
         const delay = Math.random() * -5;
         node.style.animation = `floatNode${isMobile ? 'Mobile' : ''} ${dur}s ease-in-out ${delay}s infinite`;
 
-        node.innerHTML = `<img src="assets/thumbcircle/${game.slug}.webp" onerror="this.src='assets/logo.png'">`;
+        node.innerHTML = `<img src="assets/thumbcircle/${game.slug}.webp" alt="${game.title}" onerror="this.src='assets/logo.png'">`;
         node.onclick = () => window.location.href = `./games/${game.slug}/`;
         container.appendChild(node);
     });
@@ -135,7 +135,7 @@ el.innerHTML = `
     games.forEach(game => {
         const card = document.createElement('div');
         card.className = 't-card';
-        card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" onerror="this.src='assets/logo.png'">`;
+        card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" alt="${game.title}" onerror="this.src='assets/logo.png'">`;
         card.onclick = () => window.location.href = `./games/${game.slug}/`;
         grid.appendChild(card);
     });
@@ -167,29 +167,39 @@ function setupToggle() {
     const mascot = document.getElementById('flashMascot');
     const sprint = document.getElementById('fSprint');
     const img = document.getElementById('flashImg');
+    const runningImg = sprint ? sprint.querySelector('.f-running-img') : null;
+    const lightning = sprint ? sprint.querySelector('.f-lightning') : null;
+    
+    // Dynamically load heavy assets on desktop
+    if (img && img.dataset.src) img.src = img.dataset.src;
+    if (runningImg && runningImg.dataset.src) runningImg.src = runningImg.dataset.src;
+    if (lightning) lightning.style.backgroundImage = "url('assets/data/flashlighting.png')";
+    
     let isRunning = false;
 
-    mascot.onclick = () => {
-        if(isRunning) return;
-        isRunning = true;
-        
-        // Hide stationary mascot and trigger sprint
-        img.style.opacity = '0';
-        sprint.classList.add('running');
-        
-        setTimeout(() => {
-            sprint.classList.remove('running');
-            // Keep hidden for 4 seconds
-            setTimeout(() => {
-                img.style.opacity = '1';
-                isRunning = false;
-            }, 4000);
-        }, 800);
-    };
+    if (mascot) {
+      mascot.onclick = () => {
+          if(isRunning) return;
+          isRunning = true;
+          
+          // Hide stationary mascot and trigger sprint
+          if (img) img.style.opacity = '0';
+          if (sprint) sprint.classList.add('running');
+          
+          setTimeout(() => {
+              if (sprint) sprint.classList.remove('running');
+              // Keep hidden for 4 seconds
+              setTimeout(() => {
+                  if (img) img.style.opacity = '1';
+                  isRunning = false;
+              }, 4000);
+          }, 800);
+      };
+    }
 
     // Tiny idle movements
     setInterval(() => {
-        if(!isRunning) img.style.transform = `translateY(${Math.sin(Date.now()/500)*2}px)`;
+        if(!isRunning && img) img.style.transform = `translateY(${Math.sin(Date.now()/500)*2}px)`;
     }, 50);
   }
 
