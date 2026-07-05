@@ -1,0 +1,285 @@
+@font-face {
+    font-family: "Vatsal-logo";
+    src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+    font-display: swap;
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+/* HEADER */
+header {
+  top: 0;
+  z-index: 100;
+  background: #000;
+  padding: 12px 16px;
+  border-bottom: 2px solid #111;
+}
+
+/* MONEY BAR */
+.money-bar {
+  margin-top: 10px;
+  height: 12px;
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.money-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg,#00ff88,#00cc66);
+  transition: width .3s ease, background .3s ease;
+}
+
+.money-fill.negative {
+  background: linear-gradient(90deg,#ff4444,#ff0000);
+}
+
+/* SEARCH */
+.search-bar {
+  margin: 16px;
+  width: calc(100% - 360px);
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1em;
+}
+
+/* CATEGORIES */
+#categories {
+  margin-right: 340px;
+  padding-bottom: 120px;
+}
+
+.category {
+  margin: 20px 16px;
+}
+
+.category-header {
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 10px 16px;
+  background: linear-gradient(90deg, #ff8c00, #ff0080);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+/* ITEM GRID */
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+  gap: 14px;
+}
+
+.item {
+  background: #151515;
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  background: #222;
+}
+
+.item-emoji {
+  font-size: 2em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.item-name {
+  font-size: .9em;
+  word-break: break-word;
+  margin-bottom: 6px;
+}
+
+.price {
+  color: #ffd700;
+  font-weight: bold;
+  font-size: .85em;
+}
+
+/* CART */
+.cart {
+  position: fixed;
+  top: 86px;
+  right: 0;
+  width: 320px;
+  height: calc(100vh - 86px);
+  background: #111;
+  border-left: 2px solid #222;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart h3 {
+  text-align: center;
+  margin-top: 0;
+  color: #ff8c00;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .85em;
+  margin: 8px 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #222;
+}
+
+.cart-controls {
+  display: flex;
+  gap: 4px;
+}
+
+.cart-controls button {
+  background: #333;
+  border: none;
+  color: #fff;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: .9em;
+}
+
+.cart-total {
+  text-align: center;
+  margin: 10px 0;
+  font-weight: bold;
+  color: #ffd700;
+  font-size: 1em;
+}
+
+.checkout {
+  background: #ff0080;
+  border: none;
+  padding: 12px;
+  color: #fff;
+  font-size: 1em;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.checkout:hover {
+  background: #ff0066;
+}
+
+/* RECEIPT */
+#receipt {
+  max-width: 700px;
+  margin: 60px auto 140px;
+  background: #151515;
+  padding: 24px;
+  border-radius: 14px;
+  display: none;
+}
+
+.receipt-header {
+  text-align: center;
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #ff8c00;
+}
+
+.receipt-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid #333;
+}
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #444;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  #categories {
+    margin-right: 0;
+  }
+
+  .search-bar {
+    width: calc(100% - 32px);
+  }
+
+  .cart {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: 180px;
+    border-left: none;
+    border-top: 2px solid #222;
+  }
+
+  body {
+    padding-bottom: 190px;
+  }
+}
+/* header row with logo + title */
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.header-top h1 {
+    margin: 0;
+    text-align: center;
+    flex: 1;
+}
+
+.header-spacer {
+    /* mirrors vatsal-home width to keep title centered */
+    width: 80px;
+}
+
+.vatsal-home {
+    font-family: "Vatsal-logo" !important;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+/* footer inside receipt area */
+.vatsal-related {
+    max-width: 700px;
+    margin: 40px auto 60px;
+    text-align: center;
+}
+
+.vatsal-related-title,
+.vatsal-footer,
+.vatsal-footer a {
+    font-family: "Vatsal-logo" !important;
+    color: #ffffff !important;
+}

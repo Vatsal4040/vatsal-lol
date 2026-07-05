@@ -1,0 +1,425 @@
+@font-face{
+    font-family:"Vatsal-logo";
+    src:url("../../assets/data/vatsal-logo-font.ttf")
+    format("truetype");
+    font-display:swap;
+}
+
+:root{
+    --bg:#06070b;
+    --panel:#0f1118;
+    --panel2:#11141d;
+    --border:rgba(255,255,255,.06);
+    --text:#e8edf7;
+    --muted:#8c93a7;
+    --glow:#78ffd6;
+    --glow2:#7a5cff;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at top left, rgba(122,92,255,.14), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(120,255,214,.08), transparent 25%),
+        var(--bg);
+
+    color:var(--text);
+    font-family:"Inter",sans-serif;
+    min-height:100vh;
+    padding:18px 90px;
+}
+
+.container{
+    width:min(1100px, calc(100% - 12px));
+    margin:auto;
+}
+
+header{
+    margin-bottom:26px;
+}
+.sticky-header{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    padding:16px 0 14px;
+
+    background:rgba(6,7,11,.35);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(16px);
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+h1{
+    font-family:"Space Grotesk",sans-serif;
+    font-size:clamp(2.2rem,4vw,4rem);
+    letter-spacing:-2px;
+    font-weight:700;
+
+    background:linear-gradient(90deg,#ffffff,#9bc8ff,#9c7bff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    margin-bottom:10px;
+}
+
+.counter{
+    color:var(--muted);
+    font-size:.95rem;
+    letter-spacing:.3px;
+}
+.progress-sticky{
+    position:sticky;
+    top:0;
+    z-index:30;
+    padding:10px 0;
+    background:rgba(6,7,11,.92);
+    backdrop-filter:blur(8px);
+}
+
+.progress-track{
+    width:100%;
+    height:8px;
+    margin-top:10px;
+
+    border-radius:999px;
+    overflow:hidden;
+
+    background:rgba(255,255,255,.08);
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+
+    border-radius:999px;
+
+    background:linear-gradient(
+        90deg,
+        #78ffd6,
+        #7a5cff
+    );
+
+    transition:width .3s ease;
+}
+
+.grid{
+    display:grid;
+
+    /* Desktop default → 3 columns */
+    grid-template-columns:repeat(3, minmax(0,1fr));
+
+    gap:10px;
+    align-items:start;
+}
+
+/* Tablet → 2 columns */
+@media (max-width: 900px){
+
+    .grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+        gap:9px;
+    }
+
+}
+
+/* Mobile → 1 column */
+@media (max-width: 560px){
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+}
+
+.item{
+    width:100%;
+    min-width:0;
+
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    background:
+        linear-gradient(180deg,var(--panel),var(--panel2));
+
+    border:1px solid var(--border);
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    cursor:pointer;
+
+    transition:
+        transform .18s ease,
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.item:hover{
+    transform:translateY(-1px);
+    border-color:rgba(255,255,255,.14);
+
+    background:
+        linear-gradient(180deg,#141825,#10131d);
+}
+
+.item.checked{
+    background:
+        linear-gradient(180deg,
+        rgba(120,255,214,.14),
+        rgba(122,92,255,.12));
+
+    border-color:rgba(120,255,214,.25);
+
+    box-shadow:
+        0 0 0 1px rgba(120,255,214,.08),
+        0 0 24px rgba(120,255,214,.08),
+        inset 0 0 30px rgba(120,255,214,.04);
+}
+
+.checkbox{
+    width:18px;
+    height:18px;
+    min-width:18px;
+
+    border-radius:5px;
+
+    border:1px solid rgba(255,255,255,.22);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.22s ease;
+
+    background:rgba(255,255,255,.02);
+}
+
+.item.checked .checkbox{
+    background:linear-gradient(135deg,var(--glow),#6effb4);
+    border-color:transparent;
+
+    box-shadow:
+        0 0 14px rgba(120,255,214,.45);
+}
+
+.checkbox svg{
+    width:12px;
+    height:12px;
+    opacity:0;
+    transform:scale(.5);
+    transition:.2s ease;
+}
+
+.item.checked .checkbox svg{
+    opacity:1;
+    transform:scale(1);
+}
+
+.label{
+    font-size:.92rem;
+    line-height:1.3;
+    color:#e7ecf7;
+    user-select:none;
+}
+
+.timeline-wrap{
+    margin-top:70px;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,.06);
+}
+
+.timeline{
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:10px;
+    margin:50px 0 30px;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    left:5%;
+    right:5%;
+    top:20px;
+    height:1px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.1),
+        rgba(120,255,214,.5),
+        rgba(122,92,255,.4),
+        rgba(255,255,255,.1)
+    );
+}
+
+.stage{
+    position:relative;
+    z-index:2;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+
+    color:var(--muted);
+
+    font-size:.82rem;
+    letter-spacing:.5px;
+    text-align:center;
+}
+
+.dot{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        radial-gradient(circle,
+        rgba(120,255,214,.18),
+        rgba(122,92,255,.08));
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 0 24px rgba(120,255,214,.06);
+}
+
+.dot span{
+    font-size:1.15rem;
+}
+
+.ending{
+    text-align:center;
+
+    color:#d8def0;
+
+    font-family:"Space Grotesk",sans-serif;
+    font-size:1.1rem;
+
+    letter-spacing:.3px;
+
+    opacity:.92;
+
+    margin-top:10px;
+}
+
+.footer-glow{
+    position:fixed;
+    inset:auto 0 -180px 0;
+    height:340px;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(circle,
+        rgba(122,92,255,.18),
+        transparent 60%);
+    filter:blur(70px);
+}
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#090b10;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#1d2331;
+    border-radius:100px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#2a3245;
+}
+
+@media(max-width:600px){
+
+    body{
+        padding:0 12px 80px;
+     }
+
+    .grid{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .item{
+        padding:11px 12px;
+        border-radius:10px;
+    }
+
+    .label{
+        font-size:.9rem;
+    }
+
+    .timeline{
+        gap:5px;
+    }
+
+    .stage{
+        font-size:.7rem;
+    }
+}
+.timeline::after{
+    content:"";
+    position:absolute;
+    left:5%;
+    top:20px;
+    height:2px;
+    width:var(--timeline-progress);
+
+    background:linear-gradient(
+      90deg,
+      #78ffd6,
+      #7a5cff
+    );
+
+    box-shadow:
+      0 0 12px rgba(120,255,214,.4);
+
+    transition:width .4s ease;
+}
+/* vatsal header */
+.vatsal-header {
+    position: relative;
+    z-index: 20;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 8px;
+    font-family: "Vatsal-logo" !important;
+    color: var(--text);
+}
+
+/* vatsal footer font */
+.vatsal-related-title,
+.vatsal-footer,
+.vatsal-footer a {
+    font-family: "Vatsal-logo" !important;
+    color: var(--text);
+}

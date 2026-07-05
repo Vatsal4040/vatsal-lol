@@ -1,0 +1,1638 @@
+/*==================================================
+SPOT
+vatsal.lol
+==================================================*/
+
+/*=========================================
+FONT
+=========================================*/
+
+@font-face{
+    font-family:"Vatsal-logo";
+    src:url("../../assets/data/vatsal-logo-font.ttf")
+    format("truetype");
+    font-display:swap;
+}
+
+/*=========================================
+RESET
+=========================================*/
+
+*,
+*::before,
+*::after{
+
+    box-sizing:border-box;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+html{
+
+    -webkit-text-size-adjust:100%;
+
+    text-size-adjust:100%;
+
+}
+
+html,
+body{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+body{
+
+    overflow:hidden;
+
+    background:#050505;
+
+
+    color:#ffffff;
+
+    font-family:
+
+    Inter,
+
+    system-ui,
+
+    -apple-system,
+
+    BlinkMacSystemFont,
+
+    "Segoe UI",
+
+    sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+
+    text-rendering:optimizeLegibility;
+
+}
+
+/*=========================================
+ROOT
+=========================================*/
+
+:root{
+
+    --bg:#050505;
+
+    --panel:#121212;
+
+    --card:#1b1b1b;
+
+    --card-hover:#242424;
+
+    --border:#303030;
+
+    --text:#ffffff;
+
+    --muted:#9a9a9a;
+
+    --accent:#ffffff;
+
+    --radius:18px;
+
+    --transition:.18s;
+
+    --shadow:
+
+    0 10px 30px rgba(0,0,0,.35);
+
+}
+
+/*=========================================
+HEADER
+=========================================*/
+
+.vatsal-home{
+
+    font-family:"Vatsal-logo" !important;
+
+    font-size:25px !important;
+
+}
+
+.vatsal-header.hidden{
+
+    display:none;
+
+}
+
+/*=========================================
+APP
+=========================================*/
+
+#app{
+
+    width:100%;
+
+    height:calc(100dvh - 48px);
+
+}
+
+/*=========================================
+SCREENS
+=========================================*/
+
+.screen{
+
+    display:none;
+
+    width:100%;
+
+    height:100%;
+
+    padding:24px;
+
+}
+
+.screen.active{
+
+    display:flex;
+
+}
+
+/*=========================================
+BUTTONS
+=========================================*/
+
+button{
+
+    font:inherit;
+
+}
+
+.primary-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    background:white;
+
+    color:black;
+
+    font-weight:700;
+
+    border-radius:16px;
+
+    padding:16px 42px;
+
+    transition:var(--transition);
+
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.primary-btn:active{
+
+    transform:scale(.98);
+
+}
+
+.secondary-btn{
+
+    border:1px solid var(--border);
+
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    border-radius:16px;
+
+    padding:16px 42px;
+
+    transition:var(--transition);
+
+}
+
+.secondary-btn:hover{
+
+    background:var(--card);
+
+}
+
+/*=========================================
+CARDS
+=========================================*/
+
+.instructions,
+.hud-card,
+.results,
+.stat{
+
+    background:#0e0e0e;
+
+    border:1px solid #1b1b1b;
+
+    border-radius:18px;
+
+    box-shadow:
+
+    inset 0 1px 0 rgba(255,255,255,.05),
+
+    0 10px 30px rgba(0,0,0,.45);
+
+}
+
+/*=========================================
+TEXT
+=========================================*/
+
+h1{
+
+    font-size:clamp(4.5rem,12vw,6.5rem);
+
+    letter-spacing:8px;
+
+    font-weight:900;
+
+    line-height:.88;
+
+}
+
+h2{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+.subtitle{
+
+    color:var(--muted);
+
+    font-size:1.1rem;
+
+    line-height:1.5;
+
+}
+
+strong{
+
+    font-weight:700;
+
+}
+/*==================================================
+START SCREEN
+Part 2
+==================================================*/
+
+/*=========================================
+START SCREEN
+=========================================*/
+
+#startScreen{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    gap:10px;
+
+    height:100%;
+
+    overflow-y:auto;
+
+    padding:12px 16px;
+
+}
+
+/*=========================================
+HERO
+=========================================*/
+
+.hero{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:2px;
+
+}
+
+.hero h1{
+
+    line-height:.9;
+
+}
+
+.hero .subtitle{
+
+    max-width:520px;
+
+}
+
+/*=========================================
+INSTRUCTIONS
+=========================================*/
+
+.instructions{
+
+    width:100%;
+
+    max-width:420px;
+
+    padding:12px 16px;
+
+    text-align:left;
+
+}
+
+.instructions h2{
+
+    font-size:1.2rem;
+
+    margin-bottom:14px;
+
+}
+
+.instructions ul{
+
+    padding-left:20px;
+
+}
+
+.instructions li{
+
+       margin-bottom:4px;
+
+    color:#d5d5d5;
+
+    line-height:1.3;
+       font-size:.88rem;
+
+}
+
+.instructions li:last-child{
+
+    margin-bottom:0;
+
+}
+
+/*=========================================
+MODE GRID
+=========================================*/
+
+.mode-selection{
+
+    width:min(560px,100%);
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+/*=========================================
+MODE BUTTON
+=========================================*/
+.mode-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    min-height:46px;
+
+    padding:6px 12px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--card);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:
+
+    background .18s,
+
+    border-color .18s,
+
+    transform .18s;
+
+}
+
+.mode-btn:hover{
+
+    background:var(--card-hover);
+
+    border-color:#666;
+
+    transform:translateY(-2px);
+
+}
+
+.mode-btn.active{
+
+    background:white;
+
+    color:black;
+
+    border-color:white;
+
+    font-weight:700;
+
+}
+
+.mode-btn span{
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.mode-btn{
+
+    font-size:1.15rem;
+
+}
+
+/*=========================================
+BEST AREA
+=========================================*/
+
+.best-area{
+
+    width:min(560px,100%);
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.stat{
+
+    padding:10px;
+
+    text-align:center;
+
+}
+
+.stat span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:.75rem;
+
+    margin-bottom:8px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:1.2rem;
+
+    color:#ffffff;
+
+}
+
+/*=========================================
+PLAY BUTTON
+=========================================*/
+
+#playButton{
+
+    min-width:240px;
+
+    min-height:56px;
+
+    font-size:1.05rem;
+
+    letter-spacing:.6px;
+
+}
+
+/*=========================================
+FOCUS STATES
+=========================================*/
+
+button:focus-visible{
+
+    outline:3px solid white;
+
+    outline-offset:3px;
+
+}
+
+.mode-btn:focus-visible{
+
+    outline:3px solid white;
+
+    outline-offset:3px;
+
+}
+/*==================================================
+GAME SCREEN
+Part 3
+==================================================*/
+
+/*=========================================
+GAME SCREEN
+=========================================*/
+
+#gameScreen{
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+/*=========================================
+HUD
+=========================================*/
+
+.hud{
+
+    width:min(720px,100%);
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:14px;
+
+}
+
+.hud-card{
+
+    padding:16px;
+
+    text-align:center;
+
+}
+
+.hud-card span{
+
+    display:block;
+
+    font-size:.82rem;
+
+    color:var(--muted);
+
+    margin-bottom:8px;
+
+}
+
+.hud-card strong{
+
+    display:block;
+
+    font-size:1.45rem;
+
+}
+
+/*=========================================
+GRID
+=========================================*/
+
+#grid{
+
+    display:grid;
+
+    gap:8px;
+
+    justify-content:center;
+
+    align-content:center;
+
+    margin:auto;
+
+    touch-action:manipulation;
+
+    user-select:none;
+
+}
+
+/*=========================================
+TILES
+=========================================*/
+
+.tile{
+
+    width:58px;
+
+    height:58px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    position:relative;
+
+    z-index:1;
+
+    transition:
+
+        transform .15s,
+
+        background .15s,
+
+        color .15s,
+
+        border-color .15s,
+
+        box-shadow .15s;
+
+  position:relative;
+
+    overflow:hidden;
+}
+.tile::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:inherit;
+
+    background:
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.06),
+
+        transparent 55%
+
+    );
+
+    pointer-events:none;
+
+    touch-action:none;
+
+    z-index:0;
+
+}
+
+/*=========================================
+DEFAULT TILE
+=========================================*/
+
+.tile.default{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+}
+
+/*=========================================
+COLOR MODE
+=========================================*/
+
+.tile.color{
+
+    border:none;
+
+}
+
+/*=========================================
+SHAPES
+=========================================*/
+
+.tile.shape{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    font-size:2rem;
+
+}
+
+/*=========================================
+number
+=========================================*/
+
+.tile.number{
+
+    background:#262626;
+
+    border:1px solid #3a3a3a;
+
+    color:#ffffff;
+
+    font-size:2rem;
+
+    font-weight:800;
+
+    text-shadow:0 1px 2px rgba(0,0,0,.35);
+
+}
+
+/*=========================================
+ROTATION
+=========================================*/
+
+.tile.rotation{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+/*=========================================
+GAP
+=========================================*/
+
+.tile.gap{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    font-size:2rem;
+
+}
+
+/*=========================================
+HOVER
+=========================================*/
+
+.tile:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:
+
+    0 8px 18px rgba(255,255,255,.08);
+
+}
+
+/*=========================================
+PRESS
+=========================================*/
+
+.tile:active{
+
+    transform:scale(.95);
+
+}
+
+/*=========================================
+CORRECT
+=========================================*/
+
+.tile.correct{
+
+    animation:
+
+    tileCorrect .28s ease;
+
+}
+
+@keyframes tileCorrect{
+
+0%{
+
+transform:scale(.85);
+
+}
+
+60%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/*=========================================
+WRONG
+=========================================*/
+
+.tile.wrong{
+
+    animation:
+
+    tileWrong .35s;
+
+}
+
+@keyframes tileWrong{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+20%{
+
+transform:translateX(-6px);
+
+}
+
+40%{
+
+transform:translateX(6px);
+
+}
+
+60%{
+
+transform:translateX(-4px);
+
+}
+
+80%{
+
+transform:translateX(4px);
+
+}
+
+100%{
+
+transform:translateX(0);
+
+}
+
+}
+
+/*=========================================
+ANSWER
+=========================================*/
+
+.tile.answer{
+
+    outline:3px solid #18c964;
+
+    outline-offset:2px;
+
+}
+
+.tile.selectedWrong{
+
+    outline:3px solid #ff4d4d;
+
+    outline-offset:2px;
+
+}
+
+/*=========================================
+NO SELECTION
+=========================================*/
+
+.tile{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+/*==================================================
+RESULT SCREEN
+Part 4
+==================================================*/
+
+/*=========================================
+RESULT SCREEN
+=========================================*/
+
+#resultScreen{
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    gap:24px;
+
+    overflow-y:auto;
+
+}
+
+#resultScreen h2{
+
+    font-size:2.6rem;
+
+    font-weight:800;
+
+}
+
+/*=========================================
+RESULT CARD
+=========================================*/
+
+.results{
+
+    width:min(480px,100%);
+
+    padding:24px;
+
+}
+
+.result-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.result-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.result-row span{
+
+    color:var(--muted);
+
+}
+
+.result-row strong{
+
+    font-size:1.15rem;
+
+}
+
+/*=========================================
+RESULT BUTTONS
+=========================================*/
+
+.result-buttons{
+
+    display:flex;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+/*=========================================
+SUCCESS
+=========================================*/
+
+.success{
+
+    color:#18c964;
+
+}
+
+.warning{
+
+    color:#ffb300;
+
+}
+
+.danger{
+
+    color:#ff4d4d;
+
+}
+
+/*=========================================
+FOOTER
+=========================================*/
+
+.vatsal-related{
+
+    width:min(900px,92%);
+
+    margin:40px auto;
+
+}
+
+.vatsal-related-title{
+
+    font-family:"Vatsal-logo" !important;
+
+}
+
+.vatsal-footer,
+.vatsal-footer *,
+.vatsal-footer a{
+
+    font-family:"Vatsal-logo" !important;
+
+}
+
+/*==================================================
+MOBILE
+==================================================*/
+
+@media (max-width:480px){
+
+  #startScreen{
+
+        gap:6px;
+
+        padding:8px 12px;
+
+        justify-content:center;
+
+        overflow:hidden;
+
+    }
+
+    .hero{
+
+        gap:0;
+
+    }
+
+    h1{
+
+        font-size:2.4rem;
+
+        margin:0;
+
+    }
+
+    .subtitle{
+
+        font-size:.82rem;
+
+    }
+
+    .screen{
+
+        padding:10px 12px;
+
+    }
+
+
+
+
+/*-------------------
+TITLE
+-------------------*/
+
+h1{
+
+font-size:2.7rem;
+
+    line-height:.92;
+
+    margin:0;
+
+
+    letter-spacing:2px;
+
+}
+
+.subtitle{
+
+    font-size:.95rem;
+
+}
+
+/*-------------------
+START
+-------------------*/
+
+.instructions{
+
+    padding:8px 12px;
+
+}
+
+.instructions h2{
+
+    font-size:.95rem;
+
+    margin-bottom:6px;
+
+}
+
+.instructions li{
+
+    font-size:.82rem;
+
+    margin-bottom:2px;
+
+}
+
+.mode-selection{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.mode-btn{
+
+    min-height:44px;
+
+    padding:6px 10px;
+
+    font-size:.9rem;
+
+}
+
+.best-area{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.stat{
+
+    padding:14px;
+
+}
+
+#playButton{
+
+    width:100%;
+
+    max-width:280px;
+
+    margin-top:4px;
+
+    min-height:50px;
+
+}
+
+/*-------------------
+HUD
+-------------------*/
+
+.hud{
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+
+}
+
+.hud-card{
+
+    padding:12px;
+
+}
+
+.hud-card strong{
+
+    font-size:1rem;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+
+/*-------------------
+GRID
+-------------------*/
+
+#grid{
+
+    gap:4px;
+
+    max-width:calc(100vw - 24px);
+
+}
+
+.tile{
+
+    width:min(11.5vw,52px);
+
+    height:min(11.5vw,52px);
+
+}
+
+.tile.shape,
+.tile.rotation,
+.tile.gap{
+
+    font-size:1.5rem;
+
+}
+
+.tile.number{
+
+    font-size:1.4rem;
+
+}
+
+/*-------------------
+RESULT
+-------------------*/
+
+#resultScreen{
+
+    justify-content:flex-start;
+
+    padding-top:28px;
+
+}
+
+.results{
+
+    padding:18px;
+
+}
+
+.result-row{
+
+    padding:12px 0;
+
+}
+
+.result-buttons{
+
+    width:100%;
+
+    flex-direction:column;
+
+}
+
+.result-buttons button{
+
+    width:100%;
+
+}
+}
+
+/*==================================================
+SMALL DEVICES
+==================================================*/
+
+@media (max-width:380px){
+
+.tile{
+
+    width:44px;
+
+    height:44px;
+
+}
+
+.tile.shape,
+.tile.rotation,
+.tile.gap{
+
+    font-size:1.25rem;
+
+}
+
+.tile.number{
+
+    font-size:1.2rem;
+
+}
+
+h1{
+
+    font-size:2.6rem;
+
+}
+
+}
+
+/*==================================================
+LARGE SCREENS
+==================================================*/
+
+@media (min-width:1000px){
+
+#grid{
+
+    gap:10px;
+
+}
+
+.tile{
+
+    width:62px;
+
+    height:62px;
+
+}
+
+}
+/*=========================================
+RESULT SCROLL FIX
+=========================================*/
+
+#resultScreen.active{
+
+    position:relative;
+
+    z-index:2;
+
+    overflow-y:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+body:has(#resultScreen.active){
+
+    overflow:auto;
+
+}
+/*==================================================
+REDUCED MOTION
+==================================================*/
+
+@media (prefers-reduced-motion:reduce){
+
+*{
+
+    animation:none !important;
+
+    transition:none !important;
+
+    scroll-behavior:auto !important;
+
+}
+
+}
+/*=========================================
+LIVES + FREEZE BAR
+=========================================*/
+
+.lives-freeze-bar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    width:min(720px,100%);
+
+    padding:0 4px;
+
+}
+
+.lives-display{
+
+    display:flex;
+
+    gap:6px;
+
+}
+
+.life-full{
+
+    font-size:1.5rem;
+
+    color:#ff4d4d;
+
+    transition:opacity .2s;
+
+}
+
+.life-empty{
+
+    font-size:1.5rem;
+
+    color:#444;
+
+    transition:opacity .2s;
+
+}
+
+.freeze-btn{
+
+    background:var(--card);
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    border-radius:10px;
+
+    padding:6px 14px;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:background .18s, border-color .18s;
+
+    min-width:100px;
+
+}
+
+.freeze-btn:hover{
+
+    background:var(--card-hover);
+
+    border-color:#666;
+
+}
+
+.freeze-btn.freeze-active{
+
+    background:#1a3a5c;
+
+    border-color:#4ab3ff;
+
+    color:#4ab3ff;
+
+}
+
+.freeze-btn.freeze-cooldown{
+
+    background:var(--card);
+
+    border-color:#555;
+
+    color:#777;
+
+    cursor:not-allowed;
+
+}
+/*=========================================
+TIMER BONUS POPUP
+=========================================*/
+
+.timer-bonus-pop{
+
+    position:absolute;
+
+    top:-18px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#4ab3ff;
+
+    font-size:.78rem;
+
+    font-weight:700;
+
+    pointer-events:none;
+
+    animation:timerPop .9s ease forwards;
+
+    white-space:nowrap;
+
+}
+
+@keyframes timerPop{
+
+0%{
+
+    opacity:1;
+
+    transform:translateX(-50%) translateY(0);
+
+}
+
+100%{
+
+    opacity:0;
+
+    transform:translateX(-50%) translateY(-16px);
+
+}
+
+}
+/*=========================================
+ZEN BUTTON
+=========================================*/
+
+.zen-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    background:linear-gradient(135deg,#3d6b3a,#5a9e55);
+
+    color:#e8f5e3;
+
+    font-weight:700;
+
+    border-radius:16px;
+
+    padding:14px 42px;
+
+    font-size:1rem;
+
+    letter-spacing:.4px;
+
+    transition:var(--transition);
+
+    min-width:240px;
+
+    min-height:50px;
+
+}
+
+.zen-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:linear-gradient(135deg,#4a7d46,#6ab565);
+
+}
+
+.zen-btn:active{
+
+    transform:scale(.98);
+
+}
+
+.zen-btn.zen-played{
+
+    background:#1e2e1d;
+
+    color:#4a6e47;
+
+    cursor:not-allowed;
+
+    border:1px solid #2e4a2c;
+
+}
+
+.zen-btn:disabled{
+
+    pointer-events:none;
+
+}

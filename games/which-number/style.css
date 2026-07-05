@@ -1,0 +1,392 @@
+/* ---------- VATSAL FONT ---------- */
+@font-face {
+  font-family: "Vatsal-logo";
+  src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+  font-display: swap;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#000000;
+    --card:#1e1e1e;
+    --card-hover:#252525;
+    --border:#333;
+    --text:#ffffff;
+    --muted:#b0b0b0;
+    --accent:#4caf50;
+    --accent-hover:#43a047;
+    --danger:#e53935;
+}
+
+body{
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+}
+
+.app{
+    width:100%;
+    min-height:100vh;
+    min-height:100dvh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.screen{
+    display:none;
+    width:100%;
+    max-width:500px;
+}
+
+.screen.active{
+    display:block;
+}
+
+body:has(#resultScreen.active){
+    overflow-y:auto;
+    height:auto;
+    min-height:100vh;
+}
+
+.game-wrap{
+    width:100%;
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:16px;
+    font-size:2rem;
+    line-height:1.2;
+}
+
+h2{
+    font-size:1rem;
+    margin-bottom:10px;
+    color:var(--muted);
+}
+
+.description{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:24px;
+    line-height:1.5;
+}
+
+.section{
+    margin-bottom:24px;
+}
+
+/* MODE TOGGLE */
+
+.mode-toggle{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.mode-btn{
+    border:none;
+    border-radius:12px;
+    background:#2a2a2a;
+    color:var(--muted);
+    padding:14px 10px;
+    font-size:.95rem;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.mode-btn:hover{
+    background:var(--card-hover);
+}
+
+.mode-btn.active{
+    background:var(--accent);
+    color:#fff;
+}
+
+/* DIFFICULTY */
+
+.difficulty-selector{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+
+.difficulty-btn{
+    border:none;
+    border-radius:12px;
+    background:#2a2a2a;
+    color:var(--muted);
+    padding:14px 10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.difficulty-btn:hover{
+    background:var(--card-hover);
+}
+
+.difficulty-btn.active{
+    background:var(--accent);
+    color:white;
+}
+
+.difficulty-info{
+    text-align:center;
+    margin-top:14px;
+    color:var(--muted);
+    font-size:.95rem;
+}
+
+/* PLAY BUTTON */
+
+.play-btn{
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:16px;
+    font-size:1.1rem;
+    font-weight:700;
+    background:var(--accent);
+    color:white;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.play-btn:hover{
+    background:var(--accent-hover);
+}
+
+/* GUESS MODE */
+
+.attempt-info{
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--muted);
+}
+
+.guess-input-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.guess-input-row input{
+    flex:1;
+    border:1px solid var(--border);
+    background:#2a2a2a;
+    color:white;
+    border-radius:12px;
+    padding:14px;
+    font-size:1rem;
+}
+
+.guess-input-row button{
+    border:none;
+    border-radius:12px;
+    background:var(--accent);
+    color:white;
+    padding:0 20px;
+    cursor:pointer;
+}
+
+.history{
+    min-height:180px;
+    height:180px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:20px;
+}
+/* NUMPAD */
+
+.numpad{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.num-btn{
+    border:none;
+    border-radius:12px;
+    background:#2a2a2a;
+    color:white;
+    font-size:1.1rem;
+    font-weight:600;
+    padding:14px;
+    min-height:44px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.num-btn:hover{
+    background:var(--card-hover);
+}
+
+.num-btn:active{
+    background:var(--accent);
+}
+
+.clear-btn,
+.backspace-btn{
+    background:#3a3a3a;
+    font-size:1rem;
+}
+.history-item{
+    padding:10px;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.history-item:last-child{
+    border-bottom:none;
+}
+
+/* AI MODE */
+
+.range-info{
+    text-align:center;
+    margin-bottom:20px;
+    color:var(--muted);
+}
+
+.chat-history{
+    min-height:220px;
+    height:220px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:20px;
+}
+
+.chat-message{
+    margin-bottom:14px;
+    line-height:1.5;
+}
+
+.current-guess{
+    text-align:center;
+    font-size:1.25rem;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.response-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.response-buttons button{
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    color:white;
+    font-weight:600;
+}
+
+#lowerBtn{
+    background:#ef6c00;
+}
+
+#correctBtn{
+    background:var(--accent);
+}
+
+#higherBtn{
+    background:#1976d2;
+}
+
+/* RESULT */
+
+#resultText{
+    text-align:center;
+    margin:20px 0;
+    line-height:1.7;
+    color:var(--muted);
+}
+
+.result-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.result-buttons button,
+.home-btn{
+    width:100%;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+    background:#2a2a2a;
+    color:white;
+}
+
+.home-btn{
+    margin-top:10px;
+}
+
+.result-buttons button:first-child{
+    background:var(--accent);
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    .card{
+        padding:18px;
+    }
+
+    h1{
+        font-size:1.7rem;
+    }
+
+    .guess-input-row{
+        flex-direction:column;
+    }
+
+    .guess-input-row button{
+        padding:14px;
+    }
+
+    #guessScreen .card{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        min-height:calc(100dvh - 40px);
+    }
+
+    #guessScreen .history{
+        height:110px;
+        min-height:110px;
+    }
+
+    #guessScreen .numpad{
+        gap:6px;
+    }
+
+    #guessScreen .num-btn{
+        padding:10px;
+        font-size:1rem;
+        min-height:40px;
+    }
+}
+.vatsal-header {
+     font-family: "Vatsal-logo" !important; color:white !important; text-decoration: none !important; font-size: 20px !important; }

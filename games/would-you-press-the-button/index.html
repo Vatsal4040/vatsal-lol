@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="style.css">
+<title>Would You Press the Button?</title>
+<link rel="canonical" href="https://vatsal.lol/games/would-you-press-the-button/">
+<meta property="og:url" content="https://vatsal.lol/games/would-you-press-the-button/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+  <header class="vatsal-header">
+    <a href="/" class="vatsal-home">vatsal.lol</a>
+</header>
+<section id="pressStartScreen">
+  <h1 class="game-title">Would You Press the Button?</h1>
+  <p class="press-start-copy">Choose YES or NO for 10 dilemmas. After each answer, see how other players voted.</p>
+  <button id="pressStartBtn" type="button">START</button>
+</section>
+<div class="container">
+  <section class="game-title-section">
+    <h1 class="game-title">Would You Press the Button?</h1>
+    <div id="questionCounter">Question 1 / 10</div>
+</section>
+  <h2 id="question">Loading…</h2>
+  <div class="buttons">
+    <button class="btn-yes" onclick="answer(true)">YES</button>
+    <button class="btn-no" onclick="answer(false)">NO</button>
+  </div>
+  <div class="result" id="result"></div>
+  <div class="bar-wrap">
+    <div class="bar yes-bar" id="yesBar"></div>
+    <div class="bar no-bar" id="noBar"></div>
+  </div>
+  <div class="most-choice" id="mostChoice"></div>
+  <div id="dots"></div>
+  <div class="summary" id="summary"></div>
+  <div class="actions">
+    <button onclick="restart()" id="restartBtn" style="display:none">Restart</button>
+    <button onclick="shareResult()" id="shareBtn" style="display:none">Share</button>
+  </div>
+</div>
+<script src="script.js" defer></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

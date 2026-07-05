@@ -1,0 +1,490 @@
+/* ---------- PURE 8-BIT STYLE : NO ROUND CORNERS, DYNAMIC COLOR THEME ---------- */
+
+@font-face {
+  font-family: "Vatsal-logo";
+  src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+  font-display: swap;
+}
+
+:root {
+  --theme-color: #00ff66;
+  --board-width: 300px;
+  --side-width: 148px;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000000;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Courier New", VT323, "Press Start 2P", monospace;
+  margin: 0;
+  padding: 0;
+  color: var(--theme-color);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+/* ---- VATSAL HEADER v2.5 ---- */
+.vatsal-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.vatsal-home {
+  font-family: "Vatsal-logo" !important;
+  text-decoration: none;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--theme-color);
+  transition: color 0.08s linear;
+}
+
+/* ---- CABINET ---- */
+.cabinet {
+  width: min(100%, 760px);
+  background: #000000;
+  padding: clamp(10px, 2.4vw, 24px);
+  border: 2px solid var(--theme-color);
+  box-shadow: 0 0 8px var(--theme-color);
+  overflow: hidden;
+  transition: border-color 0.08s linear, box-shadow 0.08s linear;
+  flex-shrink: 0;
+}
+
+.game-row {
+  display: grid;
+  grid-template-columns: var(--side-width) var(--board-width) var(--side-width);
+  justify-content: center;
+  align-items: start;
+  gap: clamp(8px, 2.2vw, 20px);
+}
+
+.play-area,
+.right-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.play-area {
+  align-items: stretch;
+  min-width: 0;
+}
+
+.right-stack {
+  gap: 16px;
+  min-width: 0;
+}
+
+.panel,
+.stats {
+  background: #000000;
+  border: 2px solid var(--theme-color);
+  transition: border-color 0.08s linear;
+}
+
+.panel {
+  padding: 12px;
+}
+
+/* HOLD and NEXT panels tappable on mobile */
+.hold-panel,
+.next-panel {
+  cursor: pointer;
+  position: relative;
+}
+
+.panel-title {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--theme-color);
+  text-shadow: 0 0 3px var(--theme-color);
+  transition: color 0.08s linear, text-shadow 0.08s linear;
+}
+
+.game-canvas,
+.mini-canvas {
+  display: block;
+  max-width: 100%;
+  background-color: #000000;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  border: 2px solid var(--theme-color);
+  transition: border-color 0.08s linear;
+}
+
+.game-canvas {
+  width: var(--board-width);
+  height: auto;
+  aspect-ratio: 1 / 2;
+  touch-action: none;
+}
+
+.mini-canvas {
+  width: min(100%, 120px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
+
+.stats {
+  padding: 12px 18px;
+  text-align: center;
+}
+
+.stat-line + .stat-line {
+  margin-top: 8px;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--theme-color);
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: color 0.08s linear;
+}
+
+.stat-number {
+  width: 100%;
+  min-width: 80px;
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  background: #000;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+  font-family: "Courier New", monospace;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 0 0 2px var(--theme-color);
+  transition: color 0.08s linear, border-color 0.08s linear;
+}
+
+.retro-btn,
+.touch-btn {
+  background: #000000;
+  border: 2px solid var(--theme-color);
+  color: var(--theme-color);
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background 0.05s linear, color 0.05s linear, border-color 0.08s linear;
+  touch-action: manipulation;
+}
+
+.retro-btn {
+  width: 100%;
+  min-height: 42px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.retro-btn:active,
+.touch-btn:active,
+.touch-btn.is-pressed {
+  background: var(--theme-color);
+  color: #000;
+}
+
+.controls-info {
+  text-align: center;
+  margin-top: 20px;
+  padding: 8px 12px;
+  background: #000;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  line-height: 1.4;
+  transition: color 0.08s linear, border-color 0.08s linear;
+}
+
+/* Mobile swipe instructions */
+.touch-instructions {
+  display: none;
+  text-align: center;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #000;
+  border: 1px solid var(--theme-color);
+  color: var(--theme-color);
+  font-family: monospace;
+  font-size: 0.62rem;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  transition: color 0.08s linear, border-color 0.08s linear;
+}
+
+.touch-controls {
+  display: none;
+}
+
+.touch-btn {
+  min-width: 0;
+  min-height: 48px;
+  padding: 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+button,
+.panel,
+.stats,
+.cabinet,
+.game-canvas,
+.mini-canvas,
+.controls-info,
+.touch-controls,
+.touch-btn {
+  border-radius: 0 !important;
+}
+
+/* ---- VATSAL FOOTER override: match neon theme ---- */
+.vatsal-related {
+  width: min(1120px, calc(100% - 32px));
+  margin: 20px auto 20px;
+}
+
+.vatsal-related-title {
+  color: var(--theme-color);
+}
+
+.vatsal-footer a {
+  color: var(--theme-color);
+}
+
+@media (pointer: coarse) {
+  .controls-info {
+    display: none;
+  }
+
+  .touch-instructions {
+    display: block;
+  }
+
+  .touch-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 700px), (max-height: 760px) {
+  :root {
+    --side-width: min(16vw, 60px);
+    --board-width: min(calc(100vw - var(--side-width) - var(--side-width) - 40px), calc(50vh - 85px), 230px);
+  }
+
+  body {
+    padding: 0;
+  }
+
+  .vatsal-header {
+    padding: 10px 14px;
+  }
+
+  .cabinet {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .game-row {
+    gap: 8px;
+  }
+
+  .panel {
+    padding: 6px;
+  }
+
+  .panel-title {
+    font-size: 0.58rem;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .mini-canvas {
+    width: var(--side-width);
+  }
+
+  .right-stack {
+    gap: 8px;
+  }
+
+  .stats {
+    padding: 6px;
+  }
+
+  .stat-line + .stat-line {
+    margin-top: 5px;
+  }
+
+  .stat-label {
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .stat-number {
+    min-width: 0;
+    padding: 1px 3px;
+    font-size: 0.95rem;
+  }
+
+  .retro-btn {
+    min-height: 38px;
+    margin-top: 8px;
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+  }
+
+.touch-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 10px;
+  }
+
+  .touch-instructions {
+    display: block;
+  }
+
+  .controls-info {
+    display: none;
+  }
+
+  body.game-ended {
+    touch-action: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .vatsal-home {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --side-width: min(16vw, 56px);
+  }
+
+  .touch-btn {
+    min-height: 44px;
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-height: 460px) and (orientation: landscape) {
+  :root {
+    --side-width: min(10vw, 56px);
+    --board-width: min(calc(100vw - var(--side-width) - var(--side-width) - 34px), calc(50vh - 63px), 210px);
+  }
+
+  .vatsal-header {
+    padding: 6px 14px;
+  }
+
+  .cabinet {
+    padding: 6px;
+  }
+
+  .game-row {
+    gap: 6px;
+  }
+
+  .right-stack {
+    gap: 6px;
+  }
+
+  .panel,
+  .stats {
+    padding: 4px;
+  }
+
+  .panel-title {
+    font-size: 0.5rem;
+    margin-bottom: 4px;
+  }
+
+  .stat-line + .stat-line {
+    margin-top: 3px;
+  }
+
+  .stat-label {
+    font-size: 0.45rem;
+  }
+
+  .stat-number {
+    font-size: 0.75rem;
+  }
+
+  .retro-btn {
+    min-height: 32px;
+    margin-top: 5px;
+    font-size: 0.62rem;
+  }
+
+  .touch-controls {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 6px;
+  }
+
+  .touch-btn {
+    min-height: 36px;
+    font-size: 0.58rem;
+  }
+
+  .touch-instructions {
+    font-size: 0.52rem;
+    margin-top: 4px;
+    padding: 4px 8px;
+  }
+}
+
+@supports (height: 100dvh) {
+  @media (max-width: 700px), (max-height: 760px) {
+    :root {
+      --board-width: min(calc(100vw - var(--side-width) - var(--side-width) - 40px), calc(50dvh - 85px), 230px);
+    }
+  }
+
+  @media (max-height: 460px) and (orientation: landscape) {
+    :root {
+      --board-width: min(calc(100vw - var(--side-width) - var(--side-width) - 34px), calc(50dvh - 63px), 210px);
+    }
+  }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FOCUS </title>
+  <link rel="canonical" href="https://vatsal.lol/games/focus/">
+<meta property="og:url" content="https://vatsal.lol/games/focus/">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+  <link rel="stylesheet" href="focus.css" />
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+<header class="vatsal-header">
+    <a href="/" class="vatsal-home">vatsal.lol</a>
+    <button class="audio-btn" id="audioToggle">🔊</button>
+</header>
+  <main id="focus-game">
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: START   SECTION: MODE SELECT
+         ═══════════════════════════════════════════ -->
+    <section id="section-start" class="focus-section active" aria-label="Mode selection">
+      <div class="section-inner">
+        <h1 class="focus-logo">FOCUS</h1>
+          <p class="focus-tagline">Read. Remember. Answer.</p> 
+        <p class="section-eyebrow">Choose Your Challenge</p>
+        <h2 class="section-heading">Select Mode</h2>
+        <p class="section-sub">Each mode offers a different kind of reading challenge.</p>
+
+        <div class="mode-list">
+
+          <button class="mode-item" data-mode="classic" aria-label="Classic mode">
+            <div class="mode-icon" aria-hidden="true">📖</div>
+            <div class="mode-info">
+              <div class="mode-name">CLASSIC</div>
+              <div class="mode-desc">The original FOCUS challenge. 8 levels from 100 to 800 WPM.</div>
+              <div class="mode-tag">8 Levels · 100–800 WPM</div>
+            </div>
+          </button>
+
+          <button class="mode-item" data-mode="kids" aria-label="Kids mode">
+            <div class="mode-icon" aria-hidden="true">🌟</div>
+            <div class="mode-info">
+              <div class="mode-name">KIDS</div>
+              <div class="mode-desc">Easy pace for beginners and younger readers. Short passages, simple questions.</div>
+              <div class="mode-tag">6 Levels · 50–300 WPM</div>
+            </div>
+          </button>
+
+          <button class="mode-item" data-mode="eagle" aria-label="Eagle Eye mode">
+            <div class="mode-icon" aria-hidden="true">🦅</div>
+            <div class="mode-info">
+              <div class="mode-name">EAGLE EYE</div>
+              <div class="mode-desc">High-concentration challenge. Longer passages, finer details, extreme speeds.</div>
+              <div class="mode-tag">6 Levels · 150–800 WPM</div>
+            </div>
+          </button>
+
+          <button class="mode-item" data-mode="daily" aria-label="Daily challenge mode">
+            <div class="mode-icon" aria-hidden="true">📅</div>
+            <div class="mode-info">
+              <div class="mode-name">DAILY</div>
+              <div class="mode-desc">Today's challenge. Everyone gets the same sequence — one shot per day.</div>
+              <div class="mode-tag">6 Levels · 100–600 WPM</div>
+            </div>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: LEVEL INTRO
+         ═══════════════════════════════════════════ -->
+    <section id="section-level" class="focus-section" aria-label="Level introduction">
+      <div class="section-inner section-inner--center">
+        <p class="section-eyebrow" id="js-level-eyebrow">LEVEL 1</p>
+        <div class="level-number" id="js-level-number">1</div>
+        <div class="level-wpm" id="js-level-wpm">100 WPM</div>
+        <div class="level-title" id="js-level-title">Careful Reader</div>
+        <p class="level-motivate" id="js-level-motivate">Stay focused.</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: COUNTDOWN
+         ═══════════════════════════════════════════ -->
+    <section id="section-countdown" class="focus-section" aria-label="Countdown">
+      <div class="section-inner section-inner--center">
+        <div class="countdown-num" id="js-countdown">3</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: READING
+         ═══════════════════════════════════════════ -->
+    <section id="section-reading" class="focus-section" aria-label="Reading passage">
+
+      <div class="reading-hud" role="status" aria-live="polite">
+        <div class="hud-cell">
+          <span class="hud-label">Level</span>
+          <span class="hud-value" id="js-hud-level">1</span>
+        </div>
+        <div class="hud-cell">
+          <span class="hud-label">WPM</span>
+          <span class="hud-value" id="js-hud-wpm">100</span>
+        </div>
+        <div class="hud-cell">
+          <span class="hud-label">Lives</span>
+          <span class="hud-lives" id="js-hud-lives" aria-label="3 lives remaining">
+            <span class="heart" aria-hidden="true">❤️</span>
+            <span class="heart" aria-hidden="true">❤️</span>
+            <span class="heart" aria-hidden="true">❤️</span>
+          </span>
+        </div>
+        <div class="hud-cell">
+          <span class="hud-label">Re-Read</span>
+          <span class="hud-reread" id="js-hud-reread" aria-label="Re-Read available">👁️</span>
+        </div>
+      </div>
+
+      <div class="reading-progress-wrap" aria-hidden="true">
+        <div class="reading-progress-bar" id="js-progress-bar"></div>
+      </div>
+
+      <div class="reading-stage" aria-live="assertive" aria-atomic="true">
+        <div class="word-display" id="js-word-display" aria-label="Current word"></div>
+      </div>
+
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: QUESTION
+         ═══════════════════════════════════════════ -->
+    <section id="section-question" class="focus-section" aria-label="Answer the question">
+      <div class="section-inner">
+
+        <div class="question-meta">
+          <span class="section-eyebrow">Level <span id="js-q-level">1</span> · <span id="js-q-wpm">100</span> WPM</span>
+        </div>
+
+        <p class="question-text" id="js-question-text">What colour was the door?</p>
+
+        <div class="reread-row">
+          <button class="btn-reread" id="js-btn-reread" aria-label="Re-read the passage">
+            👁️ Re-Read Passage
+          </button>
+        </div>
+
+        <div class="answers-grid" id="js-answers-grid" role="list"></div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: FEEDBACK
+         ═══════════════════════════════════════════ -->
+    <section id="section-feedback" class="focus-section" aria-label="Answer feedback">
+      <div class="section-inner section-inner--center">
+        <div class="feedback-icon" id="js-fb-icon" aria-hidden="true">✅</div>
+        <div class="feedback-title" id="js-fb-title">CORRECT</div>
+        <p class="feedback-sub" id="js-fb-sub">Keep reading!</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION: RESULTS
+         ═══════════════════════════════════════════ -->
+    <section id="section-results" class="focus-section" aria-label="Game results">
+      <div class="section-inner">
+
+        <div class="results-header">
+          <p class="results-outcome" id="js-results-outcome">VICTORY</p>
+          <p class="results-headline" id="js-results-headline">Focus Master Achieved</p>
+          <p class="results-special" id="js-results-special"></p>
+        </div>
+
+        <div class="results-score-row">
+          <div class="results-score-num" id="js-results-score">0</div>
+          <div class="results-rank-badge" id="js-results-rank">DISTRACTED</div>
+        </div>
+
+        <div class="results-stats-grid">
+          <div class="results-stat">
+            <div class="results-stat-label">Mode</div>
+            <div class="results-stat-value" id="js-stat-mode">Classic</div>
+          </div>
+          <div class="results-stat">
+            <div class="results-stat-label">Highest WPM</div>
+            <div class="results-stat-value" id="js-stat-wpm">100</div>
+          </div>
+          <div class="results-stat">
+            <div class="results-stat-label">Correct</div>
+            <div class="results-stat-value" id="js-stat-correct">0/8</div>
+          </div>
+          <div class="results-stat">
+            <div class="results-stat-label">Lives Left</div>
+            <div class="results-stat-value" id="js-stat-lives">0</div>
+          </div>
+          <div class="results-stat">
+            <div class="results-stat-label">Level Reached</div>
+            <div class="results-stat-value" id="js-stat-level">1</div>
+          </div>
+          <div class="results-stat">
+            <div class="results-stat-label">Re-Read Used</div>
+            <div class="results-stat-value" id="js-stat-reread">No</div>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button class="btn btn-primary" id="js-btn-play-again">Play Again</button>
+          <button class="btn btn-ghost" id="js-btn-home">Home</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <script src="focus.js"></script>
+</body>
+</html>

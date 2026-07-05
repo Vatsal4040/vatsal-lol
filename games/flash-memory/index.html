@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Flash Memory Challenge</title>
+<link rel="canonical" href="https://vatsal.lol/games/flash-memory/">
+<meta property="og:url" content="https://vatsal.lol/games/flash-memory/">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%E2%8F%A9%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta name="description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="Flash Memory Challenge | vatsal.lol">
+<meta property="og:description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../../assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flash Memory Challenge | vatsal.lol">
+<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+</head>
+<body>
+
+<header class="vatsal-header" id="siteHeader">
+  <a class="vatsal-home" href="../../index.html">vatsal.lol</a>
+</header>
+
+<div id="game">
+
+  <!-- MODE SELECT SCREEN -->
+  <div id="menuScreen">
+    <div class="menu-title">FLASH<br>MEMORY</div>
+    <div class="menu-sub">How many digits can your brain hold?</div>
+    <div class="mode-grid">
+      <button class="mode-card" onclick="startGame(3)">
+        <span class="mode-digit">3</span>
+        <span class="mode-label">THREE DIGIT</span>
+        <span class="mode-hint">Beginner</span>
+      </button>
+      <button class="mode-card" onclick="startGame(4)">
+        <span class="mode-digit">4</span>
+        <span class="mode-label">FOUR DIGIT</span>
+        <span class="mode-hint">Standard</span>
+      </button>
+      <button class="mode-card" onclick="startGame(5)">
+        <span class="mode-digit">5</span>
+        <span class="mode-label">FIVE DIGIT</span>
+        <span class="mode-hint">Expert</span>
+      </button>
+    </div>
+    <div class="menu-rules">
+      5 wrong answers = game over · speed increases every 5 correct
+    </div>
+  </div>
+
+  <!-- PLAY SCREEN -->
+  <div id="playScreen" class="hidden">
+    <div id="hud">
+      <div id="livesDisplay"></div>
+      <div id="hudScore">0</div>
+      <div id="speedDisplay">—</div>
+    </div>
+    <div id="number"></div>
+   <div id="inputBox">
+      <div id="answerDisplay"></div>
+      <input id="input" autocomplete="off" inputmode="none" pattern="[0-9]*" style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;">
+      <div id="numpad">
+        <button class="np-btn" data-digit="1">1</button>
+        <button class="np-btn" data-digit="2">2</button>
+        <button class="np-btn" data-digit="3">3</button>
+        <button class="np-btn" data-digit="4">4</button>
+        <button class="np-btn" data-digit="5">5</button>
+        <button class="np-btn" data-digit="6">6</button>
+        <button class="np-btn" data-digit="7">7</button>
+        <button class="np-btn" data-digit="8">8</button>
+        <button class="np-btn" data-digit="9">9</button>
+        <button class="np-btn" id="np-del">⌫</button>
+        <button class="np-btn" data-digit="0">0</button>
+      </div>
+    </div>
+    <div id="meta">Q: 0 · R: 0 · W: 0</div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="resultScreen" class="hidden">
+    <div class="result-title">GAME OVER</div>
+    <div id="resultScore"></div>
+    <div id="resultMeta"></div>
+    <div id="resultRemark"></div>
+    <div class="result-actions">
+      <button class="result-btn primary" id="replayBtn">REPLAY</button>
+      <button class="result-btn" id="modeBtn">MODE SELECT</button>
+    </div>
+    <div id="footerSlot"></div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

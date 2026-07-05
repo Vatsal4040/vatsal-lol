@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>BUG SMASH: EXTERMINATOR EDITION</title>
+  <link rel="canonical" href="https://vatsal.lol/games/bugsmash/">
+<meta property="og:url" content="https://vatsal.lol/games/bugsmash/">
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🩴</text></svg>'>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+ <header class="vatsal-header" id="vatsalHeader">
+  <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+</header>
+  <!-- START SCREEN -->
+  <section id="startScreen" class="screen active">
+    <div class="hero">
+      <h1 class="game-title">🦟 BUG SMASH</h1>
+      <p class="subtitle">How would you like to solve your bug problem today?</p>
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-icon">🧴</div>
+          <h2>Spray Can Mode</h2>
+          <p>Target one species. Build combos. Chase high scores.</p>
+          <button id="sprayModeBtn" class="primary-btn">PLAY SPRAY MODE</button>
+        </div>
+        <div class="mode-card">
+          <div class="mode-icon">🩴</div>
+          <h2>Chappal Mode</h2>
+          <p>Everything must die. No strategy. No mercy.</p>
+          <button id="chappalModeBtn" class="danger-btn">PLAY CHAPPAL MODE</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUG SELECTION -->
+  <section id="selectionScreen" class="screen">
+    <div class="selection-wrapper">
+      <h2>Select Your Target</h2>
+      <p class="selection-subtitle">Choose the bug you hate most.</p>
+      <div class="bug-grid">
+
+        <div class="bug-card" data-name="Fly" data-emoji="🪰">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🪰</div>
+          <h3>Fly</h3>
+        </div>
+
+        <div class="bug-card" data-name="Mosquito" data-emoji="🦟">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🦟</div>
+          <h3>Mosquito</h3>
+        </div>
+
+        <div class="bug-card" data-name="Spider" data-emoji="🕷️">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🕷️</div>
+          <h3>Spider</h3>
+        </div>
+
+        <div class="bug-card" data-name="Cockroach" data-emoji="🪳">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🪳</div>
+          <h3>Cockroach</h3>
+        </div>
+
+        <div class="bug-card" data-name="Ant" data-emoji="🐜">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🐜</div>
+          <h3>Ant</h3>
+        </div>
+
+        <div class="bug-card" data-name="Bed Bug" data-emoji="🐛">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🐛</div>
+          <h3>Bed Bug</h3>
+        </div>
+
+        <div class="bug-card" data-name="Centipede" data-emoji="🦂">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🦂</div>
+          <h3>Centipede</h3>
+        </div>
+
+        <div class="bug-card" data-name="Scorpion" data-emoji="🦂">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🦂</div>
+          <h3>Scorpion</h3>
+        </div>
+
+        <div class="bug-card" data-name="Lizard" data-emoji="🦎">
+          <span class="selected-check">✓</span>
+          <div class="bug-card-emoji">🦎</div>
+          <h3>Lizard</h3>
+        </div>
+
+      </div>
+      <button id="startSprayGameBtn" class="start-game-btn" disabled>
+        START EXTERMINATION
+      </button>
+    </div>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section id="gameScreen" class="screen">
+    <div class="hud">
+      <div class="hud-item"><span>TIME</span><strong id="timeDisplay">60</strong></div>
+      <div class="hud-item"><span>SCORE</span><strong id="scoreDisplay">0</strong></div>
+      <div class="hud-item"><span>BEST</span><strong id="bestDisplay">0</strong></div>
+      <div class="hud-item"><span>COMBO</span><strong id="comboDisplay">x0</strong></div>
+    </div>
+    <div id="infestationWrapper">
+      <div class="infestation-label">INFESTATION</div>
+      <div class="infestation-bar">
+        <div id="infestationFill" class="infestation-fill"></div>
+      </div>
+    </div>
+    <div id="centerAlert"></div>
+    <div id="comboBanner"></div>
+    <div id="countdownBanner"></div>
+    <div id="gameArea"></div>
+  </section>
+
+  <!-- BOSS OVERLAY -->
+  <div id="bossAnnouncement">
+    <div class="boss-inner">
+      <span class="boss-label">BOSS INCOMING</span>
+      <h2 id="bossNameDisplay">KING COCKROACH</h2>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <section id="resultsScreen" class="screen">
+  <div class="results-inner">
+      <h1>TIME'S UP!</h1>
+      <div id="medalBadge">A</div>
+      <div class="results-grid">
+        <div class="result-row"><span>FINAL SCORE</span><strong id="finalScore"></strong></div>
+        <div class="result-row"><span>BEST SCORE</span><strong id="finalBest"></strong></div>
+        <div class="result-row"><span>BUGS SMASHED</span><strong id="finalKills"></strong></div>
+        <div class="result-row"><span>MAX COMBO</span><strong id="finalCombo"></strong></div>
+        <div class="result-row"><span>CRITICAL HITS</span><strong id="finalCriticals"></strong></div>
+        <div class="result-row"><span>ACCURACY</span><strong id="finalAccuracy"></strong></div>
+        <div class="result-row"><span>SURVIVAL TIME</span><strong id="finalTime"></strong></div>
+        <div class="result-row"><span>GAMES PLAYED</span><strong id="gamesPlayed"></strong></div>
+        <div class="result-row"><span>MOST ELIMINATED</span><strong id="mostKilledBug"></strong></div>
+      </div>
+      <div class="report-card">
+        <h2>EXTERMINATION REPORT</h2>
+        <div id="killBreakdown"></div>
+      </div>
+      <div class="results-buttons">
+        <button id="playAgainBtn">PLAY AGAIN</button>
+        <button id="changeModeBtn">CHANGE MODE</button>
+        <button id="mainMenuBtn">MAIN MENU</button>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

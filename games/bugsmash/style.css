@@ -1,0 +1,713 @@
+/* ==================================================
+BUG SMASH : EXTERMINATOR EDITION
+STYLE.CSS  — MOBILE-FIXED VERSION
+================================================== */
+@font-face {
+    font-family: "Vatsal-logo";
+    src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+    font-display: swap;
+}
+:root {
+  --bg: #F9FAFB;
+  --card: #FFFFFF;
+  --text: #111827;
+  --muted: #6B7280;
+  --danger: #E63946;
+  --success: #06D6A0;
+  --yellow: #FFD166;
+  --navy: #1D3557;
+  --border: #E5E7EB;
+  --shadow: 0 15px 40px rgba(0,0,0,.08);
+  --radius: 28px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  user-select: none;
+  position: relative;
+}
+
+/* BACKGROUND PATTERN */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: .03;
+  background-image:
+    radial-gradient(circle at 20% 20%, #000 1px, transparent 1px),
+    radial-gradient(circle at 70% 60%, #000 1px, transparent 1px),
+    radial-gradient(circle at 40% 80%, #000 1px, transparent 1px);
+  background-size: 120px 120px, 180px 180px, 140px 140px;
+}
+
+/* ==========================================
+SCREENS
+========================================== */
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  padding-top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Start screen — vertically center on tall screens */
+#startScreen.active {
+  justify-content: center;
+}
+
+/* ==========================================
+START SCREEN
+========================================== */
+
+.hero {
+  width: min(1200px, 92%);
+  margin: auto;
+  padding: 24px 0;
+  text-align: center;
+}
+
+.game-title {
+  font-size: clamp(2.4rem, 7vw, 6rem);
+  line-height: 1;
+  font-weight: 900;
+  margin-bottom: 14px;
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 3vw, 1.15rem);
+  color: var(--muted);
+  margin-bottom: 36px;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.mode-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 40px);
+  box-shadow: var(--shadow);
+  transition: .25s ease;
+  border: 2px solid transparent;
+}
+
+.mode-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(17,24,39,.08);
+}
+
+.mode-icon {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin-bottom: 12px;
+}
+
+.mode-card h2 {
+  font-size: clamp(1rem, 3vw, 1.4rem);
+  margin-bottom: 10px;
+}
+
+.mode-card p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+  min-height: 0;
+}
+
+/* ==========================================
+BUTTONS
+========================================== */
+
+button {
+  border: none;
+  cursor: pointer;
+  font-weight: 800;
+  transition: .2s ease;
+  font-family: inherit;
+}
+
+button:hover { transform: translateY(-2px); }
+button:active { transform: scale(.97); }
+
+.primary-btn {
+  background: var(--navy);
+  color: white;
+  padding: clamp(12px, 2.5vw, 16px) clamp(18px, 4vw, 28px);
+  border-radius: 16px;
+  margin-top: 16px;
+  font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+  width: 100%;
+}
+
+.danger-btn {
+  background: var(--danger);
+  color: white;
+  padding: clamp(12px, 2.5vw, 16px) clamp(18px, 4vw, 28px);
+  border-radius: 16px;
+  margin-top: 16px;
+  font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+  width: 100%;
+}
+
+.start-game-btn {
+  background: var(--success);
+  color: white;
+  padding: 16px 32px;
+  border-radius: 16px;
+  margin-top: 24px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 340px;
+}
+
+.start-game-btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==========================================
+BUG SELECT SCREEN
+========================================== */
+
+#selectionScreen.active {
+  justify-content: flex-start;
+}
+
+.selection-wrapper {
+  width: min(1000px, 92%);
+  margin: 0 auto;
+  padding: 28px 0 40px;
+  text-align: center;
+}
+
+.selection-wrapper h2 {
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  margin-bottom: 8px;
+}
+
+.selection-subtitle {
+  color: var(--muted);
+  margin-bottom: 24px;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+}
+
+.bug-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.bug-card {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: clamp(14px, 3vw, 25px);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: .25s ease;
+  border: 3px solid transparent;
+}
+
+.bug-card:hover { transform: translateY(-6px); }
+
+.bug-card.selected {
+  border-color: var(--success);
+  transform: translateY(-8px);
+}
+
+.selected-check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--success);
+  color: white;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 0.8rem;
+}
+
+.bug-card.selected .selected-check {
+  display: flex;
+}
+
+.bug-card img {
+  width: clamp(60px, 12vw, 140px);
+  height: clamp(60px, 12vw, 140px);
+  object-fit: contain;
+}
+
+.bug-card h3 {
+  margin-top: 8px;
+  font-size: clamp(0.7rem, 2vw, 0.95rem);
+}
+
+/* ==========================================
+GAME SCREEN
+========================================== */
+
+#gameScreen {
+  background: var(--bg);
+  overflow: hidden;
+}
+
+#gameScreen.active {
+  display: block;
+}
+
+/* ==========================================
+HUD
+========================================== */
+
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.hud-item {
+  background: white;
+  border-radius: 14px;
+  padding: 8px 6px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.hud-item span {
+  display: block;
+  color: var(--muted);
+  font-size: clamp(0.6rem, 1.8vw, 0.8rem);
+  letter-spacing: 0.5px;
+}
+
+.hud-item strong {
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
+}
+
+/* ==========================================
+INFESTATION BAR
+========================================== */
+
+#infestationWrapper {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(420px, 90vw);
+  z-index: 90;
+  display: none;
+}
+
+.infestation-label {
+  text-align: center;
+  font-size: .8rem;
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+}
+
+.infestation-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: #E5E7EB;
+  overflow: hidden;
+}
+
+.infestation-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), var(--yellow), var(--danger));
+  transition: .3s linear;
+}
+
+/* ==========================================
+GAME AREA
+========================================== */
+
+#gameArea {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ==========================================
+BUGS
+========================================== */
+
+.bug {
+  position: absolute;
+  cursor: pointer;
+  transform-origin: center;
+  animation: bugSpawn .22s ease-out, bugWiggle 1.4s infinite ease-in-out;
+  will-change: transform, opacity;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: var(--bug-size, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bug img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes bugSpawn {
+  from { opacity: 0; transform: scale(.3); }
+  to   { opacity: 1; transform: scale(1);  }
+}
+
+@keyframes bugWiggle {
+  0%   { transform: rotate(-7deg); }
+  50%  { transform: rotate(7deg);  }
+  100% { transform: rotate(-7deg); }
+}
+
+.bug.dead {
+  animation: bugDeath .25s forwards;
+}
+
+@keyframes bugDeath {
+  to { opacity: 0; transform: scale(.15) rotate(90deg); }
+}
+
+/* ==========================================
+BOSS
+========================================== */
+
+.boss { z-index: 50; }
+
+.boss-health {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: #DDD;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.boss-health-fill {
+  height: 100%;
+  background: var(--danger);
+  width: 100%;
+}
+
+#bossAnnouncement {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.65);
+  z-index: 999;
+}
+
+#bossAnnouncement.show { display: flex; }
+
+.boss-inner {
+  text-align: center;
+  color: white;
+}
+
+.boss-label {
+  font-size: 1rem;
+  letter-spacing: 3px;
+}
+
+.boss-inner h2 {
+  margin-top: 10px;
+  font-size: clamp(1.8rem, 6vw, 5rem);
+}
+
+/* ==========================================
+COMBO / ALERTS
+========================================== */
+
+#comboBanner,
+#centerAlert,
+#countdownBanner {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 120;
+  pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#comboBanner {
+  top: 170px;
+  font-size: clamp(1.4rem, 5vw, 2.4rem);
+  font-weight: 900;
+  color: var(--success);
+}
+
+#centerAlert {
+  top: 45%;
+  font-size: clamp(1.6rem, 6vw, 3rem);
+  font-weight: 900;
+  color: var(--danger);
+  width: 90%;
+  white-space: normal;
+  text-align: center;
+}
+
+#countdownBanner {
+  top: 35%;
+  font-size: clamp(4rem, 15vw, 7rem);
+  font-weight: 900;
+  color: var(--danger);
+}
+
+/* ==========================================
+FLOATERS
+========================================== */
+
+.float-text {
+  position: absolute;
+  font-weight: 900;
+  pointer-events: none;
+  z-index: 150;
+  animation: floatText .9s forwards;
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+}
+
+@keyframes floatText {
+  to { opacity: 0; transform: translateY(-55px); }
+}
+
+/* ==========================================
+RESULTS SCREEN
+========================================== */
+/* NEW — replace with this */
+#resultsScreen.active {
+  justify-content: flex-start;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.results-inner {
+  width: min(680px, 92%);
+  margin: 0 auto;
+  padding: clamp(24px, 5vw, 48px) 0 40px;
+}
+
+.results-title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+#medalBadge {
+  width: clamp(70px, 15vw, 100px);
+  height: clamp(70px, 15vw, 100px);
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  font-weight: 900;
+}
+
+.results-grid { display: grid; gap: 8px; }
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: clamp(0.82rem, 2.5vw, 1rem);
+  gap: 12px;
+}
+
+.result-row span { color: var(--muted); }
+.result-row strong { font-size: clamp(0.9rem, 3vw, 1.1rem); }
+
+.report-card {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 2px solid var(--border);
+}
+
+.report-card h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1rem, 3.5vw, 1.4rem);
+}
+
+#killBreakdown { display: grid; gap: 6px; }
+
+.results-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.results-buttons button {
+  flex: 1;
+  min-width: 120px;
+  background: var(--navy);
+  color: white;
+  padding: clamp(12px, 2.5vw, 16px);
+  border-radius: 14px;
+  font-size: clamp(0.78rem, 2.5vw, 0.9rem);
+}
+
+/* ==========================================
+MOBILE OVERRIDES  ≤ 480px
+========================================== */
+
+@media (max-width: 480px) {
+  .mode-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .bug-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .bug-card {
+    padding: 12px 8px;
+    border-radius: 14px;
+  }
+
+  .hud {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+ /* Extra spacing below 2-row HUD */
+  #infestationWrapper {
+    top: 122px;
+  }
+
+  #comboBanner {
+    top: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .results-buttons { flex-direction: column; }
+}
+
+/* ==========================================
+EMOJI BUG RENDERING
+========================================== */
+
+.bug-emoji {
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.bug .bug-emoji {
+  font-size: 90%;
+  line-height: 1;
+}
+
+.bug-card-emoji {
+  font-size: clamp(2.8rem, 10vw, 5rem);
+  line-height: 1;
+  margin: 4px 0 8px;
+}
+/* ==========================================
+VATSAL HEADER — GAMEPLAY HIDE
+========================================== */
+
+#gameScreen.active ~ * #vatsalHeader,
+body.game-active #vatsalHeader {
+  display: none;
+}
+
+/* Header hidden when game screen is active */
+#gameScreen.active + #vatsalHeader,
+.vatsal-header.hidden {
+  display: none;
+}
+.vatsal-home {
+  font-family: "Vatsal-logo" !important;
+  font-size: 25px !important;
+  pointer-events: all;
+  cursor: pointer;
+}
+/* ==========================================
+FOOTER INSIDE RESULTS SCREEN
+========================================== */
+
+#resultsScreen .vatsal-related {
+  width: min(680px, 92%);
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+#resultsScreen .vatsal-related[hidden] {
+  display: none !important;
+}
+.vatsal-related-title { 
+  font-family: "Vatsal-logo" !important;
+}
+.vatsal-footer,
+.vatsal-footer *,
+.vatsal-footer a {
+  font-family: "Vatsal-logo" !important;
+}
+
+#resultsScreen .vatsal-footer,
+#resultsScreen .vatsal-footer a{
+    font-family:"Vatsal-logo" !important;
+}

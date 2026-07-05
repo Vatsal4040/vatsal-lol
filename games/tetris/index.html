@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>8-BIT RAINBOW TETRIS</title>
+  <link rel="canonical" href="https://vatsal.lol/games/tetris/">
+<meta property="og:url" content="https://vatsal.lol/games/tetris/">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8E%B2%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <meta name="description" content="Play instant mini games on vatsal.lol.">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta property="og:title" content="8-BIT RAINBOW TETRIS| vatsal.lol">
+  <meta property="og:description" content="Play instant mini games on vatsal.lol.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../../assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="8-BIT RAINBOW TETRIS| vatsal.lol">
+  <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+</head>
+<body>
+
+  <!-- VATSAL.LOL HEADER v2.5 -->
+  <header class="vatsal-header">
+    <a class="vatsal-home" href="/">vatsal.lol</a>
+  </header>
+
+  <div class="cabinet" id="mainCabinet">
+    <div class="game-row">
+      <!-- HOLD PANEL -->
+      <div class="panel hold-panel" id="holdPanel" title="Tap to hold current piece">
+        <div class="panel-title">HOLD</div>
+        <canvas id="holdCanvas" width="120" height="120" class="mini-canvas"></canvas>
+      </div>
+      <!-- MAIN GAME GRID -->
+      <div class="play-area">
+        <canvas id="tetrisCanvas" width="300" height="600" class="game-canvas"></canvas>
+        <button id="newGameBtn" class="retro-btn">NEW GAME</button>
+      </div>
+      <!-- RIGHT: NEXT + STATS -->
+      <div class="right-stack">
+        <div class="panel next-panel" id="nextPanel" title="Tap to hold current piece">
+          <div class="panel-title">NEXT</div>
+          <canvas id="nextCanvas" width="120" height="120" class="mini-canvas"></canvas>
+        </div>
+        <div class="stats">
+          <div class="stat-line"><div class="stat-label">SCORE</div><div class="stat-number" id="scoreVal">0</div></div>
+          <div class="stat-line"><div class="stat-label">LINES</div><div class="stat-number" id="linesVal">0</div></div>
+          <div class="stat-line"><div class="stat-label">LEVEL</div><div class="stat-number" id="levelVal">0</div></div>
+          <div class="stat-line"><div class="stat-label">HIGH</div><div class="stat-number" id="highVal">0</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="controls-info">
+      ARROWS MOVE &nbsp;|&nbsp; UP / R ROTATE &nbsp;|&nbsp; C / TAP HOLD HOLD &nbsp;|&nbsp; SPACE DROP &nbsp;|&nbsp; N NEW GAME
+    </div>
+    <!-- mobile instructions shown below touch controls -->
+    <div class="touch-instructions">
+      SWIPE ← → ↓ MOVE &nbsp;|&nbsp; SWIPE ↑ ROTATE &nbsp;|&nbsp; TAP ROTATE &nbsp;|&nbsp; TAP NEXT HOLD
+    </div>
+    <div class="touch-controls" aria-label="Touch controls">
+      <button class="touch-btn hold" data-action="hold" type="button" aria-label="Hold">H</button>
+      <button class="touch-btn rotate" data-action="rotate" type="button" aria-label="Rotate">R</button>
+      <button class="touch-btn hard" data-action="hard-drop" type="button" aria-label="Hard drop">DROP</button>
+      <button class="touch-btn left" data-action="left" type="button" aria-label="Move left">LEFT</button>
+      <button class="touch-btn down" data-action="down" type="button" aria-label="Move down">DOWN</button>
+      <button class="touch-btn right" data-action="right" type="button" aria-label="Move right">RIGHT</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

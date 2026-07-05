@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adjust Me</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+<!-- START SCREEN -->
+<section id="startScreen" class="screen active">
+  <h1 class="game-title">Adjust Me</h1>
+  <p class="tagline">Divide the grid into rectangles</p>
+  <button id="freePlayBtn" class="primary-btn">Free Play</button>
+  <div id="difficultyPanel" class="hidden">
+    <h3>Select Difficulty</h3>
+    <button class="difficulty-btn" data-difficulty="easy">
+      Easy <span class="diff-meta">4×4 – 4×6 grids</span>
+    </button>
+    <button class="difficulty-btn" data-difficulty="normal">
+      Normal <span class="diff-meta">5×5 – 5×7 grids</span>
+    </button>
+    <button class="difficulty-btn" data-difficulty="hard">
+      Hard <span class="diff-meta">6×6 – 7×7 grids</span>
+    </button>
+    <button class="difficulty-btn" data-difficulty="expert">
+      Expert <span class="diff-meta">7×8 – 9×9 grids</span>
+    </button>
+     <button class="difficulty-btn" data-difficulty="master" id="masterBtn">
+      Master <span class="diff-meta">10×10 – 12×12 · 🔒</span>
+    </button>
+    <button class="difficulty-btn" data-difficulty="grandmaster" id="grandmasterBtn">
+      Grandmaster <span class="diff-meta">14×14 – 15×15 · 🔒</span>
+    </button>
+  </div>
+  <div class="menu-divider"></div>
+  <button id="dailyBtn" class="primary-btn">Daily Challenge</button>
+  <div class="menu-divider"></div>
+  <button id="statsBtn" class="primary-btn">Statistics</button>
+  <button id="howToPlayBtn" class="primary-btn">How To Play</button>
+</section>
+<!-- HOW TO PLAY -->
+<section id="howToPlayScreen" class="screen hidden">
+  <h2>How To Play</h2>
+  <ul class="rules">
+    <li><span class="rule-num">1</span><span>Divide the entire grid into rectangles — every cell must be covered.</span></li>
+    <li><span class="rule-num">2</span><span>Each rectangle contains exactly one number clue.</span></li>
+    <li><span class="rule-num">3</span><span>The number equals the rectangle's area (width × height).</span></li>
+    <li><span class="rule-num">4</span><span>Tap a cell to start a rectangle, tap another cell to finish it.</span></li>
+    <li><span class="rule-num">5</span><span>Tap a filled region to select it, then hit Erase to remove it.</span></li>
+  </ul>
+  <button class="back-btn" id="closeHowToPlay">Back</button>
+</section>
+<!-- STATS -->
+<section id="statsScreen" class="screen hidden">
+  <h2>Statistics</h2>
+  <div class="stats-grid">
+    <div class="stat-card"><span>Solved</span><strong id="statSolved">0</strong></div>
+    <div class="stat-card"><span>Streak</span><strong id="statStreak">0</strong></div>
+    <div class="stat-card"><span>Best Streak</span><strong id="statBest">0</strong></div>
+   <div class="stat-card"><span>Daily Done</span><strong id="statDaily">0</strong></div>
+    <div class="stat-card"><span>Assisted</span><strong id="statAssisted">0</strong></div>
+  </div>
+  <button class="back-btn" id="closeStats">Back</button>
+</section>
+<!-- GAME SCREEN -->
+<section id="gameScreen" class="screen hidden">
+  <header class="game-header">
+    <button class="home-btn" id="homeBtn">&#8592; Home</button>
+   <!-- <div id="puzzleId">—</div> -->
+    <div id="puzzleId" style="display:none">—</div>
+    <div id="progress">0%</div>
+  </header>
+  <div id="grid"></div>
+  <div class="controls hints-row">
+    <button id="hintBtn">Hint (1)</button>
+    <button id="checkBtn">Check</button>
+  </div>
+  <div class="controls">
+    <button id="restartBtn">Restart</button>
+    <button id="eraseBtn" disabled>Erase</button>
+    <button id="nextBtn">Next</button>
+  </div>
+  <div id="message"></div>
+</section>
+<!-- SUCCESS OVERLAY -->
+<div id="successOverlay">
+  <div class="success-box">
+    <div class="success-emoji">&#127881;</div>
+    <h2>Puzzle Solved!</h2>
+    <p id="successMsg">Nice work.</p>
+    <div class="success-actions">
+      <button id="playNextBtn">Next Puzzle</button>
+      <button id="backHomeBtn">Home</button>
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

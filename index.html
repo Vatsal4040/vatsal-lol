@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Vatsal.lol</title>
+<link rel="canonical" href="https://vatsal.lol/">
+<link rel="icon" href="assets/logo.png">
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Small experiments. Big ideas. Game on instantly.">
+</head>
+<body class="view-launcher">
+
+<!-- Cinematic Universe -->
+<div class="universe">
+    <div class="stars"></div>
+    <div class="nebula nebula-1"></div>
+    <div class="nebula nebula-2"></div>
+    <div class="nebula nebula-3"></div>
+    <div class="faint-glow"></div>
+    <div id="meteors"></div>
+</div>
+
+<header class="v2-header">
+    <div class="header-left">
+        <!-- Live Date & Time for Desktop Launcher -->
+        <div id="statusArea" class="status-area"></div>
+    </div>
+    <div class="header-center">
+        <h1 class="v2-title">VATSAL.LOL</h1>
+         <p class="v2-tagline">Small experiments. Big ideas.Game on instantly.No install. No login. Just fun.</p>
+    </div>
+
+    <div class="header-right">
+        <!-- Logo Button and View Toggle Side-by-Side -->
+        <div class="header-controls">
+              <div class="toggle-group">
+                <button id="showLauncher" class="toggle-btn active" title="Launcher View">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><circle cx="12" cy="12" r="3"/><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/></svg>
+                </button>
+                <button id="showGrid" class="toggle-btn" title="Grid View">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+                </button>
+            </div>
+            <button class="v2-logo-btn vatsal-v2-coffee-trigger" id="contactBtn" aria-label="Contact">
+                <img src="assets/logo.png" alt="">
+            </button>
+        </div>
+       
+    </div>
+</header>
+
+<main class="v2-container">
+    <!-- LAUNCHER: Hand-placed composition -->
+    <section id="launcher" class="launcher-view">
+        <div id="launcherNodes" class="nodes-composition"></div>
+    </section>
+
+    <!-- GRID: Traditional Browsing -->
+    <section id="gridView" class="grid-view">
+        <div id="traditionalGrid" class="cards-grid"></div>
+        
+        <footer class="vatsal-v2-footer">
+            <div>
+              <p class="vatsal-v2-footer-intro">Hi! I'm Vatsal.</a></p>
+              <p>This is where I make fun games / weird pages on the web.</p>
+              <h2>Contact Me</h2>
+              <p class="vatsal-v2-link-label">My Links</p>
+              <ul class="vatsal-v2-links">
+                <li><a href="https://www.youtube.com/@ytgamingbolly" target="_blank"><img src="assets/youtube.png"></a></li>
+                <li><a href="https://www.instagram.com/vatsal.lol/" target="_blank"><img src="assets/insta.jpg"></a></li>
+                <li><a href="mailto:ytgamingvatsal@gmail.com"><img src="assets/email.png"></a></li>
+                <li><a href="https://t.me/freehdbackup" target="_blank"><img src="assets/telegram.png"></a></li>
+                <li><button class="vatsal-v2-coffee-trigger" type="button"><img src="assets/coffee.png"></button></li>
+              </ul>
+            </div>
+        </footer>
+    </section>
+</main>
+
+<div class="v2-footer-fixed">
+    <div class="v2-credits">Built by Vatsal with 😍</div>
+    <div class="flash-mascot" id="flashMascot">
+        <img src="assets/data/flashhero.png" alt="Flash" class="f-char" id="flashImg">
+        <div class="f-sprint-container" id="fSprint">
+            <img src="assets/data/flashrunning.png" alt="" class="f-running-img">
+            <div class="f-lightning" style="background-image: url('assets/data/flashlighting.png');"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Contact Panel -->
+<div id="contactPanel" class="contact-panel">
+    <div class="panel-content">
+        <button class="panel-close" id="closePanel">×</button>
+        <h3>Contact Me</h3>
+        <p>Want to chat games or ideas?</p>
+        <div class="panel-links">
+            <a href="https://www.youtube.com/@ytgamingbolly" target="_blank"><img src="assets/youtube.png"></a>
+            <a href="https://www.instagram.com/vatsal.lol/" target="_blank"><img src="assets/insta.jpg"></a>
+            <a href="mailto:ytgamingvatsal@gmail.com"><img src="assets/email.png"></a>
+            <a href="https://t.me/freehdbackup" target="_blank"><img src="assets/telegram.png"></a>
+            <button class="vatsal-v2-coffee-trigger"><img src="assets/coffee.png"></button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

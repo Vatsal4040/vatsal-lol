@@ -1,0 +1,635 @@
+/* ---------- VATSAL FONT ---------- */
+@font-face {
+  font-family: "Vatsal-logo";
+  src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+  font-display: swap;
+}
+html, body {
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+body.result-active {
+    overflow-y: auto;
+}
+/* ===== GLOBAL ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+/* ===== HEADER VISIBILITY ===== */
+.vatsal-header {
+    position: relative;
+    z-index: 20;
+}
+
+/* ===== LANDING ===== */
+#landing {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#landing h1 {
+    font-size: 3.5rem;
+    letter-spacing: 6px;
+    margin: 0 0 20px;
+}
+
+#landing button {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.daily-status {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    text-align: center;
+    max-width: 280px;
+}
+
+.mode-select {
+    display: flex;
+    gap: 12px;
+}
+
+.mode-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.mode-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===== APP GRID ===== */
+#game-app {
+    max-width: 480px;
+    margin: 0 auto;
+    /* Use dvh so the browser chrome doesn't cause overflow */
+    height: calc(100dvh - 48px); /* 48px = vatsal header */
+    max-height: calc(100dvh - 48px);
+    display: grid;
+    grid-template-rows: auto auto minmax(0, 1fr) 12px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#game-app > .header {
+    grid-row: 1;
+}
+
+#game-app > #resultScreen {
+    grid-row: 2;
+}
+
+#game-app > .game-container {
+    grid-row: 3;
+}
+
+/* ===== HEADER ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.title h1 {
+    margin: 0;
+    font-size: 2.9rem;
+    letter-spacing: 5px;
+    line-height: 1.1;
+}
+
+.mode-label {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: #888;
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* ===== RULES ===== */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip-box {
+    position: absolute;
+    top: 140%;
+    right: 0;
+    width: min(260px, 80vw);
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.85rem;
+    color: #ddd;
+    display: none;
+}
+
+.tooltip:hover .tooltip-box {
+    display: block;
+}
+
+/* ANSWER SENTENCE — make it clearly readable */
+.answer-bar {
+    margin-top: 12px;
+    font-size: 1.6rem;      /* ⬅️ base text bigger */
+    font-weight: 500;
+    color: #ddd;
+    min-height: 28px;
+}
+
+.answer-bar strong {
+    font-size: 1.6em;       /* ⬅️ ANS becomes BIG */
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+.next-btn {
+    background: #1f1f1f;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.next-btn.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* ===== PLAY AREA ===== */
+.game-container {
+    display: grid;
+    place-items: center;
+}
+
+/* INPUT GRID LAYOUT — hardword-style */
+.guess-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+
+.guess-row {
+    display: grid;
+    grid-template-columns: repeat(4, 44px) 70px;
+    gap: 8px;
+    align-items: center;
+}
+
+/* LETTER TILES — final locked style */
+.letter-box {
+    height: clamp(40px, 6vh, 44px);
+    border-radius: 8px;
+    background: #070707;
+    border: 1px solid #1a1a1a;
+
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* ===== KEYBOARD MEMORY (CRITICAL) ===== */
+.key.used {
+    background: #111;
+    color: #555;
+}
+
+/* ===== SCORE ===== */
+.score-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+/* ===== SCORE (PRIMARY SIGNAL) ===== */
+.score {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+    border: 2px solid #555;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1;
+
+    color: #fff;
+    background: #0d0d0d;
+}
+/* Zero scores must still read as information */
+.score:empty {
+    border-color: #444;
+    background: #0a0a0a;
+}
+/* ===== SHAKE ANIMATION — all screen sizes ===== */
+@keyframes hardwordShake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-8px); }
+    40%       { transform: translateX(7px); }
+    60%       { transform: translateX(-5px); }
+    80%       { transform: translateX(4px); }
+}
+
+.guess-row.shake {
+    animation: hardwordShake 280ms linear;
+}
+
+.green {
+    background: #6aaa64;
+    color: #000;
+    border: none;
+}
+
+.yellow {
+    background: #c9b458;
+    color: #000;
+    border: none;
+}
+/* Space between board and keyboard */
+.keyboard {
+    margin-top: 24px;   /* adjust: 16px–32px if needed */
+}
+
+
+.krow {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+/* KEYBOARD KEYS — bigger letters, true center */
+.key {
+    height: clamp(42px, 7vh, 48px);
+    min-width: 32px;
+
+    background: #2b2b2b;
+    border-radius: 6px;
+
+    font-size: 20px;        /* ⬅️ bigger letters */
+    font-weight: 800;
+    line-height: 1;         /* ⬅️ CRITICAL: removes top-left bias */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;             /* ⬅️ remove centering drift */
+    cursor: pointer;
+}
+
+.key.wide { min-width: 56px; }
+
+/* ===== RESULT SCREEN ===== */
+.result-screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+    width: 320px;          /* smaller card */
+    max-width: 90%;
+
+    gap: 10px;
+    margin: 12px auto 28px; /* top gap + larger board gap */
+
+    padding: 14px 18px;
+
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.result-screen.show {
+    display: flex;
+}
+
+.result-screen h2 {
+    margin: 0;
+    letter-spacing: 3px;
+      font-size: 1.9rem;
+}
+
+.result-answer {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+.result-answer strong {
+    font-weight: 900;
+    color: #fff;
+}
+
+.share-btn,
+.next-btn-result {
+    background: #1f1f1f;
+    border: 1px solid #3a3a3a;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result-screen.mode-daily .infinite-only { display: none; }
+.result-screen.mode-infinite .daily-only { display: none; }
+
+/* ===== STATS MODAL ===== */
+.stats-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 20;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-modal.show {
+    display: flex;
+}
+
+.stats-modal-inner {
+    position: relative;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 24px;
+    width: 280px;
+    text-align: center;
+}
+
+.stats-modal-inner h2 {
+    margin: 0 0 16px;
+    letter-spacing: 3px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Reused inside Stats modal (moved from Result Screen) */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-box span {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.stat-box label {
+    font-size: 0.7rem;
+    color: #888;
+}
+
+/* ===== START SCREEN: COMPLETED TODAY ===== */
+.completed-today {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.completed-today strong {
+    letter-spacing: 2px;
+}
+.countdown {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 4px;
+}
+/* ===== HARDWORD MOBILE OVERRIDES (up to 540px) ===== */
+@media (max-width: 540px) {
+
+    /* --- Layout: switch from grid to flex for true centering --- */
+    #game-app {
+        height: calc(100dvh - 48px);
+        max-height: calc(100dvh - 48px);
+        padding: 6px 12px calc(6px + env(safe-area-inset-bottom, 0px));
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0;
+    }
+
+   #game-app .header {
+        flex-shrink: 0;
+        margin-bottom: 6px;
+        gap: 6px;
+        align-items: center;
+    }
+
+    /* prevent STATS/NEXT buttons from shrinking or wrapping */
+    #game-app .header .next-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    /* prevent right side button group from shrinking */
+    #game-app .header > div:last-child {
+        flex-shrink: 0;
+    }
+
+  #game-app .title h1 {
+        font-size: clamp(1.2rem, 6vw, 1.8rem);
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+    #game-app .mode-label {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+
+    #game-app .answer-bar {
+        min-height: 0;
+        font-size: 1.1rem;
+        margin-top: 4px;
+    }
+    /* --- Landing screen --- */
+    #landing h1 {
+        font-size: clamp(2rem, 11vw, 3.5rem);
+        letter-spacing: 3px;
+        text-align: center;
+        padding: 0 12px;
+        word-break: keep-all;
+        white-space: nowrap;
+    }
+
+    /* --- Board area: fill remaining space, center content --- */
+    .game-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .game-container > div {
+        width: 100%;
+        max-width: min(480px, 94vw);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* --- Board rows --- */
+    .guess-board {
+        row-gap: 4px;
+        margin-bottom: 4px;
+    }
+
+    .guess-row {
+        grid-template-columns: repeat(4, clamp(32px, 8.5vw, 44px)) clamp(48px, 13vw, 70px);
+        gap: 4px;
+        align-items: center;
+    }
+
+    /* --- Letter tiles --- */
+    .letter-box {
+        height: clamp(32px, 5.5dvh, 42px);
+        font-size: clamp(1.1rem, 5vw, 1.6rem);
+        border-radius: 6px;
+    }
+
+    /* --- Score circles: locked square, never oval --- */
+    .score-container {
+        gap: 4px;
+        align-self: center;
+        align-items: center;
+        justify-items: center;
+        height: fit-content;
+    }
+
+    .score {
+        width: clamp(26px, 6.5vw, 36px);
+        height: clamp(26px, 6.5vw, 36px);
+        min-width: clamp(26px, 6.5vw, 36px);
+        min-height: clamp(26px, 6.5vw, 36px);
+        max-width: clamp(26px, 6.5vw, 36px);
+        max-height: clamp(26px, 6.5vw, 36px);
+        font-size: clamp(12px, 3.5vw, 18px);
+        border-width: 2px;
+        flex-shrink: 0;
+        align-self: center;
+    }
+
+    /* --- Keyboard --- */
+    .keyboard {
+        margin-top: 8px;
+        width: 100%;
+        max-width: min(480px, 94vw);
+        margin-inline: auto;
+        box-sizing: border-box;
+    }
+
+    .krow {
+        gap: 3px;
+        margin-bottom: 3px;
+        width: 100%;
+    }
+
+    .key {
+        min-width: 0;
+        flex: 1 1 0;
+        height: clamp(34px, 5.5dvh, 44px);
+        font-size: clamp(0.8rem, 3.8vw, 1.1rem);
+        border-radius: 5px;
+    }
+
+    .key.wide {
+        flex-basis: 1.6em;
+        flex-shrink: 0;
+    }
+}
+/* ===== MOBILE INPUT ===== */
+#mobile-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.vatsal-header{
+  font-family: "Vatsal-logo" !important;
+  font-size: 20px !important;
+  color: white !important;
+  text-decoration: none !important;|
+   cursor: pointer;
+ }
+
+

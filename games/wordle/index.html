@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORDLE</title>
+    <link rel="canonical" href="https://vatsal.lol/games/wordle/">
+<meta property="og:url" content="https://vatsal.lol/games/wordle/">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+
+    <!-- ===================================== -->
+    <!-- TOAST -->
+    <!-- ===================================== -->
+
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <!-- ===================================== -->
+    <!-- START SCREEN -->
+    <!-- ===================================== -->
+
+    <section id="start-screen" class="screen active">
+
+        <div class="site-brand">
+            <a href="https://vatsal.lol/"  class="vatsal-home"> vatsal.lol </a>
+        </div>
+
+        <div class="top-bar start-header">
+
+            <button id="start-how-btn" class="icon-btn" aria-label="How to play">
+                ?
+            </button>
+
+            <h1 class="game-title">
+                WORDLE
+            </h1>
+
+            <div class="header-right">
+                <button id="start-stats-btn" class="icon-btn" aria-label="Statistics">
+                    📊
+                </button>
+
+                <button id="start-settings-btn" class="icon-btn" aria-label="Settings">
+                    ⚙
+                </button>
+            </div>
+
+        </div>
+
+        <div class="mode-section">
+
+            <h2>Modes</h2>
+
+            <div class="mode-grid">
+
+                <label class="mode-card">
+
+                    <input
+                        type="radio"
+                        name="game-mode"
+                        value="daily"
+                    >
+
+                    <span>Daily</span>
+
+                </label>
+
+                <label class="mode-card">
+
+                    <input
+                        type="radio"
+                        name="game-mode"
+                        value="infinite"
+                    >
+
+                    <span>Infinite</span>
+
+                </label>
+
+            </div>
+
+        <!-- REPLACE WITH: -->
+            <button
+                id="start-game-btn"
+                disabled
+            >
+                Start Game
+            </button>
+
+            <div id="daily-status"></div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- GAME SCREEN -->
+    <!-- ===================================== -->
+
+    <section id="game-screen" class="screen">
+
+        <header class="game-header">
+
+    <button id="game-how-btn" class="icon-btn" aria-label="How to play">
+        ?
+    </button>
+
+    <div class="game-header-title">
+        <span id="current-mode">DAILY</span>
+        <span>WORDLE</span>
+    </div>
+
+    <div class="header-right">
+        <button id="game-stats-btn" class="icon-btn" aria-label="Statistics">📊</button>
+        <button id="game-settings-btn" class="icon-btn" aria-label="Settings">⚙</button>
+    </div>
+
+</header>
+        <!-- guesses remaining -->
+<div id="guess-counter"></div>
+        <!-- board -->
+
+        <div id="board-container">
+
+            <div id="board">
+
+                <!-- JS creates rows -->
+
+            </div>
+
+        </div>
+
+        <!-- result panel -->
+
+        <div id="result-panel"></div>
+
+        <!-- keyboard -->
+
+        <div id="keyboard">
+
+            <!-- JS creates keyboard -->
+
+        </div>
+
+        <!-- below keyboard: Play Again / countdown -->
+
+        <div id="below-keyboard"></div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- HOW TO PLAY MODAL -->
+    <!-- ===================================== -->
+
+    <div id="how-modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button class="close-modal">
+                ×
+            </button>
+
+            <h2>How To Play</h2>
+
+            <p>
+                Guess the WORDLE in 6 tries.
+            </p>
+
+            <p>
+                Each guess must be a valid
+                five-letter word.
+            </p>
+
+            <p>
+                After each guess the color
+                of the tiles changes.
+            </p>
+
+            <div class="example-section">
+
+                <div class="example-row">
+
+                    <div class="example-tile green">
+                        W
+                    </div>
+
+                    <div class="example-tile">
+                        E
+                    </div>
+
+                    <div class="example-tile">
+                        A
+                    </div>
+
+                    <div class="example-tile">
+                        R
+                    </div>
+
+                    <div class="example-tile">
+                        Y
+                    </div>
+
+                </div>
+
+                <p>
+                    Green = correct letter and
+                    correct position.
+                </p>
+
+            </div>
+
+            <div class="example-section">
+
+                <div class="example-row">
+
+                    <div class="example-tile">
+                        P
+                    </div>
+
+                    <div class="example-tile yellow">
+                        I
+                    </div>
+
+                    <div class="example-tile">
+                        L
+                    </div>
+
+                    <div class="example-tile">
+                        O
+                    </div>
+
+                    <div class="example-tile">
+                        T
+                    </div>
+
+                </div>
+
+                <p>
+                    Yellow = letter exists
+                    somewhere else.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- STATS MODAL -->
+    <!-- ===================================== -->
+
+    <div id="stats-modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button class="close-modal">
+                ×
+            </button>
+
+            <h2>Statistics</h2>
+
+            <div id="stats-content">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- SETTINGS MODAL -->
+    <!-- ===================================== -->
+
+    <div id="settings-modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button class="close-modal">
+                ×
+            </button>
+
+            <h2>Settings</h2>
+
+            <label class="setting-row">
+
+                <span>
+                    Hard Mode
+                </span>
+
+                <input
+                    type="checkbox"
+                    id="hard-mode-toggle"
+                >
+
+            </label>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+ <script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

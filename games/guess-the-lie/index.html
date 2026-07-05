@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Guess the Lie</title>
+<link rel="canonical" href="https://vatsal.lol/games/guess-the-lie/">
+<meta property="og:url" content="https://vatsal.lol/games/guess-the-lie/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Gaming Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+  <header class="vatsal-header" id="vatsalHeader">
+  <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+</header>
+<div id="app">
+<!-- START SCREEN -->
+<div id="startScreen">
+  <div class="game-title">GUESS THE LIE</div>
+  <div class="subtitle">Test Your Knowledge</div>
+  <div class="game-description">
+    <div class="description-title">Challenge Your Mind</div>
+    <div class="description-text">
+      You'll be presented with 3 statements. Two are true, one is a lie.
+      Your mission: identify the false statement before time runs out!
+    </div>
+    <div class="how-to-play">
+      <h3>How to Play:</h3>
+   <ul>
+<li>Read all 3 statements.</li>
+<li>Tap the lie.</li>
+<li>You have 10 seconds.</li>
+<li>Use power-ups wisely.</li>
+</ul>
+    </div>
+  </div>
+  <button class="primary-btn" id="startBtn">
+    <span style="font-size: 1.5rem; margin-right: 10px;">▶</span>
+    START GAME
+  </button>
+</div>
+<!-- GAME SCREEN -->
+<div id="gameScreen">
+  <div class="game-header">
+    <h1>GUESS THE LIE</h1>
+    <div id="progress">Question 1/10</div>
+  </div>
+  <div class="statements-container">
+    <div class="statement" data-index="0">
+      <span class="statement-number">1</span>
+      <span class="statement-text"></span>
+    </div>
+    <div class="statement" data-index="1">
+      <span class="statement-number">2</span>
+      <span class="statement-text"></span>
+    </div>
+    <div class="statement" data-index="2">
+      <span class="statement-number">3</span>
+      <span class="statement-text"></span>
+    </div>
+  </div>
+  <div id="explanation"></div>
+  <div class="game-hud">
+    <div class="progress-dots" id="progressDots"></div>
+    <div id="timer">10s</div>
+  </div>
+  <div class="powerups-container">
+    <button class="powerup-btn" id="skip">
+      <div class="powerup-icon">⏭️</div>
+      SKIP
+      <div class="powerup-count" id="skipCount">∞</div>
+    </button>
+    <button class="powerup-btn" id="freeze">
+      <div class="powerup-icon">❄️</div>
+      FREEZE
+      <div class="powerup-count" id="freezeCount">1</div>
+    </button>
+    <button class="powerup-btn" id="fifty">
+      <div class="powerup-icon">½</div>
+      50/50
+      <div class="powerup-count" id="fiftyCount">1</div>
+    </button>
+  </div>
+</div>
+<!-- END SCREEN -->
+<div id="endScreen">
+  <div class="end-title">GAME OVER</div>
+  <div class="score-display" id="finalScore">0/10</div>
+  <div class="score-breakdown">
+    <h3>PERFORMANCE</h3>
+    <div style="font-size: 1.2rem; margin: 15px 0;">
+      Accuracy: <span id="accuracy">0%</span>
+    </div>
+    <div style="font-size: 1.2rem; margin: 15px 0;">
+      Questions Answered: <span id="totalQuestions">0</span>
+    </div>
+  </div>
+  <button class="primary-btn" id="playAgainBtn">
+    <span style="font-size: 1.5rem; margin-right: 10px;">🔄</span>
+    PLAY AGAIN
+  </button>
+  <br>
+</div>
+</div>
+<script src="script.js"></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Can You Survive Indian Mom Questions? - ARCADE EDITION</title>
+    <link rel="canonical" href="https://vatsal.lol/games/can-you-guess-indian-mom/">
+<meta property="og:url" content="https://vatsal.lol/games/can-you-guess-indian-mom/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%91%A1%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">   
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+<meta name="description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="Can you guess indian mom | vatsal.lol">
+<meta property="og:description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../../assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Can you guess indian mom | vatsal.lol">
+<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+
+</head>
+<body>
+<header class="vatsal-header">
+  <a class="vatsal-home" href="../../index.html">vatsal.lol</a>
+  <button class="audio-btn" id="audioToggleBtn" aria-label="Toggle sound">🔊</button>
+</header>
+<div class="particle-area" id="particleArea"></div>
+<div class="game-wrapper" id="gameRoot">
+    <!-- START SCREEN -->
+    <div id="startScreen" class="screen glass-card start-card">
+        <div class="title-glow">🇮🇳 CAN YOU SURVIVE<br>INDIAN MOM QUESTIONS?</div>
+        <div style="font-size: 3rem; margin: 10px;">😤🥘📱</div>
+        <p style="margin: 16px 0; font-family: 'Chakra Petch'; font-weight: bold;">Sharma ji's son scored 99%? <br> BAS! Choose wisely Beta!</p>
+        <button id="startBtn" class="chaos-btn">🚀 START THE CHAOS 🚀</button>
+        <div style="margin-top: 20px; font-size: 0.65rem; font-family: 'Press Start 2P';">⚠️ Stress meter full = GAME OVER ⚠️</div>
+    </div>
+    <!-- MAIN GAME SCREEN -->
+    <div id="gameScreen" class="screen hidden">
+        <div class="glass-card" style="padding: 20px 18px;">
+            <!-- meters row -->
+            <div class="stats-row">
+                <div class="meter">
+                    <div class="meter-label"><span>💪 SURVIVAL</span><span id="survivalValue">100</span></div>
+                    <div class="meter-bar"><div id="survivalFill" class="fill survival-fill" style="width: 100%"></div></div>
+                </div>
+                <div class="meter">
+                    <div class="meter-label"><span>😤 STRESS</span><span id="stressValue">0</span></div>
+                    <div class="meter-bar"><div id="stressFill" class="fill stress-fill" style="width: 0%"></div></div>
+                </div>
+            </div>
+            <div class="combo-score">
+                <span>🔥 COMBO: <span id="comboCount">0</span>x</span>
+                <span>🏆 SCORE: <span id="scoreDisplay">0</span></span>
+            </div>
+            <!-- mom speech bubble -->
+            <div class="mom-bubble" id="momBubble">
+                <div class="question-text" id="questionText">Loading Maa's fury...</div>
+                <div id="momReaction" class="reaction-tag">🤨 *Mom enters*</div>
+            </div>
+            <!-- choices area -->
+            <div id="choicesContainer" class="choices-grid"></div>
+        </div>
+    </div>
+    <!-- GAME OVER SCREEN -->
+    <div id="gameOverScreen" class="screen hidden">
+        <div class="glass-card gameover-card">
+            <div style="font-size: 4rem;">😭💔</div>
+            <h2 style="color:#a1301a; font-family: 'Press Start 2P'; font-size: 1.2rem;">GAME OVER! MOM WON.</h2>
+            <p style="font-family: 'Chakra Petch'; font-size: 1.2rem; font-weight: bold;">Your final score: <strong id="finalScoreSpan">0</strong></p>
+            <div id="badgeArea" class="badge">🏅 Loading badge...</div>
+            <button id="shareScoreBtn" class="chaos-btn" style="background:#40c0a0;">📢 SHARE SCORE</button>
+            <button id="restartBtn" class="chaos-btn" style="margin-top: 12px;">🔄 PLAY AGAIN</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js" defer></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

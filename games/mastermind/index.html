@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mastermind</title>
+  <link rel="canonical" href="https://vatsal.lol/games/mastermind/">
+  <meta property="og:url" content="https://vatsal.lol/games/mastermind/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%A7%AE%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <meta name="description" content="Play instant mini games on vatsal.lol.">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta property="og:title" content="Mastermind | vatsal.lol">
+  <meta property="og:description" content="Play instant mini games on vatsal.lol.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mastermind | vatsal.lol">
+  <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+<header class="vatsal-header" id="vatsalHeader">
+  <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+</header>
+
+<main class="page">
+
+  <!-- ═══════════════════════════════════════
+       START SCREEN
+  ═══════════════════════════════════════ -->
+  <section class="start-screen" id="startScreen" aria-label="Mode selection">
+
+    <h1 class="mm-title" aria-label="Mastermind">
+      <span style="color:#e63946">M</span><span style="color:#fff">A</span><span style="color:#e63946">S</span><span style="color:#f4d35e">T</span><span style="color:#06d6a0">E</span><span style="color:#fff">R</span><span style="color:#118ab2">M</span><span style="color:#fff">I</span><span style="color:#fff">N</span><span style="color:#fff">D</span>
+    </h1>
+    <p class="mm-tagline">Crack the hidden color code.</p>
+
+    <div class="mode-cards">
+
+      <!-- DAILY CARD -->
+      <button class="mode-card" id="dailyCard" type="button" aria-label="Play Daily puzzle">
+        <div class="mode-card-icon">📅</div>
+        <div class="mode-card-label">DAILY</div>
+        <div class="mode-card-sub" id="dailySub">Same code for everyone</div>
+        <div class="mode-card-detail" id="dailyDetail"></div>
+      </button>
+
+      <!-- INFINITE CARD -->
+      <button class="mode-card mode-card--infinite" id="infiniteCard" type="button" aria-label="Play Infinite mode">
+        <div class="mode-card-icon">∞</div>
+        <div class="mode-card-label">INFINITE</div>
+        <div class="mode-card-sub">Unlimited random puzzles</div>
+        <div class="mode-card-detail" id="infiniteDetail"></div>
+      </button>
+
+    </div>
+
+    <div class="start-legend">
+      <span class="legend-item"><span class="legend-peg legend-exact"></span> Exact: Right color, right place</span>
+      <span class="legend-sep">·</span>
+      <span class="legend-item"><span class="legend-peg legend-near"></span> Near: Right color, wrong place</span>
+      <span class="legend-sep">·</span>
+      <span class="legend-item">– Not in code</span>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       GAME SCREEN
+  ═══════════════════════════════════════ -->
+  <section class="game-screen" id="gameSection" hidden aria-label="Game board">
+
+    <!-- Title row -->
+    <div class="game-title-row">
+      <h1 class="mm-title mm-title--game" id="game-title" aria-label="Mastermind">
+        <span style="color:#e63946">M</span><span>A</span><span style="color:#e63946">S</span><span style="color:#f4d35e">T</span><span style="color:#06d6a0">E</span><span>R</span><span style="color:#118ab2">M</span><span>I</span><span>N</span><span>D</span>
+      </h1>
+      <button class="restart-btn" id="newGameBtn" type="button" title="New game" aria-label="New game">↺</button>
+    </div>
+
+    <!-- Mode badge -->
+    <div class="mode-badge" id="modeBadge"></div>
+
+    <!-- Hidden code panel -->
+    <div class="code-panel" aria-label="Hidden code">
+      <div class="code-label">HIDDEN CODE</div>
+      <div class="secret" id="secret"></div>
+    </div>
+
+    <!-- Board -->
+    <div class="board-wrap">
+      <!-- Board header -->
+      <div class="board-header">
+        <span class="bh-guess">GUESS</span>
+        <span class="bh-exact">EXACT</span>
+        <span class="bh-near">NEAR</span>
+      </div>
+      <!-- Rows injected by JS -->
+      <div class="rows" id="rows" aria-label="Guess board"></div>
+    </div>
+
+    <!-- Guesses left counter -->
+    <div class="guesses-left" id="guessesLeft">🎯 <span id="guessesCount">8</span> GUESSES LEFT</div>
+
+    <!-- Color palette -->
+    <div class="controls-wrap">
+      <div class="palette-label">PICK YOUR COLORS</div>
+      <div class="palette" id="palette" aria-label="Color palette"></div>
+      <div class="action-row" id="controls" aria-label="Submit controls"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="board-legend">
+      <span class="legend-item"><span class="legend-peg legend-exact"></span> Exact: Right color, right place</span>
+      <span class="legend-sep">·</span>
+      <span class="legend-item"><span class="legend-peg legend-near"></span> Near: Right color, wrong place</span>
+      <span class="legend-sep">·</span>
+      <span class="legend-item">– Not in code</span>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       DAILY RESULT SCREEN (after daily ends)
+  ═══════════════════════════════════════ -->
+  <section class="result-screen" id="dailyResult" hidden aria-label="Daily result">
+    <h2 class="result-title" id="dailyResultTitle"></h2>
+    <div class="result-body" id="dailyResultBody"></div>
+    <button class="mode-card mode-card--infinite result-inf-btn" id="resultPlayInfinite" type="button">
+      <div class="mode-card-icon">∞</div>
+      <div class="mode-card-label">PLAY INFINITE</div>
+      <div class="mode-card-sub">Unlimited random puzzles</div>
+    </button>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       RULES (shown after game ends)
+  ═══════════════════════════════════════ -->
+  <section class="rules" id="rulesSection" aria-labelledby="rules-title" hidden>
+    <h2 id="rules-title">Rules</h2>
+    <p><span class="tag">Objective:</span> Crack the hidden code in 8 guesses.</p>
+    <p><span class="tag">How to Play:</span> Pick four colors, tap OK, read the feedback. Colors can repeat.</p>
+    <p><span class="tag">Exact:</span> Right color, right position.</p>
+    <p><span class="tag">Near:</span> Right color, wrong position.</p>
+    <p><span class="tag">Daily:</span> One attempt per day. Same puzzle for everyone worldwide.</p>
+    <p><span class="tag">Infinite:</span> Unlimited random puzzles. Play anytime.</p>
+  </section>
+
+</main>
+
+<script src="script.js" defer></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

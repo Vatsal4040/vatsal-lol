@@ -1,0 +1,176 @@
+@font-face{
+    font-family:"Vatsal-logo";
+    src:url("../../assets/data/vatsal-logo-font.ttf")
+    format("truetype");
+    font-display:swap;
+}
+:root{
+    --bg:#050608;
+    --panel:#0c0f14;
+    --tile:#141824;
+    --blue:#2563eb;
+    --red:#dc2626;
+    --text:#e5e7eb;
+    --muted:#6b7280;
+    --glow:0 0 10px rgba(37,99,235,.6);
+}
+*{box-sizing:border-box;font-family:system-ui;-webkit-tap-highlight-color:transparent}
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+body.no-scroll{
+    overflow:hidden;
+    height:100dvh;
+    touch-action:none;
+}
+body.no-scroll #app,
+body.no-scroll #startScreen{
+    touch-action:manipulation;
+}
+#app{
+    width:min(520px,100%);
+    margin:0 auto;
+    padding:16px;
+    min-height:calc(100dvh - 60px);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    box-sizing:border-box;
+}
+#top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+    font-size:14px;
+}
+#phase{font-weight:700}
+#grid{
+    display:grid;
+    gap:6px;
+    background:var(--panel);
+    padding:8px;
+    border-radius:10px;
+}
+.tile{
+    background:var(--tile);
+    aspect-ratio:1/1;
+    border-radius:6px;
+    transition:background .15s, box-shadow .15s;
+    touch-action:manipulation;
+    -webkit-user-select:none;
+    user-select:none;
+}
+.tile.blue{background:var(--blue);box-shadow:var(--glow)}
+.tile.hint{background:var(--blue);box-shadow:var(--glow);opacity:.7}
+.tile.red{background:var(--red)}
+#overlay{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:100px 20px 40px;
+}
+.panel{
+    background:var(--panel);
+    padding:22px;
+    border-radius:14px;
+    width:100%;
+    max-width:420px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+h1{
+    margin:0 0 12px;
+    font-size:40px
+}
+button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#0b0e14;
+    color:var(--text);
+    border:1px solid #1f2937;
+    border-radius:8px;
+    cursor:pointer;
+}
+button:hover{background:#111827}
+button.disabled{opacity:.4;cursor:not-allowed}
+.stat{margin:6px 0;color:var(--muted);font-size:14px}
+#hintBtn{
+    width:auto;
+    margin:0 0 12px;
+    padding:8px 14px;
+    font-size:13px;
+    display:block;
+}
+#hintBtn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* ==========================================
+VATSAL LOGO
+========================================== */
+
+.vatsal-home{
+    font-family:"Vatsal-logo" !important;
+    font-size:24px !important;
+    cursor:pointer;
+}
+
+/* ==========================================
+NO RESULT OVERLAYS
+========================================== */
+
+.result-panel{
+    margin-bottom:40px;
+}
+
+.vatsal-related{
+    width:min(900px,100%);
+    margin:40px auto !important;
+}
+
+.vatsal-related[hidden]{
+    display:none !important;
+}
+
+.vatsal-footer,
+.vatsal-footer a,
+.vatsal-related-title{
+    font-family:"Vatsal-logo" !important;
+}
+#startScreen{
+    width:100%;
+    max-width:700px;
+    margin:0 auto;
+    padding:20px;
+    min-height:calc(100dvh - 60px);
+    display:flex;
+    align-items:center;
+    box-sizing:border-box;
+}
+
+.start-content{
+    background:var(--panel);
+    border-radius:14px;
+    padding:24px;
+    text-align:center;
+    
+}
+
+.instructions{
+    margin:20px 0;
+    text-align:center;
+    line-height:1.7;
+    color:#cbd5e1;
+}
+
+.instructions h2{
+    margin-bottom:10px;
+}

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess & Challenge</title>
+    <link rel="canonical" href="https://vatsal.lol/games/which-number/">
+<meta property="og:url" content="https://vatsal.lol/games/which-number/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+ <header class="vatsal-header">
+      <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+    </header>
+    <main class="app">
+
+        <!-- START SCREEN -->
+        <section id="startScreen" class="screen active">
+
+      <div class="game-wrap">
+
+                <h1>GUESS & CHALLENGE</h1>
+
+                <p id="modeDescription" class="description">
+                    Find the hidden number before you run out of attempts.
+                </p>
+
+                <!-- MODE -->
+                <div class="section">
+                    <h2>Mode</h2>
+
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" data-mode="guess">
+                            Guess The Number
+                        </button>
+
+                        <button class="mode-btn" data-mode="challenge">
+                            Challenge The AI
+                        </button>
+                    </div>
+                </div>
+
+                <!-- DIFFICULTY -->
+                <div class="section">
+                    <h2>Difficulty</h2>
+
+                    <div class="difficulty-selector">
+                        <button class="difficulty-btn active"
+                                data-range="100"
+                                data-attempts="10">
+                            Easy
+                        </button>
+
+                        <button class="difficulty-btn"
+                                data-range="500"
+                                data-attempts="12">
+                            Medium
+                        </button>
+
+                        <button class="difficulty-btn"
+                                data-range="1000"
+                                data-attempts="15">
+                            Hard
+                        </button>
+                    </div>
+
+                    <div id="difficultyInfo" class="difficulty-info">
+                        1–100 • 10 tries
+                    </div>
+                </div>
+
+                <button id="playBtn" class="play-btn">
+                    PLAY
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- GUESS THE NUMBER -->
+        <section id="guessScreen" class="screen">
+
+            <div class="card">
+
+                <h1>Guess The Number</h1>
+
+                <div id="attemptInfo" class="attempt-info" aria-live="polite">
+                    Attempts: 0 / 10
+                </div>
+
+                <div class="guess-input-row">
+                    <input
+                        type="text"
+                        id="guessInput"
+                        inputmode="none"
+                        readonly
+                        aria-label="Enter your guess"
+                        placeholder="Enter Number"
+                    >
+
+                    <button id="guessBtn">
+                        Guess
+                    </button>
+                </div>
+                
+<div id="guessHistory" class="history" aria-live="polite">
+                </div>
+
+                <div id="numpad" class="numpad">
+                    <button class="num-btn" data-num="1">1</button>
+                    <button class="num-btn" data-num="2">2</button>
+                    <button class="num-btn" data-num="3">3</button>
+                    <button class="num-btn" data-num="4">4</button>
+                    <button class="num-btn" data-num="5">5</button>
+                    <button class="num-btn" data-num="6">6</button>
+                    <button class="num-btn" data-num="7">7</button>
+                    <button class="num-btn" data-num="8">8</button>
+                    <button class="num-btn" data-num="9">9</button>
+                    <button class="num-btn clear-btn" id="numClear">C</button>
+                    <button class="num-btn" data-num="0">0</button>
+                    <button class="num-btn backspace-btn" id="numBackspace">⌫</button>
+                </div>
+
+                
+
+                <button class="home-btn">
+                    Home
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- CHALLENGE AI -->
+        <section id="challengeScreen" class="screen">
+
+            <div class="card">
+
+                <h1>Challenge The AI</h1>
+
+                <div id="rangeInfo" class="range-info">
+                    Range: 1 - 100
+                </div>
+
+               <div id="chatHistory" class="chat-history" aria-live="polite">
+                </div>
+
+                <div id="currentGuess" class="current-guess" aria-live="polite">
+                    Is your number 50?
+                </div>
+
+                <div class="response-buttons">
+
+                    <button id="lowerBtn">
+                        Lower
+                    </button>
+
+                    <button id="correctBtn">
+                        Correct
+                    </button>
+
+                    <button id="higherBtn">
+                        Higher
+                    </button>
+
+                </div>
+
+                <button class="home-btn">
+                    Home
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT SCREEN -->
+        <section id="resultScreen" class="screen">
+
+            <div class="card">
+
+                <h1 id="resultTitle">
+                    Result
+                </h1>
+
+                <p id="resultText" aria-live="polite">
+                </p>
+
+                <div class="result-buttons">
+
+                    <button id="playAgainBtn">
+                        Play Again
+                    </button>
+
+                    <button id="resultHomeBtn">
+                        Home
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mera Tota </title>
+<link rel="canonical" href="https://vatsal.lol/games/chaotic-fortune-teller/">
+<meta property="og:url" content="https://vatsal.lol/games/chaotic-fortune-teller/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦜</text></svg>">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+
+<body>
+
+<!-- ==========================
+HEADER
+========================== -->
+<header class="vatsal-header">
+    <a class="vatsal-home" href="../../index.html">vatsal.lol</a>
+    <button id="audioToggle" class="audio-btn" aria-label="Toggle Sound">🔊</button>
+</header>
+<!-- ==========================
+MAIN
+========================== -->
+
+<main class="main">
+
+    <section class="hero">
+
+       <h1 class="hero-title">
+    The Bird Knows Things
+</h1>
+
+<p class="intro-note">
+Get a ridiculous fortune report, luck scores and personality roast.
+</p>
+
+        <!-- PARROT -->
+
+        <div class="parrot-area">
+
+            <div class="parrot" id="parrot">
+                🦜
+            </div>
+
+            <div
+                class="speech-bubble"
+                id="speechBubble">
+
+                SQUAWK!<br>
+                The stars have concerns.
+
+            </div>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form
+            class="fortune-form"
+            id="fortuneForm">
+
+            <label>
+                Name
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required>
+            </label>
+
+            <label>
+                DOB
+
+                <input
+                    type="date"
+                    id="dob"
+                    required>
+            </label>
+
+            <label>
+                Birthplace
+
+                <input
+                    type="text"
+                    id="birthplace"
+                    placeholder="Enter birthplace"
+                    required>
+            </label>
+
+            <button
+                type="submit"
+                class="ask-btn">
+
+                ASK THE PARROT 🦜
+
+            </button>
+
+        </form>
+
+    </section>
+
+    <!-- ==========================
+    LOADING
+    ========================== -->
+
+    <section
+        id="loadingSection"
+        class="loading-section hidden">
+
+        <div class="loading-parrot">
+            🦜
+        </div>
+
+        <div
+            id="loadingText"
+            class="loading-text">
+
+            Consulting stars...
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+    RESULTS
+    ========================== -->
+
+    <section
+        id="resultsSection"
+        class="results hidden">
+
+        <div class="result-header">
+
+            <h2>
+                Cosmic Report
+            </h2>
+
+            <button
+                id="replayBtn"
+                class="replay-btn">
+
+                🔄 Ask Again
+
+            </button>
+
+        </div>
+
+        <!-- ZODIAC -->
+
+        <article class="card">
+
+            <h3>
+                ♈ Zodiac Analysis
+            </h3>
+
+            <p id="zodiacResult"></p>
+
+        </article>
+
+        <!-- PAST LIFE -->
+
+        <article class="card">
+
+            <h3>
+                👁 Past Life
+            </h3>
+
+            <p id="pastLifeResult"></p>
+
+        </article>
+
+        <!-- SPIRIT ANIMAL -->
+
+        <article class="card">
+
+            <h3>
+                🦝 Spirit Animal
+            </h3>
+
+            <p id="spiritResult"></p>
+
+        </article>
+
+        <!-- FUTURE -->
+
+        <article class="card">
+
+            <h3>
+                💀 Future Disaster
+            </h3>
+
+            <p id="futureResult"></p>
+
+        </article>
+
+        <!-- ENEMY -->
+
+        <article class="card">
+
+            <h3>
+                😈 Cosmic Enemy
+            </h3>
+
+            <p id="enemyResult"></p>
+
+        </article>
+
+        <!-- ROAST -->
+
+        <article class="card">
+
+            <h3>
+                🧠 Personality Roast
+            </h3>
+
+            <p id="roastResult"></p>
+
+        </article>
+
+        <!-- LUCK -->
+
+        <article class="card">
+
+            <h3>
+                🍀 Luck Meter
+            </h3>
+
+            <div class="luck-item">
+                <span>Money Luck</span>
+
+                <div class="meter">
+                    <div
+                        id="moneyLuck"
+                        class="fill">
+                    </div>
+                </div>
+            </div>
+
+            <div class="luck-item">
+                <span>Love Luck</span>
+
+                <div class="meter">
+                    <div
+                        id="loveLuck"
+                        class="fill">
+                    </div>
+                </div>
+            </div>
+
+            <div class="luck-item">
+                <span>Brain Luck</span>
+
+                <div class="meter">
+                    <div
+                        id="brainLuck"
+                        class="fill">
+                    </div>
+                </div>
+            </div>
+
+            <div class="luck-item">
+                <span>Goblin Energy</span>
+
+                <div class="meter">
+                    <div
+                        id="goblinLuck"
+                        class="fill">
+                    </div>
+                </div>
+            </div>
+
+        </article>
+<article class="card">
+
+    <h3>
+        💸 Financial Forecast
+    </h3>
+
+    <p id="financialResult"></p>
+
+</article>
+
+<article class="card">
+
+    <h3>
+        ❤️ Love Report
+    </h3>
+
+    <p id="loveResult"></p>
+
+</article>
+
+<article class="card">
+
+    <h3>
+        📱 Digital Destiny
+    </h3>
+
+    <p id="digitalResult"></p>
+
+</article>
+
+<article class="card">
+
+    <h3>
+        📊 Life Audit
+    </h3>
+
+    <p id="auditResult"></p>
+
+</article>
+
+        <!-- RARE EVENT -->
+
+        <article
+            id="rareCard"
+            class="card hidden">
+
+            <h3>
+                ✨ Rare Event
+            </h3>
+
+            <p id="rareResult"></p>
+
+        </article>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

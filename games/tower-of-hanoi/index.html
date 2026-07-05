@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tower of Hanoi</title>
+    <link rel="canonical" href="https://vatsal.lol/games/tower-of-hanoi/">
+<meta property="og:url" content="https://vatsal.lol/games/tower-of-hanoi/">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+    <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%97%BC%3C%2Ftext%3E%3C%2Fsvg%3E">
+    <meta name="description" content="Play instant mini games on vatsal.lol.">
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="Tower of Hanoi | vatsal.lol">
+    <meta property="og:description" content="Play instant mini games on vatsal.lol.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../../assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Tower of Hanoi | vatsal.lol">
+    <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+</head>
+<body>
+
+    <!-- VATSAL.LOL HEADER v2.5 -->
+    <header class="vatsal-header">
+        <a class="vatsal-home" href="/">vatsal.lol</a>
+    </header>
+
+    <!-- START SCREEN -->
+    <div id="startScreen" class="screen start-page">
+        <div class="container">
+            <div class="game-title">
+                <h1>TOWER OF HANOI</h1>
+                <p class="subtitle">Move all disks from the left peg to the right peg</p>
+            </div>
+
+            <div class="disk-control">
+                <div class="label">DISKS:</div>
+                <button id="disk-down" class="arrow-btn" aria-label="Fewer disks">−</button>
+                <div id="disk-count-display" class="disk-count">3</div>
+                <button id="disk-up" class="arrow-btn" aria-label="More disks">+</button>
+            </div>
+
+            <div class="min-steps">
+                Minimum steps: <span id="min-steps-value">7</span>
+            </div>
+
+            <div class="instructions">
+                <div class="instructions-title">HOW TO PLAY</div>
+                <ul>
+                    <li><strong>Goal:</strong> Move all disks to the right peg</li>
+                    <li><strong>Rule 1:</strong> Move one disk at a time</li>
+                    <li><strong>Rule 2:</strong> No larger disk on a smaller one</li>
+                    <li><strong>Mobile:</strong> Tap a disk to select, tap a peg to move</li>
+                    <li>Undo counts as a step. Auto Solve marks the result as machine-solved.</li>
+                </ul>
+            </div>
+
+            <button id="play-btn" class="play-btn">PLAY</button>
+        </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="gameScreen" class="screen game-page hidden">
+        <div class="container">
+            <div class="game-info">
+                <div class="info-item">
+                    <div class="info-label">DISKS</div>
+                    <div class="info-value" id="diskCount">3</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">MOVES</div>
+                    <div class="info-value" id="moves">0</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">MIN MOVES</div>
+                    <div class="info-value" id="minMoves">7</div>
+                </div>
+            </div>
+
+            <div class="game-area">
+                <div class="peg-container" data-peg-id="0">
+                    <div class="peg-label">PEG 1</div>
+                    <div class="peg" id="peg-0"></div>
+                </div>
+                <div class="peg-container" data-peg-id="1">
+                    <div class="peg-label">PEG 2</div>
+                    <div class="peg" id="peg-1"></div>
+                </div>
+                <div class="peg-container" data-peg-id="2">
+                    <div class="peg-label">PEG 3</div>
+                    <div class="peg" id="peg-2"></div>
+                </div>
+            </div>
+
+            <div class="status" id="status" aria-live="polite">Tap a disk to select it</div>
+
+            <div class="controls">
+                <button id="new-game">NEW GAME</button>
+                <button id="auto-solve">AUTO SOLVE</button>
+                <button id="undo">UNDO</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+:root {
+  --bg:#000;
+  --card:#0b0b0b;
+  --text:#f5f5f5;
+  --muted:#888;
+  --yes:#00ff88;
+  --no:#ff355e;
+  --accent:#ff003c;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',system-ui,sans-serif;
+}
+
+.container {
+  width:100%;
+  max-width:700px;
+  padding:48px 24px;
+  text-align:center;
+}
+
+h1 {
+  font-family:'Orbitron',sans-serif;
+  font-size:2.6rem;
+  letter-spacing:1px;
+  margin-bottom:12px;
+  color:var(--accent);
+}
+
+h2 {
+  font-size:1.35rem;
+  font-weight:500;
+  margin:34px 0;
+  line-height:1.5;
+}
+
+.buttons {
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  margin:30px 0;
+}
+
+button {
+  padding:18px 38px;
+  border-radius:14px;
+  border:none;
+  font-size:1.1rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:transform .15s ease, box-shadow .15s ease, opacity .15s;
+}
+
+button:active { transform:scale(0.96); }
+
+.btn-yes {
+  background:var(--yes);
+  color:#000;
+  box-shadow:0 0 26px rgba(0,255,136,.25);
+}
+
+.btn-no {
+  background:var(--no);
+  color:#000;
+  box-shadow:0 0 26px rgba(255,53,94,.25);
+}
+
+.result {
+  margin-top:10px;
+  font-size:.95rem;
+  color:var(--muted);
+}
+
+.bar-wrap {
+  margin:16px auto 10px;
+  width:100%;
+  max-width:420px;
+  height:14px;
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+}
+
+.bar {
+  height:100%;
+  width:0%;
+  transition:width .6s ease;
+}
+
+.yes-bar {
+  background:linear-gradient(90deg,#00ff88,#00cc6a);
+}
+
+.no-bar {
+  background:linear-gradient(90deg,#ff355e,#cc2b4c);
+}
+
+.most-choice {
+  margin-top:10px;
+  font-size:.9rem;
+  color:#aaa;
+  opacity:0;
+  transform:translateY(6px);
+  animation:rise .4s ease forwards;
+}
+
+@keyframes rise {
+  to { opacity:1; transform:translateY(0); }
+}
+
+#dots {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-top:28px;
+}
+
+.dot {
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.75rem;
+  font-weight:700;
+  color:#000;
+}
+
+.dot.yes { background:var(--yes); }
+.dot.no { background:var(--no); }
+
+.summary {
+  margin-top:40px;
+  font-size:1.15rem;
+  line-height:1.5;
+}
+
+.actions {
+  margin-top:22px;
+}
+
+.actions button {
+  background:transparent;
+  color:var(--text);
+  border:1px solid #222;
+  padding:12px 22px;
+  border-radius:10px;
+  margin:6px;
+  font-size:.9rem;
+}
+
+.actions button:hover {
+  background:#111;
+}
+
+#pressStartScreen {
+  width:min(700px, calc(100% - 32px));
+  margin:0 auto;
+}
+
+.press-start-copy {
+  max-width:520px;
+  margin:0 auto;
+  color:var(--muted);
+  line-height:1.45;
+}
+
+#pressStartBtn {
+  margin-top:8px;
+  background:var(--accent);
+  color:#fff;
+  min-width:180px;
+}
+
+body:not(.press-playing):not(.press-finished) .container {
+  display:none;
+}
+
+body.press-playing #pressStartScreen,
+body.press-finished #pressStartScreen {
+  display:none;
+}
+
+#questionCounter {
+  color:var(--muted);
+  font-size:.9rem;
+}
+
+@font-face{
+    font-family:"Vatsal-logo";
+    src:url("../../assets/data/vatsal-logo-font.ttf")
+    format("truetype");
+    font-display:swap;
+}
+
+.game-title{
+    text-align:center;
+    margin:20px 0;
+}
+
+.container{
+    width:min(900px,calc(100% - 32px));
+    margin:0 auto;
+    padding:24px 16px 48px;
+}
+
+.game-title-section{
+    width:100%;
+}
+
+#question{
+    max-width:800px;
+    margin:32px auto;
+}
+
+.buttons{
+    flex-wrap:wrap;
+}
+
+.btn-yes,
+.btn-no{
+    min-width:180px;
+}
+
+.result,
+.most-choice,
+.summary{
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#dots{
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.actions{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+@media (max-width:768px){
+
+    .container{
+        width:calc(100% - 24px);
+        padding:20px 12px 40px;
+    }
+
+    h2{
+        font-size:1.15rem;
+    }
+
+    .buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn-yes,
+    .btn-no{
+        width:100%;
+        max-width:320px;
+    }
+
+    .dot{
+        width:38px;
+        height:38px;
+        font-size:.7rem;
+    }
+}

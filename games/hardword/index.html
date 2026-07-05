@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<title>HARDWORD</title>
+<link rel="canonical" href="https://vatsal.lol/games/hardword/">
+<meta property="og:url" content="https://vatsal.lol/games/hardword/">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%8C%B5%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta name="description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="HARDWORD | vatsal.lol">
+<meta property="og:description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../../assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HARDWORD | vatsal.lol">
+<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+</head>
+<body>
+<header class="vatsal-header">    <a href="https://vatsal.lol/"  class="vatsal-home"> vatsal.lol </a></header>
+<!-- LANDING -->
+<div id="landing">
+    <h1>HARDWORD</h1>
+    <div class="daily-status" id="dailyStatus"></div>
+    <div class="mode-select">
+        <button class="mode-btn" onclick="startGame('daily')">DAILY</button>
+        <button class="mode-btn" onclick="startGame('infinite')">INFINITE</button>
+    </div>
+</div>
+<!-- GAME -->
+<div id="game-app" style="display:none">
+    <div class="header">
+        <div class="title">
+            <h1>HARDWORD</h1>
+            <div class="mode-label" id="modeLabel"></div>
+            <div class="answer-bar" id="answerBar"></div>
+        </div>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <div class="tooltip">?
+                <div class="tooltip-box">
+                    <strong>How to Play</strong><br><br>
+                    Guess the 4-letter word in 8 tries.<br><br>
+                    🟢 = correct letter & position<br>
+                    🟡 = correct letter, wrong position<br><br>
+                    Letters never repeat.
+                </div>
+            </div>
+            <button class="next-btn" id="statsBtn" onclick="openStatsModal()">STATS</button>
+            <button class="next-btn" id="nextBtn" onclick="nextWordGame()" style="display:none">NEXT WORD</button>
+        </div>
+    </div>
+    <div class="game-container">
+        <div>
+            <div class="guess-board" id="board"></div>
+            <div class="keyboard">
+                <div class="krow">
+                    <div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div>
+                    <div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div>
+                    <div class="key">O</div><div class="key">P</div>
+                </div>
+                <div class="krow">
+                    <div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div>
+                    <div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div>
+                    <div class="key">L</div>
+                </div>
+                <div class="krow">
+                    <div class="key wide">ENT</div>
+                    <div class="key">Z</div><div class="key">X</div><div class="key">C</div>
+                    <div class="key">V</div><div class="key">B</div><div class="key">N</div><div class="key">M</div>
+                    <div class="key wide">⌫</div>
+                </div>
+           </div>
+        </div>
+    </div>
+    <div class="result-screen" id="resultScreen">
+        <h2 id="resultTitle"></h2>
+        <div class="result-answer" id="resultAnswer"></div>
+        <button class="next-btn-result daily-only" id="shareBtn" onclick="shareResults()">SHARE RESULTS</button>
+        <button class="next-btn-result infinite-only" id="playAgainBtn" onclick="nextWordGame()">PLAY AGAIN</button>
+        <div class="countdown daily-only" id="countdown"></div>
+    </div>
+    <div class="stats-modal" id="statsModal">
+        <div class="stats-modal-inner">
+            <button class="close-modal" onclick="closeStatsModal()">✕</button>
+            <h2>STATISTICS</h2>
+            <div class="stats-grid">
+                <div class="stat-box"><span id="modalPlayed"></span><label>Played</label></div>
+                <div class="stat-box"><span id="modalWinPct"></span><label>Win %</label></div>
+                <div class="stat-box"><span id="modalStreak"></span><label>Streak</label></div>
+                <div class="stat-box"><span id="modalMaxStreak"></span><label>Max Streak</label></div>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="mobile-input" type="text" autocapitalize="characters" />
+<script src="script.js"></script>
+</body>
+</html>

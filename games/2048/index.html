@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>2048</title>
+<link rel="canonical" href="https://vatsal.lol/games/2048/">
+<meta property="og:url" content="https://vatsal.lol/games/2048/">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%94%A2%3C%2Ftext%3E%3C%2Fsvg%3E">
+<meta name="description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="2048 | vatsal.lol">
+<meta property="og:description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../../assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2048 | vatsal.lol">
+<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+
+</head>
+<body>
+<header class="vatsal-header">
+
+    <a href="https://vatsal.lol/"  class="vatsal-home"> vatsal.lol </a>
+</header>
+<div class="start-page">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">2048</h1>
+    </div>
+    <div class="above-game">
+    <p class="game-intro">
+  Choose a game mode.<br><br>
+
+  <strong>Maths</strong><br>
+  Classic 2048 with numbers.<br><br>
+
+  <span class="cupcake-badge">🧁 Recommended</span><br>
+  <strong>Cupcake Mode</strong><br>
+  Merge cupcakes instead of numbers for a sweeter challenge.
+</p>
+    </div>
+    <div class="start-options">
+      <div class="start-options-inner">
+        <button class="mode-button" type="button" data-mode="maths" aria-label="Play classic 2048 with numbers">
+  Maths
+</button>
+       <button class="mode-button" type="button" data-mode="cupcakes" aria-label="Play cupcake themed 2048 mode">
+  Cupcakes
+</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="game-page">
+  <div class="container">
+    <div class="heading">
+      <h1 class="title">2048</h1>
+      <div class="scores-container">
+        <div class="score-container">0</div>
+        <div class="best-container">0</div>
+      </div>
+    </div>
+    <div class="above-game">
+      <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+      <div class="game-buttons">
+  <a class="undo-button">Undo</a>
+  <a class="restart-button">New Game</a>
+</div>
+    </div>
+    <div class="game-container">
+      <div class="game-message">
+        <p></p>
+        <div class="lower">
+
+    <a class="keep-playing-button">Keep going</a>
+
+    <a class="retry-button">Try again</a>
+</div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+        <div class="grid-row">
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+        </div>
+      </div>
+      <div class="tile-container">
+      </div>
+    </div>
+    <p class="game-explanation">
+      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+    </p>
+  </div></div>
+<script src="script.js" defer></script>
+<script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

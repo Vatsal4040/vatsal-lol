@@ -1,0 +1,352 @@
+/* ---------- GAMING FONTS (Arcade / Pixel style) ---------- */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap');
+        @font-face {font-family: "Vatsal-logo"; src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");font-display: swap;}
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 10% 30%, #ff9a3c, #d64045);
+    font-family: 'Chakra Petch', 'Courier New', monospace;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    animation: bgPulse 8s infinite alternate;
+}
+
+        @keyframes bgPulse {
+            0% { background: radial-gradient(circle at 10% 30%, #ff9a3c, #d64045); }
+            100% { background: radial-gradient(circle at 90% 70%, #ff6a3c, #b52e2e); }
+        }
+
+        /* floating emojis background */
+        .floating-emoji {
+            position: fixed;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+            animation: floatUp 12s linear infinite;
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* glass card with retro pixel border */
+        .glass-card {
+            background: rgba(255, 248, 225, 0.94);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 4px solid #ffcc44;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.4), 0 0 0 3px #aa6f20 inset, 0 0 0 6px #ffea9e inset;
+            transition: all 0.2s ease;
+        }
+
+        .game-wrapper {
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+    position: relative;
+    z-index: 10;
+    flex: 1;
+}
+
+        /* screens */
+        .screen {
+            transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* start screen - GAMING FEEL */
+        .start-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .title-glow {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff4d4d, #ffaa00, #ff6a00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px #ff9900, 2px 2px 0px #6b2e00;
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .sub {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            background: #ffebb5;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 60px;
+            letter-spacing: 1px;
+        }
+
+        /* buttons - pixel inspired */
+        .chaos-btn {
+            background: linear-gradient(145deg, #ffdd77, #ffaa33);
+            border: 3px solid #a45d1a;
+            padding: 14px 28px;
+            font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.05s linear;
+            box-shadow: 0 6px 0 #7a4416;
+            color: #2b1a05;
+            text-shadow: 1px 1px 0 #ffcf7a;
+            letter-spacing: 1px;
+        }
+
+        .chaos-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #7a4416;
+        }
+
+        /* meters */
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .meter {
+            flex: 1;
+            background: #2c1a0e;
+            border-radius: 20px;
+            padding: 6px 12px;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 2px 0 #ffbb66;
+            border: 1px solid #ffbb66;
+        }
+        .meter-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #ffefc0;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            text-shadow: 1px 1px 0 #633e1a;
+        }
+        .meter-bar {
+            height: 14px;
+            background: #4a2c14;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 5px;
+            box-shadow: inset 0 1px 3px black;
+        }
+        .fill {
+            width: 70%;
+            height: 100%;
+            transition: width 0.2s ease-out;
+        }
+        .survival-fill { background: linear-gradient(90deg, #41b341, #a5ff8a); }
+        .stress-fill { background: linear-gradient(90deg, #ffb347, #ff1e00); }
+
+        /* speech bubble - game style */
+        .mom-bubble {
+            background: #fff7e8;
+            border-radius: 32px 32px 32px 16px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            position: relative;
+            border: 3px solid #ffaa44;
+            box-shadow: 10px 10px 0 #b46f2a;
+        }
+        .mom-bubble:before {
+            content: "👩🏽‍🦱";
+            font-size: 3rem;
+            position: absolute;
+            left: -20px;
+            bottom: -15px;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+        }
+        .question-text {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #3b2a1a;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+        }
+
+        .reaction-tag {
+            background: #ffe1a0;
+            border-radius: 16px;
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 0.7rem;
+            margin-top: 12px;
+            font-family: 'Chakra Petch', monospace;
+            font-weight: bold;
+            border-left: 6px solid #ff8800;
+        }
+
+        /* choices grid - GAMING BUTTONS */
+        .choices-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .choice-btn {
+            background: #2c1e0f;
+            border: 3px solid #ffb347;
+            border-radius: 20px;
+            padding: 14px 18px;
+            font-weight: bold;
+            font-family: 'Chakra Petch', monospace;
+            font-size: 1rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.05s linear;
+            color: #ffefb9;
+            text-shadow: 1px 1px 0 #634e2a;
+            box-shadow: 0 4px 0 #7a4a1a;
+        }
+        .choice-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #7a4a1a;
+            background: #4a311a;
+        }
+        .choice-btn:hover {
+            background: #ffcf7a;
+            color: #2a1c08;
+            border-color: #ffde9e;
+            text-shadow: none;
+        }
+
+        /* combo + score - pixel box */
+        .combo-score {
+            display: flex;
+            justify-content: space-between;
+            background: #1f1307;
+            padding: 10px 20px;
+            border-radius: 24px;
+            color: #ffd966;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            border: 2px solid #ffaa44;
+            margin-bottom: 10px;
+        }
+
+        /* shake animation */
+        .shake {
+            animation: shakeEffect 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+        @keyframes shakeEffect {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            20% { transform: translate(-6px, 2px) rotate(-1deg);}
+            40% { transform: translate(6px, -2px) rotate(1deg);}
+            60% { transform: translate(-3px, 1px) rotate(0deg);}
+            80% { transform: translate(3px, -1px) rotate(0deg);}
+            100% { transform: translate(0,0);}
+        }
+
+        .dramatic-fail {
+            animation: explode 0.5s forwards;
+        }
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; filter: blur(0);}
+            50% { transform: scale(1.1) rotate(3deg); background: #ff0000aa; filter: blur(2px);}
+            100% { transform: scale(0.9); opacity: 0.6; filter: blur(4px);}
+        }
+
+        /* game over */
+        .gameover-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        .badge {
+            background: linear-gradient(145deg, gold, #ffb347);
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            display: inline-block;
+            margin: 15px 0;
+            color: #2c1c08;
+        }
+
+        /* particles */
+        .particle-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .particle {
+            position: absolute;
+            font-size: 2rem;
+            animation: popParticle 0.8s ease-out forwards;
+        }
+        @keyframes popParticle {
+            0% { transform: scale(0.2) translateY(0); opacity: 1;}
+            100% { transform: scale(1.2) translateY(-80px); opacity: 0;}
+        }
+
+        @media (max-width: 500px) {
+            .question-text { font-size: 0.7rem; }
+            .choice-btn { font-size: 0.8rem; padding: 12px; }
+            .title-glow { font-size: 1.2rem; }
+            .combo-score { font-size: 0.55rem; }
+            .chaos-btn { font-size: 0.65rem; padding: 10px 20px; }
+        }
+        .animate-zoom {
+            animation: zoomPop 0.2s ease;
+        }
+        @keyframes zoomPop {
+            0% { transform: scale(1);}
+            50% { transform: scale(1.05);}
+        }
+        /* Header reset — flush to top */
+.vatsal-header {
+    position: relative;
+    z-index: 20;
+    margin: 0;
+    padding: 10px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#resultsScreen .vatsal-footer,
+#resultsScreen .vatsal-footer a{
+    font-family:"Vatsal-logo" !important;
+}
+.vatsal-home {
+  font-family: "Vatsal-logo" !important;
+}
+.vatsal-footer,
+.vatsal-footer a {
+    font-family: "Vatsal-logo" !important;
+}

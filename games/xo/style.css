@@ -1,0 +1,171 @@
+@font-face{
+    font-family:"Vatsal-logo";
+    src:url("../../assets/data/vatsal-logo-font.ttf")
+    format("truetype");
+    font-display:swap;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+
+/* SCREENS */
+.screen{display:none;text-align:center;}
+.screen.active{display:block;}
+
+button{
+  padding:12px 20px;
+  margin:8px;
+  border:none;
+  border-radius:8px;
+  background:#00ffe7;
+  font-weight:bold;
+  cursor:pointer;
+}
+button.selected{
+    background:#fff;
+    box-shadow:0 0 0 3px #00ffe7;
+}
+
+h1,h2{margin-bottom:10px}
+
+/* GAME */
+.top{
+  display:flex;
+  justify-content:space-between;
+  width:90vw;
+  max-width:400px;
+  margin:auto;
+}
+.top img{
+  width:50px;height:50px;border-radius:50%;
+}
+
+/* BOARD */
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  width:90vw;
+  max-width:400px;
+  margin:20px auto;
+}
+.cell{
+  aspect-ratio:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:3rem;
+  background:#111;
+  border-radius:10px;
+  cursor:pointer;
+  touch-action:manipulation;
+}
+.neonX{color:#00eaff;text-shadow:0 0 15px #00eaff;}
+.neonO{color:#ff2d75;text-shadow:0 0 15px #ff2d75;}
+
+
+/* MOBILE */
+@media(max-width:500px){
+  .cell{font-size:2rem;}
+}
+
+
+.title-section{
+    text-align:center;
+    margin:20px 0;
+}
+
+.game-title{
+    margin-bottom:10px;
+}
+
+.screen{
+    display:none;
+    width:min(900px,calc(100% - 24px));
+    margin:0 auto;
+    padding:20px 0 40px;
+    text-align:center;
+}
+#resultSection{
+    margin:24px auto;
+    text-align:center;
+}
+
+#resultText{
+    margin-bottom:16px;
+}
+
+.board{
+    margin:24px auto;
+}
+
+.cell{
+    background:#0f0f0f;
+}
+
+.cell:hover{
+    background:#181818;
+}
+
+button{
+    min-height:48px;
+}
+
+@media(max-width:768px){
+
+    .top{
+        width:100%;
+    }
+
+    .board{
+        width:100%;
+        max-width:360px;
+    }
+}
+.vatsal-header{
+  width:100%;
+}
+.screen.active{
+    display:block;
+}
+#startScreen{
+    max-width:700px;
+    margin:40px auto;
+}#gameScreen{
+    max-width:700px;
+    margin:20px auto;
+}
+#resultSection{
+    margin:32px auto 48px;
+    text-align:center;
+}
+.vatsal-related{
+    margin-top:48px !important;
+}
+@media (max-width:480px){
+  body:has(#gameScreen.screen.active){
+    overflow:hidden;
+    touch-action:none;
+  }
+  body:has(#resultSection:not([hidden])){
+    overflow-y:auto !important;
+    touch-action:auto !important;
+  }
+}
+@media (max-width:380px){
+  #startScreen{
+    margin:16px auto;
+  }
+  #startScreen button{
+    margin:6px;
+  }
+  .title-section{
+    margin:12px 0;
+  }
+}

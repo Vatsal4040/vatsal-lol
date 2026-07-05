@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SPOT | vatsal.lol</title>
+
+<link rel="canonical" href="https://vatsal.lol/games/spot/">
+
+<meta name="description" content="Find the odd one before time runs out. Sharpen your observation skills with SPOT.">
+
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="SPOT | vatsal.lol">
+<meta property="og:description" content="Find the odd one before time runs out.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vatsal.lol/games/spot/">
+<meta property="og:image" content="../../assets/logo.png">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPOT | vatsal.lol">
+<meta name="twitter:description" content="Find the odd one before time runs out.">
+
+<link rel="icon"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E👀%3C/text%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+
+</head>
+
+<body>
+
+<header class="vatsal-header" id="vatsalHeader">
+<a class="vatsal-home" href="https://vatsal.lol/">
+vatsal.lol
+</a>
+</header>
+
+<main id="app">
+
+<!-- ===================================================== -->
+<!-- START SCREEN -->
+<!-- ===================================================== -->
+
+<section
+id="startScreen"
+class="screen active">
+
+<div class="hero">
+
+<h1>SPOT</h1>
+
+<p class="subtitle">
+
+Find the odd one.
+
+</p>
+
+</div>
+
+<div class="instructions">
+
+<h2>How To Play</h2>
+
+<ul>
+
+<li>One item is different.</li>
+
+<li>Find it before the timer ends.</li>
+
+<li>Every level gets harder.</li>
+
+<li>Complete all 40 levels.</li>
+
+</ul>
+
+</div>
+
+<div class="mode-selection">
+
+<button
+class="mode-btn active"
+data-mode="color">
+
+🎨
+<span>Color Hunt</span>
+
+</button>
+
+<button
+class="mode-btn"
+data-mode="shape">
+
+🔷
+<span>Shape Hunt</span>
+
+</button>
+
+<button
+
+class="mode-btn"
+
+data-mode="number">
+
+🔢
+
+<span>Number Hunt</span>
+
+</button>
+
+<button
+id="zenButton"
+class="zen-btn">
+
+🌿 Daily Zen
+
+</button>
+
+</div>
+
+<div class="best-area">
+
+<div class="stat">
+
+<span>Best Score</span>
+
+<strong id="bestScore">
+
+0
+
+</strong>
+
+</div>
+
+<div class="stat">
+
+<span>Highest Level</span>
+
+<strong id="bestLevel">
+
+1
+
+</strong>
+
+</div>
+
+</div>
+
+<button
+id="playButton"
+class="primary-btn">
+
+PLAY
+
+</button>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- GAME -->
+<!-- ===================================================== -->
+
+<section
+id="gameScreen"
+class="screen">
+
+<div class="hud">
+
+<div class="hud-card">
+
+<span>
+
+Mode
+
+</span>
+
+<strong
+id="modeName">
+
+Color Hunt
+
+</strong>
+
+</div>
+
+<div class="hud-card">
+
+<span>
+
+Level
+
+</span>
+
+<strong
+id="level">
+
+1
+
+</strong>
+
+</div>
+
+<div class="hud-card">
+
+<span>
+
+Timer
+
+</span>
+
+<strong
+id="timer">
+
+20
+
+</strong>
+
+</div>
+
+<div class="hud-card">
+
+<span>
+
+Score
+
+</span>
+
+<strong
+id="score">
+
+0
+
+</strong>
+
+</div>
+
+</div>
+
+<div class="lives-freeze-bar">
+
+    <div id="livesDisplay" class="lives-display">
+
+        <span class="life-full">♥</span>
+
+        <span class="life-full">♥</span>
+
+        <span class="life-full">♥</span>
+
+    </div>
+
+    <button id="freezeBtn" class="freeze-btn" onclick="activateFreeze()">❄️ Freeze</button>
+
+</div>
+
+<div
+id="grid"
+aria-label="Puzzle Grid">
+
+</div>
+
+</section>
+
+<!-- ===================================================== -->
+<!-- RESULT -->
+<!-- ===================================================== -->
+
+<section
+id="resultScreen"
+class="screen">
+
+<h2>
+
+👀 Sharp Focus
+
+</h2>
+
+<div class="results">
+
+<div class="result-row">
+
+<span>
+
+Score
+
+</span>
+
+<strong
+id="finalScore">
+
+0
+
+</strong>
+
+</div>
+
+<div class="result-row">
+
+<span>
+
+Highest Level
+
+</span>
+
+<strong
+id="highestLevel">
+
+1
+
+</strong>
+
+</div>
+
+<div class="result-row">
+
+<span>
+
+Focus
+
+</span>
+
+<strong
+id="focus">
+
+0%
+
+</strong>
+
+</div>
+
+<div class="result-row">
+
+<span>
+
+Mistakes
+
+</span>
+
+<strong
+id="mistakes">
+
+0
+
+</strong>
+
+</div>
+
+<div class="result-row">
+
+<span>
+
+Perfect Levels
+
+</span>
+
+<strong
+id="perfectLevels">
+
+0
+
+</strong>
+
+</div>
+
+</div>
+
+<div class="result-buttons">
+
+<button
+id="playAgain"
+class="primary-btn">
+
+Play Again
+
+</button>
+
+<button
+id="changeMode"
+class="secondary-btn">
+
+Change Mode
+
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
+<script
+src="../../assets/vatsal-footer-v25.js"
+defer>
+</script>
+
+</body>
+</html>

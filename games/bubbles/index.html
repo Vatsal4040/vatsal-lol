@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Bubble Pop</title>
+<link rel="canonical" href="https://vatsal.lol/games/bubbles/">
+<meta property="og:url" content="https://vatsal.lol/games/bubbles/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/mobile-v3.css">
+</head>
+<body>
+<div class="bg"></div>
+<div class="screen" id="home">
+  <header class="vatsal-header">
+    <a href="/" class="vatsal-home">vatsal.lol</a>
+    <button id="audioToggle" class="audio-btn">🔊</button>
+</header>
+  <div class="home-title">BUBBLE<br><span>POP</span></div>
+  <div class="bubble-deco">
+    <div class="deco-bubble"></div>
+    <div class="deco-bubble"></div>
+    <div class="deco-bubble"></div>
+    <div class="deco-bubble"></div>
+    <div class="deco-bubble"></div>
+  </div>
+  <div class="home-desc">
+    <strong>Pop bubbles.</strong> Avoid bombs.<br>Beat your best score.
+  </div>
+  <div class="home-best">
+    🏆 <span>Best:</span> <strong id="home-best-val">0</strong>
+  </div>
+  <button class="btn-play" id="btn-play">PLAY</button>
+</div>
+<!-- ── GAME SCREEN ── -->
+<div class="screen hidden" id="game">
+  <canvas id="canvas"></canvas>
+  <div class="hud">
+    <div class="hud-item">
+      <div class="hud-label">⭐ Score</div>
+      <div class="hud-val" id="hud-score">0</div>
+    </div>
+    <div class="hud-item">
+      <div class="hud-label">❤️ Lives</div>
+      <div class="hud-lives" id="hud-lives">
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+        <span class="heart">❤️</span>
+      </div>
+    </div>
+    <div class="hud-item">
+      <div class="hud-label">🏆 Best</div>
+      <div class="hud-val gold" id="hud-best">0</div>
+    </div>
+    <button class="sound-btn" id="sound-btn">🔊</button>
+  </div>
+  <div id="combo-display"></div>
+  <div id="rainbow-banner">🌈 DOUBLE SCORE!</div>
+</div>
+<!-- ── RESULT SCREEN ── -->
+<div class="screen hidden" id="result">
+ 
+  <div class="result-title">GAME<br>OVER</div>
+  <div class="result-card">
+    <div class="result-score-label">Your Score</div>
+    <div class="result-score-num" id="result-score">0</div>
+    <div class="result-best-row">🏆 Best: <strong id="result-best">0</strong></div>
+    <div class="result-desc" id="result-desc"></div>
+    <div id="new-best-badge" class="new-best-badge" style="display:none">🎉 NEW BEST!</div>
+  </div>
+  <div class="result-btns">
+    <button class="btn-play" id="btn-again">PLAY AGAIN</button>
+    </div>
+
+</div>
+  <script src="../../assets/vatsal-footer-v25.js" defer></script>
+<script src="script.js"></script>
+<div id="bomb-flash"></div>
+  </body>
+</html>
