@@ -2,12 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Vatsal.lol</title>
 <link rel="canonical" href="https://vatsal.lol/">
 <link rel="icon" href="assets/logo.png">
 <link rel="stylesheet" href="style.css">
 <meta name="description" content="Small experiments. Big ideas. Game on instantly.">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="VATSAL.LOL">
+  <meta property="og:description" content="Small experiments. Big ideas. Game on instantly. No install. No login. Just fun.">
+  <meta property="og:url" content="https://vatsal.lol/">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="VATSAL.LOL">
+  <meta name="twitter:description" content="Small experiments. Big ideas. Game on instantly. No install. No login. Just fun.">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 <body class="view-launcher">
 
@@ -106,5 +119,15 @@
 </div>
 
 <script src="script.js"></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>

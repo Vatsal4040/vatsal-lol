@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>JOKE ROULETTE </title>
 <link rel="canonical" href="https://vatsal.lol/games/joke-roulette/">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="Spin the wheel. Get a joke. Six vibes — dad, dark, wholesome, cursed, roast, gen z. AI-powered.">
 <meta property="og:site_name" content="vatsal.lol">
 <meta property="og:title" content="JOKE ROULETTE | vatsal.lol">
@@ -21,6 +21,10 @@
 <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 <body>
 
@@ -62,5 +66,15 @@
 
 <script src="script.js" defer></script>
 <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>

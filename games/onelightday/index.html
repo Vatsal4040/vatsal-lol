@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title> VATSAL.LOL | One Light Day </title>
   
   <!-- Tailwind CSS CDN -->
@@ -28,6 +28,22 @@
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
 <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
 
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://vatsal.lol/games/onelightday/">
+  <meta name="description" content="Play One Light Day instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:title" content="One Light Day | VATSAL.LOL">
+  <meta property="og:description" content="Play One Light Day instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:url" content="https://vatsal.lol/games/onelightday/">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="One Light Day | VATSAL.LOL">
+  <meta name="twitter:description" content="Play One Light Day instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 <body class="bg-[#020205] text-white selection:bg-cyan-500/30 selection:text-cyan-200 antialiased font-sans overflow-x-hidden scrollbar-none h-screen">
 <header class="vatsal-header">
@@ -812,5 +828,15 @@
 
   <!-- Internal script boot -->
   <script src="./script.js"></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>

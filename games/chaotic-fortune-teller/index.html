@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Mera Tota </title>
 <link rel="canonical" href="https://vatsal.lol/games/chaotic-fortune-teller/">
@@ -12,6 +12,19 @@
 <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Play Chaotic Fortune Teller instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:title" content="Chaotic Fortune Teller | VATSAL.LOL">
+  <meta property="og:description" content="Play Chaotic Fortune Teller instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chaotic Fortune Teller | VATSAL.LOL">
+  <meta name="twitter:description" content="Play Chaotic Fortune Teller instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 
 <body>
@@ -336,5 +349,15 @@ Get a ridiculous fortune report, luck scores and personality roast.
 
 <script src="script.js"></script>
 <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>

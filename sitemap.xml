@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
 
- <url>
+  <url>
     <loc>https://vatsal.lol/</loc>
   </url>
   
-<url>
+  <url>
     <loc>https://vatsal.lol/games/2048/</loc>
+  </url>
+
+  <url>
+    <loc>https://vatsal.lol/games/adjustme/</loc>
   </url>
 
   <url>
@@ -30,10 +34,6 @@
   </url>
 
   <url>
-    <loc>https://vatsal.lol/games/color-switch/</loc>
-  </url>
-
-  <url>
     <loc>https://vatsal.lol/games/draw-a-circle/</loc>
   </url>
 
@@ -43,10 +43,6 @@
 
   <url>
     <loc>https://vatsal.lol/games/everything-is-progressing/</loc>
-  </url>
-
-  <url>
-    <loc>https://vatsal.lol/games/fast-tap/</loc>
   </url>
 
   <url>
@@ -82,7 +78,7 @@
   </url>
 
   <url>
-    <loc>https://vatsal.lol/games/one-rule-only/</loc>
+    <loc>https://vatsal.lol/games/onelightday/</loc>
   </url>
 
   <url>
@@ -95,6 +91,10 @@
 
   <url>
     <loc>https://vatsal.lol/games/spend-bill-gates-money/</loc>
+  </url>
+
+  <url>
+    <loc>https://vatsal.lol/games/spot/</loc>
   </url>
 
   <url>

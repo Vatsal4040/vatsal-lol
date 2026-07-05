@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">   
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
-<meta name="description" content="Play instant mini games on vatsal.lol.">
+<meta name="description" content="Play Can You Guess Indian Mom? instantly on VATSAL.LOL. No install, no login - just fun!">>
 <meta property="og:site_name" content="vatsal.lol">
 <meta property="og:title" content="Can you guess indian mom | vatsal.lol">
 <meta property="og:description" content="Play instant mini games on vatsal.lol.">
@@ -21,6 +21,10 @@
 <meta name="twitter:title" content="Can you guess indian mom | vatsal.lol">
 <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
 
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 <body>
 <header class="vatsal-header">
@@ -79,5 +83,15 @@
 
 <script src="script.js" defer></script>
 <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Transform your birthday into a cinematic statistical journey through time, body, space, and memory.">
   <meta property="og:title" content="Your Life in Numbers">
   <meta property="og:description" content="Every heartbeat. Every breath. Every orbit around the sun.">
@@ -16,6 +16,14 @@
 <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
 <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Life In Numbers | VATSAL.LOL">
+  <meta name="twitter:description" content="Play Your Life In Numbers instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
 </head>
 <body>
  <header class="vatsal-header">
@@ -273,5 +281,15 @@
   </main>
 <script src="script.js?v=3-mobile-2" defer></script>
 <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <!-- PWA Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker registration failed', err));
+      });
+    }
+  </script>
 </body>
 </html>
