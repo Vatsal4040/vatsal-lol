@@ -6,7 +6,10 @@
   font-family: "Vatsal-logo";
   src: url("assets/data/vatsal-logo-font.ttf") format("truetype");
 }
-
+@font-face {
+  font-family: "vns";
+  src: url("assets/data/vns.otf") format("truetype");
+}
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -320,6 +323,7 @@ body.view-grid { overflow-y: auto; height: auto; }
     text-align: left;
     line-height: 1.35;
     font-variant-numeric: tabular-nums;
+    font-family: 'vns';
 }
 
 .status-date,
