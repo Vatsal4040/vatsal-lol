@@ -119,7 +119,9 @@ el.innerHTML = `
         const delay = Math.random() * -5;
         node.style.animation = `floatNode${isMobile ? 'Mobile' : ''} ${dur}s ease-in-out ${delay}s infinite`;
 
-        node.innerHTML = `<img src="assets/thumbcircle/${game.slug}.webp" alt="${game.title}" onerror="this.src='assets/logo.png'">`;
+        const isCritical = i < 3;
+        const lazyAttr = isCritical ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"';
+        node.innerHTML = `<img src="assets/thumbcircle/${game.slug}.webp" alt="${game.title}" width="90" height="90"${lazyAttr} onerror="this.src='assets/logo.png'">`;
         node.onclick = () => window.location.href = `./games/${game.slug}/`;
         container.appendChild(node);
     });
@@ -132,10 +134,12 @@ el.innerHTML = `
 
   function renderGrid() {
     const grid = document.getElementById('traditionalGrid');
-    games.forEach(game => {
+    games.forEach((game, i) => {
         const card = document.createElement('div');
         card.className = 't-card';
-        card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" alt="${game.title}" onerror="this.src='assets/logo.png'">`;
+        const isCritical = i < 3;
+        const lazyAttr = isCritical ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"';
+        card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" alt="${game.title}" width="320" height="180"${lazyAttr} onerror="this.src='assets/logo.png'">`;
         card.onclick = () => window.location.href = `./games/${game.slug}/`;
         grid.appendChild(card);
     });

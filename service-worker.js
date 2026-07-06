@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vatsal-lol-cache-v2';
+const CACHE_NAME = 'vatsal-lol-cache-v3.5.2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -93,9 +93,10 @@ const PRECACHE_ASSETS = [
   '/assets/data/flashrunning.png',
   '/assets/data/flashlighting.png',
   '/assets/data/flashsound.mp3',
-  '/assets/data/FFCommaTrial-Regular.ttf',
-  '/assets/data/vatsal-logo-font.ttf',
-  '/assets/data/vns.otf'
+  '/assets/data/FFCommaTrial-Regular.woff2',
+  '/assets/data/vatsal-logo-font.woff2',
+  '/assets/data/pinkend.woff2',
+  '/assets/data/vns.woff2'
 ];
 
 // Install Event

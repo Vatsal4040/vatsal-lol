@@ -4,7 +4,7 @@ STYLE.CSS  — MOBILE-FIXED VERSION
 ================================================== */
 @font-face {
     font-family: "Vatsal-logo";
-    src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
+    src: url("../../assets/data/vatsal-logo-font.woff2") format("woff2");
     font-display: swap;
 }
 :root {

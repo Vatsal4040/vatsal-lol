@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'FFComma';
-  src: url('assets/data/FFCommaTrial-Regular.ttf') format('truetype');
+  src: url("assets/data/FFCommaTrial-Regular.woff2") format("woff2");
   font-display: swap;
 }
 @font-face {
   font-family: "Vatsal-logo";
-  src: url("assets/data/vatsal-logo-font.ttf") format("truetype");
+  src: url("assets/data/vatsal-logo-font.woff2") format("woff2");
   font-display: swap;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }

@@ -1,6 +1,6 @@
 /* ---------- GAMING FONTS (Arcade / Pixel style) ---------- */
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600;700&display=swap');
-        @font-face {font-family: "Vatsal-logo"; src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");font-display: swap;}
+        @font-face {font-family: "Vatsal-logo"; src: url("../../assets/data/vatsal-logo-font.woff2") format("woff2");font-display: swap;}
         
         * {
             margin: 0;

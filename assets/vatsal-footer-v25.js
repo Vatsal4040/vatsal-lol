@@ -108,7 +108,11 @@
 
                         <img
                         src="../../assets/thumbnails/${game}.webp"
-                        alt="${game}">
+                        alt="${game}"
+                        width="320"
+                        height="180"
+                        loading="lazy"
+                        decoding="async">
 
                     </a>
 
