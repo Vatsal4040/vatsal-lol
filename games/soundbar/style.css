@@ -1,0 +1,682 @@
+/* Sound Bar Stylesheet (VISION.md compliant) */
+/* Pure minimal space black layout, zero card container borders, toypicker emoji buttons. */
+
+:root {
+  --bg-color: #000000;
+  --surface-color: transparent;
+  --accent-color: #4CC9F0;
+  
+  --purple: #8B5CF6;
+  --green: #34D399;
+  --orange: #F59E0B;
+  --red: #ff4a4a;
+  
+  --text-primary: #f0f2f5;
+  --text-secondary: #57606f;
+  --border-color: rgba(255, 255, 255, 0.07);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: transparent;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.app-title {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  background: linear-gradient(135deg, #ffffff 30%, var(--accent-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-subtitle {
+  text-align: center;
+  font-family: monospace;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+/* Page Dimming for Eclipse */
+.eclipse-dim-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Space Spaced Main Dashboard */
+.app-container {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10;
+}
+
+/* Minimal Dividers */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
+  margin: 6px 0;
+}
+
+/* Music Player Panel */
+.player-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.player-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-secondary);
+}
+
+.player-controls-row {
+  display: flex;
+  gap: 8px;
+}
+
+.song-select {
+  flex: 1;
+  background: #000;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.song-select option {
+  background: #000;
+  color: #fff;
+}
+
+.player-playback-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.playback-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.control-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  outline: none;
+}
+
+.control-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.play-pause-btn {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.volume-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  font-family: monospace;
+}
+
+/* Controller Display Box - Visually Dominates (75% height equivalent) */
+.controller-viewport {
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.controller-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.12s ease-in-out;
+}
+
+/* Picker Panel Layout */
+.picker-viewport {
+  padding: 4px 0;
+}
+
+.controller-picker {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  justify-items: center;
+}
+
+/* Emojis floating picks styling (toy selector feel) */
+.picker-btn {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.22s ease;
+  filter: grayscale(0.2) opacity(0.5);
+}
+
+.picker-btn:hover {
+  transform: translateY(-4px) scale(1.22);
+  filter: grayscale(0) opacity(1) drop-shadow(0 0 6px var(--accent-color));
+}
+
+.picker-btn.active {
+  transform: scale(1.18);
+  filter: grayscale(0) opacity(1) drop-shadow(0 0 8px var(--accent-color));
+}
+
+/*************************************************
+ * INDIVIDUAL CONTROLLER STYLES
+ *************************************************/
+
+/* 1. Default Vertical Slider ("📏" mapped to vertical.js / slider) */
+.v-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.v-slider-track {
+  width: 24px;
+  height: 220px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+
+.v-slider-fill {
+  width: 100%;
+  background: var(--accent-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.v-slider-value {
+  margin-top: 14px;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* 2. Ball Shooter ("🎳") */
+.ball-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ball-canvas {
+  width: 100%;
+  height: 270px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.ball-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* 3. Solar Eclipse ("🌞") */
+.eclipse-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.eclipse-svg {
+  width: 100%;
+  height: 260px;
+}
+
+.eclipse-label {
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* 4. Pencil notepad typing ("✏️") */
+.pencil-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.pencil-canvas {
+  width: 100%;
+  height: 270px;
+  cursor: crosshair;
+}
+
+/* 5. Seesaw ("⚖️") */
+.seesaw-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.seesaw-canvas {
+  width: 100%;
+  height: 270px;
+}
+
+/* 6. Bike Pump ("🚲") */
+.pump-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pump-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 7. Chai Cup Fill ("🥤") */
+.chai-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.chai-canvas {
+  width: 100%;
+  height: 240px;
+}
+
+.chai-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.chai-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.chai-btn:active {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.chai-btn.fill:active {
+  border-color: var(--accent-color);
+}
+
+.chai-btn.drain:active {
+  border-color: var(--red);
+}
+
+/* 8. DJ Deck ("💿") */
+.dj-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dj-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 9. Pi keypad redefinition ("π") */
+.pi-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  gap: 12px;
+}
+
+.pi-display-panel {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pi-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.pi-digits {
+  font-family: monospace;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+  color: var(--accent-color);
+}
+
+.pi-cursor {
+  animation: pi-blink 0.8s infinite;
+}
+
+@keyframes pi-blink { 50% { opacity: 0; } }
+
+.pi-keypad {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+}
+
+.pi-key {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 10px 0;
+  font-family: monospace;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.pi-key:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pi-key.reset {
+  grid-column: span 2;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.8rem;
+}
+
+/* 10. Dicefelt felt roller ("🎲") */
+.dice-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #104c2b 0%, #082414 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 16px;
+  gap: 20px;
+}
+
+.dice-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.die-svg {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.dice-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.dice-sum {
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.dice-btn {
+  background: #ffffff;
+  color: #0b3d1f;
+  border: none;
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* 11. Exam bubble sheet ("📝") */
+.exam-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: #f7f6f0;
+  border-radius: 8px;
+  color: #222;
+  padding: 12px;
+}
+
+.exam-sheet {
+  border: 1.5px solid #ccb;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  justify-content: space-between;
+}
+
+.exam-header {
+  border-bottom: 2px solid #222;
+  padding-bottom: 4px;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.exam-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.exam-meta {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.55rem;
+  font-family: monospace;
+  margin-top: 2px;
+  color: #555;
+}
+
+.exam-columns {
+  display: flex;
+  justify-content: space-around;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.exam-column-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exam-col-label {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.exam-bubble-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 3.5px;
+}
+
+.exam-bubble-label {
+  font-family: monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  width: 14px;
+  text-align: right;
+}
+
+.exam-bubble {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.2px solid #333;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  padding: 0;
+}
+
+.exam-bubble:hover {
+  background: rgba(0,0,0,0.06);
+}
+
+.exam-bubble.filled {
+  background: transparent;
+}
+
+.exam-graphite {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 13px;
+  height: 13px;
+  pointer-events: none;
+}
+
+.exam-footer {
+  border-top: 2px solid #222;
+  margin-top: 6px;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* Mobile Picker Styling */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .app-container {
+    gap: 8px;
+  }
+
+  .controller-viewport {
+    height: 290px;
+  }
+
+  .controller-picker {
+    gap: 8px;
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .picker-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.35rem;
+  }
+}

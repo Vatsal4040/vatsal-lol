@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Standing Still | VATSAL.LOL</title>
+    <link rel="canonical" href="https://vatsal.lol/games/standing/">
+    <meta property="og:url" content="https://vatsal.lol/games/standing/">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;400;500;700&family=Outfit:wght@100;200;300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+    <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+    <link rel="stylesheet" href="../../assets/mobile-v3.css">
+    
+    <meta name="description" content="Explore relativity of motion in the physics interactive museum Standing Still on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="Standing Still | VATSAL.LOL">
+    <meta property="og:description" content="Explore relativity of motion in the physics interactive museum Standing Still on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Standing Still | VATSAL.LOL">
+    <meta name="twitter:description" content="Explore relativity of motion in the physics interactive museum Standing Still on VATSAL.LOL. No install, no login - just fun!">
+    <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <style>
+        /* --- DESIGN SYSTEM --- */
+        :root {
+            --bg-color: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.35);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Current active accent color - updated dynamically */
+            --current-accent-rgb: 165, 242, 255; /* Ice Blue default */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Prevent standard scrollbars from breaking the museum look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- CANVAS BACKGROUND --- */
+        #stars-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* --- FIXED UI NAVIGATION --- */
+        .fixed-hud {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* TIME ON PAGE widget (Top Left) */
+        .time-widget {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 16px 20px;
+            pointer-events: auto;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.6),
+                inset 0 0 10px rgba(var(--current-accent-rgb), 0.01);
+            transition: box-shadow 0.5s ease;
+        }
+
+        .widget-label {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .time-display {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .time-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .time-val {
+            font-family: var(--font-mono);
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .time-unit {
+            font-family: var(--font-mono);
+            font-size: 8px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .time-sep {
+            font-family: var(--font-mono);
+            font-size: 24px;
+            color: var(--text-secondary);
+            line-height: 1;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        /* Statement (Top Right) */
+        .hud-statement {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: right;
+            line-height: 1.8;
+            max-width: 280px;
+            color: var(--text-primary);
+        }
+
+        .hud-statement span {
+            display: block;
+        }
+
+        .hud-statement .highlight {
+            color: rgb(var(--current-accent-rgb));
+            text-shadow: 0 0 10px rgba(var(--current-accent-rgb), 0.4);
+            font-weight: 700;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        /* --- HEADER & HERO --- */
+        .museum-header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            padding: 20px;
+        }
+
+        .museum-header h1 {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 100;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-indent: 0.45em;
+            color: var(--text-primary);
+        }
+
+        .museum-header p {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.35em;
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            text-indent: 0.35em;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 60px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(10px); opacity: 0.8; }
+        }
+
+        /* --- EXHIBIT PIPELINE --- */
+        .exhibit-pipeline {
+            position: relative;
+            z-index: 10;
+        }
+
+        .exhibit-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 160px 40px; /* Generous breathing room */
+            position: relative;
+        }
+
+        .exhibit-card {
+            width: 100%;
+            max-width: 1200px;
+            background: transparent; /* Sitting directly in space */
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            box-shadow: none;
+        }
+
+        /* LEFT COLUMN */
+        .exhibit-left {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .exhibit-title {
+            font-size: 26px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-primary);
+        }
+
+        .exhibit-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 440px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Scientific illustration floating in space */
+        .illustration-box {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 290px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        .illustration-box img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* RIGHT COLUMN */
+        .exhibit-right {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .telemetry-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Meter Frame wrapping the digits only */
+        .meter-panel {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: inset 0 0 15px rgba(var(--accent-rgb), 0.03);
+            border-radius: 4px;
+            padding: 15px 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            align-self: flex-start;
+        }
+
+        .meter-panel::before {
+            content: '';
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.01);
+            pointer-events: none;
+        }
+
+        /* Engineered Corner Brackets */
+        .meter-corner {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-color: rgba(var(--accent-rgb), 0.35);
+            border-style: solid;
+            pointer-events: none;
+            transition: border-color 0.5s ease;
+        }
+        .corner-tl { top: 6px; left: 6px; border-width: 1px 0 0 1px; }
+        .corner-tr { top: 6px; right: 6px; border-width: 1px 1px 0 0; }
+        .corner-bl { bottom: 6px; left: 6px; border-width: 0 0 1px 1px; }
+        .corner-br { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+
+        /* Odometer Styling */
+        .odo-display {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .odo-slot {
+            display: inline-block;
+            height: 60px;
+            width: 32px;
+            overflow: hidden;
+            position: relative;
+            user-select: none;
+        }
+
+        .odo-strip {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: transform 0.25s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+
+        .odo-strip span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            font-family: var(--font-mono);
+            font-size: clamp(32px, 4.5vw, 44px);
+            font-weight: 500;
+            color: rgba(var(--accent-rgb), 0.9);
+            text-shadow: 
+                0 0 8px rgba(var(--accent-rgb), 0.4),
+                0 0 16px rgba(var(--accent-rgb), 0.1);
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        /* Decimal dot */
+        .odo-dot {
+            display: inline-flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 60px;
+            width: 14px;
+            font-family: var(--font-mono);
+            font-size: clamp(32px, 4.5vw, 44px);
+            font-weight: 500;
+            color: rgba(var(--accent-rgb), 0.9);
+            text-shadow: 
+                0 0 8px rgba(var(--accent-rgb), 0.4),
+                0 0 16px rgba(var(--accent-rgb), 0.1);
+            padding-bottom: 6px;
+            box-sizing: border-box;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        /* Fast slots get zero transitions to look blurred */
+        .odo-slot.fast .odo-strip {
+            transition: none !important;
+        }
+
+        /* Spacecraft Telemetry Units */
+        .odo-unit {
+            font-family: var(--font-mono);
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.25);
+            margin-left: 20px;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            align-self: center;
+        }
+
+        /* Speed display footer */
+        .speed-footer {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .speed-label {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .speed-value {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        /* --- SPECIAL ILLUSTRATION ANIMATIONS --- */
+        
+        /* 01: Tectonic Plates Horizontal Drift */
+        .tectonic-drift img {
+            animation: tectonicDrift 20s ease-in-out infinite alternate;
+        }
+        @keyframes tectonicDrift {
+            0% { transform: translateX(-6px); }
+            100% { transform: translateX(6px); }
+        }
+
+        /* 02: Earth Rotation Horizontal scrolling Globe (stationary silhouette/shadow) */
+        .earth-globe {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 
+                inset -35px 0 40px rgba(0, 0, 0, 0.75), /* Stable dark side shadow */
+                inset 20px 0 25px rgba(255, 255, 255, 0.08), /* Stable light edge */
+                0 0 45px rgba(80, 170, 255, 0.22); /* Outer atmosphere glow */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #000;
+        }
+
+        .earth-surface {
+            position: absolute;
+            inset: 0;
+            background: url("assets/earth-rotation.png");
+            background-repeat: repeat-x;
+            background-size: auto 100%;
+            animation: earthRotate 22s linear infinite;
+        }
+
+        /* Static atmosphere and shadowing layer overlayed on top of spinning surface */
+        .earth-lighting {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow:
+                inset -35px 0 40px rgba(0, 0, 0, 0.8),
+                inset 20px 0 25px rgba(255, 255, 255, 0.08);
+            background: radial-gradient(circle at 30% 30%, rgba(80, 170, 255, 0) 30%, rgba(80, 170, 255, 0.08) 60%, rgba(0, 0, 0, 0.7) 100%);
+        }
+
+        @keyframes earthRotate {
+            from { background-position: 0 0; }
+            to { background-position: -440px 0; } /* scaled map repeats precisely at 440px (220px height * 2 aspect ratio) */
+        }
+
+        /* 03: Earth Orbits Sun Center Rotation */
+        .orbit-rotation-box {
+            animation: orbitRotate 90s linear infinite reverse;
+        }
+        @keyframes orbitRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Static illustrations (no animations on others) */
+
+        /* --- MULTIVERSE METRIC STYLING --- */
+        .multiverse-glitch {
+            animation: screenFlicker 0.15s infinite alternate;
+        }
+        @keyframes screenFlicker {
+            0% { opacity: 0.85; filter: contrast(1.1); }
+            100% { opacity: 0.95; filter: contrast(0.9); }
+        }
+
+        /* --- FINAL EXHIBIT STYLING (PERFECT STILLNESS) --- */
+        #ex-final .meter-panel {
+            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        #ex-final .odo-strip span, #ex-final .odo-dot {
+            color: rgba(255, 255, 255, 0.15) !important;
+            text-shadow: none !important;
+        }
+
+        .final-message-panel {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            border-left: 1px solid rgba(255,255,255,0.1);
+            padding-left: 25px;
+            line-height: 1.9;
+        }
+
+        .final-message-panel .distance-highlight {
+            font-size: 28px;
+            font-weight: 300;
+            color: #ffffff;
+            display: block;
+            margin-top: 10px;
+            font-family: var(--font-main);
+            letter-spacing: 1px;
+        }
+
+        /* --- MUSEUM FOOTER --- */
+        .museum-footer {
+            padding: 180px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            position: relative;
+            z-index: 10;
+        }
+
+        .museum-footer p {
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            line-height: 2.2;
+        }
+
+        /* --- RESPONSIVE LAYOUTS --- */
+        @media (max-width: 1024px) {
+            .exhibit-card {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                padding: 0;
+            }
+            .fixed-hud {
+                padding: 25px;
+            }
+            .hud-statement {
+                display: none; /* Hide top statement on smaller tablets/mobiles to prevent crowding */
+            }
+            .illustration-box {
+                margin: 0 auto;
+            }
+            .exhibit-left {
+                text-align: center;
+                align-items: center;
+            }
+            .exhibit-desc {
+                margin: 0 auto;
+            }
+            .exhibit-right {
+                align-items: center;
+                text-align: center;
+            }
+            .meter-panel {
+                align-self: center;
+            }
+            .odo-display {
+                justify-content: center;
+                width: 100%;
+            }
+            .speed-footer {
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .fixed-hud {
+                padding: 15px;
+            }
+            .time-widget {
+                padding: 10px 14px;
+            }
+            .time-val {
+                font-size: 20px;
+            }
+            .exhibit-section {
+                padding: 100px 15px;
+            }
+            .exhibit-card {
+                gap: 35px;
+            }
+            .exhibit-title {
+                font-size: 20px;
+            }
+            .illustration-box {
+                height: 220px;
+            }
+            .earth-globe {
+                width: 160px;
+                height: 160px;
+            }
+            @keyframes earthRotate {
+                from { background-position: 0 0; }
+                to { background-position: -320px 0; }
+            }
+            .meter-panel {
+                padding: 25px 15px;
+            }
+            .odo-slot {
+                width: 20px;
+                height: 40px;
+            }
+            .odo-strip span {
+                height: 40px;
+                font-size: 28px;
+            }
+            .odo-dot {
+                height: 40px;
+                font-size: 28px;
+                width: 8px;
+                padding-bottom: 4px;
+            }
+            .odo-unit {
+                font-size: 13px;
+                margin-left: 10px;
+            }
+            .speed-value {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="vatsal-header" id="vatsalHeader">
+        <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+    </header>
+
+    <!-- Stars Background Layer -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Fixed HUD elements (Header HUD Overlay) -->
+    <div class="fixed-hud">
+        <!-- TIME ON PAGE Widget -->
+        <div class="time-widget">
+            <span class="widget-label">Time On Page</span>
+            <div class="time-display">
+                <div class="time-group">
+                    <span class="time-val" id="hud-min">00</span>
+                    <span class="time-unit">Min</span>
+                </div>
+                <span class="time-sep">:</span>
+                <div class="time-group">
+                    <span class="time-val" id="hud-sec">00</span>
+                    <span class="time-unit">Sec</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exhibit intro phrase -->
+        <div class="hud-statement">
+            <span>You think you're standing still.</span>
+            <span class="highlight">Let's find out.</span>
+        </div>
+    </div>
+
+    <!-- Entry Screen Header -->
+    <header class="museum-header">
+        <h1>Standing Still</h1>
+        <p>The Relativity of Motion</p>
+        <div class="scroll-indicator">Scroll to Begin</div>
+    </header>
+
+    <!-- Main exhibits pipeline -->
+    <main class="exhibit-pipeline" id="exhibit-container">
+        
+        <!-- 01 — TECTONIC PLATES -->
+        <section class="exhibit-section" id="ex-tectonic" data-index="0">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box tectonic-drift">
+                        <img src="assets/tectonic-plates.png" alt="Tectonic plates movement">
+                    </div>
+                    <h2 class="exhibit-title">Tectonic Plates</h2>
+                    <p class="exhibit-desc">The Earth's crust moves slowly over the mantle. Since you arrived, you have traveled:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 165, 242, 255;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-0"></div>
+                        <span class="odo-unit">nm</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">2 inches / year • 0.00000000032 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 — EARTH'S ROTATION -->
+        <section class="exhibit-section" id="ex-rotation" data-index="1">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <div class="earth-globe">
+                            <div class="earth-surface"></div>
+                            <div class="earth-lighting"></div>
+                        </div>
+                    </div>
+                    <h2 class="exhibit-title">Earth's Rotation</h2>
+                    <p class="exhibit-desc">The Earth spins on its axis at the equator. Relative to the planet's center, you have traveled:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 0, 240, 255;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-1"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">1,037 mph • 1,670 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 — EARTH ORBITS THE SUN -->
+        <section class="exhibit-section" id="ex-orbit" data-index="2">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <div class="orbit-rotation-box">
+                            <img src="assets/earth-orbation-sun.png" alt="Earth orbiting the Sun">
+                        </div>
+                    </div>
+                    <h2 class="exhibit-title">Earth Orbits The Sun</h2>
+                    <p class="exhibit-desc">The Earth orbits the Sun at an average of 66,600 mph. Since you arrived:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 255, 184, 0;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-2"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">66,600 mph • 107,182 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 — THE SUN'S MOTION -->
+        <section class="exhibit-section" id="ex-solar" data-index="3">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/solar-system.png" alt="Solar system travel path">
+                    </div>
+                    <h2 class="exhibit-title">The Sun's Motion</h2>
+                    <p class="exhibit-desc">The Sun moves relative to nearby stars. Since you arrived, you have traveled:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 255, 107, 0;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-3"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">~439,000 mph • ~706,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 — THROUGH THE MILKY WAY -->
+        <section class="exhibit-section" id="ex-milkyway" data-index="4">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/milky-way.png" alt="Milky Way Galaxy spiral">
+                    </div>
+                    <h2 class="exhibit-title">Through the Milky Way</h2>
+                    <p class="exhibit-desc">The Sun orbits the center of our galaxy. Since you arrived:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 189, 92, 255;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-4"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">~483,000 mph • ~778,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 — TOWARD ANDROMEDA -->
+        <section class="exhibit-section" id="ex-andromeda" data-index="5">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/milkyway&andromeda.png" alt="Collision trajectory toward Andromeda">
+                    </div>
+                    <h2 class="exhibit-title">Toward Andromeda</h2>
+                    <p class="exhibit-desc">The Milky Way is moving toward the Andromeda Galaxy. Since you arrived:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 255, 77, 109;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-5"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">~1,300,000 mph • ~2,092,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 — THE COSMIC WEB -->
+        <section class="exhibit-section" id="ex-cosmic" data-index="6">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/cosmic-web.png" alt="Filaments of the Cosmic Web">
+                    </div>
+                    <h2 class="exhibit-title">The Cosmic Web</h2>
+                    <p class="exhibit-desc">The Milky Way moves through the cosmic web. Since you arrived:</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Distance Since You Arrived</span>
+                    <div class="meter-panel" style="--accent-rgb: 59, 130, 246;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-6"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">~1,300,000 mph • ~2,092,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 — THE MULTIVERSE? -->
+        <section class="exhibit-section" id="ex-multiverse" data-index="7">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/multiverse.png" alt="Visual representation of multiple universes">
+                    </div>
+                    <h2 class="exhibit-title">The Multiverse?</h2>
+                    <p class="exhibit-desc">If the Multiverse exists, its scale is beyond imagination. Numbers stop mattering. Since you arrived...</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">Beyond Measurement</span>
+                    <div class="meter-panel multiverse-glitch" style="--accent-rgb: 240, 240, 240;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-7"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer">
+                        <span class="speed-label">Speed</span>
+                        <span class="speed-value">Beyond measurement. • Numbers stop mattering.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 09 — SPEED IS RELATIVE (FINAL) -->
+        <section class="exhibit-section" id="ex-final" data-index="8">
+            <div class="exhibit-card">
+                <div class="exhibit-left">
+                    <div class="illustration-box">
+                        <img src="assets/perspective.png" alt="A quiet perspective of Earth from space">
+                    </div>
+                    <h2 class="exhibit-title">Speed Is Relative</h2>
+                    <p class="exhibit-desc">It depends upon your perspective of the Universe. Since you arrived...</p>
+                </div>
+                <div class="exhibit-right">
+                    <span class="telemetry-label">From Your Perspective</span>
+                    <div class="meter-panel" style="--accent-rgb: 74, 85, 104;">
+                        <div class="meter-corner corner-tl"></div>
+                        <div class="meter-corner corner-tr"></div>
+                        <div class="meter-corner corner-bl"></div>
+                        <div class="meter-corner corner-br"></div>
+                        <div class="odo-display" id="odo-8"></div>
+                        <span class="odo-unit">km</span>
+                    </div>
+                    <div class="speed-footer" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; align-items: start; margin-top: 15px;">
+                        <div>
+                            <span class="speed-label">Speed</span>
+                            <span class="speed-value" style="color: rgba(255,255,255,0.4);">0 km/h</span>
+                        </div>
+                        <div class="final-message-panel">
+                            From your own center, you haven't moved at all.
+                            <span class="distance-highlight">0 km</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Museum Footer -->
+    <footer class="museum-footer">
+        <p>There is no universal "still".</p>
+        <p>Motion only exists relative to something else.</p>
+    </footer>
+
+    <!-- --- MOTION CONTROL ENGINE --- -->
+    <script>
+        // Seeded random number generator for stars and glitch behaviors
+        let seedValue = 1337;
+        function seededRandom() {
+            let x = Math.sin(seedValue++) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // --- BACKGROUND CANVAS STARS & METEORS ---
+        const stars = [];
+        const meteors = [];
+
+        // Pre-generate spiral arm offsets once for high performance
+        const spiralArmOffsets = [];
+        (function generateSpiralOffsets() {
+            let armSeed = 42;
+            function galaxyRandom() {
+                let x = Math.sin(armSeed++) * 10000;
+                return x - Math.floor(x);
+            }
+            const numArms = 2;
+            const steps = 180;
+            for (let arm = 0; arm < numArms; arm++) {
+                const startAngle = arm * Math.PI;
+                for (let i = 0; i < steps; i++) {
+                    const t = i / steps;
+                    const angle = startAngle + t * 4.2; // Spiral wrap angle
+                    const r = t; // Normalized radius
+                    const spreadX = (galaxyRandom() - 0.5) * 0.14;
+                    const spreadY = (galaxyRandom() - 0.5) * 0.14;
+                    spiralArmOffsets.push({
+                        ang: angle,
+                        r: r,
+                        sx: spreadX,
+                        sy: spreadY,
+                        size: 0.35 + galaxyRandom() * 0.65,
+                        brightness: 0.12 + galaxyRandom() * 0.3
+                    });
+                }
+            }
+        })();
+
+        // Star colors pool representing realistic star populations (White, Soft Blue, Warm White, Pale Cyan, Faint Golden)
+        const starColors = [
+            'rgba(255, 255, 255, ',   // White
+            'rgba(215, 228, 255, ',   // Soft Blue
+            'rgba(255, 245, 228, ',   // Warm White
+            'rgba(215, 252, 255, ',   // Pale Cyan
+            'rgba(255, 232, 185, '    // Faint Golden
+        ];
+
+        function initStars() {
+            const canvas = document.getElementById('stars-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                generateStars();
+            }
+            
+            function generateStars() {
+                stars.length = 0;
+                seedValue = 1337; // Reset seed for deterministic layout
+                
+                // Dense star field
+                const numStars = Math.floor((canvas.width * canvas.height) / 2800);
+                for (let i = 0; i < numStars; i++) {
+                    const x = seededRandom() * canvas.width;
+                    const y = seededRandom() * canvas.height;
+                    const radius = 0.25 + seededRandom() * 0.95; // 0.25px to 1.2px
+                    const colorIndex = Math.floor(seededRandom() * starColors.length);
+                    const colorPrefix = starColors[colorIndex];
+                    
+                    const brightnessRoll = seededRandom();
+                    let baseOpacity = 0.12;
+                    if (brightnessRoll > 0.88) baseOpacity = 0.62;
+                    else if (brightnessRoll > 0.5) baseOpacity = 0.32;
+                    else baseOpacity = 0.14;
+                    
+                    // 35% of stars gently twinkle
+                    const twinkle = seededRandom() > 0.65;
+                    const phi = seededRandom() * Math.PI * 2;
+                    const freq = 0.0006 + seededRandom() * 0.0012; // slow rads/ms frequency
+                    
+                    stars.push({
+                        x, y, r: radius,
+                        color: colorPrefix,
+                        baseO: baseOpacity,
+                        twinkle, phi, freq
+                    });
+                }
+            }
+            
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Background Animation Loop
+            function bgLoop() {
+                const timestamp = performance.now();
+                
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                const w = canvas.width;
+                const h = canvas.height;
+                
+                // 1. Draw Deep Space Dust (Nebulous clouds)
+                drawSpaceDust(ctx, w, h);
+                
+                // 2. Draw Distant Galaxies
+                drawGalaxies(ctx, w, h);
+                
+                // 3. Draw Stars (with gentle twinkling)
+                stars.forEach(s => {
+                    let opacity = s.baseO;
+                    if (s.twinkle) {
+                        // Twinkling modulates opacity by up to 15% very slowly
+                        opacity = s.baseO * (1.0 + Math.sin(timestamp * s.freq + s.phi) * 0.12);
+                    }
+                    ctx.fillStyle = s.color + opacity.toFixed(3) + ')';
+                    ctx.beginPath();
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                
+                // 4. Update and Draw Meteors (Restrained, slow, rare)
+                updateMeteors(w, h);
+                drawMeteors(ctx);
+                
+                requestAnimationFrame(bgLoop);
+            }
+            bgLoop();
+        }
+
+        // Draw soft, low-opacity large-scale cosmic dust
+        function drawSpaceDust(ctx, w, h) {
+            const clouds = [
+                { nx: 0.28, ny: 0.35, r: 450, color: '80, 140, 255, ', maxO: 0.007 },   // Faint Blue Cloud
+                { nx: 0.72, ny: 0.58, r: 550, color: '255, 170, 110, ', maxO: 0.005 },  // Faint Golden Cloud
+                { nx: 0.45, ny: 0.85, r: 600, color: '180, 100, 255, ', maxO: 0.006 },  // Faint Purple Cloud
+                { nx: 0.80, ny: 0.15, r: 380, color: '100, 255, 230, ', maxO: 0.004 }   // Faint Cyan Cloud
+            ];
+            
+            clouds.forEach(c => {
+                const cx = c.nx * w;
+                const cy = c.ny * h;
+                
+                ctx.save();
+                let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, c.r);
+                grad.addColorStop(0, `rgba(${c.color}${c.maxO})`);
+                grad.addColorStop(0.5, `rgba(${c.color}${c.maxO * 0.4})`);
+                grad.addColorStop(1, 'rgba(0,0,0,0)');
+                
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, c.r, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+
+        // Draw 3 distant, faint, large-scale galaxies positioned away from central exhibit columns
+        function drawGalaxies(ctx, w, h) {
+            // Galaxy 1: Top-Right rotated spiral
+            drawSpiralGalaxy(ctx, w * 0.84, h * 0.22, 160, -0.4, '210, 230, 255, ', 0.016);
+            
+            // Galaxy 2: Middle-Left elliptical
+            drawEllipticalGalaxy(ctx, w * 0.12, h * 0.60, 220, 80, 0.6, '255, 230, 210, ', 0.022);
+            
+            // Galaxy 3: Bottom-Right galaxy cluster
+            drawGalaxyCluster(ctx, w * 0.86, h * 0.78, '220, 210, 255, ', 0.012);
+        }
+
+        function drawSpiralGalaxy(ctx, x, y, size, rotation, rgbPrefix, maxO) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            // Bulge
+            let bulgeGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, size * 0.28);
+            bulgeGrad.addColorStop(0, `rgba(${rgbPrefix}${maxO * 1.5})`);
+            bulgeGrad.addColorStop(0.5, `rgba(${rgbPrefix}${maxO * 0.6})`);
+            bulgeGrad.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = bulgeGrad;
+            ctx.beginPath();
+            ctx.arc(0, 0, size * 0.28, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Arms
+            ctx.fillStyle = `rgba(${rgbPrefix}${maxO * 0.25})`;
+            spiralArmOffsets.forEach(pt => {
+                const angle = pt.ang;
+                const radius = pt.r * size;
+                const px = Math.cos(angle) * radius + pt.sx * size;
+                const py = Math.sin(angle) * radius + pt.sy * size;
+                ctx.beginPath();
+                ctx.arc(px, py, pt.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            ctx.restore();
+        }
+
+        function drawEllipticalGalaxy(ctx, x, y, rx, ry, rotation, rgbPrefix, maxO) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            let grad = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+            grad.addColorStop(0, `rgba(${rgbPrefix}${maxO})`);
+            grad.addColorStop(0.3, `rgba(${rgbPrefix}${maxO * 0.5})`);
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+            
+            ctx.fillStyle = grad;
+            ctx.scale(1, ry / rx);
+            ctx.beginPath();
+            ctx.arc(0, 0, rx, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function drawGalaxyCluster(ctx, x, y, rgbPrefix, maxO) {
+            const cores = [
+                { dx: 0, dy: 0, r: 35 },
+                { dx: -20, dy: 15, r: 25 },
+                { dx: 22, dy: -18, r: 28 },
+                { dx: -8, dy: -28, r: 18 }
+            ];
+            
+            cores.forEach(c => {
+                const cx = x + c.dx;
+                const cy = y + c.dy;
+                ctx.save();
+                let grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, c.r);
+                grad.addColorStop(0, `rgba(${rgbPrefix}${maxO})`);
+                grad.addColorStop(1, 'rgba(0,0,0,0)');
+                ctx.fillStyle = grad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, c.r, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+        }
+
+        function updateMeteors(width, height) {
+            // Restrained, slow, and rare meteors (max 1 active)
+            if (meteors.length < 1 && Math.random() < 0.0006) {
+                const isLeftToRight = Math.random() > 0.5;
+                const x = isLeftToRight ? Math.random() * (width * 0.4) : width * 0.6 + Math.random() * (width * 0.4);
+                const y = -80;
+                const speed = 0.4 + Math.random() * 0.5; // slow diagonal glide
+                
+                meteors.push({
+                    x: x,
+                    y: y,
+                    vx: isLeftToRight ? speed : -speed,
+                    vy: speed * 0.7,
+                    length: 20 + Math.random() * 20, // smaller trail
+                    maxOpacity: 0.05 + Math.random() * 0.08, // very faint trails
+                    opacity: 0,
+                    totalDist: 280 + Math.random() * 200,
+                    distTraveled: 0
+                });
+            }
+            
+            for (let i = meteors.length - 1; i >= 0; i--) {
+                const m = meteors[i];
+                m.x += m.vx;
+                m.y += m.vy;
+                m.distTraveled += Math.sqrt(m.vx * m.vx + m.vy * m.vy);
+                
+                // Opacity states: Fade-in at start, Fade-out at end of distance
+                if (m.distTraveled < 80) {
+                    m.opacity = (m.distTraveled / 80) * m.maxOpacity;
+                } else if (m.distTraveled > m.totalDist - 80) {
+                    m.opacity = Math.max(0, (1 - (m.distTraveled - (m.totalDist - 80)) / 80) * m.maxOpacity);
+                } else {
+                    m.opacity = m.maxOpacity;
+                }
+                
+                // Cleanup
+                if (m.distTraveled >= m.totalDist || m.y > height + 80 || m.x < -80 || m.x > width + 80) {
+                    meteors.splice(i, 1);
+                }
+            }
+        }
+
+        function drawMeteors(ctx) {
+            meteors.forEach(m => {
+                if (m.opacity <= 0) return;
+                
+                const angle = Math.atan2(m.vy, m.vx);
+                const tx = m.x - Math.cos(angle) * m.length;
+                const ty = m.y - Math.sin(angle) * m.length;
+                
+                ctx.beginPath();
+                let grad = ctx.createLinearGradient(tx, ty, m.x, m.y);
+                grad.addColorStop(0, 'rgba(255, 255, 255, 0)');
+                grad.addColorStop(1, `rgba(255, 255, 255, ${m.opacity})`);
+                
+                ctx.strokeStyle = grad;
+                ctx.lineWidth = 0.7; // thinner line
+                ctx.moveTo(tx, ty);
+                ctx.lineTo(m.x, m.y);
+                ctx.stroke();
+            });
+        }
+
+        // --- ODOMETER DIGIT ROTATING COMPONENT ---
+        class MechanicalOdometer {
+            constructor(container, digitsCount, decimalsCount) {
+                this.container = container;
+                this.digitsCount = digitsCount;
+                this.decimalsCount = decimalsCount;
+                this.currentValString = '';
+                this.strips = [];
+                this.buildHtml();
+            }
+
+            buildHtml() {
+                this.container.innerHTML = '';
+                this.strips = [];
+
+                let totalSlots = this.digitsCount;
+                if (this.decimalsCount > 0) {
+                    totalSlots += 1; // account for dot
+                }
+
+                // Decimal position from the right
+                let decimalPositionFromLeft = this.decimalsCount > 0 ? this.digitsCount - this.decimalsCount : -1;
+
+                let digitIdx = 0;
+                for (let i = 0; i < totalSlots; i++) {
+                    if (i === decimalPositionFromLeft) {
+                        const dot = document.createElement('span');
+                        dot.className = 'odo-dot';
+                        dot.innerText = '.';
+                        this.container.appendChild(dot);
+                        continue;
+                    }
+
+                    const slot = document.createElement('div');
+                    slot.className = 'odo-slot';
+                    
+                    // Mark columns as 'fast' if they represent highly changing values (last 3 slots)
+                    let positionFromRight = this.digitsCount - digitIdx;
+                    if (positionFromRight <= 3) {
+                        slot.classList.add('fast');
+                    }
+
+                    const strip = document.createElement('div');
+                    strip.className = 'odo-strip';
+                    
+                    // 11 digits: 0-9 then 0 again for forward mechanical rolls
+                    for (let d = 0; d < 11; d++) {
+                        const num = document.createElement('span');
+                        num.innerText = d % 10;
+                        strip.appendChild(num);
+                    }
+
+                    slot.appendChild(strip);
+                    this.container.appendChild(slot);
+                    this.strips.push({
+                        element: strip,
+                        currentDigit: -1
+                    });
+                    
+                    digitIdx++;
+                }
+            }
+
+            update(valString) {
+                if (valString === this.currentValString) return;
+                this.currentValString = valString;
+
+                let stripIdx = 0;
+                for (let i = 0; i < valString.length; i++) {
+                    const char = valString[i];
+                    if (char === '.') continue;
+
+                    const digit = parseInt(char, 10);
+                    const strip = this.strips[stripIdx];
+                    
+                    if (strip && strip.currentDigit !== digit) {
+                        // If transitioning from 9 -> 0, roll forward to 10th index, then wrap
+                        if (strip.currentDigit === 9 && digit === 0) {
+                            strip.element.style.transition = 'transform 0.15s cubic-bezier(0.1, 0.8, 0.2, 1)';
+                            strip.element.style.transform = 'translateY(-90.909%)'; // index 10 (displays 0)
+                            
+                            setTimeout(() => {
+                                strip.element.style.transition = 'none';
+                                strip.element.style.transform = 'translateY(0%)';
+                            }, 160);
+                        } else {
+                            // Standard translation
+                            let percent = (digit * (100 / 11)).toFixed(3);
+                            strip.element.style.transform = `translateY(-${percent}%)`;
+                        }
+                        
+                        strip.currentDigit = digit;
+                    }
+                    stripIdx++;
+                }
+            }
+        }
+
+        // --- MULTIVERSE METER glitch system ---
+        class MultiverseGlitchMeter {
+            constructor(container, digitsCount) {
+                this.container = container;
+                this.digitsCount = digitsCount;
+                this.strips = [];
+                this.currentDigits = Array(digitsCount).fill(0);
+                this.buildHtml();
+            }
+
+            buildHtml() {
+                this.container.innerHTML = '';
+                this.strips = [];
+                for (let i = 0; i < this.digitsCount; i++) {
+                    const slot = document.createElement('div');
+                    slot.className = 'odo-slot fast'; // No transitions, high chaotic updates
+
+                    const strip = document.createElement('div');
+                    strip.className = 'odo-strip';
+                    for (let d = 0; d < 10; d++) {
+                        const num = document.createElement('span');
+                        num.innerText = d;
+                        strip.appendChild(num);
+                    }
+
+                    slot.appendChild(strip);
+                    this.container.appendChild(slot);
+                    this.strips.push(strip);
+                }
+            }
+
+            update(elapsedTime) {
+                // Generate a highly chaotic set of values that flicker and scramble
+                // Simulate overflow carry cascades and brief digit resets
+                let factor = Math.floor(elapsedTime * 8);
+                
+                for (let i = 0; i < this.digitsCount; i++) {
+                    let d = this.currentDigits[i];
+                    
+                    // Different digits spin at different speeds
+                    if (seededRandom() > 0.05) {
+                        let speedFactor = (this.digitsCount - i) * 1.5;
+                        d = Math.floor(seededRandom() * 10 + (elapsedTime * speedFactor)) % 10;
+                    }
+
+                    // Occasional cascade reset
+                    if (factor % 50 === 0 && seededRandom() > 0.8) {
+                        d = 0; 
+                    }
+                    
+                    // Display error codes on first digits occasionally
+                    if (factor % 87 === 0 && i < 2 && seededRandom() > 0.9) {
+                        d = 9; // locked at 9
+                    }
+
+                    this.currentDigits[i] = d;
+                    this.strips[i].style.transform = `translateY(-${d * 10}%)`;
+                }
+            }
+        }
+
+        // --- MAIN PIPELINE APP ---
+        const App = {
+            startTime: Date.now(),
+            activeExhibitIndex: 0,
+            
+            // Speeds in km/h
+            speeds: {
+                tectonic: 0.00000000032, // km/h display text
+                rotation: 1670,         // km/h
+                orbit: 107182,          // km/h
+                solar: 706000,          // km/h
+                milkyway: 778000,       // km/h
+                andromeda: 2092000,     // km/h
+                cosmic: 2092000         // km/h
+            },
+
+            // Exhibit definitions
+            exhibits: [
+                { id: 'tectonic', digits: 12, decimals: 0, scale: 'nm' },
+                { id: 'rotation', digits: 9, decimals: 2, scale: 'km' },
+                { id: 'orbit', digits: 8, decimals: 2, scale: 'km' },
+                { id: 'solar', digits: 8, decimals: 2, scale: 'km' },
+                { id: 'milkyway', digits: 8, decimals: 2, scale: 'km' },
+                { id: 'andromeda', digits: 8, decimals: 2, scale: 'km' },
+                { id: 'cosmic', digits: 9, decimals: 2, scale: 'km' },
+                { id: 'multiverse', digits: 14, decimals: 0, scale: 'km' },
+                { id: 'final', digits: 12, decimals: 0, scale: 'km' }
+            ],
+
+            // Accent colors mapping to each section
+            accentColors: [
+                '165, 242, 255', // 01 Tectonic: Ice Blue
+                '0, 240, 255',   // 02 Rotation: Cyan
+                '255, 184, 0',   // 03 Orbit: Solar Gold
+                '255, 107, 0',   // 04 Solar: Orange
+                '189, 92, 255',  // 05 Milky Way: Purple
+                '255, 77, 109',  // 06 Andromeda: Pink
+                '59, 130, 246',  // 07 Cosmic: Blue
+                '240, 240, 240', // 08 Multiverse: White
+                '74, 85, 104'    // 09 Perspective: Muted Blue
+            ],
+
+            init() {
+                // Initialize HUD and UI
+                this.hudMin = document.getElementById('hud-min');
+                this.hudSec = document.getElementById('hud-sec');
+                this.hudStatementHighlight = document.querySelector('.hud-statement .highlight');
+                this.hudStatement = document.querySelector('.hud-statement');
+
+                // Initialize odometer elements
+                this.odometers = [];
+                this.exhibits.forEach((ex, idx) => {
+                    const el = document.getElementById(`odo-${idx}`);
+                    if (ex.id === 'multiverse') {
+                        this.odometers.push(new MultiverseGlitchMeter(el, ex.digits));
+                    } else {
+                        this.odometers.push(new MechanicalOdometer(el, ex.digits, ex.decimals));
+                    }
+                });
+
+                // Start Background stars & meteors
+                initStars();
+
+                // Setup Active Section Observer
+                this.setupIntersectionObserver();
+
+                // Start Global synchronized loop
+                this.loop();
+            },
+
+            formatTime(ms) {
+                let totalSeconds = Math.floor(ms / 1000);
+                let mins = Math.floor(totalSeconds / 60);
+                let secs = totalSeconds % 60;
+                
+                return {
+                    min: mins.toString().padStart(2, '0'),
+                    sec: secs.toString().padStart(2, '0')
+                };
+            },
+
+            // Scientific distance calculations from a single elapsedTime source (s)
+            calculateDistance(exIndex, s) {
+                switch(exIndex) {
+                    case 0: // Tectonic Plates (nm)
+                        // plate speed = 5.08 * 10^7 / 3.15576 * 10^7 ≈ 1.609756 nm / sec.
+                        let tectonicDist = 1.609756 * s;
+                        return tectonicDist.toFixed(0).padStart(12, '0');
+
+                    case 1: // Earth Rotation (km)
+                        // Latitudinal rotation speed at user location:
+                        let rotationDist = 0.318137 * s;
+                        return rotationDist.toFixed(2).padStart(11, '0');
+
+                    case 2: // Earth Orbit (km)
+                        let orbitDist = 29.772778 * s;
+                        return orbitDist.toFixed(2).padStart(10, '0');
+
+                    case 3: // Solar Motion (km)
+                        let solarDist = 196.1111 * s;
+                        return solarDist.toFixed(2).padStart(10, '0');
+
+                    case 4: // Milky Way (km)
+                        let milkywayDist = 216.1111 * s;
+                        return milkywayDist.toFixed(2).padStart(10, '0');
+
+                    case 5: // Andromeda (km)
+                        let andromedaDist = 581.1111 * s;
+                        return andromedaDist.toFixed(2).padStart(10, '0');
+
+                    case 6: // Cosmic Web (km)
+                        let cosmicDist = 581.1111 * s;
+                        return cosmicDist.toFixed(2).padStart(11, '0');
+
+                    case 8: // Final perspective
+                        return "000000000000";
+
+                    default:
+                        return "0";
+                }
+            },
+
+            setupIntersectionObserver() {
+                const sections = document.querySelectorAll('.exhibit-section');
+                
+                const observerOptions = {
+                    root: null,
+                    rootMargin: '-30% 0px -30% 0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const index = parseInt(entry.target.getAttribute('data-index'), 10);
+                            this.activeExhibitIndex = index;
+                            
+                            // Update global CSS accent color matching active exhibit
+                            const color = this.accentColors[index];
+                            document.documentElement.style.setProperty('--current-accent-rgb', color);
+                            
+                            // HUD text update
+                            if (index === 8) {
+                                this.hudStatementHighlight.innerText = "You never moved.";
+                            } else {
+                                this.hudStatementHighlight.innerText = "Let's find out.";
+                            }
+                        }
+                    });
+                }, observerOptions);
+
+                sections.forEach(section => observer.observe(section));
+            },
+
+            loop() {
+                const elapsedMs = Date.now() - this.startTime;
+                const elapsedSec = elapsedMs / 1000;
+
+                // 1. Update HUD timer (minutes, seconds)
+                const timeObj = this.formatTime(elapsedMs);
+                this.hudMin.innerText = timeObj.min;
+                this.hudSec.innerText = timeObj.sec;
+
+                // 2. Synchronously update each odometer distance calculation
+                this.odometers.forEach((odo, idx) => {
+                    if (this.exhibits[idx].id === 'multiverse') {
+                        odo.update(elapsedSec);
+                    } else {
+                        const valString = this.calculateDistance(idx, elapsedSec);
+                        odo.update(valString);
+                    }
+                });
+
+                requestAnimationFrame(() => this.loop());
+            }
+        };
+
+        // Initialize Application
+        window.addEventListener('DOMContentLoaded', () => {
+            App.init();
+            setTimeout(() => {
+                window.VatsalLolGameComplete?.();
+            }, 7000);
+        });
+    </script>
+    <script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

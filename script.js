@@ -1,6 +1,7 @@
 (function(){
   const games = [
     { slug: "2048", title: "2048" },
+    { slug: "8bit-lab", title: "8-Bit Lab" },
     { slug: "adjustme", title: "Adjust Me" },
     { slug: "bubbles", title: "Bubbles" },
     { slug: "bugsmash", title: "Bug Smash" },
@@ -12,18 +13,22 @@
     { slug: "everything-is-progressing", title: "Everything Is Processing" },
     { slug: "flash-memory", title: "Flash Memory" },
     { slug: "focus", title: "Focus" },
+    { slug: "future-timeline", title: "Future Timeline" },
     { slug: "guess-the-lie", title: "Guess the Lie" },
     { slug: "hardword", title: "HardWord" },
     { slug: "jokes-if-you-handle", title: "JOKES If You Handle" },
     { slug: "lets-settle", title: "Let's Settle" },
+    { slug: "luckorpredict", title: "Luck or Predict" },
     { slug: "mastermind", title: "Mastermind" },
     { slug: "memory-tiles", title: "Memory Tiles" },
     { slug: "onelightday", title: "One Light Day" },
     { slug: "paddleclub", title: "Paddle Club" },
     { slug: "snake", title: "Snake" },
+    { slug: "soundbar", title: "Sound Bar" },
     { slug: "spend-bill-gates-money", title: "Spend Bill Gates Money" },
     { slug: "spot", title: "Spot" },
     { slug: "stacking", title: "Stacking" },
+    { slug: "standing", title: "Standing" },
     { slug: "sudoku", title: "Sudoku" },
     { slug: "tetris", title: "Tetris" },
     { slug: "tower-of-hanoi", title: "Tower of Hanoi" },
@@ -56,18 +61,100 @@
     {x: 88, y: 67}, {x: 30, y: 50}, {x: 70, y: 50}
   ];
 
- function init() {
-    if (window.innerWidth < 768) {
-        document.body.className = 'view-grid';
-    } else {
-        renderLauncher();
-        setupDateTime(); // Desktop Only
+  const LivingSkyState = {
+    season: 'space',
+    time: 'night',
+    reducedMotion: false
+  };
+
+  function resolveAtmosphere() {
+    const month = new Date().getMonth();
+    // Monsoon in India: June (5) through September (8)
+    // TODO: Current implementation assumes Indian seasonal calendar. 
+    // Future versions may resolve seasons using user location/locale.
+    if (month >= 5 && month <= 8) {
+      return 'monsoon';
     }
+    return 'space';
+  }
+
+  function resolveTimeOfDay() {
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour < 12) return 'morning';
+    if (hour >= 12 && hour < 17) return 'afternoon';
+    if (hour >= 17 && hour < 19) return 'sunset';
+    if (hour >= 19 && hour < 24) return 'night';
+    return 'latenight';
+  }
+
+  function checkDebugOverrides() {
+    const params = new URLSearchParams(window.location.search);
+    const debugSeason = params.get('debug-season');
+    const debugTime = params.get('debug-time');
+    
+    if (debugSeason) {
+      LivingSkyState.season = debugSeason;
+      console.log(`[Living Sky Debug] Season overridden: ${debugSeason}`);
+    }
+    if (debugTime) {
+      LivingSkyState.time = debugTime;
+      console.log(`[Living Sky Debug] Time overridden: ${debugTime}`);
+    }
+  }
+
+  function applyLivingSky(state) {
+    document.body.setAttribute('data-season', state.season);
+    document.body.setAttribute('data-time', state.time);
+    
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    state.reducedMotion = mediaQuery.matches;
+    
+    if (state.reducedMotion) {
+      document.body.classList.add('reduced-motion');
+    } else {
+      document.body.classList.remove('reduced-motion');
+    }
+  }
+
+  function setupLivingSky() {
+    LivingSkyState.season = resolveAtmosphere();
+    LivingSkyState.time = resolveTimeOfDay();
+    checkDebugOverrides();
+    applyLivingSky(LivingSkyState);
+    initLoneRipple();
+  }
+
+  function initLoneRipple() {
+    const triggerRipple = () => {
+      const isMonsoon = document.body.getAttribute('data-season') === 'monsoon';
+      const isReduced = document.body.classList.contains('reduced-motion');
+      
+      if (isMonsoon && !isReduced) {
+        const nodes = document.querySelectorAll('.game-node');
+        if (nodes.length > 0) {
+          const randomNode = nodes[Math.floor(Math.random() * nodes.length)];
+          randomNode.classList.add('ripple-active');
+          
+          setTimeout(() => {
+            randomNode.classList.remove('ripple-active');
+          }, 2000);
+        }
+      }
+      
+      const nextDelay = 20000 + Math.random() * 30000;
+      setTimeout(triggerRipple, nextDelay);
+    };
+    
+    triggerRipple();
+  }
+
+  function init() {
+    // Temporarily simplify to Grid View only for Soft Release v3.9
+    document.body.className = 'view-grid';
 
     renderGrid();
-    setupToggle();
+    setupDateTime();
     setupFlash();
-    setupMeteors();
     setupContact();
   }
 
@@ -207,17 +294,31 @@ function setupToggle() {
     }, 50);
   }
 
- function setupMeteors() {
+  function setupMeteors() {
     const container = document.getElementById('meteors');
-    const interval = window.innerWidth < 768 ? 25000 : 15000; // Less frequent on mobile
+    if (!container) return;
     
-    setInterval(() => {
-        const m = document.createElement('div');
-        m.className = 'meteor';
-        m.style.top = `${Math.random()*40}%`;
-        container.appendChild(m);
-        setTimeout(() => m.remove(), 1200);
-    }, interval);
+    const scheduleMeteor = () => {
+      const isMonsoon = document.body.getAttribute('data-season') === 'monsoon';
+      
+      // Stars Rule: meteors are disabled during Monsoon
+      if (isMonsoon) {
+        setTimeout(scheduleMeteor, 15000);
+        return;
+      }
+      
+      const m = document.createElement('div');
+      m.className = 'meteor';
+      m.style.top = `${Math.random()*40}%`;
+      container.appendChild(m);
+      setTimeout(() => m.remove(), 1200);
+      
+      const baseInterval = window.innerWidth < 768 ? 25000 : 15000;
+      const nextDelay = baseInterval + Math.random() * 5000;
+      setTimeout(scheduleMeteor, nextDelay);
+    };
+    
+    scheduleMeteor();
   }
 
   function setupContact() {

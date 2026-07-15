@@ -1,222 +1,1323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Snake Ultimate</title>
-<link rel="canonical" href="https://vatsal.lol/games/snake/">
-<meta property="og:url" content="https://vatsal.lol/games/snake/">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
-<link rel="stylesheet" href="../../assets/mobile-v3.css">
-<meta name="description" content="Play Snake instantly on VATSAL.LOL. No install, no login - just fun!">>
-<meta property="og:site_name" content="vatsal.lol">
-<meta property="og:title" content="Snake Ultimate | vatsal.lol">
-<meta property="og:description" content="Play instant mini games on vatsal.lol.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="../../assets/logo.png">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Snake Ultimate | vatsal.lol">
-<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
-  <meta name="theme-color" content="#000000">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Cosmic Snake | VATSAL.LOL</title>
+  <link rel="canonical" href="https://vatsal.lol/games/snake/">
+  <meta property="og:url" content="https://vatsal.lol/games/snake/">
+  
+  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+  <link rel="stylesheet" href="../../assets/mobile-v3.css">
+  
+  <meta name="description" content="Play Cosmic Snake instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta property="og:title" content="Cosmic Snake | VATSAL.LOL">
+  <meta property="og:description" content="Play Cosmic Snake instantly on VATSAL.LOL. No install, no login - just fun!">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cosmic Snake | VATSAL.LOL">
+  <meta name="twitter:description" content="Play Cosmic Snake instantly on VATSAL.LOL. No install, no login - just fun!">
   <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+  <meta name="theme-color" content="#000000">
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-</head>
-<body>
-<header class="vatsal-header">
-  <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
-</header>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<!-- START SCREEN -->
-<section class="v-screen active" id="startScreen">
-  <div class="v-body center">
-    <div class="snake-icon">🐍</div>
-    <h1 class="game-title">SNAKE</h1>
-    <p class="game-sub">Eat fruit, grow longer and survive as long as possible.</p>
-
-<div class="instructions">
-  <h3>How to Play</h3>
-  <ul>
-    <li>🍎 Red Fruit = +1 Score</li>
-    <li>🟡 Yellow Fruit = Slow Motion for a few seconds</li>
-    <li>🔵 Blue Fruit = Bonus Score</li>
-    <li>🟣 Purple Fruit = Extra Growth</li>
-    <li>Swipe anywhere or use the D-pad to steer.</li>
-    <li>Do not crash into yourself.</li>
-  </ul>
-</div>
-
-<button class="action-btn" id="startBtn">START GAME</button>
-
-<p class="hint-text">
-Swipe • D-Pad • Arrow Keys • WASD • P = Pause
-</p>
-  </div>
-</section>
-
-<!-- GAME SCREEN -->
-<section class="v-screen" id="gameScreen">
-  <div class="game-wrap">
-    <div class="hud" id="hud">
-      <div class="hud-item">
-        <span class="hud-label">SCORE</span>
-        <span class="hud-val" id="hudScore">0</span>
-      </div>
-      <div class="hud-item">
-        <span class="hud-label">BEST</span>
-        <span class="hud-val" id="hudHi">0</span>
-      </div>
-      <div class="hud-item">
-        <span class="hud-label">TIME</span>
-        <span class="hud-val" id="hudTime">0s</span>
-      </div>
-      <button class="pause-btn" id="pauseBtn" aria-label="Pause">⏸</button>
-    </div>
-    <canvas id="c" width="400" height="600"></canvas>
-    <!-- Mobile D-pad -->
-    <div class="dpad" id="dpad">
-      <div class="dpad-row">
-        <button class="dpad-btn" data-dir="up">▲</button>
-      </div>
-      <div class="dpad-row">
-        <button class="dpad-btn" data-dir="left">◀</button>
-        <div class="dpad-center"></div>
-        <button class="dpad-btn" data-dir="right">▶</button>
-      </div>
-      <div class="dpad-row">
-        <button class="dpad-btn" data-dir="down">▼</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PAUSE SCREEN -->
-<section class="v-screen" id="pauseScreen">
-  <div class="v-body center">
-    <h2 class="screen-title">PAUSED</h2>
-    <button class="action-btn" id="resumeBtn">RESUME</button>
-    <button class="action-btn ghost" id="pauseMenuBtn">MAIN MENU</button>
-  </div>
-</section>
-
-<!-- GAME OVER SCREEN -->
-<section class="v-screen" id="overScreen">
-  <div class="v-body center" id="overBody">
-    <h2 class="screen-title fail">FAIL</h2>
-    <div class="result-grid">
-      <div class="result-row"><span>SCORE</span><strong id="fs">0</strong></div>
-      <div class="result-row"><span>TIME</span><strong id="ft">0s</strong></div>
-      <div class="result-row"><span>BEST</span><strong id="fh">0</strong></div>
-    </div>
-    <button class="action-btn" id="restartBtn">PLAY AGAIN</button>
-    <button class="action-btn ghost" id="menuBtn">MAIN MENU</button>
-  </div>
-</section>
-
-<script src="script.js"></script>
-<script src="../../assets/vatsal-footer-v25.js" defer></script>
-  <!-- PWA Service Worker Registration & Update Notification -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => {
-            console.log('Service Worker registered', reg);
-            
-            // Check for updates
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  showUpdateToast(reg);
-                }
-              });
-            });
-
-            // If there's already a waiting worker
-            if (reg.waiting) {
-              showUpdateToast(reg);
-            }
-          })
-          .catch(err => console.error('Service Worker registration failed', err));
-      });
-
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
+  <style>
+    @layer base {
+      body {
+        font-family: 'Space Grotesk', sans-serif;
+        background-color: #020207;
+        overflow: hidden;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
     }
 
-    function showUpdateToast(reg) {
-      if (document.getElementById('pwa-update-toast')) return;
-      
-      const toast = document.createElement('div');
-      toast.id = 'pwa-update-toast';
-      toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(10, 10, 20, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        padding: 16px 20px;
-        color: #fff;
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 14px;
-        z-index: 10000;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        max-width: 320px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        box-sizing: border-box;
-      `;
+    /* Pulse animation for cosmic glowing elements */
+    @keyframes cosmic-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.03); opacity: 1; }
+    }
+    .animate-cosmic-pulse {
+      animation: cosmic-pulse 3s infinite ease-in-out;
+    }
 
-      if (window.innerWidth < 768) {
-        toast.style.left = '20px';
-        toast.style.right = '20px';
-        toast.style.bottom = '20px';
-        toast.style.maxWidth = 'calc(100% - 40px)';
-      }
-
-      toast.innerHTML = `
-        <div style="font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px;">
-          <span style="width: 8px; height: 8px; background: #5500ff; border-radius: 50%;"></span>
-          Update Available
-        </div>
-        <div style="color: #aaa; font-size: 13px; line-height: 1.4;">A new version of VATSAL.LOL is available.</div>
-        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 4px;">
-          <button id="pwa-later-btn" style="background: transparent; border: none; color: #aaa; font-weight: 500; cursor: pointer; padding: 6px 12px; font-size: 13px; outline: none;">Later</button>
-          <button id="pwa-refresh-btn" style="background: #fff; border: none; color: #000; font-weight: 600; cursor: pointer; padding: 6px 16px; border-radius: 8px; font-size: 13px; outline: none; box-shadow: 0 2px 8px rgba(255,255,255,0.2);">Refresh</button>
-        </div>
-      `;
-
-      document.body.appendChild(toast);
-
-      document.getElementById('pwa-later-btn').onclick = () => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      };
-
-      document.getElementById('pwa-refresh-btn').onclick = () => {
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+    /* Glowing scrollbars */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
         }
-      };
+      }
     }
   </script>
+</head>
+<body class="text-white select-none relative h-screen w-screen overflow-hidden">
+  <header class="vatsal-header" id="vatsalHeader">
+    <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+  </header>
 
+  <!-- Main Game Canvas -->
+  <canvas id="gameCanvas" class="absolute inset-0 w-full h-full block z-0"></canvas>
+
+  <!-- Starry Background Overlay for Depth -->
+  <div class="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#020208]/90 via-transparent to-[#04040d]/40 z-1"></div>
+
+  <!-- MAIN MENU / LAUNCHPAD SCREEN -->
+  <div id="launchpadScreen" class="absolute inset-0 flex flex-col items-center justify-center p-4 bg-[#020207]/95 backdrop-blur-md z-50 transition-all duration-500">
+    <div class="max-w-md w-full bg-slate-950/80 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden animate-cosmic-pulse">
+      
+      <!-- Ambient light effect -->
+      <div id="neonGlowHeader" class="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 blur-sm"></div>
+
+      <!-- Title & Branding -->
+      <div class="text-center mb-8 relative">
+        <span class="text-xs font-mono tracking-[0.25em] text-cyan-400 font-bold uppercase">System Offline v2.5</span>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mt-1 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+          COSMIC SNAKE
+        </h1>
+        <p class="text-[11px] font-mono text-slate-500 mt-1">INTERSTELLAR SPACE ARENA</p>
+      </div>
+
+      <!-- Settings / Pilot Profile Configuration -->
+      <div class="space-y-4 mb-8">
+        <div>
+          <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-1.5">Pilot Signature</label>
+          <input 
+            type="text" 
+            id="pilotNameInput" 
+            maxlength="16" 
+            placeholder="Astronaut" 
+            class="w-full bg-white/5 border border-white/10 focus:border-cyan-500 focus:outline-none rounded-lg px-4 py-2 text-sm font-medium tracking-wide transition-all text-white placeholder-slate-600"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Reactor Hull Signal Color</label>
+          <div class="flex items-center gap-3" id="colorPickerContainer">
+            <!-- Colors will be dynamically generated here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Play Modes Selection -->
+      <div class="flex flex-col gap-3">
+        <button 
+          id="btnPlaySingle" 
+          class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-3 px-6 rounded-xl text-sm tracking-wide transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-cyan-500/10 flex justify-between items-center cursor-pointer"
+        >
+          <span>LAUNCH SINGLE PLAYER (OFFLINE)</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </button>
+
+        <!-- Multiplayer COMING SOON Button -->
+        <button 
+          disabled
+          class="w-full bg-slate-900/60 border border-white/5 text-slate-500 font-bold py-3.5 px-6 rounded-xl text-sm tracking-wide flex justify-between items-center cursor-not-allowed opacity-60"
+        >
+          <div class="flex flex-col items-start">
+            <span class="font-bold">MULTIPLAYER ARENA</span>
+            <span class="text-[9px] font-mono font-medium text-slate-600">Coming Soon to Deep Space...</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-slate-700"></span>
+            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 009 15c0-1.25-.203-2.452-.578-3.575m6 1.25a13.91 13.91 0 00-1.753-4.57 0 00-1.753-4.57H15m-3 4H9"/></svg>
+          </div>
+        </button>
+      </div>
+
+      <!-- Standard Controls Info -->
+      <div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-slate-500">
+        <div class="flex flex-col gap-1">
+          <span>[W/A/S/D] or [Arrows] or [Mouse] to Steer</span>
+          <span>[Space] or [Click] to Boost Thrusters</span>
+        </div>
+        <div class="text-right flex flex-col gap-1">
+          <span>Gliding on border allowed</span>
+          <span>Bite bodies of other snakes to eliminate</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN HUD (IN-GAME SCREEN) -->
+  <div id="gameHUD" class="absolute inset-0 pointer-events-none z-10 hidden p-4 md:p-6 select-none">
+    
+    <!-- TOP BAR HUD -->
+    <div class="flex justify-between items-start w-full">
+      
+      <!-- Player Profile & Score Status -->
+      <div class="flex items-center gap-2 sm:gap-3 bg-slate-950/60 backdrop-blur-md border border-white/10 p-2 sm:p-3 rounded-xl pointer-events-auto shadow-lg max-w-[130px] sm:max-w-none">
+        <div id="hudColorIndicator" class="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full border border-white/20 shrink-0"></div>
+        <div class="flex flex-col min-w-0">
+          <div class="flex items-center gap-1 sm:gap-1.5 min-w-0">
+            <span id="hudPilotName" class="text-[10px] sm:text-xs font-bold tracking-wide truncate">ASTRONAUT</span>
+            <span id="modeBadge" class="text-[8px] sm:text-[9px] font-mono px-1 sm:px-1.5 py-0.5 rounded uppercase font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shrink-0">Offline</span>
+          </div>
+          <div class="flex items-baseline gap-1 mt-0.5">
+            <span class="text-slate-400 text-[8px] sm:text-[10px] font-mono">MASS:</span>
+            <span id="hudScore" class="text-emerald-400 font-mono font-bold text-xs sm:text-sm">3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Leaderboard Column (Right) -->
+      <div class="flex flex-col gap-2 items-end pointer-events-auto">
+        
+        <!-- Pause & Retreat buttons (small size, above leaderboard) -->
+        <div class="flex gap-1.5">
+          <button 
+            id="btnPause" 
+            class="flex items-center gap-1 bg-slate-950/80 backdrop-blur-md hover:bg-slate-950/90 border border-white/10 hover:border-white/20 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-[9px] sm:text-xs font-semibold tracking-wide transition-all shadow-md active:scale-[0.97] cursor-pointer"
+          >
+            <svg class="w-3 h-3 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="text-slate-300">PAUSE [ESC]</span>
+          </button>
+
+          <button 
+            id="btnExit" 
+            class="flex items-center gap-1 bg-red-950/20 hover:bg-red-950/40 border border-red-500/20 hover:border-red-500/30 px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-[9px] sm:text-xs font-semibold tracking-wide transition-all shadow-md active:scale-[0.97] cursor-pointer"
+          >
+            <svg class="w-3 h-3 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            <span class="text-red-400">RETREAT</span>
+          </button>
+        </div>
+
+        <!-- Arena Real-time Leaderboard -->
+        <div class="flex flex-col bg-slate-950/60 backdrop-blur-md border border-white/10 p-2 sm:p-3 rounded-xl shadow-lg w-[130px] sm:w-[180px] md:w-[200px] transition-all">
+          <div class="flex items-center justify-between border-b border-white/10 pb-1 mb-1.5">
+            <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider">Solar Leaderboard</span>
+            <span class="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          </div>
+          <div class="flex flex-col gap-0.5 sm:gap-1 max-h-[90px] sm:max-h-[160px] overflow-y-auto" id="leaderboardList">
+            <!-- Leaderboard list populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MIDDLE SCREEN PAUSE MESSAGE -->
+    <div id="pauseOverlay" class="absolute inset-0 flex flex-col items-center justify-center bg-[#020207]/80 backdrop-blur-md z-40 hidden pointer-events-auto">
+      <div class="text-center max-w-sm p-6 bg-slate-950/90 border border-white/10 rounded-xl shadow-2xl relative">
+        <h2 class="text-2xl font-bold tracking-tight text-white uppercase">SYSTEM PAUSED</h2>
+        <p class="text-xs text-slate-400 mt-2">Steering engine has been placed into stasis mode.</p>
+        <button 
+          id="btnResume" 
+          class="mt-6 w-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold py-2.5 px-4 rounded-lg text-xs tracking-wider transition-all uppercase cursor-pointer"
+        >
+          RESUME PILOTING
+        </button>
+      </div>
+    </div>
+
+    <!-- RADAR MAP (BOTTOM RIGHT) -->
+    <div id="radarContainer" class="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-slate-950/80 backdrop-blur-md border border-white/10 p-1 sm:p-1.5 rounded-xl pointer-events-auto shadow-lg z-20 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32">
+      <canvas id="radarCanvas" width="130" height="130" class="w-full h-full bg-[#020206] rounded-lg block"></canvas>
+      <span class="absolute top-1.5 left-1.5 text-[6px] sm:text-[8px] font-mono text-cyan-400/80 uppercase tracking-widest pointer-events-none">RADAR MAP</span>
+    </div>
+
+  </div>
+
+  <!-- DEATH SCREEN OVERLAY -->
+  <div id="deathScreen" class="absolute inset-0 flex flex-col items-center justify-center bg-[#070104]/90 backdrop-blur-lg z-40 hidden transition-all duration-300">
+    <div class="max-w-md w-full bg-slate-950/90 border border-red-500/20 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden">
+      
+      <!-- Top neon hazard line -->
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-600 via-pink-600 to-red-600"></div>
+
+      <span class="text-xs font-mono tracking-[0.3em] text-red-500 font-bold uppercase block mb-2">Hull Destruction Detected</span>
+      <h2 class="text-3xl font-extrabold tracking-tight text-white uppercase">SHIELDS FAILED</h2>
+      <p class="text-slate-400 text-xs mt-3 max-w-xs mx-auto">
+        Your reactor signature was neutralized. Cosmic debris was distributed back to the space arena.
+      </p>
+
+      <div class="my-6 p-4 bg-white/5 border border-white/10 rounded-xl max-w-xs mx-auto">
+        <span class="text-[10px] font-mono text-slate-500 block uppercase">Final Energy Score</span>
+        <span id="deathFinalScore" class="text-3xl font-bold font-mono text-emerald-400 mt-1 block">0</span>
+      </div>
+
+      <div class="flex flex-col gap-3 max-w-xs mx-auto">
+        <button 
+          id="btnRespawn" 
+          class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-3 px-6 rounded-xl text-xs tracking-wider transition-all transform hover:scale-[1.02] active:scale-[0.98] uppercase shadow-lg shadow-cyan-500/10 cursor-pointer"
+        >
+          RESPAWN SHIP
+        </button>
+
+        <button 
+          id="btnToMenu" 
+          class="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold py-2.5 px-6 rounded-xl text-xs tracking-wider transition-all uppercase cursor-pointer"
+        >
+          RETURN TO LAUNCHPAD
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MOBILE/TOUCH JOYSTICK INDICATORS -->
+  <div id="touchJoystickZone" class="absolute bottom-28 left-6 w-32 h-32 rounded-full border border-white/10 bg-white/5 backdrop-blur-xs pointer-events-none z-10 hidden items-center justify-center">
+    <div id="joystickKnob" class="w-12 h-12 rounded-full bg-cyan-500/30 border border-cyan-400 shadow-lg shadow-cyan-500/20 transition-all duration-75"></div>
+  </div>
+
+  <!-- MOBILE BOOST BUTTON -->
+  <button 
+    id="mobileBoostBtn" 
+    class="absolute bottom-28 right-6 w-16 h-16 rounded-full bg-purple-600/30 active:bg-purple-600/60 border border-purple-500/40 pointer-events-auto z-10 hidden flex-col items-center justify-center text-[10px] font-bold tracking-widest text-purple-200 uppercase select-none cursor-pointer"
+  >
+    <span>TURBO</span>
+  </button>
+
+  <!-- GAME LOGIC SCRIPT -->
+  <script>
+    // --- COLOR PALETTE DEFINITION ---
+    const COLORS = [
+      '#06b6d4', // Cyan
+      '#a855f7', // Purple
+      '#ec4899', // Pink
+      '#10b981', // Emerald Green
+      '#f59e0b', // Yellow Amber
+      '#ef4444', // Red
+      '#3b82f6', // Blue
+      '#14b8a6'  // Teal
+    ];
+
+    // --- GAME CONSTANTS ---
+    const WORLD_SIZE = 3000; // Cosmic coordinate space size (-1500 to 1500)
+    const INITIAL_LENGTH = 15;
+    const SEGMENT_SPACING = 12; // Pixel distance between rendered segments
+    const BASE_SPEED = 180; // Pixels per second
+    const BOOST_SPEED = 300;
+    const SMOOTH_ANGLE_LERP = 0.12;
+
+    // --- SOUND EFFECTS (Browser Synth) ---
+    let audioCtx = null;
+    
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playBeep(frequency, duration, type = 'sine', volume = 0.15) {
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = type;
+        osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+        gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (err) {
+        // Safe fail if browser audio blocked
+      }
+    }
+
+    // Play standard retro synth effects
+    function playOrbCollectSound() {
+      playBeep(440, 0.12, 'sine', 0.1);
+      setTimeout(() => playBeep(880, 0.08, 'sine', 0.08), 50);
+    }
+
+    function playExplosionSound() {
+      // White noise explosion
+      try {
+        initAudio();
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const bufferSize = audioCtx.sampleRate * 0.4;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = Math.random() * 2 - 1;
+        }
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1000, audioCtx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(10, audioCtx.currentTime + 0.4);
+        
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        noise.start();
+      } catch (err) {
+        // Fallback tone
+        playBeep(120, 0.4, 'sawtooth', 0.2);
+      }
+    }
+
+    // --- GAME ENGINE STATE ---
+    let playState = 'menu'; // 'menu', 'playing', 'paused', 'dead'
+    let lastTime = performance.now();
+
+    // Canvas references
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const radarCanvas = document.getElementById('radarCanvas');
+    const radarCtx = radarCanvas.getContext('2d');
+
+    // Player inputs & preferences
+    let pilotName = localStorage.getItem('cosmic_snake_name') || `Astronaut-${Math.floor(100 + Math.random() * 900)}`;
+    let activeColor = localStorage.getItem('cosmic_snake_color') || COLORS[0];
+
+    // Local Player representation
+    let localPlayer = {
+      id: 'player',
+      name: pilotName,
+      color: activeColor,
+      segments: [],
+      angle: 0,
+      score: INITIAL_LENGTH,
+      isBoosting: false,
+      state: 'alive'
+    };
+
+    // Client-side game objects
+    let localOrbs = [];
+    let localSnakes = []; // Smart AI Snakes (Single player)
+    let spaceParticles = []; // Shiny stellar visual sparks
+    let cosmicNebulas = []; // floating radial ambient clouds
+
+    // Camera viewport tracking
+    let camera = { x: 0, y: 0, zoom: 1.0 };
+    let spaceStars = []; // Parallax stars array
+
+    // Joystick / Touch tracking state
+    let joystickActive = false;
+    let joystickOrigin = { x: 0, y: 0 };
+    let joystickCurrent = { x: 0, y: 0 };
+    let inputSteerAngle = null;
+
+    // Mouse Tracking state
+    let mousePos = { x: 0, y: 0 };
+    let useMouseSteering = false;
+
+    // --- INTRO SCREEN SETUP ---
+    function initLauncherUI() {
+      const nameInput = document.getElementById('pilotNameInput');
+      nameInput.value = pilotName;
+
+      // Color choice generation
+      const picker = document.getElementById('colorPickerContainer');
+      picker.innerHTML = '';
+      COLORS.forEach(color => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.style.backgroundColor = color;
+        btn.className = `w-7 h-7 rounded-full border-2 transition-all cursor-pointer ${activeColor === color ? 'border-white scale-110 shadow-lg shadow-white/20' : 'border-transparent opacity-60 hover:opacity-100'}`;
+        btn.addEventListener('click', () => {
+          activeColor = color;
+          localStorage.setItem('cosmic_snake_color', color);
+          // Highlight selection
+          Array.from(picker.children).forEach(child => {
+            child.classList.remove('border-white', 'scale-110', 'shadow-white/20');
+            child.classList.add('border-transparent', 'opacity-60');
+          });
+          btn.classList.add('border-white', 'scale-110', 'shadow-white/20');
+          btn.classList.remove('opacity-60');
+          // Live preview headers
+          document.getElementById('neonGlowHeader').style.borderColor = color;
+        });
+        picker.appendChild(btn);
+      });
+    }
+
+    // Save Name Changes
+    document.getElementById('pilotNameInput').addEventListener('input', (e) => {
+      pilotName = e.target.value.trim() || 'Astronaut';
+      localStorage.setItem('cosmic_snake_name', pilotName);
+    });
+
+    // --- GAME ENGINE INITIALIZERS ---
+    function generateStarfield() {
+      spaceStars = [];
+      for (let i = 0; i < 350; i++) {
+        spaceStars.push({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * window.innerHeight,
+          size: Math.random() * 2.2 + 0.3,
+          speed: Math.random() * 0.05 + 0.01,
+          color: ['#fff', '#e2e8f0', '#94a3b8', '#a5f3fc', '#fbcfe8'][Math.floor(Math.random() * 5)]
+        });
+      }
+
+      cosmicNebulas = [];
+      for (let i = 0; i < 6; i++) {
+        cosmicNebulas.push({
+          x: (Math.random() - 0.5) * WORLD_SIZE,
+          y: (Math.random() - 0.5) * WORLD_SIZE,
+          size: Math.random() * 500 + 400,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)] + '08' // Extremely transparent radial hue
+        });
+      }
+    }
+
+    // Populate food energy orbs in single player
+    function spawnLocalOrbs(count = 160) {
+      localOrbs = [];
+      for (let i = 0; i < count; i++) {
+        localOrbs.push({
+          id: `orb_${i}_${Date.now()}_${Math.random()}`,
+          x: (Math.random() - 0.5) * (WORLD_SIZE - 40),
+          y: (Math.random() - 0.5) * (WORLD_SIZE - 40),
+          value: Math.random() < 0.15 ? 3 : 1, // Larger mega-orbs
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          pulseOffset: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    // Spawn smart AI space cruiser snakes
+    function spawnAISnakes() {
+      localSnakes = [];
+      const aiNames = ['Quantum-X', 'Andromeda-S', 'NebulaCruiser', 'CosmicDrake', 'Vortex-9', 'AlphaCrux', 'PulsarStriker'];
+      
+      aiNames.forEach((name, idx) => {
+        const startX = (Math.random() - 0.5) * (WORLD_SIZE - 200);
+        const startY = (Math.random() - 0.5) * (WORLD_SIZE - 200);
+        const startAngle = Math.random() * Math.PI * 2;
+        const color = COLORS[(idx + 1) % COLORS.length];
+
+        const segments = [];
+        for (let i = 0; i < INITIAL_LENGTH; i++) {
+          segments.push({
+            x: startX - Math.cos(startAngle) * i * SEGMENT_SPACING,
+            y: startY - Math.sin(startAngle) * i * SEGMENT_SPACING
+          });
+        }
+
+        localSnakes.push({
+          id: `ai_${idx}_${Date.now()}`,
+          name: name,
+          color: color,
+          segments: segments,
+          angle: startAngle,
+          score: INITIAL_LENGTH,
+          isBoosting: false,
+          state: 'alive',
+          targetAngleChangeTimer: 0
+        });
+      });
+    }
+
+    // --- GAME COMMENCEMENT ACTIONS ---
+    function startGame() {
+      initAudio();
+      playState = 'playing';
+      
+      // Sync names to HUD
+      document.getElementById('hudPilotName').textContent = pilotName.toUpperCase();
+      document.getElementById('hudColorIndicator').style.backgroundColor = activeColor;
+      
+      const badge = document.getElementById('modeBadge');
+      badge.textContent = 'OFFLINE ARENA';
+      badge.className = "text-[9px] font-mono px-1.5 py-0.5 rounded uppercase font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30";
+      
+      // Spawn Offline single-player local entities
+      spawnLocalOrbs();
+      spawnAISnakes();
+
+      // Reset Player Structure
+      const startX = (Math.random() - 0.5) * 600;
+      const startY = (Math.random() - 0.5) * 600;
+      const startAngle = Math.random() * Math.PI * 2;
+      
+      const segments = [];
+      for (let i = 0; i < INITIAL_LENGTH; i++) {
+        segments.push({
+          x: startX - Math.cos(startAngle) * i * SEGMENT_SPACING,
+          y: startY - Math.sin(startAngle) * i * SEGMENT_SPACING
+        });
+      }
+
+      localPlayer = {
+        id: 'player',
+        name: pilotName,
+        color: activeColor,
+        segments: segments,
+        angle: startAngle,
+        score: INITIAL_LENGTH,
+        isBoosting: false,
+        state: 'alive'
+      };
+
+      // Set viewport camera
+      camera.x = startX;
+      camera.y = startY;
+
+      // Adjust HUD displays
+      document.getElementById('launchpadScreen').classList.add('hidden');
+      document.getElementById('deathScreen').classList.add('hidden');
+      document.getElementById('gameHUD').classList.remove('hidden');
+
+      // Show/Hide touch UI controls depending on touch device detection
+      const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+      if (isTouch) {
+        document.getElementById('touchJoystickZone').style.display = 'flex';
+        document.getElementById('mobileBoostBtn').style.display = 'flex';
+      } else {
+        document.getElementById('touchJoystickZone').style.display = 'none';
+        document.getElementById('mobileBoostBtn').style.display = 'none';
+      }
+
+      lastTime = performance.now();
+    }
+
+    // --- STELLARS AND SPARKS ---
+    function spawnExplosion(x, y, color, count = 25) {
+      playExplosionSound();
+      for (let i = 0; i < count; i++) {
+        const speed = Math.random() * 150 + 50;
+        const angle = Math.random() * Math.PI * 2;
+        spaceParticles.push({
+          x: x,
+          y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: Math.random() * 4 + 1.5,
+          color: color,
+          alpha: 1,
+          life: Math.random() * 0.4 + 0.3
+        });
+      }
+    }
+
+    // --- GAME UPDATE & ENGINE PHYSICS ---
+    function updateGame(delta) {
+      if (playState !== 'playing') return;
+
+      // Ensure delta is capped to avoid wild physics on frame skips
+      delta = Math.min(delta, 0.1);
+
+      // Handle Particle decay
+      spaceParticles.forEach(p => {
+        p.x += p.vx * delta;
+        p.y += p.vy * delta;
+        p.alpha -= delta / p.life;
+      });
+      spaceParticles = spaceParticles.filter(p => p.alpha > 0);
+
+      updateOfflineLogic(delta);
+
+      // Smoothly interpolate Camera view tracking local player
+      if (localPlayer.state === 'alive' && localPlayer.segments.length > 0) {
+        const head = localPlayer.segments[0];
+        camera.x += (head.x - camera.x) * 0.08;
+        camera.y += (head.y - camera.y) * 0.08;
+      }
+    }
+
+    // --- OFFLINE / SINGLE PLAYER LOOP ---
+    function updateOfflineLogic(delta) {
+      if (localPlayer.state !== 'alive') return;
+
+      const head = { ...localPlayer.segments[0] };
+      
+      // Steering Math (Priority: Joystick -> Mouse -> Keyboard)
+      if (inputSteerAngle !== null) {
+        // Linear Interpolate Angle
+        let diff = inputSteerAngle - localPlayer.angle;
+        while (diff < -Math.PI) diff += Math.PI * 2;
+        while (diff > Math.PI) diff -= Math.PI * 2;
+        localPlayer.angle += diff * SMOOTH_ANGLE_LERP;
+      } else if (useMouseSteering) {
+        // Direct mouse steering
+        const screenCenterX = window.innerWidth / 2;
+        const screenCenterY = window.innerHeight / 2;
+        const targetAngle = Math.atan2(mousePos.y - screenCenterY, mousePos.x - screenCenterX);
+        
+        let diff = targetAngle - localPlayer.angle;
+        while (diff < -Math.PI) diff += Math.PI * 2;
+        while (diff > Math.PI) diff -= Math.PI * 2;
+        localPlayer.angle += diff * SMOOTH_ANGLE_LERP;
+      }
+
+      // Handle Speed Boost constraints
+      const currentSpeed = localPlayer.isBoosting && localPlayer.score > INITIAL_LENGTH ? BOOST_SPEED : BASE_SPEED;
+      if (localPlayer.isBoosting && localPlayer.score > INITIAL_LENGTH) {
+        localPlayer.score -= delta * 1.5; // Slowly consume mass
+        // Spawn glowing engine trails
+        if (Math.random() < 0.2) {
+          const tail = localPlayer.segments[localPlayer.segments.length - 1];
+          localOrbs.push({
+            id: `boost_drop_${Date.now()}_${Math.random()}`,
+            x: tail.x + (Math.random() - 0.5) * 5,
+            y: tail.y + (Math.random() - 0.5) * 5,
+            value: 1,
+            color: localPlayer.color,
+            pulseOffset: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      // Update position coordinates
+      head.x += Math.cos(localPlayer.angle) * currentSpeed * delta;
+      head.y += Math.sin(localPlayer.angle) * currentSpeed * delta;
+
+      // GLIDING BOUNDARY WALLS: Clamps local snake coordinates to boundary limits without exploding!
+      const limit = WORLD_SIZE / 2;
+      if (head.x < -limit) head.x = -limit;
+      if (head.x > limit) head.x = limit;
+      if (head.y < -limit) head.y = -limit;
+      if (head.y > limit) head.y = limit;
+
+      // Update local segment trail positions
+      localPlayer.segments.unshift(head);
+      while (localPlayer.segments.length > Math.floor(localPlayer.score)) {
+        localPlayer.segments.pop();
+      }
+
+      // UPDATE OFFLINE HUD
+      document.getElementById('hudScore').textContent = Math.floor(localPlayer.score);
+
+      // --- CRASH COLLISIONS AND ORB COLLECTION ---
+      // Check Food ingestion
+      localOrbs.forEach(orb => {
+        const dx = head.x - orb.x;
+        const dy = head.y - orb.y;
+        if (dx * dx + dy * dy < 20 * 20) {
+          localPlayer.score += orb.value;
+          playOrbCollectSound();
+          
+          // Respawn or move collected food orb
+          orb.x = (Math.random() - 0.5) * (WORLD_SIZE - 40);
+          orb.y = (Math.random() - 0.5) * (WORLD_SIZE - 40);
+          orb.pulseOffset = Math.random() * Math.PI * 2;
+        }
+      });
+
+      // --- AI SHIP MOVEMENTS ---
+      localSnakes.forEach(ai => {
+        if (ai.state !== 'alive') return;
+
+        ai.targetAngleChangeTimer -= delta;
+        if (ai.targetAngleChangeTimer <= 0) {
+          // Find nearest orbs to head towards
+          let closestOrb = null;
+          let minDist = 300;
+          localOrbs.forEach(orb => {
+            const dist = Math.hypot(ai.segments[0].x - orb.x, ai.segments[0].y - orb.y);
+            if (dist < minDist) {
+              minDist = dist;
+              closestOrb = orb;
+            }
+          });
+
+          if (closestOrb) {
+            ai.angle = Math.atan2(closestOrb.y - ai.segments[0].y, closestOrb.x - ai.segments[0].x);
+          } else {
+            ai.angle += (Math.random() - 0.5) * 2; // Random roaming drift
+          }
+          ai.targetAngleChangeTimer = Math.random() * 2 + 1;
+        }
+
+        const aiHead = { ...ai.segments[0] };
+        aiHead.x += Math.cos(ai.angle) * BASE_SPEED * delta;
+        aiHead.y += Math.sin(ai.angle) * BASE_SPEED * delta;
+
+        // Clamp AI to boundary limits so they glide cleanly too
+        if (aiHead.x < -limit) aiHead.x = -limit;
+        if (aiHead.x > limit) aiHead.x = limit;
+        if (aiHead.y < -limit) aiHead.y = -limit;
+        if (aiHead.y > limit) aiHead.y = limit;
+
+        ai.segments.unshift(aiHead);
+        while (ai.segments.length > Math.floor(ai.score)) {
+          ai.segments.pop();
+        }
+
+        // Check food ingestion for AI
+        localOrbs.forEach(orb => {
+          const dx = aiHead.x - orb.x;
+          const dy = aiHead.y - orb.y;
+          if (dx * dx + dy * dy < 18 * 18) {
+            ai.score += orb.value;
+            orb.x = (Math.random() - 0.5) * (WORLD_SIZE - 40);
+            orb.y = (Math.random() - 0.5) * (WORLD_SIZE - 40);
+          }
+        });
+
+        // COMBAT MECHANIC: "allow killing when you bite any other snake"
+        // If Player head bites/touches AI segments -> AI dies!
+        let playerBitesAI = false;
+        ai.segments.forEach(seg => {
+          if (Math.hypot(head.x - seg.x, head.y - seg.y) < 18) {
+            playerBitesAI = true;
+          }
+        });
+
+        if (playerBitesAI) {
+          ai.state = 'dead';
+          spawnExplosion(aiHead.x, aiHead.y, ai.color, 35);
+          // Turn AI segments into rich food orbs!
+          ai.segments.forEach((seg, sIdx) => {
+            if (sIdx % 2 === 0) {
+              localOrbs.push({
+                id: `ai_drop_${ai.id}_${sIdx}`,
+                x: seg.x + (Math.random() - 0.5) * 12,
+                y: seg.y + (Math.random() - 0.5) * 12,
+                value: 2,
+                color: ai.color,
+                pulseOffset: Math.random() * Math.PI * 2
+              });
+            }
+          });
+        }
+
+        // If AI head bites/touches Player segments -> Player dies!
+        let aiBitesPlayer = false;
+        localPlayer.segments.forEach(pSeg => {
+          if (Math.hypot(aiHead.x - pSeg.x, aiHead.y - pSeg.y) < 18) {
+            aiBitesPlayer = true;
+          }
+        });
+
+        if (aiBitesPlayer) {
+          triggerPlayerDeath();
+        }
+      });
+
+      // Respawn eliminated AI snakes
+      localSnakes.forEach(ai => {
+        if (ai.state === 'dead') {
+          ai.state = 'alive';
+          ai.score = INITIAL_LENGTH;
+          const sX = (Math.random() - 0.5) * (WORLD_SIZE - 200);
+          const sY = (Math.random() - 0.5) * (WORLD_SIZE - 200);
+          const sA = Math.random() * Math.PI * 2;
+          ai.segments = [];
+          for (let i = 0; i < INITIAL_LENGTH; i++) {
+            ai.segments.push({
+              x: sX - Math.cos(sA) * i * SEGMENT_SPACING,
+              y: sY - Math.sin(sA) * i * SEGMENT_SPACING
+            });
+          }
+        }
+      });
+
+      // Update Offline Leaderboard sorting
+      const leaderboardData = [
+        { id: 'player', name: localPlayer.name, score: localPlayer.score, color: localPlayer.color },
+        ...localSnakes.map(ai => ({ id: ai.id, name: ai.name, score: ai.score, color: ai.color }))
+      ];
+      leaderboardData.sort((a, b) => b.score - a.score);
+      updateLeaderboardUI(leaderboardData.slice(0, 10));
+    }
+
+    // Trigger Pilot Elimination
+    function triggerPlayerDeath() {
+      if (playState !== 'playing') return;
+      playState = 'dead';
+      
+      const score = Math.floor(localPlayer.score);
+      document.getElementById('deathFinalScore').textContent = score;
+
+      // Drop space debris
+      const head = localPlayer.segments[0] || { x: 0, y: 0 };
+      spawnExplosion(head.x, head.y, localPlayer.color, 45);
+
+      document.getElementById('gameHUD').classList.add('hidden');
+      document.getElementById('deathScreen').classList.remove('hidden');
+    }
+
+    // --- LEADERBOARD & INTERACTION RENDERERS ---
+    function updateLeaderboardUI(list) {
+      const parent = document.getElementById('leaderboardList');
+      parent.innerHTML = '';
+      
+      list.forEach((p, idx) => {
+        const isSelf = p.id === 'player';
+        
+        const row = document.createElement('div');
+        row.className = `flex justify-between items-center text-[10px] sm:text-xs p-0.5 sm:p-1 rounded transition-all ${isSelf ? 'bg-white/10 font-bold border border-white/10' : 'bg-transparent'}`;
+        
+        row.innerHTML = `
+          <div class="flex items-center gap-1 sm:gap-1.5 truncate max-w-[85px] sm:max-w-[130px]">
+            <span class="text-slate-500 font-mono text-[9px] sm:text-[10px] w-3 sm:w-4">${idx + 1}.</span>
+            <span style="color: ${p.color}" class="truncate font-medium text-[10px] sm:text-[11px]">${p.name}</span>
+          </div>
+          <span class="font-mono text-[10px] sm:text-[11px] text-emerald-400 font-extrabold pr-0.5">${Math.floor(p.score)}</span>
+        `;
+        parent.appendChild(row);
+      });
+
+      if (list.length === 0) {
+        parent.innerHTML = `<span class="text-[9px] sm:text-[10px] font-mono text-slate-500 py-1 sm:py-2 text-center block">Scanning deep space...</span>`;
+      }
+    }
+
+    // --- RENDERING CANVAS ENGINE ---
+    function render() {
+      // Clear Canvas Frame
+      ctx.fillStyle = '#020207';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Create matrix zoom transformations
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.scale(camera.zoom, camera.zoom);
+      ctx.translate(-camera.x, -camera.y);
+
+      // Draw Parallax ambient space nebulas
+      cosmicNebulas.forEach(neb => {
+        const grad = ctx.createRadialGradient(neb.x, neb.y, 10, neb.x, neb.y, neb.size);
+        grad.addColorStop(0, neb.color);
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad;
+        ctx.fillRect(neb.x - neb.size, neb.y - neb.size, neb.size * 2, neb.size * 2);
+      });
+
+      // Draw Starfield (with camera offset parallax factor)
+      ctx.restore();
+      ctx.save();
+      spaceStars.forEach(star => {
+        // Star coordinates wrap smoothly
+        let sX = (star.x - camera.x * star.speed * 8) % window.innerWidth;
+        let sY = (star.y - camera.y * star.speed * 8) % window.innerHeight;
+        if (sX < 0) sX += window.innerWidth;
+        if (sY < 0) sY += window.innerHeight;
+
+        ctx.fillStyle = star.color;
+        ctx.beginPath();
+        ctx.arc(sX, sY, star.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.restore();
+
+      // Apply primary play area transform
+      ctx.save();
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.scale(camera.zoom, camera.zoom);
+      ctx.translate(-camera.x, -camera.y);
+
+      // Draw Arena Cosmic Boundary Borders
+      const limit = WORLD_SIZE / 2;
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.5)';
+      ctx.lineWidth = 14;
+      ctx.lineJoin = 'round';
+      ctx.strokeRect(-limit, -limit, WORLD_SIZE, WORLD_SIZE);
+
+      // Double Stroke Inner Neon Glow Border
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.2)';
+      ctx.lineWidth = 28;
+      ctx.strokeRect(-limit, -limit, WORLD_SIZE, WORLD_SIZE);
+
+      // Draw Food Energy Orbs
+      localOrbs.forEach(orb => {
+        drawOrb(orb.x, orb.y, orb.color, orb.pulseOffset, orb.value);
+      });
+
+      // Draw Eliminating Particles Sparks
+      spaceParticles.forEach(p => {
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1.0; // Reset alpha
+
+      // Draw Space Snakes
+      // Draw computer AI snakes
+      localSnakes.forEach(ai => {
+        if (ai.state === 'alive' && ai.segments.length > 0) {
+          drawSnake(ai.segments, ai.angle, ai.color, ai.name);
+        }
+      });
+
+      // Draw local player snake
+      if (localPlayer.state === 'alive' && localPlayer.segments.length > 0) {
+        drawSnake(localPlayer.segments, localPlayer.angle, localPlayer.color, localPlayer.name);
+      }
+
+      ctx.restore();
+
+      // Render Radar Minimap in HUD
+      renderRadar();
+    }
+
+    // Draw single glowing energy orb
+    function drawOrb(x, y, color, offset, value) {
+      const pulseSize = 3 + Math.sin(performance.now() * 0.005 + offset) * 1.5;
+      const sizeFactor = value > 1.5 ? 2.5 : 1.0;
+      const r = pulseSize * sizeFactor;
+
+      ctx.save();
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = color;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core glow
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(x, y, r * 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Draw Space Cruiser segmented snake trail
+    function drawSnake(segments, angle, color, name) {
+      if (segments.length === 0) return;
+
+      // Draw Body segments
+      ctx.save();
+      for (let i = segments.length - 1; i >= 1; i--) {
+        const seg = segments[i];
+        
+        // Render beautiful neon rings that shrink gradually
+        const factor = 1 - (i / segments.length) * 0.45;
+        const radius = 10 * factor;
+
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = color;
+        ctx.fillStyle = color;
+        
+        // Draw custom capsule circles
+        ctx.beginPath();
+        ctx.arc(seg.x, seg.y, radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Inner glowing core
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(seg.x, seg.y, radius * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Draw Head Segment (Cockpit / Spacesuit Helmet)
+      const head = segments[0];
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = color;
+      ctx.fillStyle = '#05050e';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 4.5;
+      
+      ctx.beginPath();
+      ctx.arc(head.x, head.y, 14, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Draw Glowing Pilot Visor facing steering angle
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(
+        head.x + Math.cos(angle) * 6,
+        head.y + Math.sin(angle) * 6,
+        5.5,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+
+      // Draw visors neon reflection
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(
+        head.x + Math.cos(angle) * 7.5 - Math.sin(angle) * 1.5,
+        head.y + Math.sin(angle) * 7.5 + Math.cos(angle) * 1.5,
+        1.5,
+        0,
+        Math.PI * 2
+      );
+      ctx.fill();
+
+      // Render Pilot Name above head
+      ctx.restore();
+      ctx.save();
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
+      ctx.font = 'bold 9px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(name.toUpperCase(), head.x, head.y - 24);
+      ctx.restore();
+    }
+
+    // Render Radar Minimap
+    function renderRadar() {
+      radarCtx.fillStyle = '#030308';
+      radarCtx.fillRect(0, 0, radarCanvas.width, radarCanvas.height);
+
+      const limit = WORLD_SIZE / 2;
+      const mapScale = radarCanvas.width / WORLD_SIZE;
+      const center = radarCanvas.width / 2;
+
+      // Draw Outer space border
+      radarCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+      radarCtx.lineWidth = 1;
+      radarCtx.strokeRect(0, 0, radarCanvas.width, radarCanvas.height);
+
+      // Draw local coordinates crosshair
+      radarCtx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      radarCtx.beginPath();
+      radarCtx.moveTo(center, 0);
+      radarCtx.lineTo(center, radarCanvas.height);
+      radarCtx.moveTo(0, center);
+      radarCtx.lineTo(radarCanvas.width, center);
+      radarCtx.stroke();
+
+      // Draw food energy zones (represented as dim stars)
+      radarCtx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      for (let i = 0; i < localOrbs.length; i += 8) {
+        const orb = localOrbs[i];
+        radarCtx.fillRect(center + orb.x * mapScale, center + orb.y * mapScale, 1.2, 1.2);
+      }
+
+      // Render active pilots on map
+      // Draw local player dot
+      if (localPlayer.state === 'alive' && localPlayer.segments.length > 0) {
+        const head = localPlayer.segments[0];
+        radarCtx.fillStyle = localPlayer.color;
+        radarCtx.beginPath();
+        radarCtx.arc(center + head.x * mapScale, center + head.y * mapScale, 2.5, 0, Math.PI * 2);
+        radarCtx.fill();
+      }
+
+      // Draw AI dots
+      localSnakes.forEach(ai => {
+        if (ai.state === 'alive' && ai.segments.length > 0) {
+          const h = ai.segments[0];
+          radarCtx.fillStyle = ai.color;
+          radarCtx.fillRect(center + h.x * mapScale - 1, center + h.y * mapScale - 1, 2, 2);
+        }
+      });
+    }
+
+    // --- MAIN TICK LOOP ---
+    function tick(now) {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      if (playState === 'playing') {
+        updateGame(delta);
+      }
+      render();
+
+      requestAnimationFrame(tick);
+    }
+
+    // --- CONTROLS & DESKTOP/MOBILE INPUT INTERCEPTORS ---
+    const keys = {};
+
+    function updateDirectionFromKeys() {
+      let dx = 0;
+      let dy = 0;
+
+      if (keys['ArrowLeft'] || keys['KeyA']) dx = -1;
+      if (keys['ArrowRight'] || keys['KeyD']) dx = 1;
+      if (keys['ArrowUp'] || keys['KeyW']) dy = -1;
+      if (keys['ArrowDown'] || keys['KeyS']) dy = 1;
+
+      if (dx !== 0 || dy !== 0) {
+        inputSteerAngle = Math.atan2(dy, dx);
+        useMouseSteering = false;
+      } else {
+        inputSteerAngle = null;
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      keys[e.code] = true;
+      if (e.code === 'Space') {
+        localPlayer.isBoosting = true;
+      }
+      if (e.code === 'Escape' || e.code === 'KeyP') {
+        togglePause();
+      }
+      updateDirectionFromKeys();
+    });
+
+    window.addEventListener('keyup', (e) => {
+      keys[e.code] = false;
+      if (e.code === 'Space') {
+        localPlayer.isBoosting = false;
+      }
+      updateDirectionFromKeys();
+    });
+
+    // Mouse Tracking Interceptors
+    window.addEventListener('mousemove', (e) => {
+      mousePos.x = e.clientX;
+      mousePos.y = e.clientY;
+      if (inputSteerAngle === null) {
+        useMouseSteering = true;
+      }
+    });
+
+    window.addEventListener('mousedown', (e) => {
+      // Steer toward click & boost on click hold
+      if (playState === 'playing') {
+        localPlayer.isBoosting = true;
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      localPlayer.isBoosting = false;
+    });
+
+    // Mobile Joystick touch event handling
+    window.addEventListener('touchstart', (e) => {
+      const isTouchHUD = e.target.closest('#btnPause') || e.target.closest('#btnExit') || e.target.closest('#mobileBoostBtn');
+      if (isTouchHUD || playState !== 'playing') return;
+
+      const touch = e.touches[0];
+      joystickActive = true;
+      joystickOrigin.x = touch.clientX;
+      joystickOrigin.y = touch.clientY;
+
+      const joystickZone = document.getElementById('touchJoystickZone');
+      joystickZone.style.display = 'flex';
+      joystickZone.style.left = `${touch.clientX - 64}px`;
+      joystickZone.style.bottom = 'auto';
+      joystickZone.style.top = `${touch.clientY - 64}px`;
+
+      const knob = document.getElementById('joystickKnob');
+      knob.style.transform = 'translate(0px, 0px)';
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!joystickActive) return;
+      const touch = e.touches[0];
+      
+      const dx = touch.clientX - joystickOrigin.x;
+      const dy = touch.clientY - joystickOrigin.y;
+      const dist = Math.hypot(dx, dy);
+      const maxRadius = 45;
+
+      const angle = Math.atan2(dy, dx);
+      inputSteerAngle = angle;
+      useMouseSteering = false;
+
+      const steerDist = Math.min(dist, maxRadius);
+      const kX = Math.cos(angle) * steerDist;
+      const kY = Math.sin(angle) * steerDist;
+
+      const knob = document.getElementById('joystickKnob');
+      knob.style.transform = `translate(${kX}px, ${kY}px)`;
+    });
+
+    window.addEventListener('touchend', () => {
+      joystickActive = false;
+      inputSteerAngle = null;
+      document.getElementById('touchJoystickZone').style.display = 'none';
+    });
+
+    // Mobile Boost button actions
+    const mbBtn = document.getElementById('mobileBoostBtn');
+    mbBtn.addEventListener('touchstart', (e) => {
+      e.stopPropagation();
+      localPlayer.isBoosting = true;
+    });
+    mbBtn.addEventListener('touchend', () => {
+      localPlayer.isBoosting = false;
+    });
+
+    // Window size adapter
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Toggle pause states
+    function togglePause() {
+      if (playState === 'playing') {
+        playState = 'paused';
+        document.getElementById('pauseOverlay').classList.remove('hidden');
+      } else if (playState === 'paused') {
+        playState = 'playing';
+        document.getElementById('pauseOverlay').classList.add('hidden');
+        lastTime = performance.now();
+      }
+    }
+
+    // --- REGISTER EVENT BUTTON BINDERS ---
+    document.getElementById('btnPlaySingle').addEventListener('click', () => {
+      startGame();
+    });
+
+    document.getElementById('btnPause').addEventListener('click', () => {
+      togglePause();
+    });
+
+    document.getElementById('btnResume').addEventListener('click', () => {
+      togglePause();
+    });
+
+    document.getElementById('btnExit').addEventListener('click', () => {
+      playState = 'menu';
+      document.getElementById('gameHUD').classList.add('hidden');
+      document.getElementById('launchpadScreen').classList.remove('hidden');
+    });
+
+    document.getElementById('btnRespawn').addEventListener('click', () => {
+      startGame();
+    });
+
+    document.getElementById('btnToMenu').addEventListener('click', () => {
+      playState = 'menu';
+      document.getElementById('deathScreen').classList.add('hidden');
+      document.getElementById('launchpadScreen').classList.remove('hidden');
+    });
+
+    // Start everything on load
+    generateStarfield();
+    initLauncherUI();
+    requestAnimationFrame(tick);
+    setTimeout(() => {
+      window.VatsalLolGameComplete?.();
+    }, 8000);
+  </script>
+  <script src="../../assets/vatsal-footer-v25.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,1621 @@
+/*
+ * Future Timeline Design System & Stylesheet
+ * Custom designed for vatsal.lol - Art Direction & Reusable exhibits.
+ */
+
+/* ==========================================================================
+   1. LOCAL FONTS SETUP
+   ========================================================================== */
+@font-face {
+  font-family: 'Outfit';
+  src: url('assets/fonts/Outfit-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('assets/fonts/Outfit-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('assets/fonts/Outfit-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('assets/fonts/Outfit-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   2. CUSTOM VARIABLES & BASE RESET
+   ========================================================================== */
+:root {
+  --bg-color: #000000;
+  --text-color: #ffffff;
+  --default-accent: #b870ff;
+  --muted-text: rgba(255, 255, 255, 0.8);
+  --dim-text: rgba(255, 255, 255, 0.5);
+  
+  /* Reading Grid Bounds (720px - 760px as per approval) */
+  --content-width: 740px;
+  --font-stack: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-stack);
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   3. HANDCRAFTED PERSISTENT STARFIELD (Pure black background, quiet depth)
+   ========================================================================== */
+#star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Star Categories styles */
+.star-tiny {
+  width: 1px;
+  height: 1px;
+}
+
+.star-medium {
+  width: 2px;
+  height: 2px;
+}
+
+.star-blue {
+  background-color: #aae0ff;
+  box-shadow: 0 0 3px rgba(170, 224, 255, 0.5);
+}
+
+.star-yellow {
+  background-color: #ffe6a3;
+  box-shadow: 0 0 3px rgba(255, 230, 163, 0.5);
+}
+
+.star-orange {
+  background-color: #ffb38a;
+  box-shadow: 0 0 3px rgba(255, 179, 138, 0.4);
+}
+
+.star-purple {
+  background-color: #dfadff;
+  box-shadow: 0 0 3px rgba(223, 173, 255, 0.4);
+}
+
+.star-distant {
+  background-color: #ffffff;
+  filter: blur(0.5px);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+/* 5 Animation Groups for Stars (Alive but never busy) */
+@keyframes group-a { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.8; } }
+@keyframes group-b { 0%, 100% { filter: brightness(0.65); } 50% { filter: brightness(1.4); } }
+@keyframes group-c { 0%, 100% { transform: scale(0.85); } 50% { transform: scale(1.15); } }
+@keyframes group-d { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+@keyframes group-e { 0%, 90%, 100% { opacity: 0.25; transform: scale(1); } 95% { opacity: 0.95; transform: scale(1.35); } }
+
+.group-a { animation: group-a 15s infinite ease-in-out; }
+.group-b { animation: group-b 10s infinite ease-in-out; }
+.group-c { animation: group-c 17s infinite ease-in-out; }
+.group-d { animation: group-d 25s infinite ease-in-out; }
+.group-e { animation: group-e 32s infinite ease-in-out; }
+
+/* Subtle Shooting Stars overlay */
+#shooting-stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 80px;
+  height: 1.5px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+  transform: rotate(-45deg);
+  opacity: 0;
+  pointer-events: none;
+  animation: shoot-star 1.3s ease-out forwards;
+}
+
+@keyframes shoot-star {
+  0% { transform: translate(0, 0) rotate(-45deg); opacity: 0; }
+  8% { opacity: 0.8; }
+  60% { opacity: 0.8; }
+  100% { transform: translate(-280px, 280px) rotate(-45deg); opacity: 0; }
+}
+
+/* ==========================================================================
+   4. VATSAL HEADER STYLE INTEGRATION
+   ========================================================================== */
+.vatsal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.vatsal-home {
+  pointer-events: auto;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.vatsal-home:hover {
+  opacity: 0.75;
+}
+
+/* ==========================================================================
+   5. LANDING SCREEN LAYOUT
+   ========================================================================== */
+#landing {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#landing-content {
+  position: fixed; /* Fixed relative to the viewport while timeline scrolls up */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 60px 20px;
+  text-align: center;
+  will-change: opacity, transform, visibility;
+  transition: visibility 0.8s;
+}
+
+.landing-title {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  color: var(--text-color);
+}
+
+.landing-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+  font-weight: 500;
+  color: var(--default-accent);
+  margin: 0 0 45px 0;
+}
+
+/* Earth & YOU Pin Layout */
+/* Earth & YOU Pin Layout */
+#landing-earth-container {
+  position: relative;
+  width: 320px;
+  height: 250px;
+  margin: 30px auto 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+img#landing-earth {
+  width: 320px;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 25px rgba(184, 112, 255, 0.18));
+  transform-origin: center;
+  animation: earthGentlyBob 7s ease-in-out infinite;
+}
+
+div#landing-earth {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  
+  /* Deep Space Ocean blue gradient background */
+  background: radial-gradient(circle at 35% 35%, #184c8c 0%, #0d2850 40%, #040e20 80%, #000000 100%);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 35px rgba(0, 140, 255, 0.45),
+              0 0 15px rgba(0, 80, 255, 0.2),
+              inset 10px 10px 25px rgba(255, 255, 255, 0.25),
+              inset -20px -20px 45px rgba(0, 0, 0, 0.95);
+  animation: earthGentlyBob 7s ease-in-out infinite;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Pseudo element that handles the continents map translation scroll */
+div#landing-earth::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-image: url('assets/dry-map.svg');
+  background-repeat: repeat-x;
+  background-size: 50% 100%;
+  /* Shift map from dry sand to realistic green-blue landmasses */
+  filter: hue-rotate(110deg) saturate(1.4) brightness(0.95) contrast(1.1);
+  animation: planetRotate 45s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Atmospheric day/night shadow overlay on top of the rotating continents */
+div#landing-earth::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Inset lighting layer overlay */
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0.8) 70%, rgba(0, 0, 0, 0.98) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+@keyframes earthGentlyBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes pointerGentlyBob {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -7px; }
+}
+
+#landing-you {
+  position: absolute;
+  top: 15px;
+  left: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+  animation: pointerGentlyBob 7s ease-in-out infinite;
+  transition: top 0.4s ease, left 0.4s ease, transform 0.4s ease;
+  z-index: 5;
+}
+
+#landing-earth-container:has(.landing-earth-globe) #landing-you {
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.you-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--default-accent);
+  letter-spacing: 1px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(184, 112, 255, 0.35);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.you-line {
+  width: 1px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--default-accent) 30%, transparent);
+}
+
+.you-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--default-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--default-accent);
+  transform: translateY(-3px);
+}
+
+/* Live Time & Date Display */
+#landing-clock {
+  margin-top: 35px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+#live-date {
+  font-size: clamp(1.5rem, 4vw, 2.3rem);
+  font-weight: 500;
+  letter-spacing: 6px;
+  color: var(--dim-text);
+  text-transform: uppercase;
+}
+
+#live-time-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+#live-time {
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  font-weight: 800;
+  font-family: monospace;
+  letter-spacing: 2px;
+  color: var(--text-color);
+}
+
+.live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 49, 49, 0.1);
+  border: 1px solid rgba(255, 49, 49, 0.35);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #ff3131;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #ff3131;
+  animation: liveBeacon 1.3s infinite alternate;
+}
+
+@keyframes liveBeacon {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.live-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff3131;
+  letter-spacing: 1.5px;
+}
+
+/* Scroll Arrow Prompter */
+#landing-scroll-prompt {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--dim-text);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scroll-arrow {
+  animation: arrowBob 2s infinite ease-in-out;
+}
+
+@keyframes arrowBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ==========================================================================
+   6. TIMELINE CONTAINER & EXHIBIT CARDS
+   ========================================================================== */
+#timeline-mount {
+  position: relative;
+  z-index: 20;
+  margin-top: 100vh; /* Pushes timeline down, letting it slide over landing content */
+  padding-bottom: 20px;
+  background-color: transparent;
+}
+
+.timeline-event-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 40px 20px;
+  min-height: 85vh; /* Comfortable reading viewport pace */
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.25, 0.8, 0.25, 1), 
+              transform 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.timeline-event-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Consistent Separator Style */
+.year-separator {
+  width: 100%;
+  max-width: var(--content-width);
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.year-separator-line {
+  color: var(--event-accent-dim, rgba(184, 112, 255, 0.4));
+  font-size: 16px;
+  letter-spacing: -2px;
+  user-select: none;
+  line-height: 1;
+  transition: color 0.6s ease;
+}
+
+.year-separator-text {
+  color: var(--event-accent, var(--default-accent));
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 12px 0;
+  transition: color 0.6s ease;
+}
+
+/* Exhibit Card Tiled Panel Background (Used for every space card) */
+/* Exhibit Card Layout (Cards merge naturally into space background) */
+.event-card {
+  width: 100%;
+  max-width: var(--content-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+  box-sizing: border-box;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.event-headline {
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text-color);
+  margin: 0;
+  max-width: 660px;
+  letter-spacing: -0.5px;
+  
+  /* Text-hugging black background readability box */
+  background-color: #000000;
+  padding: 10px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+}
+
+.event-description, .text-line {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--muted-text);
+  margin: 0 auto;
+  max-width: 660px;
+
+  /* Text-hugging black background readability box */
+  background-color: #000000;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.event-funny {
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--event-accent, var(--default-accent));
+  margin: 0;
+  max-width: 600px;
+  opacity: 0.9;
+  transition: color 0.6s ease;
+
+  /* Text-hugging black background readability box */
+  background-color: #000000;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.65);
+  box-sizing: border-box;
+}
+
+/* Media bounds (with tiled star background panel behind illustration) */
+.event-media-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px;
+  position: relative;
+  overflow: visible;
+  margin: 20px auto;
+  box-sizing: border-box;
+  padding: 30px;
+  border-radius: 16px;
+  
+  /* Tiled panel background behind the SVGs */
+  background-image: url('assets/star-background-dim.svg');
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  max-width: 775px;
+}
+
+.event-media-container img,
+.event-media-container svg {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   7. STRUCTURAL GRID LAYOUT TYPES
+   ========================================================================== */
+.layout-image-top {
+  flex-direction: column;
+}
+
+.layout-image-bottom {
+  flex-direction: column;
+}
+.layout-image-bottom .event-media-container {
+  order: 3;
+}
+
+.layout-image-left {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  text-align: left;
+  gap: 40px;
+}
+.layout-image-left .event-media-container {
+  grid-column: 1;
+  justify-content: center;
+}
+.layout-image-left .event-text-group {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.layout-image-left .event-funny {
+  margin-top: 5px;
+}
+
+.layout-image-right {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  text-align: left;
+  gap: 40px;
+}
+.layout-image-right .event-text-group {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.layout-image-right .event-media-container {
+  grid-column: 2;
+  justify-content: center;
+}
+.layout-image-right .event-funny {
+  margin-top: 5px;
+}
+
+.layout-wide {
+  max-width: 800px;
+}
+.layout-wide .event-media-container svg,
+.layout-wide .event-media-container img {
+  max-width: 460px;
+}
+
+.layout-double {
+  flex-direction: column;
+}
+.layout-double .double-media-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.layout-double .event-media-container {
+  width: auto;
+  flex: 1;
+  min-width: 180px;
+  margin: 0;
+}
+
+.layout-center {
+  flex-direction: column;
+}
+
+.two-columns {
+  display: grid;
+}
+
+@media (max-width: 768px) {
+  .layout-image-left,
+  .layout-image-right {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+  }
+  .layout-image-left .event-media-container,
+  .layout-image-right .event-media-container {
+    grid-column: auto;
+    justify-content: center;
+    order: 2;
+  }
+  .layout-image-left .event-text-group,
+  .layout-image-right .event-text-group {
+    grid-column: auto;
+    order: 1;
+  }
+}
+
+/* ==========================================================================
+   8. SPECIFIC STYLING FROM ORIGINAL PROTOTYPE
+   ========================================================================== */
+
+/* Halley's Comet */
+.halleys-commet {
+  animation: cometOscillate 0.3s linear infinite alternate;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  max-width: 200px;
+}
+
+@keyframes cometOscillate {
+  0% { transform: translateX(3px); }
+  to { transform: translateX(-3px); }
+}
+
+/* Pluto Confetti */
+.confetti {
+  background-image: url('assets/confetti-animated.svg');
+  background-repeat: repeat;
+  background-size: auto 100px;
+  height: 350px;
+  margin-bottom: -350px;
+  margin-top: 20px;
+  -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent);
+  mask-image: linear-gradient(180deg, #000 50%, transparent);
+  max-width: 100%;
+  width: 100%;
+}
+
+.pluto {
+  display: block;
+  margin: 50px auto;
+  max-width: 175px;
+}
+
+/* Voyager & Oort Cloud */
+.voyager-1 {
+  animation: voyagerFloat 2s ease-in-out infinite alternate;
+  color: #fff;
+  left: 30%;
+  max-width: 150px;
+  position: relative;
+  top: -120px;
+  transform-origin: 30% 50%;
+}
+
+@keyframes voyagerFloat {
+  0% { transform: rotate(-3deg); }
+  to { transform: rotate(3deg); }
+}
+
+.oort-cloud {
+  background: url('assets/oort-cloud.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 350px;
+  height: 350px;
+  margin-bottom: -140px;
+  opacity: .25;
+  width: 100%;
+}
+
+/* Supernova Hypernova */
+.vy-canis {
+  animation: starPulse 1s linear infinite alternate;
+  background: #f63;
+  border-radius: 100%;
+  box-shadow: 0 0 50px #f63;
+  height: 200px;
+  left: -100px;
+  margin-bottom: 40px;
+  position: relative;
+  width: 200px;
+}
+
+@keyframes starPulse {
+  0% { box-shadow: 0 0 50px #f63; }
+  to { box-shadow: 0 0 20px #f63; }
+}
+
+.hyper-nova {
+  display: block;
+  margin: 40px auto;
+  max-width: 450px;
+  text-align: center;
+}
+
+/* Hawaii wave */
+.hawaii-island {
+  display: block;
+  margin: 60px auto -50px;
+  max-width: 600px;
+}
+
+.hawaii-water {
+  background-image: url('assets/hawaii-water.svg');
+  background-repeat: repeat-x;
+  background-size: auto 50px;
+  display: block;
+  height: 50px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent 0, #000 15%, #000 85%, transparent);
+  max-width: 100%;
+  opacity: .8;
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+/* Little Dipper */
+.little-dipper {
+  display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+}
+
+/* Uranus Moons Collision */
+.uranus-moons {
+  display: block;
+  margin: 40px auto;
+  max-width: 500px;
+}
+
+/* Mars Phobos Orbit */
+.mars-orbit-wrapper {
+  height: 150px;
+  margin-bottom: 40px;
+  position: relative;
+  width: 100%;
+}
+
+.mars {
+  animation: phobosBlink 10s ease-in-out 5s infinite;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 150px;
+  position: relative;
+}
+
+.phobos {
+  animation: phobosOrbit 5s ease-in-out infinite alternate;
+  left: 50%;
+  max-width: 50px;
+  position: relative;
+  top: -100px;
+  z-index: 2;
+}
+
+@keyframes phobosOrbit {
+  0% { transform: translateX(-135px); }
+  to { transform: translateX(85px); }
+}
+
+@keyframes phobosBlink {
+  0%, 49% { z-index: 3; }
+  50%, 100% { z-index: 1; }
+}
+
+.mars-rings {
+  left: -50px;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  position: relative;
+  width: 250px;
+}
+
+/* Saturn */
+.saturn {
+  margin-bottom: 40px;
+  position: relative;
+  right: -25px;
+  width: 250px;
+}
+
+/* 25h Clock */
+.clock-wrapper {
+  display: block;
+  height: 250px;
+  margin: 30px auto 40px;
+  max-width: 250px;
+  position: relative;
+}
+
+.clock {
+  -webkit-mask-image: linear-gradient(#000,transparent);
+  mask-image: linear-gradient(#000,transparent);
+  max-width: 250px;
+  width: 100%;
+}
+
+.clock-hand, .clock-hand-small {
+  background: #fff;
+  border-radius: 10px;
+  left: 123px;
+  opacity: .5;
+  position: relative;
+  transform-origin: center top;
+  width: 5px;
+}
+
+.clock-hand {
+  animation: clockHandMinute 10s linear infinite;
+  height: 100px;
+  top: -130px;
+}
+
+.clock-hand-small {
+  animation: clockHandHour 600s linear infinite;
+  height: 50px;
+  top: -230px;
+}
+
+@keyframes clockHandMinute {
+  0% { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes clockHandHour {
+  0% { transform: rotate(130deg); }
+  to { transform: rotate(490deg); }
+}
+
+/* Eclipse */
+.eclipse-wrapper {
+  margin: 40px auto;
+  max-width: 600px;
+  position: relative;
+}
+
+.eclipse {
+  max-width: 100%;
+}
+
+.glasses {
+  margin-bottom: 40px;
+  max-width: 150px;
+  position: relative;
+}
+
+/* Photosynthesis Wilting */
+.plant-wilting-wrapper {
+  margin-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+}
+
+.plant-wilting {
+  max-width: 500px;
+}
+
+.fossils {
+  background: url('assets/fossil-small.svg');
+  background-repeat: round;
+  height: 150px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.single-cell {
+  display: block;
+  margin: 40px auto;
+  -webkit-mask-image: radial-gradient(rgba(0,0,0,.5),#000);
+  mask-image: radial-gradient(rgba(0,0,0,.5),#000);
+  max-width: 250px;
+}
+
+/* Bright Sun & Dry Earth Map Scroll */
+.bright-sun, .earth-dry {
+  border-radius: 100%;
+  height: 250px;
+  position: relative;
+  width: 250px;
+}
+
+.earth-dry {
+  animation: planetRotate 20s linear infinite;
+  background-color: #e5d4a8;
+  background-image: url('assets/dry-map.svg');
+  background-repeat: repeat-x;
+  background-size: 475px 250px;
+  left: -75px;
+  margin-bottom: 40px;
+}
+
+@keyframes planetRotate {
+  0% { background-position: 0 0; }
+  to { background-position: -475px 0; }
+}
+
+.bright-sun {
+  animation: sunPulse 3s ease-in-out infinite alternate;
+  background: radial-gradient(#fc4103,#eb9234);
+  margin-bottom: 50px;
+  right: -50px;
+}
+
+@keyframes sunPulse {
+  0% { box-shadow: 0 0 10px #fc4103; }
+  to { box-shadow: 0 0 60px #fc4103; }
+}
+
+.mars-pretty {
+  display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 250px;
+}
+
+/* Galaxy collision Milkdromeda */
+.galaxy-form, .milkdromeda {
+  margin-bottom: 40px;
+  max-width: 100%;
+}
+
+.night-sky-wrapper {
+  background: #000;
+  width: 100%;
+}
+
+.night-sky {
+  background-color: #000;
+  background-image: url('assets/lots-of-stars-animated.svg');
+  background-repeat: repeat;
+  background-size: 350px auto;
+  height: 400px;
+  -webkit-mask-image: linear-gradient(180deg,#000 50%,rgba(0,0,0,.7) 95%);
+  mask-image: linear-gradient(180deg,#000 50%,rgba(0,0,0,.7) 95%);
+  width: 100%;
+}
+
+.telescope {
+  margin-bottom: -110px;
+  position: relative;
+  top: -110px;
+  width: 100%;
+}
+
+/* Red Giant engulfing Earth */
+.sun-eat-earth {
+  display: block;
+  margin: 30px auto 40px;
+  max-width: 350px;
+}
+
+.earth-fall {
+  height: 340px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.earth-fall-sun {
+  box-shadow: 0 0 50px #ff3131;
+  height: 300px;
+  left: -100px;
+  width: 300px;
+  background: #ff3131;
+  border-radius: 100%;
+  position: relative;
+}
+
+.earth-fall-sun-clip {
+  background: #ff3131;
+  border-radius: 100%;
+  box-shadow: 0 0 70px 70px #ff3131;
+  height: 100px;
+  left: 0;
+  top: -320px;
+  width: 100px;
+  position: relative;
+}
+
+.earth-fall-dry-wrap {
+  animation: earthPlunge 9s ease-in infinite;
+  position: relative;
+  top: -200px;
+  width: 100%;
+}
+
+.earth-fall-dry {
+  animation: earthPlungeRotate 5s linear infinite;
+  background-color: #e5d4a8;
+  background-image: url('assets/dry-map.svg');
+  background-repeat: repeat-x;
+  background-size: 70px 37px;
+  border-radius: 100%;
+  height: 40px;
+  margin-left: auto;
+  position: relative;
+  right: -50px;
+  width: 40px;
+}
+
+@keyframes earthPlunge {
+  0% { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes earthPlungeRotate {
+  0% { background-position: 0 0; }
+  to { background-position: -70px 0; }
+}
+
+/* White Dwarf */
+.white-dwarf {
+  background: radial-gradient(#bfd8ff,#fff);
+  border-radius: 100%;
+  box-shadow: 0 0 20px #bfd8ff;
+  height: 150px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+/* Local group */
+.local-group {
+  margin-bottom: 20px;
+  margin-top: -20px;
+  width: 100% !important;
+  max-width: 600px !important;
+  max-height: none !important;
+}
+
+/* CMB and Blue Dwarf */
+.cmb {
+  max-width: 450px;
+  display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blue-dwarf {
+  display: block;
+  margin-bottom: 20px;
+  max-width: 220px;
+}
+
+/* Gas Cloud */
+.gas-cloud {
+  max-width: 100%;
+}
+
+.last-star {
+  background: radial-gradient(#bfd8ff,#fff);
+  border-radius: 100%;
+  box-shadow: 0 0 20px #bfd8ff;
+  height: 150px;
+  margin-bottom: 40px;
+  width: 150px;
+}
+
+/* spaceship */
+.space-ship {
+  max-width: 400px;
+}
+
+/* Black Hole */
+.black-hole {
+  max-width: 350px;
+}
+
+.final-date {
+  display: block;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 250px;
+}
+
+/* ==========================================================================
+   9. ENDING & FOOTER (Silent, reflective)
+   ========================================================================== */
+#ending-container {
+  position: relative;
+  z-index: 25;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.empty-spacer {
+  height: 160vh;
+  width: 100%;
+}
+
+.ending-dot {
+  width: 5px;
+  height: 5px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffffff;
+  margin: 0 auto 50px auto;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.ending-dot.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ending-quote-wrapper {
+  max-width: 600px;
+  margin: 0 auto 100px auto;
+  padding: 0 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.8s ease, transform 1.8s ease;
+}
+
+.ending-quote-wrapper.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ending-quote {
+  font-size: clamp(1.25rem, 2.2vw, 1.45rem);
+  line-height: 1.6;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.ending-quote.font-light {
+  font-weight: 400;
+  color: var(--muted-text);
+}
+
+.ending-quote.font-medium {
+  font-weight: 500;
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+.ending-quote.font-bold {
+  font-weight: 700;
+  color: var(--default-accent);
+  font-size: clamp(1.4rem, 2.5vw, 1.7rem);
+}
+
+/* Date indicator visual pause inside ending quote */
+.ending-date-wrapper {
+  margin: 35px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ending-date-svg {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+.ending-feris-svg {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  opacity: 0.9;
+}
+.ending-divider {
+  color:white
+  font-size: 16px;
+  letter-spacing: -2px;
+  margin-bottom: 50px;
+  opacity: 0;
+  transition: opacity 2s ease;
+  user-select: none;
+  top-padding:none;
+}
+
+.ending-divider.active {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   10. ACCESSIBILITY OVERRIDES (prefers-reduced-motion)
+   ========================================================================== */
+/* Accessibility overrides commented out for verification/testing to ensure animations run unconditionally */
+/*
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+  
+  .star {
+    animation: none !important;
+    opacity: 0.65 !important;
+  }
+  
+  #landing-earth,
+  #landing-you,
+  .scroll-arrow,
+  .halleys-commet,
+  .voyager-1,
+  .vy-canis,
+  .phobos,
+  .mars,
+  .clock-hand,
+  .clock-hand-small,
+  .earth-dry,
+  .bright-sun,
+  .earth-fall-dry,
+  .earth-fall-dry-wrap {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .timeline-event-section,
+  .year-separator,
+  .ending-dot,
+  .ending-quote-wrapper,
+  .ending-divider {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+*/
+
+/* ==========================================================================
+   10. CUSTOM GRID LAYOUT CLASSES
+   ========================================================================== */
+.two-columns {
+  display: grid;
+  gap: 30px;
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.grid-vy-canis {
+  grid-template-columns: 100px auto;
+  align-items: center;
+}
+
+.grid-mars-rings {
+  grid-template-columns: 200px auto;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.grid-eclipse {
+  grid-template-columns: 150px auto;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.grid-dry-earth-1 {
+  grid-template-columns: auto 175px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grid-dry-earth-2 {
+  grid-template-columns: 175px auto;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.grid-white-dwarf {
+  grid-template-columns: auto 175px;
+  align-items: center;
+}
+
+.grid-last-star {
+  grid-template-columns: 175px auto;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Ferris Wheel Presentation Styling */
+.ending-ferris-wrapper {
+  margin: 60px auto 40px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+}
+
+.feris-wheel {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: min(90vw, 420px);
+  height: auto;
+  position: relative;
+}
+
+/* ==========================================================================
+   11. MOBILE LAYOUT REFAC/REFLOW GUARDRAILS (Viewport < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Dynamic Grids collapsed to single columns */
+  .grid-vy-canis,
+  .grid-mars-rings,
+  .grid-eclipse,
+  .grid-dry-earth-1,
+  .grid-dry-earth-2,
+  .grid-white-dwarf,
+  .grid-last-star {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    justify-items: center;
+    gap: 15px !important;
+  }
+
+  /* Spacing constraints */
+  .timeline-event-section {
+    padding: 48px max(15px, 4vw) !important;
+    min-height: auto !important;
+  }
+
+  .event-card {
+    max-width: 420px !important;
+    width: min(92vw, 420px) !important;
+    margin: 0 auto !important;
+    gap: 20px !important;
+  }
+
+  /* Text-hugging width alignment */
+  .event-headline,
+  .event-description,
+  .text-line,
+  .event-funny {
+    width: 100% !important;
+    max-width: 420px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mobile Typography */
+  .year-separator-text {
+    font-size: clamp(20px, 6vw, 24px) !important;
+    letter-spacing: 2px !important;
+    margin: 8px 0 !important;
+  }
+
+  .event-headline {
+    font-size: clamp(26px, 8vw, 36px) !important;
+    padding: 10px 14px !important;
+    line-height: 1.25 !important;
+  }
+
+  .event-description, .text-line {
+    font-size: clamp(16px, 4.5vw, 19px) !important;
+    padding: 10px 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .event-funny {
+    font-size: clamp(15px, 4vw, 17px) !important;
+    padding: 8px 14px !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Mobile SVG Specific Sizing & Offsets */
+  .event-media-container img,
+  .event-media-container svg {
+    max-height: 240px !important;
+  }
+
+  .halleys-commet {
+    max-width: 190px !important;
+  }
+
+  .voyager-1 {
+    max-width: 190px !important;
+    left: 0 !important;
+    transform: none !important;
+    margin: 20px auto !important;
+    top: -50px !important;
+  }
+  
+  .oort-cloud {
+    max-width: 100% !important;
+    height: 180px !important;
+  }
+
+  .mars {
+    max-width: 180px !important;
+  }
+
+  .phobos {
+    max-width: 40px !important;
+    top: -90px !important;
+    left: 50% !important;
+  }
+
+  .mars-rings {
+    width: 190px !important;
+    left: 0 !important;
+    margin: 15px auto !important;
+  }
+
+  .saturn {
+    width: 190px !important;
+    right: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  .black-hole {
+    max-width: 220px !important;
+  }
+  
+  .clock-wrapper {
+    height: 180px !important;
+    max-width: 180px !important;
+  }
+  
+  .clock {
+    max-width: 180px !important;
+  }
+
+  .clock-hand {
+    left: 88px !important;
+    height: 70px !important;
+    top: -100px !important;
+  }
+
+  .clock-hand-small {
+    left: 88px !important;
+    height: 35px !important;
+    top: -170px !important;
+  }
+}
+
+/* ==========================================================================
+   12. VIEWPORT-BASED ANIMATION PLAY STATE CONTROLS
+   ========================================================================== */
+/* By default, pause all dynamic timeline animations */
+.halleys-commet,
+.voyager-1,
+.vy-canis,
+.phobos,
+.mars,
+.clock-hand,
+.clock-hand-small,
+.earth-dry,
+.bright-sun,
+.earth-fall-dry,
+.earth-fall-dry-wrap,
+.feris-wheel,
+.scroll-arrow,
+#landing-earth::before,
+#landing-earth::after,
+#landing-you {
+  animation-play-state: paused;
+}
+
+/* Play when active or on landing page */
+.active .halleys-commet,
+.active .voyager-1,
+.active .vy-canis,
+.active .phobos,
+.active .mars,
+.active .clock-hand,
+.active .clock-hand-small,
+.active .earth-dry,
+.active .bright-sun,
+.active .earth-fall-dry,
+.active .earth-fall-dry-wrap,
+.active .feris-wheel,
+#landing .scroll-arrow,
+#landing-earth::before,
+#landing-earth::after,
+#landing-you {
+  animation-play-state: running;
+}

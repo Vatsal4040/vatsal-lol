@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Future Timeline | VATSAL.LOL</title>
+  <link rel="canonical" href="https://vatsal.lol/games/future-timeline/">
+  <meta property="og:url" content="https://vatsal.lol/games/future-timeline/">
+  <meta name="description" content="See what the future of the universe will look like. Scroll past as the sun explodes and Andromeda collides with the Milky Way.">
+  <meta property="og:site_name" content="vatsal.lol">
+  <meta property="og:title" content="Future Timeline | VATSAL.LOL">
+  <meta property="og:description" content="See what the future of the universe will look like. Scroll past as the sun explodes and Andromeda collides with the Milky Way.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Future Timeline | VATSAL.LOL">
+  <meta name="twitter:description" content="See what the future of the universe will look like. Scroll past as the sun explodes and Andromeda collides with the Milky Way.">
+  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Preload local Outfit fonts for high performance -->
+  <link rel="preload" href="assets/fonts/Outfit-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Outfit-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Outfit-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Outfit-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- Favicon using the half-earth SVG -->
+  <link rel="icon" type="image/svg+xml" href="assets/half-earth.svg">
+
+  <!-- Parent Stylesheets -->
+  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+  <link rel="stylesheet" href="../../assets/mobile-v3.css">
+  
+  <!-- Local Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Parent Footer Stylesheet -->
+  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+</head>
+<body>
+
+  <!-- Handcrafted fixed starfield and shooting star layers -->
+  <div id="star-field" aria-hidden="true"></div>
+  <div id="shooting-stars" aria-hidden="true"></div>
+
+  <!-- Global Header integrated with parent styling -->
+  <header class="vatsal-header">
+    <a href="../../" class="vatsal-home">vatsal.lol</a>
+  </header>
+
+  <!-- Screensaver Landing Screen -->
+  <section id="landing">
+    <div id="landing-content">
+      <h1 class="landing-title">Future Timeline</h1>
+      <p class="landing-subtitle">A journey through future events.</p>
+      
+      <!-- Labeled Earth Illustration Container -->
+      <div id="landing-earth-container">
+        <!-- Using the half-earth SVG aligned with the design -->
+        <img id="landing-earth" src="assets/half-earth.svg" alt="Earth Illustration" draggable="false">
+        <div id="landing-you">
+          <span class="you-text">YOU</span>
+          <div class="you-line"></div>
+          <span class="you-dot"></span>
+        </div>
+      </div>
+      
+      <!-- Live Clock Display -->
+      <div id="landing-clock">
+        <div id="live-date">-- --- ----</div>
+        <div id="live-time-wrapper">
+          <span id="live-time">00:00:00</span>
+          <div class="live-indicator">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div id="landing-scroll-prompt">
+        <span class="scroll-text">Scroll to begin</span>
+        <svg class="scroll-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Dynamic Mount Point -->
+  <main id="timeline-mount"></main>
+
+  <!-- Quiet, Reflective Ending Section -->
+  <section id="ending-container">
+    <div class="empty-spacer" aria-hidden="true"></div>
+    <div class="ending-dot" aria-hidden="true"></div>
+    
+    <div class="ending-quote-wrapper">
+      <p class="ending-quote font-light">If the life of the universe</p>
+      <p class="ending-quote font-light">was one year...</p>
+      
+      <p class="ending-quote font-medium">you're living in the first</p>
+      <p class="ending-quote font-medium">millisecond of January 1st.</p>
+      
+      <!-- date-animated.svg placed inside quote wrapper as visual pause -->
+      <div class="ending-date-wrapper">
+        <img src="assets/date-animated.svg" class="ending-date-svg" alt="Animated Date" draggable="false">
+      </div>
+      
+      <p class="ending-quote font-light">So...</p>
+      
+      <p class="ending-quote font-bold">Enjoy the ride.</p>
+    </div>
+
+    <div class="ending-ferris-wrapper">
+      <img src="assets/feris-wheel-animated.svg" class="feris-wheel" alt="Ferris Wheel" draggable="false">
+    </div>
+
+    <div class="ending-divider" aria-hidden="true">━━━━━━━━━━━━━━━━━━━━━━</div>
+  </section>
+
+  <!-- Parent Footer Generator Script -->
+  <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  
+  <!-- Page Logic Script -->
+  <script src="script.js" defer></script>
+
+</body>
+</html>

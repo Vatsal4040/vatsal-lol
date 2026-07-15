@@ -1,0 +1,8 @@
+{
+  "name": "Cosmic Snake",
+  "description": "A standalone, fully browser-friendly cosmic space snake game set in a beautiful interstellar space arena.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

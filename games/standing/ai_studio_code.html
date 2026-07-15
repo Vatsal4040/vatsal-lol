@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standing Still — The Relativity of Motion</title>
+    <style>
+        /* --- DESIGN SYSTEM --- */
+        :root {
+            --bg-color: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.5);
+            --accent-glow: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --meter-bg: rgba(255, 255, 255, 0.03);
+            
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
+            
+            --index-size: 40px;
+            --section-padding: 120px;
+            --max-width: 1100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- BACKGROUND ELEMENTS --- */
+        .stars-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 150px 150px, #fff, rgba(0,0,0,0));
+            background-size: 300px 300px;
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- UI COMPONENTS --- */
+        #time-widget {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            z-index: 100;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            pointer-events: none;
+        }
+
+        .widget-label { font-size: 10px; color: var(--text-secondary); margin-bottom: 5px; display: block; }
+        .widget-value { font-size: 24px; color: var(--text-primary); }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 200;
+            letter-spacing: 0.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- EXHIBIT LAYOUT --- */
+        .exhibit {
+            min-height: 100vh;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: var(--section-padding) 40px;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 60px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exhibit-info { display: flex; gap: 30px; }
+        
+        .exhibit-index {
+            flex-shrink: 0;
+            width: var(--index-size);
+            height: var(--index-size);
+            border: 1px solid var(--text-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .exhibit-text h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .exhibit-text p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        /* --- METER SYSTEM (THE HERO) --- */
+        .exhibit-hero {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .illustration-container {
+            height: 240px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .illustration-container img {
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .meter-container {
+            position: relative;
+            background: var(--meter-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 4px;
+            box-shadow: inset 0 0 40px rgba(255,255,255,0.02);
+        }
+
+        .meter-label {
+            position: absolute;
+            top: 15px;
+            left: 30px;
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meter-display {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .meter-digits {
+            font-family: var(--font-mono);
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 400;
+            letter-spacing: -2px;
+            color: var(--text-primary);
+        }
+
+        .meter-unit {
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .meter-footer {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* --- SPECIAL ANIMATIONS --- */
+        .anim-rotate { animation: rotate 60s linear infinite; }
+        .anim-drift { animation: drift 20s ease-in-out infinite alternate; }
+        
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+
+        /* --- MULTIVERSE VARIANT --- */
+        .multiverse-glitch { filter: blur(0.5px); opacity: 0.8; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .exhibit { grid-template-columns: 1fr; gap: 40px; text-align: center; padding: 80px 20px; }
+            .exhibit-info { flex-direction: column; align-items: center; }
+            header h1 { font-size: 2.5rem; }
+            #time-widget { top: 20px; left: 20px; padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars-overlay"></div>
+
+    <div id="time-widget">
+        <span class="widget-label">Time on Page</span>
+        <div class="widget-value" id="global-timer">00:00:00</div>
+    </div>
+
+    <header>
+        <h1>Standing Still</h1>
+        <p>The Relativity of Motion</p>
+    </header>
+
+    <main id="exhibit-pipeline">
+        <!-- Tectonic Plates -->
+        <section class="exhibit" id="ex-tectonic">
+            <div class="exhibit-info">
+                <div class="exhibit-index">01</div>
+                <div class="exhibit-text">
+                    <h2>Tectonic Plates</h2>
+                    <p>The Earth's crust moves slowly over the mantle. Since you arrived, you have traveled:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <!-- Note: Using placeholder paths as per technical requirements to use supplied assets -->
+                    <img src="tectonic.png" class="anim-drift" alt="Tectonic Illustration">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-1">000000000000</div>
+                        <span class="meter-unit">nm</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: 2 inches / year</span>
+                        <span>0.00000000032 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earth Rotation -->
+        <section class="exhibit" id="ex-rotation">
+            <div class="exhibit-info">
+                <div class="exhibit-index">02</div>
+                <div class="exhibit-text">
+                    <h2>Earth's Rotation</h2>
+                    <p>The Earth spins on its axis at the equator. Relative to the planet's center, you have traveled:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="earth-rotation.png" class="anim-rotate" alt="Rotating Earth">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-2">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: 1,037 mph</span>
+                        <span>1,670 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Earth Orbit -->
+        <section class="exhibit" id="ex-orbit">
+            <div class="exhibit-info">
+                <div class="exhibit-index">03</div>
+                <div class="exhibit-text">
+                    <h2>Earth Orbits the Sun</h2>
+                    <p>The Earth orbits the Sun at an average of 66,600 mph. Since you arrived:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container anim-rotate">
+                    <img src="earth-orbit.png" alt="Earth Orbit">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-3" style="color: #FFB800;">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: 66,600 mph</span>
+                        <span>107,182 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solar Motion -->
+        <section class="exhibit" id="ex-solar">
+            <div class="exhibit-info">
+                <div class="exhibit-index">04</div>
+                <div class="exhibit-text">
+                    <h2>The Sun's Motion</h2>
+                    <p>The Sun moves relative to nearby stars. Since you arrived, you have traveled:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="solar-motion.png" alt="Solar Motion">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-4" style="color: #FF7A00;">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: ~439,000 mph</span>
+                        <span>~706,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milky Way -->
+        <section class="exhibit" id="ex-milkyway">
+            <div class="exhibit-info">
+                <div class="exhibit-index">05</div>
+                <div class="exhibit-text">
+                    <h2>Through the Milky Way</h2>
+                    <p>The Sun orbits the center of our galaxy. Since you arrived:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="milky-way.png" alt="Milky Way">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-5" style="color: #E0B0FF;">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: ~483,000 mph</span>
+                        <span>~778,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Andromeda -->
+        <section class="exhibit" id="ex-andromeda">
+            <div class="exhibit-info">
+                <div class="exhibit-index">06</div>
+                <div class="exhibit-text">
+                    <h2>Toward Andromeda</h2>
+                    <p>The Milky Way is moving toward the Andromeda Galaxy. Since you arrived:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="andromeda.png" alt="Andromeda">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-6" style="color: #FF4D4D;">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: ~1,300,000 mph</span>
+                        <span>~2,092,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cosmic Web -->
+        <section class="exhibit" id="ex-cosmic">
+            <div class="exhibit-info">
+                <div class="exhibit-index">07</div>
+                <div class="exhibit-text">
+                    <h2>The Cosmic Web</h2>
+                    <p>The Milky Way moves through the cosmic web. Since you arrived:</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="cosmic-web.png" alt="Cosmic Web">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Distance Since You Arrived</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-7" style="color: #7094FF;">00000000.00</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: ~1,300,000 mph</span>
+                        <span>~2,092,000 km/h</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multiverse -->
+        <section class="exhibit" id="ex-multiverse">
+            <div class="exhibit-info">
+                <div class="exhibit-index">08</div>
+                <div class="exhibit-text">
+                    <h2>The Multiverse?</h2>
+                    <p>If the Multiverse exists, its scale is beyond imagination. Numbers stop mattering.</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <img src="multiverse.png" alt="Multiverse">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">Beyond Measurement</span>
+                    <div class="meter-display">
+                        <div class="meter-digits multiverse-glitch" id="meter-8">92384477905628</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: Beyond measurement</span>
+                        <span>Infinity?</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speed is Relative (Final Perspective) -->
+        <section class="exhibit" id="ex-final">
+            <div class="exhibit-info">
+                <div class="exhibit-index">09</div>
+                <div class="exhibit-text">
+                    <h2>Speed is Relative</h2>
+                    <p>From your own center, you haven't moved at all.</p>
+                </div>
+            </div>
+            <div class="exhibit-hero">
+                <div class="illustration-container">
+                    <!-- Human silhouette/standing still image -->
+                    <img src="perspective.png" alt="Perspective">
+                </div>
+                <div class="meter-container">
+                    <span class="meter-label">From Your Perspective</span>
+                    <div class="meter-display">
+                        <div class="meter-digits" id="meter-9">000000000000</div>
+                        <span class="meter-unit">km</span>
+                    </div>
+                    <div class="meter-footer">
+                        <span>Speed: 0 km/h</span>
+                        <span>Absolute Stillness</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 100px 20px; text-align: center; color: var(--text-secondary); font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
+        There is no universal "still".<br>
+        Motion only exists relative to something else.
+    </footer>
+
+    <script>
+        /* --- MOTION ENGINE --- */
+        const App = {
+            startTime: Date.now(),
+            
+            // Speeds in km/h
+            speeds: {
+                tectonic: 0.00000000032,
+                rotation: 1670,
+                orbit: 107182,
+                solar: 706000,
+                milkyway: 778000,
+                andromeda: 2092000,
+                cosmic: 2092000
+            },
+
+            init() {
+                this.timerElement = document.getElementById('global-timer');
+                this.meters = {
+                    tectonic: document.getElementById('meter-1'),
+                    rotation: document.getElementById('meter-2'),
+                    orbit: document.getElementById('meter-3'),
+                    solar: document.getElementById('meter-4'),
+                    milkyway: document.getElementById('meter-5'),
+                    andromeda: document.getElementById('meter-6'),
+                    cosmic: document.getElementById('meter-7'),
+                    multiverse: document.getElementById('meter-8'),
+                    final: document.getElementById('meter-9')
+                };
+
+                this.animate();
+            },
+
+            formatTime(ms) {
+                let totalSeconds = Math.floor(ms / 1000);
+                let hours = Math.floor(totalSeconds / 3600);
+                let mins = Math.floor((totalSeconds % 3600) / 60);
+                let secs = totalSeconds % 60;
+                return [hours, mins, secs].map(v => v.toString().padStart(2, '0')).join(':');
+            },
+
+            updateMeters(elapsedSeconds) {
+                // Tectonic (displayed in nm)
+                // 1 km = 1,000,000,000,000 nm
+                const tectDist = (this.speeds.tectonic * (elapsedSeconds / 3600)) * 1000000000000;
+                this.meters.tectonic.innerText = Math.floor(tectDist).toString().padStart(12, '0');
+
+                // Standard km meters
+                const updateKm = (id, speed) => {
+                    const dist = speed * (elapsedSeconds / 3600);
+                    this.meters[id].innerText = dist.toFixed(2).toString().padStart(11, '0');
+                };
+
+                updateKm('rotation', this.speeds.rotation);
+                updateKm('orbit', this.speeds.orbit);
+                updateKm('solar', this.speeds.solar);
+                updateKm('milkyway', this.speeds.milkyway);
+                updateKm('andromeda', this.speeds.andromeda);
+                updateKm('cosmic', this.speeds.cosmic);
+
+                // Multiverse (Random rolling effect)
+                this.meters.multiverse.innerText = Math.floor(Math.random() * 99999999999999).toString().padStart(14, '0');
+
+                // Final Perspective
+                this.meters.final.innerText = "00000000.00";
+            },
+
+            animate() {
+                const elapsedMs = Date.now() - this.startTime;
+                
+                // Update Global Clock
+                this.timerElement.innerText = this.formatTime(elapsedMs);
+
+                // Update All Exhibit Meters
+                this.updateMeters(elapsedMs);
+
+                requestAnimationFrame(() => this.animate());
+            }
+        };
+
+        // Start experience
+        window.addEventListener('DOMContentLoaded', () => App.init());
+    </script>
+</body>
+</html>

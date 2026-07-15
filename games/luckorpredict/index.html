@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Luck or Predict | VATSAL.LOL</title>
+    <link rel="canonical" href="https://vatsal.lol/games/luckorpredict/">
+    <meta property="og:url" content="https://vatsal.lol/games/luckorpredict/">
+    
+    <!-- Shared VATSAL Assets -->
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+    <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+    <link rel="stylesheet" href="../../assets/mobile-v3.css"> 
+    <link rel="stylesheet" href="style.css">
+    
+    <meta name="description" content="Trust your luck, test your prediction in this premium card betting experience on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="Luck or Predict | VATSAL.LOL">
+    <meta property="og:description" content="Trust your luck, test your prediction in this premium card betting experience on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Luck or Predict | VATSAL.LOL">
+    <meta name="twitter:description" content="Trust your luck, test your prediction in this premium card betting experience on VATSAL.LOL. No install, no login - just fun!">
+    <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+<body>
+    <header class="vatsal-header" id="vatsalHeader">
+        <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+    </header>
+    <div id="game-container">
+        <!-- Start Screen -->
+        <section id="start-screen" class="screen active">
+            <div class="logo-area">
+                <h1 class="premium-title">Luck or Predict</h1>
+                <p class="tagline">Trust your luck. Test your prediction.</p>
+            </div>
+            
+            <div class="main-menu">
+                <button onclick="game.initMode('classic')" class="menu-btn primary">Classic Mode</button>
+                <button onclick="game.initMode('charm')" class="menu-btn secondary">Charm / Jinx</button>
+                <div class="menu-row">
+                    <button onclick="ui.toggleModal('stats-modal')" class="menu-btn outline">Stats</button>
+                    <button onclick="ui.toggleModal('how-to-modal')" class="menu-btn outline">Help</button>
+                </div>
+            </div>
+
+            <div class="footer-disclaimer">
+                ₹ values are virtual game currency. No real money is used.
+            </div>
+            
+            <button id="sound-btn" onclick="audio.toggle()" aria-label="Toggle Sound">🔊</button>
+        </section>
+
+        <!-- Game Board -->
+        <section id="game-board" class="screen">
+            <div class="hud">
+                <button onclick="game.exitToMenu()" class="exit-btn">Menu</button>
+                <div class="balance-pill">
+                    <span class="currency-label">Virtual Balance</span>
+                    <span id="balance-val">₹1000</span>
+                </div>
+            </div>
+
+            <div class="table">
+                <!-- Visual deck pile -->
+                <div class="deck-pile"></div>
+
+                <div class="middle-area">
+                    <!-- Target Card Display for Charm/Jinx mode above the middle container -->
+                    <div id="charm-target-indicator" class="target-indicator hidden">
+                        <span class="indicator-label">Target to Play</span>
+                        <span id="charm-target-value" class="indicator-value">♥ A</span>
+                    </div>
+
+                    <div id="middle-card-container" class="card-slot large-slot" onclick="game.handleMiddleClick()">
+                        <div id="tap-prompt" class="hidden">Tap to Reveal</div>
+                    </div>
+                </div>
+
+                <div class="deal-area">
+                    <div class="side-container">
+                        <div class="side-label">ANDAR</div>
+                        <div id="andar-stack" class="stack"></div>
+                    </div>
+                    <div class="side-container">
+                        <div class="side-label">BAHAR</div>
+                        <div id="bahar-stack" class="stack"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel UI -->
+            <div id="controls-panel" class="controls-panel hidden">
+                <div id="charm-selection" class="selection-box hidden">
+                    <p class="panel-label">Select Target Card</p>
+                    <div class="select-row">
+                        <select id="charm-rank"></select>
+                        <select id="charm-suit"></select>
+                    </div>
+                    <p id="target-preview" class="target-preview">Target: ♠ A</p>
+                </div>
+
+                <div class="bet-selector">
+                    <p class="panel-label">Select Bet Amount</p>
+                    <div class="chip-row">
+                        <button class="chip" onclick="game.setBet(10)">10</button>
+                        <button class="chip" onclick="game.setBet(25)">25</button>
+                        <button class="chip active" onclick="game.setBet(50)">50</button>
+                        <button class="chip" onclick="game.setBet(100)">100</button>
+                        <button class="chip" onclick="game.setBet(250)">250</button>
+                        <button class="chip" onclick="game.setBet(500)">500</button>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button id="btn-predict-andar" class="predict-btn" onclick="game.predict('andar')">Predict Andar</button>
+                    <button id="btn-predict-bahar" class="predict-btn" onclick="game.predict('bahar')">Predict Bahar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        <div id="result-modal" class="modal hidden">
+            <div class="result-content">
+                <div id="result-icon">🎉</div>
+                <h2 id="result-status">YOU WON!</h2>
+                <div class="result-payout" id="result-payout">+₹0</div>
+                <div class="result-stats">Balance: <span id="result-balance">₹1000</span></div>
+                <div class="result-actions">
+                    <button onclick="game.resetRound()" class="menu-btn primary">Play Again</button>
+                    <button onclick="game.exitToMenu()" class="menu-btn outline">Main Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="stats-modal" class="modal hidden" onclick="ui.toggleModal('stats-modal')">
+            <div class="modal-card" onclick="event.stopPropagation()">
+                <h3>Statistics</h3>
+                <div id="stats-grid"></div>
+                <button onclick="ui.toggleModal('stats-modal')" class="menu-btn outline">Close</button>
+            </div>
+        </div>
+
+        <div id="how-to-modal" class="modal hidden" onclick="ui.toggleModal('how-to-modal')">
+            <div class="modal-card" onclick="event.stopPropagation()">
+                <h3>How to Play</h3>
+                <div class="help-scroll">
+                    <p><strong>Classic:</strong> Reveal the middle card. Predict if a card of the same rank lands on Andar or Bahar.</p>
+                    <p><strong>Charm / Jinx:</strong> Predict the exact rank and suit, then choose a side. Win 10x your bet.</p>
+                </div>
+                <button onclick="ui.toggleModal('how-to-modal')" class="menu-btn outline">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="../../assets/vatsal-footer-v25.js" defer></script>
+    <script>
+      // Trigger recommendations when predicting
+      const originalPredict = game.predict;
+      game.predict = function(...args) {
+          originalPredict.apply(this, args);
+          window.VatsalLolGameComplete?.();
+      };
+    </script>
+</body>
+</html>

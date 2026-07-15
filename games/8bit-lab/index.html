@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>8 Bit Lab | VATSAL.LOL</title>
+    <link rel="canonical" href="https://vatsal.lol/games/8bit-lab/">
+    <meta property="og:url" content="https://vatsal.lol/games/8bit-lab/">
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+    <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+    <link rel="stylesheet" href="../../assets/mobile-v3.css">
+    <link rel="stylesheet" type="text/css" href="style.css?nocache=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="Experiment in a state of the art chemical, physical, and biological space simulator on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="8 Bit Lab | VATSAL.LOL">
+    <meta property="og:description" content="Experiment in a state of the art chemical, physical, and biological space simulator on VATSAL.LOL. No install, no login - just fun!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="8 Bit Lab | VATSAL.LOL">
+    <meta name="twitter:description" content="Experiment in a state of the art chemical, physical, and biological space simulator on VATSAL.LOL. No install, no login - just fun!">
+    <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+</head>
+
+<body>
+    <header class="vatsal-header" id="vatsalHeader">
+        <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+    </header>
+    <div id="totalWrapper">
+        <div id="gameWrapper">
+            <!-- Centered RGB Header Title -->
+            <h1 class="rgb-title">8-Bit LAB</h1>
+
+            <!-- 1. Centered Canvas Div -->
+            <div id="gameDiv">
+                <canvas id="renderer"></canvas>
+                <div id="debugOverlay" style="display: none;"></div>
+            </div>
+
+            <!-- 2. Monospace HUD Stats Bar -->
+            <div id="statsBar">
+                <span id="hudCoords">x: 0, y: 0</span>
+                <span id="hudParticles">0 pxls</span>
+                <span id="hudTPS">30 tps</span>
+                <span id="hudBrush">Brush: M</span>
+                <span id="hudGravity">Gravity: ↓</span>
+            </div>
+
+            <!-- 3. Compact Control Dashboard -->
+            <div id="controlPanel">
+                <!-- Row 1: System controls -->
+                <div class="controls-row">
+                    <button id="playBtn" class="sys-btn">Pause</button>
+                    <button id="stepBtn" class="sys-btn">&gt;</button>
+                    <button id="brushDec" class="sys-btn">-</button>
+                    <button id="brushInc" class="sys-btn">+</button>
+                    <button id="clearBtn" class="sys-btn">Reset</button>
+                    <label class="replace-label">
+                        <input type="checkbox" id="replaceChk"> Replace
+                    </label>
+                    <button id="debugBtn" class="sys-btn">Debug (F3)</button>
+                    <button id="undoBtn" class="sys-btn">Undo</button>
+                    <button id="redoBtn" class="sys-btn">Redo</button>
+                </div>
+
+                <!-- Row 2: World presets buttons (Relocated above Gravity) -->
+                <div class="controls-row-presets">
+                    <span class="row-label">PRESETS:</span>
+                    <div id="scenePresets" class="presets-grid">
+                        <!-- Dynamic scene presets populated here -->
+                    </div>
+                </div>
+
+                <!-- Row 3: Gravity selectors -->
+                <div class="controls-row-gravity">
+                    <span class="row-label">GRAVITY:</span>
+                    <button id="gravDown" class="active">↓ Down</button>
+                    <button id="gravUp">↑ Up</button>
+                    <button id="gravLeft">← Left</button>
+                    <button id="gravRight">→ Right</button>
+                    <button id="gravOff">○ Off</button>
+                </div>
+
+                <!-- Row 4: Category Tabs -->
+                <div id="categoryTabs" class="controls-row category-tabs">
+                    <!-- Dynamic tabs populated here -->
+                </div>
+
+                <!-- Row 5: Materials element buttons -->
+                <div id="materialButtons" class="controls-row elements-grid">
+                    <!-- Dynamic material buttons populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Configurations & Registries -->
+    <script src="src/core/EngineConfig.js"></script>
+    <script src="src/registry/MaterialRegistry.js"></script>
+    <script src="src/registry/ReactionRegistry.js"></script>
+    <script src="src/registry/ToolRegistry.js"></script>
+    <script src="src/registry/SceneRegistry.js"></script>
+
+    <!-- Material element registrations -->
+    <script src="src/materials/powders.js"></script>
+    <script src="src/materials/liquids.js"></script>
+    <script src="src/materials/gases.js"></script>
+    <script src="src/materials/solids.js"></script>
+    <script src="src/materials/reactions.js"></script>
+
+    <!-- Core structures -->
+    <script src="src/core/Grid.js"></script>
+    <script src="src/core/Scheduler.js"></script>
+    
+    <!-- Simulation systems -->
+    <script src="src/simulation/Physics.js"></script>
+    <script src="src/simulation/Temperature.js"></script>
+    <script src="src/simulation/Electricity.js"></script>
+    <script src="src/simulation/Reactions.js"></script>
+
+    <!-- Graphics engines -->
+    <script src="src/rendering/EffectsRenderer.js"></script>
+    <script src="src/rendering/Lighting.js"></script>
+    <script src="src/rendering/CanvasRenderer.js"></script>
+    <script src="src/rendering/Renderer.js"></script>
+    <script src="src/core/Engine.js"></script>
+
+    <!-- UI Controllers -->
+    <script src="src/ui/Toolbar.js"></script>
+    <script src="src/ui/MaterialPanel.js"></script>
+    <script src="src/ui/Menus.js"></script>
+
+    <!-- Entry Point -->
+    <script src="src/main.js"></script>
+    <script src="../../assets/vatsal-footer-v25.js" defer></script>
+    <script>
+      setTimeout(() => { window.VatsalLolGameComplete?.(); }, 5000);
+    </script>
+</body>
+
+</html>

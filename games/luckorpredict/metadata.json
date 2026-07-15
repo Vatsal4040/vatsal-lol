@@ -1,0 +1,6 @@
+{
+  "name": "Luck or Predict",
+  "description": "Trust your luck. Test your prediction. Premium Andar Bahar card game.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
