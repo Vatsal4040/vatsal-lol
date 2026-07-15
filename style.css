@@ -338,33 +338,39 @@ body[data-time="latenight"] {
 
 /* FOOTER FLOW */
 .v2-footer-flow {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 50px 40px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px 20px 10px;
     position: relative;
     z-index: 10;
 }
 .v2-credits { color: rgba(255,255,255,0.35); font-size: 13px; }
 
 /* FLASH CHARACTER */
+.flash-mascot-container {
+    width: 100%;
+    padding: 0 50px 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 10;
+}
 .flash-mascot {
-    position: absolute;
-    left: 50px;
-    bottom: 40px;
+    position: relative;
     width: 55px; 
     height: 55px; 
     cursor: pointer;
 }
-.f-char { width: 100%; height: 100%; object-fit: contain; }
+.f-char { width: 100%; height: 100%; object-fit: contain; display: block; }
 .f-sprint-container {
-    position: fixed; bottom: 15px; left: -200px;
-    width: 200px; height: 100px; display: none; align-items: center;
+    position: fixed; bottom: 0; left: -200px;
+    width: 200px; height: 55px; display: none; align-items: flex-end;
 }
 .f-sprint-container.running { display: flex; animation: sprint 0.7s linear forwards; }
-.f-running-img { height: 70px; position: relative; z-index: 2; }
+.f-running-img { height: 55px; position: relative; z-index: 2; display: block; }
 .f-lightning {
     position: absolute; right: 0; width: 400px; height: 50px;
     background-size: contain; background-repeat: no-repeat; opacity: 0.6;
@@ -414,6 +420,13 @@ body[data-time="latenight"] {
 
 /* REUSE ORIGINAL FOOTER STYLES */
 .vatsal-v2-footer { background: transparent; text-align: center; padding: 20px 20px; }
+.vatsal-v2-footer h2 { font-size: 20px; margin-top: 30px; margin-bottom: 10px; font-family: var(--font-main); font-weight: 600; color: #fff; }
+.vatsal-v2-link-label { font-size: 13px; opacity: 0.5; margin-top: 15px; }
+.vatsal-v2-links { display: flex; list-style: none; gap: 20px; justify-content: center; margin-top: 15px; }
+.vatsal-v2-links a, .vatsal-v2-links button { display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; transition: transform 0.2s ease; }
+.vatsal-v2-links a:hover, .vatsal-v2-links button:hover { transform: scale(1.15); }
+.vatsal-v2-links img { width: 24px; height: 24px; object-fit: contain; }
+.vatsal-v2-links img[src*="telegram"] { width: auto; height: 24px; }
 
 @media (max-width: 1024px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
@@ -424,6 +437,12 @@ body[data-time="latenight"] {
     .v2-header { padding: 20px; }
     .v2-title { font-size: 32px; }
     .v2-tagline { display: none; }
+}
+
+@media (max-width: 768px) {
+    .view-grid .status-area {
+        display: none !important;
+    }
 }
 .status-area {
     min-width: 170px;

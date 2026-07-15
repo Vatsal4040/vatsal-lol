@@ -323,8 +323,13 @@ function setupToggle() {
 
   function setupContact() {
     const panel = document.getElementById('contactPanel');
-    document.getElementById('contactBtn').onclick = () => panel.classList.add('active');
-    document.getElementById('closePanel').onclick = () => panel.classList.remove('active');
+    if (!panel) return;
+    const triggers = document.querySelectorAll('.vatsal-v2-coffee-trigger');
+    triggers.forEach(btn => {
+        btn.onclick = () => panel.classList.add('active');
+    });
+    const closeBtn = document.getElementById('closePanel');
+    if (closeBtn) closeBtn.onclick = () => panel.classList.remove('active');
     panel.onclick = (e) => { if(e.target === panel) panel.classList.remove('active'); };
   }
 
