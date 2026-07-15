@@ -422,7 +422,15 @@ body[data-time="latenight"] {
 .vatsal-v2-footer { background: transparent; text-align: center; padding: 20px 20px; }
 .vatsal-v2-footer h2 { font-size: 20px; margin-top: 30px; margin-bottom: 10px; font-family: var(--font-main); font-weight: 600; color: #fff; }
 .vatsal-v2-link-label { font-size: 13px; opacity: 0.5; margin-top: 15px; }
-.vatsal-v2-links { display: flex; list-style: none; gap: 20px; justify-content: center; margin-top: 15px; }
+.vatsal-v2-links {
+    display: flex !important;
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 15px 0 0 0 !important;
+    gap: 20px !important;
+    justify-content: center !important;
+}
 .vatsal-v2-links a, .vatsal-v2-links button { display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; transition: transform 0.2s ease; }
 .vatsal-v2-links a:hover, .vatsal-v2-links button:hover { transform: scale(1.15); }
 .vatsal-v2-links img { width: 24px; height: 24px; object-fit: contain; }
