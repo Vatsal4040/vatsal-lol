@@ -315,7 +315,7 @@ body[data-time="latenight"] {
 .view-grid .grid-view { display: block; }
 
 .cards-grid {
-    max-width: 2000px; margin: 0 auto;
+    max-width: 1650px; margin: 0 auto;
     display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 39px; padding: 0 50px 20px;
 }
