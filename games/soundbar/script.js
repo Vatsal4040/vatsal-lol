@@ -1,30 +1,88 @@
 // Sound Bar Core Logic Script (VISION.md compliant)
 // Handles audio playback, playlist switching, volume state, controller loading, transitions, and space background.
 
-const SONGS = [
-  // English
-  { title: "Dream Waves", artist: "Coldplay", path: "songs/engg/01 - A Head Full Of Dreams.mp3", category: "English" },
-  { title: "Magic", artist: "Coldplay", path: "songs/engg/02 - Magic.mp3", category: "English" },
-  { title: "Gravity", artist: "Coldplay", path: "songs/engg/06 - Gravity.mp3", category: "English" },
-  { title: "I'm an Albatraoz", artist: "AronChupa", path: "songs/engg/AronChupa - I'm an Albatraoz _ OFFICIAL VIDEO.m4a", category: "English" },
-  { title: "Deep Jungle Walk", artist: "Astrix", path: "songs/engg/Astrix - Deep Jungle Walk.m4a", category: "English" },
-  { title: "Gravity (Live)", artist: "John Mayer", path: "songs/engg/John Mayer - Gravity [HD].m4a", category: "English" },
-  // Bollywood
-  { title: "Sunn Raha Hai Na Tu", artist: "Ankit Tiwari", path: "songs/hindi/002 Sunn Raha Hai.mp3", category: "Bollywood" },
-  { title: "Chahun Main Ya Naa", artist: "Arijit Singh", path: "songs/hindi/003 Chahun Main Ya Naa.mp3", category: "Bollywood" },
-  { title: "Hum Mar Jayenge", artist: "Arijit Singh", path: "songs/hindi/004 Hum Mar Jayenge.mp3", category: "Bollywood" },
-  { title: "Meri Aashiqui", artist: "Arijit Singh", path: "songs/hindi/005 Meri Aashiqui.mp3", category: "Bollywood" },
-  { title: "Piya Aaye Na", artist: "Arijit Singh & Tulsi Kumar", path: "songs/hindi/006 Piya Aaye Na.mp3", category: "Bollywood" },
-  // Old Dad Car Songs
-  { title: "Pal Pal Dil Ke Paas", artist: "Kishore Kumar", path: "songs/old/01. Black Mail - Pal Pal Dil Ke Paas.mp3", category: "Old Dad Car Songs" },
-  { title: "Hamein Tumse Pyar Kitna", artist: "Kishore Kumar", path: "songs/old/02. Kudrat - Hamein Tumse Pyar Kitna.mp3", category: "Old Dad Car Songs" },
-  { title: "Dil Kya Kare", artist: "Kishore Kumar", path: "songs/old/03. Julie - Dil Kya Kare.mp3", category: "Old Dad Car Songs" },
-  { title: "Pyar Manga Hai", artist: "Kishore Kumar", path: "songs/old/04. College Girl - Pyar Manga Hai.mp3", category: "Old Dad Car Songs" },
-  { title: "Muskurata Hua", artist: "Kishore Kumar", path: "songs/old/05. Lahoo Ke Do Rang - Muskurata Hua.mp3", category: "Old Dad Car Songs" }
-];
+const STATIONS = {
+  Party: [
+    "AronChupa - I'm an Albatraoz _ OFFICIAL VIDEO.m4a",
+    "Astrix - Deep Jungle Walk.m4a",
+    "Babalos - Snow crystal 185 bpm.m4a",
+    "Belik boom - Avada kadabra (Harry potter).m4a",
+    "Belik boom - Gulab Jamun (Original Mix).m4a",
+    "Bhayanak Atma feat. Gagan Mudgal.m4a",
+    "Blastoyz - Parvati Valley-mc.mp3",
+    "Hardwell & Armin van Buuren - Off The Hook [OUT NOW!]_HIGH-mc.mp3",
+    "Mandragora & Devochka - Shiva Style (Original Mix).m4a",
+    "OxiDaksi_-_Poison_Turtle_178[www.MP3Fiber.com].mp3",
+    "Shpongle - Divine Moments Of Truth (Astrix, Loud & L.S.D Remix).m4a",
+    "Technical Hitch - Mama India (Shantrip).m4a",
+    "Technical Hitch - Mama India (The Revolution).m4a",
+    "UnderCover_-_Balikali_Original_mix[www.MP3Fiber.com].mp3"
+  ],
+  Listen: [
+    "01 - A Head Full Of Dreams.mp3",
+    "02 - Magic.mp3",
+    "03 - Hymn For The Weekend.mp3",
+    "06 - Gravity.mp3",
+    "08 - A Message.mp3",
+    "08 - A Sky Full Of Stars.mp3",
+    "09 - Amazing Day.mp3",
+    "11 - Up&Up.mp3",
+    "John Mayer - Ain't No Sunshine  - Live at the Crossroads Guitar Festival 2010.m4a",
+    "John Mayer - Gravity [HD].m4a",
+    "Led Zeppelin - Stairway To Heaven (NOT LIVE) (Perfect Audio).m4a",
+    "LONDON, ENGLAND Green Day Crowd Singing Bohemian Rhapsody - Hyde Park July 1st, .m4a",
+    "Passenger - Let Her Go (Lyrics).m4a",
+    "The Beatles - Hey Jude.m4a",
+    "Wiz Khalifa - See You Again ft. Charlie Puth [Official Video] Furious 7 Soundtra.m4a"
+  ],
+  Bollywood: [
+    "002 Sunn Raha Hai.mp3",
+    "01  AGAR TUM MIL JAO-------GHOSAL,, --01.mp3",
+    "01 .Soniye.mp3",
+    "01 dil ibaadt.mp3",
+    "014 Dhoom Machale Dhoom.mp3",
+    "019 Ram Chahe Leela.mp3",
+    "02 Samjhawan - HUMPTY SHARMA KI DULHANIA.mp3",
+    "021 Ang Laga De.mp3",
+    "030 Kashmir Main Tu Kanyakumari.mp3",
+    "031 1234 Get On The Dance Floor.mp3",
+    "037 Balam Pichkari.mp3",
+    "073 Naino Mein Sapna.mp3",
+    "074 Taki Taki.mp3",
+    "113 You Are My Love.mp3",
+    "124 Tera Yaar Hoon Main.mp3"
+  ],
+  "Car Drive": [
+    "002 AAP TO AISE NA THE = TOO IS TARAH SE.mp3",
+    "003 DHARAM VEER = O MERI MAHEBOOBA.mp3",
+    "004 DO RAASTE = YE RESHMI ZULFE.mp3",
+    "005 FARZ = MAST BAHARON KA.mp3",
+    "006 JEENE KI RAAH = AANE SE JISKE AAYE BAHAR.mp3",
+    "007 KANYADAAN = LIKHE JO KHAT TUJHE.mp3",
+    "008 LOAFER = AAJ MAUSAM BADA BE- IMAN HAI.mp3",
+    "01. Black Mail - Pal Pal Dil Ke Paas.mp3",
+    "02. Kudrat - Hamein Tumse Pyar Kitna.mp3",
+    "03. Julie - Dil Kya Kare.mp3",
+    "04. College Girl - Pyar Manga Hai.mp3",
+    "05. Lahoo Ke Do Rang - Muskurata Hua.mp3",
+    "06. Darling Darling - Aise Na Mujhe Tu.mp3",
+    "07. Dream Girl - Title.mp3",
+    "08. Kalakaar - Neele Neele Amber Par.mp3",
+    "09. Karz - Om Shanti Om.mp3",
+    "10. Sanam Teri Kasam - Kitne Bhi Tu Karle.mp3",
+    "11. Saagar - Saagar Jaisi Aankhonwali.mp3"
+  ]
+};
+
+const STATION_FOLDERS = {
+  Party: "BPM",
+  Listen: "ENG",
+  Bollywood: "HIN",
+  "Car Drive": "DAD"
+};
 
 const CONTROLLERS = {
-  ball: '🎳',
+  ball: '⚽',
   pencil: '✏️',
   eclipse: '🌞',
   pump: '🚲',
@@ -37,10 +95,10 @@ const CONTROLLERS = {
   thermometer: '🌡️',
   battery: '🔋',
   dart: '🎯',
-  archery: '🏹',
+  bowling: '🎳',
+  spaceInvaders: '👾',
   crane: '🏗',
   coffee: '☕',
-  safe: '🔐',
   slot: '🎰'
 };
 
@@ -49,9 +107,9 @@ window.controllers = window.controllers || {};
 
 // State
 let audio = new Audio();
-let currentSongIndex = 0;
+let currentStation = "Party";
+let currentSongFilename = "";
 let volume = 0.63; // 0.0 to 1.0
-let activeCategory = "English";
 
 let activeControllerId = null;
 let activeController = null;
@@ -77,6 +135,18 @@ const controllerAPI = {
 // UI Render & Logic Helpers
 // ----------------------------------------------------
 
+function getCleanSongTitle(filename) {
+  let name = filename.replace(/\.[^/.]+$/, "");
+  name = name.replace(/^\d+[\s.-]*/, "");
+  name = name.replace(/_mc|\[HD\]|_[\s]*OFFICIAL[\s]*VIDEO|\[www\.MP3Fiber\.com\]|\(NOT LIVE\)|\(Perfect Audio\)/gi, "");
+  name = name.replace(/_/g, " ").replace(/\s+/g, " ").trim();
+  
+  if (name.length > 38) {
+    name = name.substring(0, 35) + "...";
+  }
+  return name;
+}
+
 function updateVolumeUI() {
   const pct = Math.round(volume * 100);
   const badge = document.getElementById('volume-badge');
@@ -85,11 +155,34 @@ function updateVolumeUI() {
   }
 }
 
-function loadSong() {
-  const song = SONGS[currentSongIndex];
-  audio.src = song.path;
+function loadRandomSongFromStation() {
+  const playlist = STATIONS[currentStation];
+  if (!playlist || playlist.length === 0) return;
+  
+  let nextIndex = Math.floor(Math.random() * playlist.length);
+  if (playlist.length > 1) {
+    while (playlist[nextIndex] === currentSongFilename) {
+      nextIndex = Math.floor(Math.random() * playlist.length);
+    }
+  }
+  
+  currentSongFilename = playlist[nextIndex];
+  const folder = STATION_FOLDERS[currentStation];
+  const songPath = `songs/${folder}/${currentSongFilename}`;
+  
+  audio.src = songPath;
   audio.load();
-  document.getElementById('song-select').value = currentSongIndex;
+  
+  const cleanTitle = getCleanSongTitle(currentSongFilename);
+  const displayBanner = document.getElementById('station-now-playing');
+  if (displayBanner) {
+    displayBanner.textContent = `Now Playing: ${cleanTitle}`;
+  }
+  
+  // Set starting time to 30s + slight random offset (live tuning effect)
+  audio.addEventListener('loadedmetadata', () => {
+    audio.currentTime = 30 + Math.floor(Math.random() * 15);
+  }, { once: true });
 }
 
 function playTrack() {
@@ -107,26 +200,6 @@ function pauseTrack() {
 
 function togglePlay() {
   if (audio.paused) playTrack(); else pauseTrack();
-}
-
-// Populate Songs list matching selected playlist category
-function populateSongDropdown() {
-  const songSelect = document.getElementById('song-select');
-  songSelect.innerHTML = '';
-  
-  let firstIdxInCat = null;
-
-  SONGS.forEach((song, idx) => {
-    if (song.category === activeCategory) {
-      if (firstIdxInCat === null) firstIdxInCat = idx;
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.textContent = `${song.title} — ${song.artist}`;
-      songSelect.appendChild(opt);
-    }
-  });
-
-  return firstIdxInCat;
 }
 
 // ----------------------------------------------------
@@ -196,65 +269,37 @@ function selectController(id) {
 // Application Setup
 // ----------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
-  const playlistSelect = document.getElementById('playlist-select');
-  const songSelect = document.getElementById('song-select');
+  const stationSelect = document.getElementById('station-select');
   const playBtn = document.getElementById('play-btn');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
 
-  // Set default playlist category state
-  activeCategory = playlistSelect.value;
-  currentSongIndex = populateSongDropdown();
-  loadSong();
+  // Load default station song
+  currentStation = stationSelect.value;
+  loadRandomSongFromStation();
 
-  // Change Playlist event listener
-  playlistSelect.addEventListener('change', (e) => {
-    activeCategory = e.target.value;
-    currentSongIndex = populateSongDropdown();
-    loadSong();
-    playTrack();
-  });
-
-  // Change Song event listener
-  songSelect.addEventListener('change', (e) => {
-    currentSongIndex = parseInt(e.target.value, 10);
-    loadSong();
+  // Change Station event listener
+  stationSelect.addEventListener('change', (e) => {
+    currentStation = e.target.value;
+    loadRandomSongFromStation();
     playTrack();
   });
 
   playBtn.addEventListener('click', togglePlay);
 
-  // Play next/prev tracks within current category
   prevBtn.addEventListener('click', () => {
-    const catSongs = SONGS.filter(s => s.category === activeCategory);
-    const currSubIdx = catSongs.findIndex(s => s.path === SONGS[currentSongIndex].path);
-    const prevSubIdx = (currSubIdx - 1 + catSongs.length) % catSongs.length;
-    const targetSong = catSongs[prevSubIdx];
-    
-    currentSongIndex = SONGS.findIndex(s => s.path === targetSong.path);
-    loadSong();
+    loadRandomSongFromStation();
     playTrack();
   });
 
   nextBtn.addEventListener('click', () => {
-    const catSongs = SONGS.filter(s => s.category === activeCategory);
-    const currSubIdx = catSongs.findIndex(s => s.path === SONGS[currentSongIndex].path);
-    const nextSubIdx = (currSubIdx + 1) % catSongs.length;
-    const targetSong = catSongs[nextSubIdx];
-    
-    currentSongIndex = SONGS.findIndex(s => s.path === targetSong.path);
-    loadSong();
+    loadRandomSongFromStation();
     playTrack();
   });
 
+  // Track finished playing auto-advances to another random song on this station
   audio.addEventListener('ended', () => {
-    const catSongs = SONGS.filter(s => s.category === activeCategory);
-    const currSubIdx = catSongs.findIndex(s => s.path === SONGS[currentSongIndex].path);
-    const nextSubIdx = (currSubIdx + 1) % catSongs.length;
-    const targetSong = catSongs[nextSubIdx];
-    
-    currentSongIndex = SONGS.findIndex(s => s.path === targetSong.path);
-    loadSong();
+    loadRandomSongFromStation();
     playTrack();
   });
 
@@ -319,7 +364,6 @@ function initSpaceBackground() {
   resize();
 
   function animate() {
-    // Pure space black background (#000000)
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 

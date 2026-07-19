@@ -22,6 +22,7 @@
     "jokes-if-you-handle",
     "lets-settle",
     "luckorpredict",
+    "not_scary",
     "mastermind",
     "memory-tiles",
     "onelightday",

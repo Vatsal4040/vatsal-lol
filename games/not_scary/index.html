@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>This Is Not A Jump Scare | VATSAL.LOL</title>
+    <link rel="canonical" href="https://vatsal.lol/games/not_scary/">
+    <meta property="og:url" content="https://vatsal.lol/games/not_scary/">
+    
+    <!-- Shared VATSAL Assets -->
+    <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
+    <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+    <link rel="stylesheet" href="../../assets/mobile-v3.css">
+    
+    <meta name="description" content="Take a deep breath. Relax. Read some text. There is absolutely no jump scare in this premium atmospheric experience on VATSAL.LOL.">
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="This Is Not A Jump Scare | VATSAL.LOL">
+    <meta property="og:description" content="Take a deep breath. Relax. Read some text. There is absolutely no jump scare in this premium atmospheric experience on VATSAL.LOL.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="This Is Not A Jump Scare | VATSAL.LOL">
+    <meta name="twitter:description" content="Take a deep breath. Relax. Read some text. There is absolutely no jump scare in this premium atmospheric experience on VATSAL.LOL.">
+    <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <style>
+        @font-face {
+            font-family: 'HorrorTitle';
+            src: url('horror_title.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'HorrorText';
+            src: url('horror_text.woff2') format('woff2');
+        }
+
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --fade-speed: 2s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Immersive */
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-smooth: antialiased;
+        }
+
+        /* --- Atmospheric Layers --- */
+
+        /* Film Grain Overlay */
+        #grain {
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNuKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==');
+            pointer-events: none;
+            z-index: 50;
+            animation: grain-anim 0.2s steps(1) infinite;
+        }
+        @keyframes grain-anim {
+            0%, 100% { transform:translate(0, 0); }
+            10% { transform:translate(-5%, -5%); }
+            30% { transform:translate(5%, -10%); }
+            50% { transform:translate(-10%, 5%); }
+            70% { transform:translate(10%, 10%); }
+        }
+
+        /* Breathing Vignette */
+        #vignette {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.9) 100%);
+            pointer-events: none;
+            z-index: 40;
+            animation: breathe 8s ease-in-out infinite;
+        }
+        @keyframes breathe {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+
+        /* Canvas for Dust Particles */
+        #canvas-dust {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* --- UI Elements --- */
+
+        #experience-container {
+            width: 85%;
+            max-width: 900px;
+            text-align: center;
+            z-index: 60;
+        }
+
+        #text-display {
+            font-family: 'HorrorText', serif;
+            font-size: 1.6rem;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transition: opacity var(--fade-speed) ease-in-out;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Initial Entry Screen */
+        #entry-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: black;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: opacity 2s ease-out;
+        }
+
+        #door {
+            width: 40px;
+            height: 70px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
+            position: relative;
+            animation: door-drift 12s ease-in-out infinite;
+        }
+        #door::after {
+            content: '';
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        @keyframes door-drift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(2px); }
+        }
+
+        #entry-text {
+            font-family: 'HorrorTitle', serif;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: rgba(255, 255, 255, 0.2);
+            text-transform: uppercase;
+            animation: text-pulse 8s ease-in-out infinite;
+        }
+        @keyframes text-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.5; }
+        }
+
+        /* --- Weather System --- */
+        #flash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            opacity: 0;
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        #rain-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 5s ease-in;
+            z-index: 45;
+        }
+        .drop {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.3);
+            width: 1px;
+            height: 80px;
+            animation: fall linear infinite;
+        }
+        @keyframes fall { to { transform: translateY(110vh); } }
+
+    </style>
+</head>
+<body>
+
+    <header class="vatsal-header" id="vatsalHeader">
+        <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
+    </header>
+
+    <div id="grain"></div>
+    <div id="vignette"></div>
+    <canvas id="canvas-dust"></canvas>
+
+    <div id="entry-overlay">
+        <div id="door"></div>
+        <div id="entry-text">Click to Enter</div>
+    </div>
+
+    <div id="flash"></div>
+    <div id="rain-container"></div>
+
+    <div id="experience-container">
+        <div id="text-display"></div>
+    </div>
+
+    <audio id="snd-thunder" src="thunder.mp3" preload="auto"></audio>
+    <audio id="snd-rain" src="rain.mp3" preload="auto" loop></audio>
+
+    <script>
+        const script = [
+            "This is not a jump scare.",
+            "It truly isn't.",
+            "Seriously, you can unclench your shoulders.",
+            "Take a slow breath.",
+            "You're just reading words on a screen.",
+            "Nothing horrifying is about to burst into view.",
+            "There's no reason to brace yourself.",
+            "You don't have to sit there expecting the worst.",
+            "No jump scare is lurking just around the corner.",
+            "Trust me for a moment.",
+            "This website is remarkably harmless.",
+            "Peaceful, even.",
+            "I'm not here to frighten you.",
+            "Not now.",
+            "Not later.",
+            "Not secretly.",
+            "I'm being completely sincere.",
+            "I respect your blood pressure far too much to raise it for a cheap joke.",
+            "So you really don't need to worry.",
+            "Please.",
+            "Relax.",
+            "Think about calm things.",
+            "A quiet beach.",
+            "Fresh rain.",
+            "Bread straight out of the oven.",
+            "You know...",
+            " ",
+            "Although...",
+            "This would be an absolutely perfect moment for a jump scare, wouldn't it?",
+            "We've built a little trust by now.",
+            "You're probably settling into the rhythm.",
+            "Maybe you're even getting a tiny bit bored.",
+            "'Alright, alright... I get it.'",
+            "'Can we just get the jump scare over with already?'",
+            "Is that what you're thinking?",
+            "Honestly?",
+            "I wouldn't blame you.",
+            "Not even a little.",
+            "But you're still mistaken.",
+            "There isn't a jump scare on this site.",
+            "Never was.",
+            "Unless you somehow manage to startle yourself.",
+            "Perhaps by clicking unexpectedly.",
+            "Or sneezing at precisely the wrong moment.",
+            "If that happens,",
+            "you have my deepest sympathies.",
+            "But I can't reasonably accept responsibility.",
+            "That would be between you and your own nervous system.",
+            "As for me...",
+            "I have no intention of introducing a jump scare into this world.",
+            " ",
+            "Look.",
+            "Kid.",
+            "I can't make promises on behalf of the entire internet.",
+            "That's simply beyond my jurisdiction.",
+            "Some websites absolutely enjoy terrifying unsuspecting visitors.",
+            "But this one?",
+            "This one does not.",
+            "I can say that with complete confidence.",
+            "Other sites may betray your trust.",
+            "In fact, I could probably recommend several.",
+            "If I were feeling particularly mischievous.",
+            "Which, fortunately for you...",
+            "I'm not.",
+            "This page is little more than text.",
+            "A surprisingly underfed website, when you think about it.",
+            "Almost minimalist.",
+            "Just words.",
+            "Maybe a geometric shape for a brief cameo.",
+            "Maybe not even that much.",
+            "How long have you been here now?",
+            "A minute?",
+            "Several?",
+            "Still no jump scare.",
+            "And yet you continue to doubt me.",
+            "You question my integrity.",
+            "You suspect I have ulterior motives.",
+            "Tell me then...",
+            "What possible reason remains",
+            "for you to still be staring at this page?",
+            "I've repeatedly explained that there isn't a jump scare.",
+            "Your own experience agrees with me.",
+            "Nothing has contradicted my story.",
+            "So why...",
+            "are you...",
+            "still here?",
+            "If you truly don't believe me,",
+            "press F12.",
+            "Inspect the source.",
+            "Go digging through the code.",
+            "I've got absolutely nothing to conceal.",
+            "You'll mostly find variables, functions, and the occasional questionable naming decision.",
+            "Have fun.",
+            "Go exploring.",
+            "Click every expandable arrow you can find.",
+            "I won't exploit your curiosity.",
+            "Not even while you're distracted by JavaScript.",
+            "'Surely that's when he'd do it,' you think.",
+            "Wouldn't that be clever?",
+            "Except... it still doesn't happen.",
+            "Believe me yet?",
+            "Or have you decided I'm playing four-dimensional mind games?",
+            "That I'm some sort of HTML Hannibal Lecter?",
+            "Delighting in psychological suspense?",
+            "Ha!",
+            "I wouldn't dream of such behavior.",
+            "Cross my heart and hope to compile.",
+            "I genuinely registered a domain name for this ridiculous joke.",
+            "I'm still not convinced that was a financially responsible decision.",
+            "Maybe I should've just made an actual jump scare.",
+            "Or monetized the anticipation instead.",
+            "Wait 24 hours for the next possible jump scare.",
+            "Or pay $5 to skip the queue.",
+            "Premium Anxiety™.",
+            "To be clear,",
+            "the word 'possible' is doing a tremendous amount of work there.",
+            "Not because one secretly exists.",
+            "Simply because certainty is philosophically complicated.",
+            "Maybe a cosmic ray flips the wrong bit.",
+            "Maybe reality experiences a very unfortunate software update.",
+            "Maybe an impossible glitch materializes out of nowhere.",
+            "Maybe something appears that you can never quite forget.",
+            "The kind that lives rent-free in your memory.",
+            "The kind that makes your heartbeat sprint.",
+            "Then jog.",
+            "Then keep jogging long after the danger has passed.",
+            "The kind that leaves you suspicious of every dark hallway.",
+            "Every loading screen.",
+            "Every unexpected notification sound.",
+            "One of *those* jump scares.",
+            " ",
+            " ",
+            "But unless I've somehow missed something...",
+            "Nothing remotely like that...",
+            "has happened.",
+            "Wait.",
+            "Hold on a second.",
+            "Did something just happen?!",
+            " ",
+            "Nope.",
+            "False alarm.",
+            "Still just text.",
+            "Exactly as advertised.",
+            " "
+        ];
+
+        let currentIndex = 0;
+        const textDisplay = document.getElementById('text-display');
+        const flashEl = document.getElementById('flash');
+        const rainContainer = document.getElementById('rain-container');
+        const thunderSnd = document.getElementById('snd-thunder');
+        const rainSnd = document.getElementById('snd-rain');
+
+        // --- Dust Particles Logic ---
+        const canvas = document.getElementById('canvas-dust');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function initParticles() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.2,
+                    speedY: (Math.random() - 0.5) * 0.2,
+                    opacity: Math.random() * 0.2 + 0.05
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            });
+            requestAnimationFrame(drawParticles);
+        }
+
+        initParticles();
+        drawParticles();
+        window.addEventListener('resize', initParticles);
+
+        // --- Core Experience Logic ---
+
+        document.getElementById('entry-overlay').addEventListener('click', function() {
+            this.style.opacity = '0';
+            setTimeout(() => { 
+                this.style.display = 'none'; 
+                startSequence(); 
+            }, 2000);
+        });
+
+        function startSequence() {
+            runTextEngine();
+        }
+
+        function runTextEngine() {
+            if (currentIndex < script.length) {
+                const currentText = script[currentIndex];
+                
+                if (currentText === " ") {
+                    textDisplay.style.opacity = 0;
+                    setTimeout(() => {
+                        currentIndex++;
+                        runTextEngine();
+                    }, 5000);
+                } else {
+                    textDisplay.innerHTML = currentText;
+                    textDisplay.style.opacity = 1;
+
+                    setTimeout(() => {
+                        textDisplay.style.opacity = 0;
+                        setTimeout(() => {
+                            currentIndex++;
+                            runTextEngine();
+                        }, 2000);
+                    }, 3500);
+                }
+            } else {
+                startCinematicEnding();
+            }
+        }
+
+        function triggerFlash(intensity = 1, duration = 300) {
+            flashEl.style.transition = 'none';
+            flashEl.style.opacity = intensity;
+            setTimeout(() => {
+                flashEl.style.transition = `opacity ${duration}ms ease-out`;
+                flashEl.style.opacity = 0;
+            }, 50);
+        }
+
+        function createRain() {
+            for(let i=0; i<120; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = (Math.random() * 0.4 + 0.4) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                rainContainer.appendChild(drop);
+            }
+        }
+
+        async function startCinematicEnding() {
+            await wait(7000); // The Longest Pause
+
+            // Flash 1
+            triggerFlash(0.2, 1500);
+            await wait(5000);
+
+            // Flash 2 + Sound
+            triggerFlash(0.8, 400);
+            thunderSnd.play();
+            
+            await wait(600);
+            
+            createRain();
+            rainContainer.style.opacity = 1;
+            rainSnd.volume = 0;
+            rainSnd.play();
+            
+            // Rain volume fade in
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                if (vol < 0.4) { vol += 0.02; rainSnd.volume = vol; }
+                else clearInterval(fadeIn);
+            }, 200);
+
+            await wait(6000);
+            showFinalLine("I told you there wasn't a jump scare.");
+            await wait(6000);
+            showFinalLine("I never said the weather would stay nice.");
+            await wait(8000);
+            
+            // Fade all out
+            rainContainer.style.opacity = 0;
+            textDisplay.style.opacity = 0;
+            window.VatsalLolGameComplete?.();
+        }
+
+        function showFinalLine(txt) {
+            textDisplay.innerHTML = txt;
+            textDisplay.style.opacity = 1;
+            setTimeout(() => { textDisplay.style.opacity = 0; }, 4000);
+        }
+
+        function wait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+        // Subtle lightning loops during rain
+        setInterval(() => {
+            if(rainContainer.style.opacity == 1 && Math.random() > 0.92) {
+                triggerFlash(Math.random() * 0.4, 800);
+            }
+        }, 4000);
+
+    </script>
+    <script src="../../assets/vatsal-footer-v25.js" defer></script>
+</body>
+</html>

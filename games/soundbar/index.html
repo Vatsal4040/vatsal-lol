@@ -2,99 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Sound Bar | VATSAL.LOL</title>
-  <link rel="canonical" href="https://vatsal.lol/games/soundbar/">
-  <meta property="og:url" content="https://vatsal.lol/games/soundbar/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sound Bar</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔊</text></svg>">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
-  <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <link rel="stylesheet" href="./style.css">
-  
-  <meta name="description" content="Generate beautiful sounds and beats on the premium interactive sound board on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:site_name" content="vatsal.lol">
-  <meta property="og:title" content="Sound Bar | VATSAL.LOL">
-  <meta property="og:description" content="Generate beautiful sounds and beats on the premium interactive sound board on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sound Bar | VATSAL.LOL">
-  <meta name="twitter:description" content="Generate beautiful sounds and beats on the premium interactive sound board on VATSAL.LOL. No install, no login - just fun!">
-  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
-  <meta name="theme-color" content="#000000">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-  <header class="vatsal-header" id="vatsalHeader">
-    <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
-  </header>
 
   <div id="eclipse-dim-overlay" class="eclipse-dim-overlay"></div>
 
-  <main class="app-container">
-    
-    <!-- Central Title Banner -->
-    <h1 class="app-title">Sound Bar</h1>
-     <div class="divider" style="margin-top: 2px;"></div>
-
-    <!-- Music Player Section -->
-    <header class="player-header">
-      <div class="player-title">🎵 Music</div>
+  <div class="main-wrapper">
+    <main class="app-container">
       
-      <div class="player-controls-row">
-        <!-- Playlist Category Select -->
-        <select id="playlist-select" class="song-select playlist-dropdown">
-          <option value="English">English</option>
-          <option value="Bollywood">Bollywood</option>
-          <option value="Old Dad Car Songs">Old Dad Car Songs</option>
-        </select>
+      <!-- Central Title Banner -->
+      <h1 class="app-title">Sound Bar</h1>
+      <div class="divider" style="margin-top: 2px;"></div>
 
-        <!-- Song Select (Dynamic) -->
-        <select id="song-select" class="song-select song-dropdown">
-          <!-- Populated by script.js -->
-        </select>
-      </div>
-
-      <div class="player-playback-row">
-        <div class="playback-buttons">
-          <button id="prev-btn" class="control-btn" title="Previous">⏮</button>
-          <button id="play-btn" class="control-btn play-pause-btn" title="Play/Pause">▶</button>
-          <button id="next-btn" class="control-btn" title="Next">⏭</button>
+      <!-- Music Player Section -->
+      <header class="player-header">
+        <div class="player-title">📻 Radio Stations</div>
+        
+        <div class="player-controls-row">
+          <!-- Station Selection Dropdown -->
+          <select id="station-select" class="song-select station-dropdown" style="width: 100%; text-align: center;">
+            <option value="Party">🎉 Party Station (BPM)</option>
+            <option value="Listen">🎧 Listen Station (ENG)</option>
+            <option value="Bollywood">💃 Bollywood Station (HIN)</option>
+            <option value="Car Drive">🚗 Car Drive Station (DAD)</option>
+          </select>
         </div>
-        <div id="volume-badge" class="volume-badge">Volume: 63%</div>
-      </div>
-    </header>
 
-    <div class="divider"></div>
+        <!-- Now Playing Station Display -->
+        <div id="station-now-playing" class="station-now-playing-banner">
+          Connecting to Station...
+        </div>
 
-    <!-- Active Controller Section (visually dominates) -->
-    <section class="controller-viewport">
-      <div id="controller-area" class="controller-area">
-        <!-- Loaded controller mounts here -->
-      </div>
-    </section>
+        <div class="player-playback-row">
+          <div class="playback-buttons">
+            <button id="prev-btn" class="control-btn" title="Tune Previous Channel">⏮</button>
+            <button id="play-btn" class="control-btn play-pause-btn" title="Mute/Unmute">▶</button>
+            <button id="next-btn" class="control-btn" title="Tune Next Channel">⏭</button>
+          </div>
+          <div id="volume-badge" class="volume-badge">Volume: 63%</div>
+        </div>
+      </header>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
 
-    <!-- Controller Picker Tray Section -->
-    <section class="picker-viewport">
-      <div id="controller-picker" class="controller-picker">
-        <!-- Emoji buttons generated by script.js -->
-      </div>
-    </section>
+      <!-- Active Controller Section (visually dominates) -->
+      <section class="controller-viewport">
+        <div id="controller-area" class="controller-area">
+          <!-- Loaded controller mounts here -->
+        </div>
+      </section>
 
-    <div class="divider"></div>
+      <div class="divider"></div>
 
-  </main>
+      <!-- Controller Picker Tray Section -->
+      <section class="picker-viewport">
+        <div id="controller-picker" class="controller-picker">
+          <!-- Emoji buttons generated by script.js -->
+        </div>
+      </section>
+
+      <div class="divider"></div>
+
+    </main>
+  </div>
 
   <!-- Load remaining active controllers globally (CORS-less local support) -->
   <script src="controllers/default.js"></script>
@@ -111,19 +92,13 @@
   <script src="controllers/thermometer.js"></script>
   <script src="controllers/battery.js"></script>
   <script src="controllers/dart.js"></script>
-  <script src="controllers/archery.js"></script>
+  <script src="controllers/bowling.js"></script>
+  <script src="controllers/space-invaders.js"></script>
   <script src="controllers/crane.js"></script>
   <script src="controllers/coffee.js"></script>
   <script src="controllers/slot.js"></script>
 
   <!-- Load main script -->
   <script src="script.js"></script>
-  <script src="../../assets/vatsal-footer-v25.js" defer></script>
-  <script>
-    // Automatically trigger recommendations after a few seconds of playing sounds
-    setTimeout(() => {
-      window.VatsalLolGameComplete?.();
-    }, 6000);
-  </script>
 </body>
 </html>

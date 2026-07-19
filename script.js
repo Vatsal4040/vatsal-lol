@@ -19,6 +19,7 @@
     { slug: "jokes-if-you-handle", title: "JOKES If You Handle" },
     { slug: "lets-settle", title: "Let's Settle" },
     { slug: "luckorpredict", title: "Luck or Predict" },
+    { slug: "not_scary", title: "This Is Not A Jump Scare" },
     { slug: "mastermind", title: "Mastermind" },
     { slug: "memory-tiles", title: "Memory Tiles" },
     { slug: "onelightday", title: "One Light Day" },
