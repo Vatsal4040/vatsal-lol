@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "2048",
+    "title": "2048",
+    "thumbnail": "assets/thumbnails/2048.webp"
+  },
+  {
+    "slug": "8bit-lab",
+    "title": "8-Bit Lab",
+    "thumbnail": "assets/thumbnails/8bit-lab.webp"
+  },
+  {
+    "slug": "adjustme",
+    "title": "Adjust Me",
+    "thumbnail": "assets/thumbnails/adjustme.webp"
+  },
+  {
+    "slug": "bubbles",
+    "title": "Bubbles",
+    "thumbnail": "assets/thumbnails/bubbles.webp"
+  },
+  {
+    "slug": "bugsmash",
+    "title": "Bug Smash",
+    "thumbnail": "assets/thumbnails/bugsmash.webp"
+  },
+  {
+    "slug": "can-you-guess-indian-mom",
+    "title": "Guess Indian Mom",
+    "thumbnail": "assets/thumbnails/can-you-guess-indian-mom.webp"
+  },
+  {
+    "slug": "checklist",
+    "title": "Checklist",
+    "thumbnail": "assets/thumbnails/checklist.webp"
+  },
+  {
+    "slug": "draw-a-circle",
+    "title": "Draw a Circle",
+    "thumbnail": "assets/thumbnails/draw-a-circle.webp"
+  },
+  {
+    "slug": "emojis-2-movies",
+    "title": "Emojis 2 Movies",
+    "thumbnail": "assets/thumbnails/emojis-2-movies.webp"
+  },
+  {
+    "slug": "everything-is-progressing",
+    "title": "Everything is Progressing",
+    "thumbnail": "assets/thumbnails/everything-is-progressing.webp"
+  },
+  {
+    "slug": "flash-memory",
+    "title": "Flash Memory",
+    "thumbnail": "assets/thumbnails/flash-memory.webp"
+  },
+  {
+    "slug": "focus",
+    "title": "Focus",
+    "thumbnail": "assets/thumbnails/focus.webp"
+  },
+  {
+    "slug": "future-timeline",
+    "title": "Future Timeline",
+    "thumbnail": "assets/thumbnails/future-timeline.webp"
+  },
+  {
+    "slug": "guess-the-lie",
+    "title": "Guess the Lie",
+    "thumbnail": "assets/thumbcircle/guess-the-lie.webp"
+  },
+  {
+    "slug": "hardword",
+    "title": "Hardword",
+    "thumbnail": "assets/thumbnails/hardword.webp"
+  },
+  {
+    "slug": "jokes-if-you-handle",
+    "title": "Jokes If You Handle",
+    "thumbnail": "assets/thumbnails/jokes-if-you-handle.webp"
+  },
+  {
+    "slug": "lets-settle",
+    "title": "Let's Settle",
+    "thumbnail": "assets/thumbnails/lets-settle.webp"
+  },
+  {
+    "slug": "luckorpredict",
+    "title": "Luck or Predict",
+    "thumbnail": "assets/thumbnails/luckorpredict.webp"
+  },
+  {
+    "slug": "mastermind",
+    "title": "Mastermind",
+    "thumbnail": "assets/thumbnails/mastermind.webp"
+  },
+  {
+    "slug": "memory-tiles",
+    "title": "Memory Tiles",
+    "thumbnail": "assets/thumbcircle/memory-tiles.webp"
+  },
+  {
+    "slug": "not_scary",
+    "title": "Jump Scare",
+    "thumbnail": "assets/thumbnails/not_scary.webp"
+  },
+  {
+    "slug": "onelightday",
+    "title": "One Light Day",
+    "thumbnail": "assets/thumbnails/onelightday.webp"
+  },
+  {
+    "slug": "paddleclub",
+    "title": "Paddle Club",
+    "thumbnail": "assets/thumbnails/paddleclub.webp"
+  },
+  {
+    "slug": "snake",
+    "title": "Snake",
+    "thumbnail": "assets/thumbnails/snake.webp"
+  },
+  {
+    "slug": "soundbar",
+    "title": "Sound Bar",
+    "thumbnail": "assets/thumbnails/soundbar.webp"
+  },
+  {
+    "slug": "spend-bill-gates-money",
+    "title": "Spend Bill Gates' Money",
+    "thumbnail": "assets/thumbnails/spend-bill-gates-money.webp"
+  },
+  {
+    "slug": "spot",
+    "title": "Spot",
+    "thumbnail": "assets/thumbnails/spot.webp"
+  },
+  {
+    "slug": "standing",
+    "title": "Standing",
+    "thumbnail": "assets/thumbnails/standing.webp"
+  },
+  {
+    "slug": "sudoko",
+    "title": "Sudoku",
+    "thumbnail": "assets/thumbcircle/sudoku.webp"
+  },
+  {
+    "slug": "tower-of-hanoi",
+    "title": "Tower of Hanoi",
+    "thumbnail": "assets/thumbnails/tower-of-hanoi.webp"
+  },
+  {
+    "slug": "under-limit",
+    "title": "Under Limit",
+    "thumbnail": "assets/thumbnails/under-limit.webp"
+  },
+  {
+    "slug": "which-number",
+    "title": "Which Number",
+    "thumbnail": "assets/thumbnails/which-number.webp"
+  },
+  {
+    "slug": "wordle",
+    "title": "Wordle",
+    "thumbnail": "assets/thumbcircle/wordle.webp"
+  },
+  {
+    "slug": "would-you-press-the-button",
+    "title": "Would You Press the Button",
+    "thumbnail": "assets/thumbnails/would-you-press-the-button.webp"
+  },
+  {
+    "slug": "xo",
+    "title": "XO",
+    "thumbnail": "assets/thumbnails/xo.webp"
+  },
+  {
+    "slug": "your-life-in-numbers",
+    "title": "Your Life in Numbers",
+    "thumbnail": "assets/thumbnails/your-life-in-numbers.webp"
+  }
+]

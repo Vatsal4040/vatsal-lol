@@ -93,6 +93,12 @@ const grid = document.getElementById("grid");
 const countEl = document.getElementById("count");
 const totalEl = document.getElementById("total");
 const ending = document.getElementById("ending");
+const ringFill = document.getElementById("ringFill");
+const timelineFill = document.getElementById("timelineFill");
+const statusLine = document.getElementById("statusLine");
+const stages = document.querySelectorAll(".stage");
+const RING_CIRCUMFERENCE = 2 * Math.PI * 52;
+const STAGE_THRESHOLDS = [0.001, 0.25, 0.5, 0.75];
 
 totalEl.textContent = items.length;
 
@@ -107,6 +113,9 @@ items.forEach((text, index) => {
 
     const item = document.createElement("div");
     item.className = "item";
+    item.tabIndex = 0;
+    item.setAttribute("role", "checkbox");
+    item.setAttribute("aria-checked", "false");
 
     item.innerHTML = `
         <div class="checkbox">
@@ -122,54 +131,90 @@ items.forEach((text, index) => {
         <div class="label">${text}</div>
     `;
 
-    item.addEventListener("click", () => {
+    const toggleItem = () => {
         item.classList.toggle("checked");
+        item.setAttribute("aria-checked", item.classList.contains("checked"));
         updateCounter();
         saveState();
+    };
+
+    item.addEventListener("click", toggleItem);
+    item.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            toggleItem();
+        }
     });
 
     grid.appendChild(item);
 });
 
+// ... existing items ...
+
 function updateCounter(){
+    const checked = document.querySelectorAll(".item.checked").length;
+    countEl.textContent = checked;
 
-    const checked =
-        document.querySelectorAll(".item.checked").length;
-        countEl.textContent = checked;
-
-  const progressFill = document.getElementById("progressFill");
-
-if(progressFill){
-    progressFill.style.width =
-        `${(checked / items.length) * 100}%`;
-}
+    const progressFill = document.getElementById("progressFill");
     const ratio = checked / items.length;
-document.documentElement.style.setProperty(
-  '--timeline-progress',
-  `${ratio * 100}%`
-);
 
-    if(ratio < .2){
-        ending.textContent =
-            endings[0];
+    if(progressFill){
+        progressFill.style.width = `${ratio * 100}%`;
     }
-    else if(ratio < .45){
-        ending.textContent =
-            endings[1];
+
+    // Dynamic ending text based on completion
+    if(ratio < .25){
+        ending.textContent = "Arrival on the dark side of the moon.";
+    }
+    else if(ratio < .50){
+        ending.textContent = "Orbiting through the teenage nebulae.";
     }
     else if(ratio < .75){
-        ending.textContent =
-            endings[2];
+        ending.textContent = "Navigating the deep space of adulthood.";
     }
     else{
-        ending.textContent =
-            endings[3];
+        ending.textContent = "Final transmission: A life well lived.";
+    }
+
+    // Orbital progress ring
+    if(ringFill){
+        ringFill.style.strokeDashoffset = RING_CIRCUMFERENCE - (ratio * RING_CIRCUMFERENCE);
+    }
+
+    // Trajectory line across the life-stage timeline
+    if(timelineFill){
+        timelineFill.style.width = `${ratio * 100}%`;
+    }
+
+    // Light up each life stage once its threshold is crossed
+    stages.forEach((stage, i) => {
+        stage.classList.toggle("reached", ratio >= STAGE_THRESHOLDS[i]);
+    });
+
+    // Mission status readout
+    if(statusLine){
+        if(ratio === 0){
+            statusLine.textContent = "Mission status: pre-launch";
+        }
+        else if(ratio < .25){
+            statusLine.textContent = "Mission status: launched — low orbit";
+        }
+        else if(ratio < .50){
+            statusLine.textContent = "Mission status: in transit";
+        }
+        else if(ratio < .75){
+            statusLine.textContent = "Mission status: deep space";
+        }
+        else if(ratio < 1){
+            statusLine.textContent = "Mission status: approaching signal";
+        }
+        else{
+            statusLine.textContent = "Mission status: transmission complete";
+        }
     }
 
     if (checked === items.length) {
         window.VatsalLolGameComplete?.();
-    } else {
-        document.querySelector('.vatsal-related')?.setAttribute('hidden', '');
     }
 }
 
@@ -198,6 +243,7 @@ function loadState(){
 
         if(saved[i]){
             item.classList.add("checked");
+            item.setAttribute("aria-checked", "true");
         }
 
     });

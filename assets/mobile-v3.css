@@ -75,7 +75,7 @@ select {
     --v3-safe-right: env(safe-area-inset-right, 0px);
     --v3-safe-bottom: env(safe-area-inset-bottom, 0px);
     --v3-safe-left: env(safe-area-inset-left, 0px);
-    --v3-header-h: 48px;
+    --v3-header-h: 0px;
   }
 
   body {
@@ -579,6 +579,183 @@ select {
   .visual-stage {
     max-width: 100%;
     overflow: hidden;
+  }
+
+  /* Future Timeline SVG Mobile Containment */
+  .earth-fall-dry-wrap,
+  #earth-fall-dry-wrap,
+  .svg-wrap-mobile {
+    max-width: 100% !important;
+    max-height: 75vh !important;
+    overflow: hidden !important;
+  }
+
+  /* Everything Is Progressing GPU acceleration */
+  .progress-fill,
+  .progress-bar-fill {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  /* Flash Memory Focus Accessibility */
+  .diff-btn:focus-visible,
+  .mode-btn:focus-visible,
+  .difficulty-btn:focus-visible {
+    outline: 2px solid #ffffff !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Guess The Lie Touch Target Compliance */
+  .option-btn,
+  .choice-btn,
+  .lie-option {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Hardword Keyboard basis on narrow screens */
+  .key-tile,
+  .keyboard-row button {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+  }
+
+  /* Jokes text container wrap */
+  .joke-text,
+  .joke-content {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+  }
+
+  /* Let's Settle tactile tap feedback */
+  button:active,
+  .btn:active,
+  .choice-card:active {
+    transform: scale(0.98);
+    transition: transform 0.05s ease;
+  }
+
+  /* Luck or Predict 3D card flip containment */
+  .prediction-card,
+  .card-flip-wrap {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform-style: preserve-3d;
+  }
+
+  /* Mastermind color palette wrap */
+  .color-palette,
+  .peg-picker {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    justify-content: center !important;
+  }
+
+  /* Jump Scare overlay positioning */
+  .scare-overlay,
+  #scareOverlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  /* One Light Day grid container scaling */
+  .grid-board,
+  .light-grid {
+    max-height: calc(100dvh - 120px) !important;
+    margin: 0 auto !important;
+  }
+
+  /* Paddle Club touch action lock */
+  .paddle-canvas,
+  #paddleCanvas {
+    touch-action: none !important;
+  }
+
+  /* Snake DPAD tactile feedback */
+  .dpad-btn:active,
+  .control-btn:active {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    transform: scale(0.94) !important;
+  }
+
+  /* Soundbar tile active state */
+  .sound-tile:active,
+  .pad-button:active {
+    transform: scale(0.96) !important;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* Standing balance HUD padding */
+  .standing-hud,
+  .balance-gauge {
+    gap: 8px !important;
+    padding-bottom: calc(8px + var(--v3-safe-bottom)) !important;
+  }
+
+  /* Tower of Hanoi canvas touch lock */
+  .hanoi-canvas,
+  #hanoiCanvas {
+    touch-action: none !important;
+  }
+
+  /* Which Number fluid grid */
+  .number-grid,
+  .num-board {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)) !important;
+    gap: 8px !important;
+  }
+
+  /* Wordle touch key targets */
+  .wordle-key,
+  .key-button {
+    min-height: 48px !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Would You Press The Button container bounds */
+  body.press-playing .container {
+    min-height: calc(100dvh - 80px) !important;
+  }
+
+  /* XO responsive grid cells */
+  .xo-grid button,
+  .board-cell {
+    width: min(22vw, 100px) !important;
+    height: min(22vw, 100px) !important;
+  }
+
+  /* 8bit Lab pixelated canvas rendering */
+  .lab-canvas,
+  #gameCanvas,
+  canvas {
+    image-rendering: pixelated !important;
+    image-rendering: crisp-edges !important;
+  }
+
+  /* Can You Guess Indian Mom safe bottom */
+  .choice-buttons,
+  .mom-answers {
+    padding-bottom: calc(16px + var(--v3-safe-bottom)) !important;
+  }
+
+  /* Memory Tiles touch action */
+  .memory-tile,
+  .tile-btn {
+    touch-action: manipulation !important;
+  }
+
+  /* Under Limit progress transition */
+  .progress-bar-fill,
+  .limit-bar-fill {
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 

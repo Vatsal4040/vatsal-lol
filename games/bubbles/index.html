@@ -7,10 +7,10 @@
 <link rel="canonical" href="https://vatsal.lol/games/bubbles/">
 <meta property="og:url" content="https://vatsal.lol/games/bubbles/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Righteous&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Play Bubbles instantly on VATSAL.LOL. No install, no login - just fun!">
@@ -32,11 +32,7 @@
 <body>
 <div class="bg"></div>
 <div class="screen" id="home">
-  <header class="vatsal-header">
-    <a href="/" class="vatsal-home">vatsal.lol</a>
-    <button id="audioToggle" class="audio-btn">🔊</button>
-</header>
-  <div class="home-title">BUBBLE<br><span>POP</span></div>
+    <div class="home-title">BUBBLE<br><span>POP</span></div>
   <div class="bubble-deco">
     <div class="deco-bubble"></div>
     <div class="deco-bubble"></div>
@@ -93,7 +89,7 @@
     </div>
 
 </div>
-  <script src="../../assets/vatsal-footer-v25.js" defer></script>
+  <script src="../../assets/vatsal-sdk.js" defer></script>
 <script src="script.js"></script>
 <div id="bomb-flash"></div>
   <!-- PWA Service Worker Registration & Update Notification -->

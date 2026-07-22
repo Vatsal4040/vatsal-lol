@@ -1,202 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Sudoku</title>
-  <link rel="canonical" href="https://vatsal.lol/games/sudoko/">
-<meta property="og:url" content="https://vatsal.lol/games/sudoko/">
-
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-  <link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+  <title>Sudoku Digital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
+<link rel="stylesheet" href="style.css" />
+  <link rel="canonical" href="https://vatsal.lol/games/sudoko/">
+  <meta property="og:url" content="https://vatsal.lol/games/sudoko/">
   <meta name="description" content="Play Sudoku instantly on VATSAL.LOL. No install, no login - just fun!">
   <meta property="og:site_name" content="vatsal.lol">
-  <meta property="og:title" content="Sudoku| vatsal.lol">
-  <meta property="og:description" content="Play instant mini games on vatsal.lol.">
+  <meta property="og:title" content="Sudoku Digital | vatsal.lol">
+  <meta property="og:description" content="Play Sudoku instantly on VATSAL.LOL. No install, no login - just fun!">
   <meta property="og:type" content="website">
   <meta property="og:image" content="../../assets/logo.png">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Sudoku| vatsal.lol">
-  <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
-  <meta name="theme-color" content="#000000">
-  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-  <header class="vatsal-header">
-    <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
-    <div class="header-right" id="headerRight" style="display: none;">
-      <span class="timer" id="timer">0:00</span>
-      <span class="level-badge" id="levelBadge">Easy</span>
-    </div>
-  </header>
 
-  <!-- LEVEL SELECT SCREEN -->
+  <!-- Level Selection -->
   <section class="v-screen active" id="levelScreen">
-    <div class="v-body center">
-      <h1 class="s-title">Sudoku</h1>
-      <p class="s-sub">Choose difficulty</p>
-      <p class="s-sub">Tap a cell, then tap a number to fill it in.</p>
-      <div class="level-buttons">
-        <button type="button" data-level="easy"   class="level-btn easy">Easy   <span>4 × 4</span></button>
-        <button type="button" data-level="medium" class="level-btn medium">Medium <span>6 × 6</span></button>
-        <button type="button" data-level="hard"   class="level-btn hard">Hard   <span>9 × 9</span></button>
-      </div>
+    <div class="v-body">
+      <h1 style="font-size: 3rem; letter-spacing: 8px; margin: 40px 0 10px;">SUDOKU</h1>
+      <p style="color: #444; letter-spacing: 2px; margin-bottom: 50px;">NEURAL INTERFACE READY</p>
+      
+      <button class="level-btn btn-os" data-level="easy" style="width: 240px; padding: 20px; font-size: 1.2rem;">4x4 EASY</button>
+      <button class="level-btn btn-os" data-level="medium" style="width: 240px; padding: 20px; font-size: 1.2rem;">6x6 MEDIUM</button>
+      <button class="level-btn btn-os" data-level="hard" style="width: 240px; padding: 20px; font-size: 1.2rem;">9x9 HARD</button>
     </div>
   </section>
 
-  <!-- GAME SCREEN -->
+  <!-- Main Game -->
   <section class="v-screen" id="gameScreen">
-
-    <div class="v-body game-body" id="gameBody">
-
-      <!-- Win banner — shown inline above board after solve -->
-      <div class="win-banner hidden" id="winBanner" role="status" aria-live="polite">
-        <span class="win-emoji">🎉</span>
-        <div class="win-text">
-          <strong id="winMsg">You solved it!</strong>
-          <span id="winTime">0:00</span>
-        </div>
-        <button type="button" id="playAgainBtn" class="btn btn-sm">Play Again</button>
+    <div class="v-body">
+      
+      <div class="hud-bar">
+        <span id="levelBadge">SECTOR: EASY</span>
+        <span id="timer">0:00</span>
       </div>
- <!-- Action bar -->
-      <div class="action-bar">
-        <button type="button" id="hintBtn"  class="btn btn-hint">💡 Hint <span id="hintCount">(3)</span></button>
-        <button type="button" id="solveBtn" class="btn btn-solve">🏳 Solve</button>
-        <button type="button" id="newGameBtn" class="btn">New Game</button>
-        <button type="button" id="changeLevelBtn" class="btn btn-ghost">Levels</button>
-      </div>
-      <!-- Board -->
+
       <div class="board-wrapper">
         <div id="board" class="board"></div>
-       
       </div>
 
-      <!-- Number pad -->
+      <div class="action-bar">
+        <button id="hintBtn" class="btn-os">HINT <span id="hintCount"></span></button>
+        <button id="solveBtn" class="btn-os">OVERRIDE</button>
+        <button id="newGameBtn" class="btn-os">REBOOT</button>
+        <button id="changeLevelBtn" class="btn-os">EXIT</button>
+      </div>
+
       <div class="number-pad" id="numberPad">
-        <button type="button" class="num-btn" data-num="1">1</button>
-        <button type="button" class="num-btn" data-num="2">2</button>
-        <button type="button" class="num-btn" data-num="3">3</button>
-        <button type="button" class="num-btn" data-num="4">4</button>
-        <button type="button" class="num-btn" data-num="5">5</button>
-        <button type="button" class="num-btn" data-num="6">6</button>
-        <button type="button" class="num-btn" data-num="7">7</button>
-        <button type="button" class="num-btn" data-num="8">8</button>
-        <button type="button" class="num-btn" data-num="9">9</button>
-        <button type="button" class="num-btn num-btn-clear" data-num="0">Clear</button>
+        <button class="num-btn" data-num="1">1</button>
+        <button class="num-btn" data-num="2">2</button>
+        <button class="num-btn" data-num="3">3</button>
+        <button class="num-btn" data-num="4">4</button>
+        <button class="num-btn" data-num="5">5</button>
+        <button class="num-btn" data-num="6">6</button>
+        <button class="num-btn" data-num="7">7</button>
+        <button class="num-btn" data-num="8">8</button>
+        <button class="num-btn" data-num="9">9</button>
+        <button class="num-btn num-btn-clear" data-num="0">CLEAR</button>
       </div>
 
-     
+    </div>
 
-      <!-- Footer injected here after win -->
+    <!-- Win Modal -->
+    <div class="win-banner hidden" id="winBanner">
+      <h2 style="color: #00e5ff; font-size: 2rem;">TASK COMPLETE</h2>
+      <p id="winTime" class="digital" style="font-size: 1.5rem; margin-bottom: 30px;">0:00</p>
+      <button id="playAgainBtn" class="btn-os" style="padding: 15px 40px; font-size: 1rem;">REBOOT SYSTEM</button>
     </div>
   </section>
 
   <script src="script.js"></script>
-  <script src="../../assets/vatsal-footer-v25.js" defer></script>
-  <!-- PWA Service Worker Registration & Update Notification -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => {
-            console.log('Service Worker registered', reg);
-            
-            // Check for updates
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  showUpdateToast(reg);
-                }
-              });
-            });
-
-            // If there's already a waiting worker
-            if (reg.waiting) {
-              showUpdateToast(reg);
-            }
-          })
-          .catch(err => console.error('Service Worker registration failed', err));
-      });
-
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
-    }
-
-    function showUpdateToast(reg) {
-      if (document.getElementById('pwa-update-toast')) return;
-      
-      const toast = document.createElement('div');
-      toast.id = 'pwa-update-toast';
-      toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(10, 10, 20, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        padding: 16px 20px;
-        color: #fff;
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 14px;
-        z-index: 10000;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        max-width: 320px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        box-sizing: border-box;
-      `;
-
-      if (window.innerWidth < 768) {
-        toast.style.left = '20px';
-        toast.style.right = '20px';
-        toast.style.bottom = '20px';
-        toast.style.maxWidth = 'calc(100% - 40px)';
-      }
-
-      toast.innerHTML = `
-        <div style="font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px;">
-          <span style="width: 8px; height: 8px; background: #5500ff; border-radius: 50%;"></span>
-          Update Available
-        </div>
-        <div style="color: #aaa; font-size: 13px; line-height: 1.4;">A new version of VATSAL.LOL is available.</div>
-        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 4px;">
-          <button id="pwa-later-btn" style="background: transparent; border: none; color: #aaa; font-weight: 500; cursor: pointer; padding: 6px 12px; font-size: 13px; outline: none;">Later</button>
-          <button id="pwa-refresh-btn" style="background: #fff; border: none; color: #000; font-weight: 600; cursor: pointer; padding: 6px 16px; border-radius: 8px; font-size: 13px; outline: none; box-shadow: 0 2px 8px rgba(255,255,255,0.2);">Refresh</button>
-        </div>
-      `;
-
-      document.body.appendChild(toast);
-
-      document.getElementById('pwa-later-btn').onclick = () => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      };
-
-      document.getElementById('pwa-refresh-btn').onclick = () => {
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
-      };
-    }
-  </script>
-
+<script src="../../assets/vatsal-sdk.js" defer></script>
+<script>
+  setTimeout(() => { window.VatsalLolGameComplete?.(); }, 8000);
+</script>
 </body>
 </html>

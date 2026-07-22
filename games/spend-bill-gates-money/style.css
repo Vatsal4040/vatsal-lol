@@ -1,132 +1,367 @@
 @font-face {
     font-family: "Vatsal-logo";
-    src: url("../../assets/data/vatsal-logo-font.woff2") format("woff2");
+    src: url("../../assets/data/vatsal-logo-font.ttf") format("truetype");
     font-display: swap;
 }
+
+/* ===================================================================
+   TOKENS
+   =================================================================== */
+:root {
+  --bg: #08080a;
+  --bg-raised: #0e0e11;
+  --glass: rgba(255, 255, 255, 0.035);
+  --glass-hover: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(201, 169, 97, 0.16);
+  --glass-border-strong: rgba(201, 169, 97, 0.4);
+
+  --gold: #c9a961;
+  --gold-bright: #f0d78c;
+  --gold-dim: #8a7642;
+
+  --ink: #eae7df;
+  --ink-dim: #8b877c;
+  --ink-faint: #55524a;
+
+  --negative: #b1503f;
+  --negative-bright: #e0705c;
+
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #0b0b0b;
-  color: #fff;
+  font-family: var(--sans);
+  background:
+    radial-gradient(ellipse 1200px 600px at 50% -10%, rgba(201, 169, 97, 0.07), transparent 60%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 44px),
+    var(--bg);
+  color: var(--ink);
 }
 
-/* HEADER */
+/* ===================================================================
+   HEADER / TERMINAL HERO
+   =================================================================== */
 header {
   top: 0;
   z-index: 100;
-  background: #000;
-  padding: 12px 16px;
-  border-bottom: 2px solid #111;
+  background: linear-gradient(180deg, #000 0%, #0a0a0d 100%);
+  padding: 16px 16px 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.12);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.header-spacer { width: 80px; }
+
+.vatsal-home {
+  font-family: "Vatsal-logo" !important;
+  color: var(--ink) !important;
+  text-decoration: none;
+  font-size: 18px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.terminal-hero {
+  text-align: center;
+  padding: 22px 16px 18px;
+}
+
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72em;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+
+.hero-amount {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(2.1em, 7vw, 3.6em);
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(180deg, var(--gold-bright) 0%, var(--gold) 65%, var(--gold-dim) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.1;
+  text-shadow: 0 0 42px rgba(201, 169, 97, 0.28);
+  transition: color .2s ease;
+}
+
+.hero-amount.negative {
+  background: linear-gradient(180deg, var(--negative-bright) 0%, var(--negative) 70%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 0 42px rgba(177, 80, 63, 0.3);
+}
+
+.hero-sub {
+  font-size: 0.72em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-top: 8px;
+  margin-bottom: 16px;
 }
 
 /* MONEY BAR */
 .money-bar {
-  margin-top: 10px;
-  height: 12px;
-  background: #222;
+  max-width: 460px;
+  margin: 0 auto;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
 }
 
 .money-fill {
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg,#00ff88,#00cc66);
+  background: linear-gradient(90deg, var(--gold-dim), var(--gold-bright));
+  box-shadow: 0 0 14px rgba(240, 215, 140, 0.55);
   transition: width .3s ease, background .3s ease;
 }
 
 .money-fill.negative {
-  background: linear-gradient(90deg,#ff4444,#ff0000);
+  background: linear-gradient(90deg, var(--negative), var(--negative-bright));
+  box-shadow: 0 0 14px rgba(224, 112, 92, 0.5);
 }
 
-/* SEARCH */
+/* SIGNATURE GOLD RULE */
+.gold-rule {
+  height: 1px;
+  margin: 16px auto 0;
+  max-width: 100%;
+  background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold-bright) 50%, var(--gold) 80%, transparent);
+  box-shadow: 0 0 8px rgba(201, 169, 97, 0.4);
+  opacity: 0.7;
+}
+
+.gold-rule.thin {
+  margin: 10px 0;
+  opacity: 0.4;
+}
+
+/* DIFFICULTY SELECTOR */
+.difficulty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 4px 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.difficulty-row::-webkit-scrollbar { display: none; }
+
+.difficulty-label {
+  font-size: 0.68em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.difficulty-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.diff-pill {
+  flex-shrink: 0;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--ink-dim);
+  font-family: var(--sans);
+  font-size: 0.78em;
+  padding: 7px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.diff-pill em {
+  font-style: normal;
+  color: var(--gold-dim);
+  margin-left: 4px;
+}
+
+.diff-pill:hover {
+  background: var(--glass-hover);
+  border-color: var(--glass-border-strong);
+}
+
+.diff-pill.active {
+  background: linear-gradient(180deg, rgba(201,169,97,0.22), rgba(201,169,97,0.08));
+  border-color: var(--gold);
+  color: var(--gold-bright);
+}
+
+.diff-pill.active em { color: var(--gold-bright); }
+
+/* ===================================================================
+   SEARCH
+   =================================================================== */
 .search-bar {
-  margin: 16px;
+  margin: 20px 16px 8px;
   width: calc(100% - 360px);
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 1em;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border);
+  background: var(--glass);
+  color: var(--ink);
+  font-size: 0.95em;
+  font-family: var(--sans);
 }
 
-/* CATEGORIES */
+.search-bar::placeholder { color: var(--ink-faint); }
+
+.search-bar:focus {
+  outline: none;
+  border-color: var(--glass-border-strong);
+  background: var(--glass-hover);
+}
+
+/* ===================================================================
+   CATEGORIES
+   =================================================================== */
 #categories {
   margin-right: 340px;
   padding-bottom: 120px;
 }
 
 .category {
-  margin: 20px 16px;
+  margin: 24px 16px;
 }
 
 .category-header {
-  font-size: 1.3em;
-  font-weight: bold;
-  padding: 10px 16px;
-  background: linear-gradient(90deg, #ff8c00, #ff0080);
-  border-radius: 8px;
-  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 8px 4px 10px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 16px;
 }
 
 /* ITEM GRID */
 .items {
   display: grid;
-  grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+  grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
   gap: 14px;
 }
 
 .item {
-  background: #151515;
-  border-radius: 10px;
-  padding: 14px;
+  position: relative;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 18px 14px;
   text-align: center;
   cursor: pointer;
-  transition: transform .2s, background .2s;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
 
 .item:hover {
-  transform: translateY(-4px);
-  background: #222;
+  transform: translateY(-3px);
+  background: var(--glass-hover);
+  border-color: var(--glass-border-strong);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,97,0.15);
 }
 
 .item-emoji {
-  font-size: 2em;
+  font-size: 2.3em;
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
 }
 
 .item-name {
-  font-size: .9em;
+  font-family: var(--serif);
+  font-size: 0.95em;
   word-break: break-word;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+
+.item-tag {
+  font-size: 0.62em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 8px;
 }
 
 .price {
-  color: #ffd700;
-  font-weight: bold;
-  font-size: .85em;
+  font-family: var(--serif);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.92em;
+  font-variant-numeric: tabular-nums;
 }
 
-/* CART */
+/* ===================================================================
+   PORTFOLIO (CART)
+   =================================================================== */
 .cart {
   position: fixed;
-  top: 86px;
+  top: 0;
   right: 0;
   width: 320px;
-  height: calc(100vh - 86px);
-  background: #111;
-  border-left: 2px solid #222;
-  padding: 14px;
+  height: 100vh;
+  background: linear-gradient(180deg, #0c0c0f, #08080a);
+  border-left: 1px solid rgba(201, 169, 97, 0.14);
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
 }
 
+.portfolio-head {
+  flex-shrink: 0;
+}
+
 .cart h3 {
   text-align: center;
-  margin-top: 0;
-  color: #ff8c00;
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+}
+
+.portfolio-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: 4px;
+}
+
+.portfolio-stat span:last-child {
+  color: var(--ink-dim);
+  font-variant-numeric: tabular-nums;
 }
 
 .cart-items {
@@ -138,10 +373,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: .85em;
-  margin: 8px 0;
-  padding: 4px 0;
-  border-bottom: 1px solid #222;
+  font-size: .82em;
+  margin: 10px 0;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .cart-controls {
@@ -150,71 +385,117 @@ header {
 }
 
 .cart-controls button {
-  background: #333;
-  border: none;
-  color: #fff;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--ink);
   padding: 2px 8px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: .9em;
+  transition: background .15s, border-color .15s;
+}
+
+.cart-controls button:hover {
+  background: var(--glass-hover);
+  border-color: var(--glass-border-strong);
 }
 
 .cart-total {
   text-align: center;
-  margin: 10px 0;
-  font-weight: bold;
-  color: #ffd700;
-  font-size: 1em;
+  margin: 4px 0 14px;
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.95em;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
 }
 
 .checkout {
-  background: #ff0080;
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
   border: none;
-  padding: 12px;
-  color: #fff;
-  font-size: 1em;
-  border-radius: 8px;
+  padding: 13px;
+  color: #14110a;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-size: 0.92em;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background .2s;
+  transition: filter .18s, transform .18s;
 }
 
 .checkout:hover {
-  background: #ff0066;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
 }
 
-/* RECEIPT */
+/* ===================================================================
+   STATEMENT (RECEIPT)
+   =================================================================== */
 #receipt {
-  max-width: 700px;
-  margin: 60px auto 140px;
-  background: #151515;
-  padding: 24px;
-  border-radius: 14px;
+  max-width: 640px;
+  margin: 60px auto 100px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 32px 30px;
+  border-radius: 16px;
   display: none;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
 }
 
 .receipt-header {
   text-align: center;
-  font-size: 1.8em;
-  margin-bottom: 20px;
-  color: #ff8c00;
+  font-family: var(--serif);
+  font-size: 1.6em;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--gold);
+}
+
+.receipt-eyebrow {
+  text-align: center;
+  font-size: 0.68em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 22px;
 }
 
 .receipt-item {
   display: flex;
   justify-content: space-between;
   margin: 10px 0;
-  padding: 8px 0;
-  border-bottom: 1px solid #333;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.92em;
+}
+
+.receipt-item span:last-child {
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-dim);
 }
 
 .receipt-total {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px solid #444;
-  font-size: 1.2em;
-  font-weight: bold;
+  margin-top: 8px;
+  padding-top: 18px;
+  font-family: var(--serif);
+  font-size: 1.3em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.receipt-quote {
+  text-align: center;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--glass-border);
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-dim);
+  font-size: 0.95em;
 }
 
 /* MOBILE FIX */
@@ -234,45 +515,23 @@ header {
     bottom: 0;
     top: auto;
     width: 100%;
-    height: 180px;
+    height: 200px;
     border-left: none;
-    border-top: 2px solid #222;
+    border-top: 1px solid rgba(201, 169, 97, 0.14);
   }
+
+  .portfolio-stat { display: none; }
 
   body {
-    padding-bottom: 190px;
+    padding-bottom: 210px;
   }
-}
-/* header row with logo + title */
-.header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
+
+  .hero-amount { font-size: clamp(1.7em, 9vw, 2.4em); }
 }
 
-.header-top h1 {
-    margin: 0;
-    text-align: center;
-    flex: 1;
-}
-
-.header-spacer {
-    /* mirrors vatsal-home width to keep title centered */
-    width: 80px;
-}
-
-.vatsal-home {
-    font-family: "Vatsal-logo" !important;
-    color: #ffffff !important;
-    text-decoration: none;
-    font-size: 18px;
-    white-space: nowrap;
-}
-
-/* footer inside receipt area */
+/* footer inside statement area */
 .vatsal-related {
-    max-width: 700px;
+    max-width: 640px;
     margin: 40px auto 60px;
     text-align: center;
 }

@@ -1,5 +1,12 @@
 // ================= DATA =================
-const START_MONEY = 100000000000;
+const DIFFICULTIES = {
+  easy:       100000000000,
+  medium:      10000000000,
+  hard:         1000000000,
+  impossible:    100000000
+};
+
+let START_MONEY = DIFFICULTIES.easy;
 let cart = {};
 
 const ITEMS = {
@@ -142,18 +149,18 @@ const ITEMS = {
 function renderCategories(itemsObj = ITEMS) {
   const categoriesEl = document.getElementById('categories');
   categoriesEl.innerHTML = '';
-  
+
   Object.entries(itemsObj).forEach(([categoryName, items]) => {
     const categoryDiv = document.createElement('div');
     categoryDiv.className = 'category';
-    
+
     categoryDiv.innerHTML = `
       <div class="category-header">${categoryName}</div>
       <div class="items" id="items-${categoryName.replace(/\s+/g, '-')}"></div>
     `;
-    
+
     categoriesEl.appendChild(categoryDiv);
-    
+
     const itemsGrid = categoryDiv.querySelector('.items');
     items.forEach(item => {
       const itemDiv = document.createElement('div');
@@ -161,6 +168,7 @@ function renderCategories(itemsObj = ITEMS) {
       itemDiv.innerHTML = `
         <span class="item-emoji">${item.emoji}</span>
         <div class="item-name">${item.name}</div>
+        <div class="item-tag">${item.tag}</div>
         <div class="price">$${item.price.toLocaleString()}</div>
       `;
       itemDiv.onclick = () => addItem(item);
@@ -172,27 +180,61 @@ function renderCategories(itemsObj = ITEMS) {
 // ================= SEARCH FUNCTIONALITY =================
 document.getElementById('searchInput').addEventListener('input', function(e) {
   const searchTerm = e.target.value.toLowerCase().trim();
-  
+
   if (!searchTerm) {
     renderCategories(ITEMS);
     return;
   }
-  
+
   const filteredItems = {};
-  
+
   Object.entries(ITEMS).forEach(([categoryName, items]) => {
-    const filtered = items.filter(item => 
-      item.name.toLowerCase().includes(searchTerm) || 
+    const filtered = items.filter(item =>
+      item.name.toLowerCase().includes(searchTerm) ||
       item.tag.toLowerCase().includes(searchTerm)
     );
-    
+
     if (filtered.length > 0) {
       filteredItems[categoryName] = filtered;
     }
   });
-  
+
   renderCategories(filteredItems);
 });
+
+// ================= DIFFICULTY =================
+function setDifficulty(level) {
+  if (!DIFFICULTIES.hasOwnProperty(level)) return;
+
+  if (Object.keys(cart).length > 0) {
+    const confirmed = confirm('Changing your starting capital will clear your current portfolio. Continue?');
+    if (!confirmed) return;
+  }
+
+  START_MONEY = DIFFICULTIES[level];
+  cart = {};
+
+  document.querySelectorAll('.diff-pill').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.level === level);
+  });
+
+  resetPostCheckoutView();
+  renderCart();
+}
+
+function resetPostCheckoutView() {
+  const receiptEl = document.getElementById('receipt');
+  receiptEl.style.display = 'none';
+  receiptEl.innerHTML = '';
+
+  document.querySelector('.cart').style.display = '';
+  document.getElementById('categories').style.marginRight = '';
+  document.querySelector('.search-bar').style.width = '';
+  document.getElementById('cartHeading').textContent = 'Portfolio';
+
+  const related = document.querySelector('.vatsal-related');
+  if (related) related.setAttribute('hidden', '');
+}
 
 // ================= CART LOGIC =================
 function addItem(item) {
@@ -205,7 +247,7 @@ function addItem(item) {
 
 function decrementItem(name) {
   if (!cart[name]) return;
-  
+
   cart[name].qty--;
   if (cart[name].qty <= 0) {
     delete cart[name];
@@ -220,19 +262,28 @@ function removeItem(name) {
 
 function calculateTotals() {
   let total = 0;
+  let assets = 0;
   Object.values(cart).forEach(item => {
     total += item.price * item.qty;
+    assets += item.qty;
   });
-  return { 
-    total, 
-    remaining: START_MONEY - total 
+  return {
+    total,
+    assets,
+    remaining: START_MONEY - total
   };
+}
+
+function formatSigned(amount) {
+  return amount >= 0
+    ? '$' + amount.toLocaleString()
+    : '−$' + Math.abs(amount).toLocaleString();
 }
 
 function renderCart() {
   const cartItemsEl = document.getElementById('cartItems');
   cartItemsEl.innerHTML = '';
-  
+
   Object.values(cart).forEach(item => {
     const row = document.createElement('div');
     row.className = 'cart-row';
@@ -246,40 +297,49 @@ function renderCart() {
     `;
     cartItemsEl.appendChild(row);
   });
-  
-  const { total, remaining } = calculateTotals();
+
+  const { total, assets, remaining } = calculateTotals();
+
   const cartTotalEl = document.getElementById('cartTotal');
   const moneyFillEl = document.getElementById('moneyFill');
-  
+  const heroAmountEl = document.getElementById('heroAmount');
+  const assetsCountEl = document.getElementById('assetsCount');
+
   cartTotalEl.innerHTML = `
-    Total: $${total.toLocaleString()}<br>
-    Left: ${remaining >= 0 ? '$' + remaining.toLocaleString() : '−$' + Math.abs(remaining).toLocaleString()}
+    Net Worth Spent: $${total.toLocaleString()}<br>
+    Remaining Fortune: ${formatSigned(remaining)}
   `;
-  
+
+  assetsCountEl.textContent = assets;
+  heroAmountEl.textContent = formatSigned(remaining);
+
   const percent = Math.max(0, remaining / START_MONEY) * 100;
   moneyFillEl.style.width = percent + '%';
-  
+
   if (remaining < 0) {
     moneyFillEl.classList.add('negative');
+    heroAmountEl.classList.add('negative');
   } else {
     moneyFillEl.classList.remove('negative');
+    heroAmountEl.classList.remove('negative');
   }
 }
 
 // ================= CHECKOUT =================
 function checkout() {
   if (Object.keys(cart).length === 0) {
-    alert('Your cart is empty! Add some items first.');
+    alert('Your portfolio is empty! Add some assets first.');
     return;
   }
-  
+
   const { total, remaining } = calculateTotals();
   const receiptEl = document.getElementById('receipt');
-  
+
   let html = `
-    <div class="receipt-header">🧾 Receipt</div>
+    <div class="receipt-header">Portfolio Statement</div>
+    <div class="receipt-eyebrow">Bill Gates &middot; Wealth Management</div>
   `;
-  
+
   Object.values(cart).forEach(item => {
     html += `
       <div class="receipt-item">
@@ -288,31 +348,37 @@ function checkout() {
       </div>
     `;
   });
-  
+
   html += `
+    <div class="gold-rule thin"></div>
     <div class="receipt-total">
-      <span>Total Damage:</span>
-      <span>$${total.toLocaleString()}</span>
+      <span>Total Spent</span>
+      <span style="color:#c9a961">$${total.toLocaleString()}</span>
     </div>
-    <div class="receipt-total" style="color: ${remaining >= 0 ? '#ffd700' : '#ff4444'}">
-      <span>Money Left:</span>
-      <span>${remaining >= 0 ? '$' + remaining.toLocaleString() : '−$' + Math.abs(remaining).toLocaleString()}</span>
+    <div class="receipt-total" style="color: ${remaining >= 0 ? '#eae7df' : '#e0705c'}">
+      <span>Remaining Fortune</span>
+      <span>${formatSigned(remaining)}</span>
     </div>
   `;
-  
+
+  const quote = remaining >= 0
+    ? `You spent ${'$' + total.toLocaleString()}. Bill Gates is still richer than you.`
+    : `You spent ${'$' + total.toLocaleString()} &mdash; ${formatSigned(remaining)} more than he has. Even Bill Gates has limits.`;
+
+  html += `<div class="receipt-quote">${quote}</div>`;
+
   receiptEl.innerHTML = html;
   receiptEl.style.display = 'block';
-  
+
   // Update cart header
-  document.querySelector('.cart h3').textContent = '🧾 Receipt';
-  
+  document.getElementById('cartHeading').textContent = 'Statement Filed';
+
   // Scroll to receipt
   setTimeout(() => {
     receiptEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, 100);
-  
-  // Clear cart after checkout
-  // Hide cart sidebar after checkout
+
+  // Hide portfolio sidebar after checkout
   document.querySelector('.cart').style.display = 'none';
   document.getElementById('categories').style.marginRight = '0';
   document.querySelector('.search-bar').style.width = 'calc(100% - 32px)';
@@ -334,7 +400,7 @@ function checkout() {
 document.addEventListener('DOMContentLoaded', () => {
   renderCategories();
   renderCart();
-  
+
   // Initialize money bar
   const moneyFillEl = document.getElementById('moneyFill');
   moneyFillEl.style.width = '100%';

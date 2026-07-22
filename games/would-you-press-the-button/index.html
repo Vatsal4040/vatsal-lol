@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
 <link rel="stylesheet" href="style.css">
 <title>Would You Press the Button?</title>
 <link rel="canonical" href="https://vatsal.lol/games/would-you-press-the-button/">
@@ -11,6 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Play Would You Press The Button instantly on VATSAL.LOL. No install, no login - just fun!">
@@ -30,10 +29,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-  <header class="vatsal-header">
-    <a href="/" class="vatsal-home">vatsal.lol</a>
-</header>
-<section id="pressStartScreen">
+  <section id="pressStartScreen">
   <h1 class="game-title">Would You Press the Button?</h1>
   <p class="press-start-copy">Choose YES or NO for 10 dilemmas. After each answer, see how other players voted.</p>
   <button id="pressStartBtn" type="button">START</button>
@@ -62,7 +58,7 @@
   </div>
 </div>
 <script src="script.js" defer></script>
-<script src="../../assets/vatsal-footer-v25.js" defer></script>
+<script src="../../assets/vatsal-sdk.js" defer></script>
   <!-- PWA Service Worker Registration & Update Notification -->
   <script>
     if ('serviceWorker' in navigator) {

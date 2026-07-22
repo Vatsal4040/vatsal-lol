@@ -8,10 +8,9 @@
 <meta property="og:url" content="https://vatsal.lol/games/checklist/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Play Checklist instantly on VATSAL.LOL. No install, no login - just fun!">
@@ -31,26 +30,33 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-<header class="vatsal-header">
-    <a class="vatsal-home" href="../../index.html">vatsal.lol</a>
-</header>
 <div class="container">
 <header class="sticky-header">
-    <h1>Life Checklist</h1>
+    <div class="mission-tag">Transmission // Human Experience Log</div>
 
-    <div class="counter">
-        You’ve completed
-        <span id="count">0</span>/<span id="total">0</span>
-        items
+    <div class="header-main">
+        <h1>Life Checklist</h1>
+
+        <div class="ring-wrap">
+            <svg class="ring-svg" viewBox="0 0 120 120">
+                <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"></circle>
+            </svg>
+            <div class="ring-center">
+                <span id="count">0</span><span class="ring-slash">/</span><span id="total">0</span>
+            </div>
+        </div>
     </div>
-
-    <div class="progress-track">
+   <div class="progress-track">
         <div class="progress-fill" id="progressFill"></div>
     </div>
 </header>
 <div class="grid" id="grid"></div>
 <div class="timeline-wrap">
     <div class="timeline">
+        <div class="timeline-track">
+            <div class="timeline-fill" id="timelineFill"></div>
+        </div>
         <div class="stage">
             <div class="dot"><span>👶</span></div>
             <div>childhood</div>
@@ -74,7 +80,7 @@
 </div>
 </div>
 <div class="footer-glow"></div>
-<script src="../../assets/vatsal-footer-v25.js" defer></script>
+<script src="../../assets/vatsal-sdk.js" defer></script>
 <script src="script.js"></script>
   <!-- PWA Service Worker Registration & Update Notification -->
   <script>

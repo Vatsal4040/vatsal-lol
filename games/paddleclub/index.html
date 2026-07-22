@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
-<link rel="stylesheet" href="../../assets/vatsal-footer-v25.css">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
+<style>:root { --vatsal-branding-color: #222222; }</style>
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
   <meta name="description" content="Play Paddle Club instantly on VATSAL.LOL. No install, no login - just fun!">
@@ -31,9 +31,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-<header class="vatsal-header">
-    <a class="vatsal-home" href="https://vatsal.lol/">vatsal.lol</a>
-</header>
 
 <!-- MENU SCREEN -->
 <section id="menuScreen" class="screen active">
@@ -97,7 +94,7 @@
 </section>
 
 <script src="script.js"></script>
-<script src="../../assets/vatsal-footer-v25.js" defer></script>
+<script src="../../assets/vatsal-sdk.js" defer></script>
   <!-- PWA Service Worker Registration & Update Notification -->
   <script>
     if ('serviceWorker' in navigator) {

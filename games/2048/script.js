@@ -194,11 +194,11 @@ KeyboardInputManager.prototype.listen = function () {
 
   // Respond to swipe events
   var touchStartClientX, touchStartClientY;
-var gameContainer = document.body;
+  var gameContainer = document.querySelector(".game-container") || document.body;
 
   gameContainer.addEventListener(this.eventTouchstart, function (event) {
-    if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
-        event.targetTouches.length > 1) {
+    if ((!window.navigator.msPointerEnabled && event.touches && event.touches.length > 1) ||
+        (event.targetTouches && event.targetTouches.length > 1)) {
       return; // Ignore if touching with more than 1 finger
     }
 
@@ -209,13 +209,13 @@ var gameContainer = document.body;
       touchStartClientX = event.touches[0].clientX;
       touchStartClientY = event.touches[0].clientY;
     }
-
-    event.preventDefault();
-  });
+  }, { passive: false });
 
   gameContainer.addEventListener(this.eventTouchmove, function (event) {
-    event.preventDefault();
-  });
+    if (document.body.classList.contains("game-started")) {
+      event.preventDefault();
+    }
+  }, { passive: false });
 
   gameContainer.addEventListener(this.eventTouchend, function (event) {
     if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||

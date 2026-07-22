@@ -1,0 +1,69 @@
+/* VATSAL.LOL V4 — Shared Platform Stylesheet */
+
+@font-face {
+  font-family: 'VatsalLogoFont';
+  src: url('data/vatsal-logo-font.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --vatsal-font-branding: 'VatsalLogoFont', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --vatsal-branding-bg: rgba(0, 0, 0, 0.4);
+  --vatsal-branding-radius: 20px;
+}
+
+/* Top-Left Fixed Platform Logo */
+.vatsal-v4-branding {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 99999;
+  font-family: var(--vatsal-font-branding);
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+  color: var(--vatsal-branding-color, rgba(255, 255, 255, 0.85));
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.25s ease, transform 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.vatsal-v4-branding:hover,
+.vatsal-v4-branding:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+  background: transparent;
+  outline: none;
+  text-decoration: underline;
+}
+
+/* Hide Branding State (toggled by games during active gameplay if desired) */
+.vatsal-v4-hidden {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  .vatsal-v4-branding {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Hide Branding on Mobile Viewports */
+@media (max-width: 768px) {
+  .vatsal-v4-branding {
+    display: none !important;
+  }
+}

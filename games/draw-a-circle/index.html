@@ -15,9 +15,9 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Draw a Perfect Circle | vatsal.lol">
 <meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
 
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
   <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
@@ -28,9 +28,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-<header class="vatsal-header">
-    <a class="vatsal-home" href="../../index.html">vatsal.lol</a>
-</header>
   <canvas id="canvas"></canvas>
   <div class="controls">
     <button id="gridBtn">Hide grid</button>
@@ -141,5 +138,9 @@
     }
   </script>
 
+<script src="../../assets/vatsal-sdk.js" defer></script>
+<script>
+  setTimeout(() => { window.VatsalLolGameComplete?.(); }, 8000);
+</script>
 </body>
 </html>

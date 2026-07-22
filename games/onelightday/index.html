@@ -25,8 +25,8 @@
   
   <!-- Custom Stylesheet (Local & standalone relative link) -->
  <link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
-<link rel="stylesheet" href="../../assets/vatsal-header-v25.css">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://vatsal.lol/games/onelightday/">
   <meta name="description" content="Play One Light Day instantly on VATSAL.LOL. No install, no login - just fun!">
@@ -47,10 +47,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body class="bg-[#020205] text-white selection:bg-cyan-500/30 selection:text-cyan-200 antialiased font-sans overflow-x-hidden scrollbar-none h-screen">
-<header class="vatsal-header">
-    <a href="/" class="vatsal-home">vatsal.lol</a>
-    
-</header>
   <!-- Interactive Parallax Space Canvas (Stars & Shooting Stars) -->
   <canvas id="starfield-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
@@ -926,5 +922,9 @@
     }
   </script>
 
+<script src="../../assets/vatsal-sdk.js" defer></script>
+<script>
+  setTimeout(() => { window.VatsalLolGameComplete?.(); }, 8000);
+</script>
 </body>
 </html>

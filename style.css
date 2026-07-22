@@ -14,11 +14,11 @@ body {
     background: #000;
     color: #fff;
     font-family: 'FFComma', system-ui, sans-serif;
-    overflow: hidden;
-    height: 100vh;
+    overflow-y: auto;
+    min-height: 100vh;
 }
 
-body.view-grid { overflow-y: auto; height: auto; }
+
 
 /* CINEMATIC INTERSTELLAR BACKGROUND */
 .universe {
@@ -129,7 +129,7 @@ body[data-time="latenight"] {
 
 /* MOBILE V1 OVERRIDES (<768px) */
 @media (max-width: 768px) {
-    .launcher-view { display: none !important; }
+    
     
     body.view-launcher, body.view-grid { 
         overflow-y: auto !important; 
@@ -275,41 +275,6 @@ body[data-time="latenight"] {
     object-fit: cover;
 }
 
-/* LAUNCHER VIEW */
-.launcher-view {
-    height: 100vh; width: 100vw;
-    display: flex; align-items: center; justify-content: center;
-}
-.nodes-composition {
-    position: relative; width: 100%; height: 100%;
-}
-.view-grid .launcher-view { display: none; }
-
-.game-node {
-    position: absolute;
-    width: 90px; height: 90px;
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-.game-node img {
-    width: 100%; height: 100%; border-radius: 50%;
-    object-fit: cover; border: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-.game-node:hover { z-index: 100; transform: scale(1.2) translateY(-5px); }
-.game-node:hover img { border-color: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
-
-.game-node::after {
-    content: attr(data-title);
-    position: absolute; bottom: -35px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px; white-space: nowrap;
-    background: rgba(0,0,0,0.8); padding: 4px 10px;
-    border-radius: 10px; opacity: 0; transition: 0.3s;
-}
-.game-node:hover::after { opacity: 1; }
-
 /* GRID VIEW */
 .grid-view { display: none; padding-top: 40px; }
 .view-grid .grid-view { display: block; }
@@ -438,7 +403,6 @@ body[data-time="latenight"] {
 
 @media (max-width: 1024px) {
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
-    .game-node { width: 75px; height: 75px; }
 }
 @media (max-width: 600px) {
     .cards-grid { grid-template-columns: 1fr; padding: 0 20px; }
@@ -549,13 +513,7 @@ body[data-season="monsoon"] .game-node {
     .sky-rain::before, .sky-rain::after {
         animation: none !important;
     }
-    .game-node {
-        animation: none !important;
-        transition: none !important;
-    }
-    .game-node.ripple-active img {
-        animation: none !important;
-    }
+
 }
 
 body.reduced-motion {
@@ -570,8 +528,3 @@ body.reduced-motion .nebula-3,
 body.reduced-motion .sky-fog,
 body.reduced-motion .sky-rain::before,
 body.reduced-motion .sky-rain::after,
-body.reduced-motion .game-node,
-body.reduced-motion .game-node.ripple-active img {
-    animation: none !important;
-    transition: none !important;
-}
