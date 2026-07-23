@@ -283,7 +283,7 @@ const landed = Math.floor(pointerAngle / ARC) % N;
       fetchJoke(lastSeg);
 
       jokeCount++;
-      if (jokeCount >= 3) window.VatsalLolGameComplete?.();
+      if (jokeCount >= 3) { /* /* window.VatsalLolGameComplete?.() */; */ }
     }
   }
 
@@ -408,4 +408,4 @@ document.addEventListener("keydown", e => {
 // ---------- Init ----------
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
-setTimeout(() => { window.VatsalLolGameComplete?.(); }, 45000);
+/* window.VatsalLolGameComplete call removed */

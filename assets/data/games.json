@@ -67,7 +67,7 @@
   {
     "slug": "guess-the-lie",
     "title": "Guess the Lie",
-    "thumbnail": "assets/thumbcircle/guess-the-lie.webp"
+    "thumbnail": "assets/thumbnails/guess-the-lie.webp"
   },
   {
     "slug": "hardword",
@@ -97,7 +97,7 @@
   {
     "slug": "memory-tiles",
     "title": "Memory Tiles",
-    "thumbnail": "assets/thumbcircle/memory-tiles.webp"
+    "thumbnail": "assets/thumbnails/memory-tiles.webp"
   },
   {
     "slug": "not_scary",
@@ -140,9 +140,9 @@
     "thumbnail": "assets/thumbnails/standing.webp"
   },
   {
-    "slug": "sudoko",
+    "slug": "sudoku",
     "title": "Sudoku",
-    "thumbnail": "assets/thumbcircle/sudoku.webp"
+    "thumbnail": "assets/thumbnails/sudoku.webp"
   },
   {
     "slug": "tower-of-hanoi",
@@ -162,7 +162,7 @@
   {
     "slug": "wordle",
     "title": "Wordle",
-    "thumbnail": "assets/thumbcircle/wordle.webp"
+    "thumbnail": "assets/thumbnails/wordle.webp"
   },
   {
     "slug": "would-you-press-the-button",

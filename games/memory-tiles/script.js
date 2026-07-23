@@ -140,7 +140,7 @@ app.style.display="block";
     nextLevel();
 }
 function endBraining(){
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
     clearInterval(timerInt);
     document.body.classList.remove("no-scroll");
     document.querySelector('.vatsal-related')?.removeAttribute('hidden');
@@ -190,7 +190,7 @@ function startTraining(size){
     nextLevel();
 }
 function endTraining(){
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
     document.body.classList.remove("no-scroll");
     document.querySelector('.vatsal-related')?.removeAttribute('hidden');
     app.style.display="none";
@@ -220,7 +220,7 @@ app.style.display="block";
 }
 function endVivekanand(){
 
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
 
     clearInterval(timerInt);
     document.body.classList.remove("no-scroll");

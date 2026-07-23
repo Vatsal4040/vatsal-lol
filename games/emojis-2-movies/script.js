@@ -616,7 +616,7 @@ function gameOver(){
 
     document.getElementById("scoreScreen")
     .style.display="flex";
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
     document.getElementById("siteHeader").style.display="flex";
     const related = document.querySelector('.vatsal-related');
     if(related){

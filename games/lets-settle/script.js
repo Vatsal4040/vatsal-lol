@@ -515,9 +515,5 @@ function showSummary(){
 
 summaryEl.classList.add('visible');
 
-setTimeout(() => {
-
-  window.VatsalLolGameComplete?.();
-
-},100);
+/* window.VatsalLolGameComplete call removed */
 }

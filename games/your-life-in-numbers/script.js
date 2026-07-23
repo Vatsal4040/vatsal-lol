@@ -165,11 +165,7 @@ function fillStats(stats) {
           state.stats = calculateStats(value);
           fillStats(state.stats);
           document.body.classList.add("revealed");
-          setTimeout(()=>{
-
-    window.VatsalLolGameComplete?.();
-
-},1000);
+          /* window.VatsalLolGameComplete call removed */
           
           $("#days").scrollIntoView({ behavior: "smooth", block: "start" });
         }, 900);
@@ -343,11 +339,7 @@ if(endingSection){
       (entries)=>{
           if(entries[0].isIntersecting){
 
-              setTimeout(()=>{
-
-                  window.VatsalLolGameComplete?.();
-
-              },300);
+              /* window.VatsalLolGameComplete call removed */
 
               endingObserver.disconnect();
 

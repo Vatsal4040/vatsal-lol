@@ -598,7 +598,7 @@ function endGame(){
     }
 
     badgeArea.innerText = badge;
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
 }
 
 // ======================================================

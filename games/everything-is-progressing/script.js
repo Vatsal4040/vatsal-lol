@@ -699,5 +699,5 @@ if(type === "easter"){
 
 update();
 window.addEventListener('load', () => {
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
 });

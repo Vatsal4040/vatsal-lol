@@ -317,9 +317,7 @@ function showResult(title, text) {
 
     showScreen("result");
 
-    if (typeof VatsalLolGameComplete === "function") {
-        VatsalLolGameComplete();
-    }
+    /* VatsalLolGameComplete call removed */
 
 }
 
@@ -528,7 +526,6 @@ function validateRange() {
     makeAIGuess();
 
 }
-
 
 
 

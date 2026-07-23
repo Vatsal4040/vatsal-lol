@@ -134,7 +134,7 @@ function showSummary() {
 
   document.getElementById("restartBtn").style.display = "inline-block";
   document.getElementById("shareBtn").style.display = "inline-block";
-  window.VatsalLolGameComplete?.();
+  // window.VatsalLolGameComplete?.();
 }
 
 function startPressGame() {

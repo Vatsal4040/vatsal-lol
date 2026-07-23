@@ -21,40 +21,14 @@
     document.body.appendChild(logo);
   }
 
-  // Load footer dependencies dynamically
-  function loadFooterDependencies() {
-    if (!document.getElementById('suggest-footer-v4-css')) {
-      const link = document.createElement('link');
-      link.id = 'suggest-footer-v4-css';
-      link.rel = 'stylesheet';
-      link.href = '/assets/suggest-footer-v4.css';
-      document.head.appendChild(link);
-    }
-
-    if (!document.getElementById('suggest-footer-v4-js')) {
-      const script = document.createElement('script');
-      script.id = 'suggest-footer-v4-js';
-      script.src = '/assets/suggest-footer-v4.js';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }
-
-  // Single Public API: Game Completion Callback
+  // Stub Public API: Game Completion Callback (no-op for V4.0.1 maintenance)
   window.VatsalLolGameComplete = function () {
-    if (typeof window.VatsalLolShowFooter === 'function') {
-      window.VatsalLolShowFooter();
-    } else {
-      document.addEventListener('VatsalFooterReady', function () {
-        window.VatsalLolShowFooter?.();
-      }, { once: true });
-    }
+    // Recommendation system terminated.
   };
 
   // Initialize on DOM ready
   function init() {
     initBranding();
-    loadFooterDependencies();
   }
 
   if (document.readyState === 'loading') {

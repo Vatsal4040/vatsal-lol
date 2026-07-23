@@ -1848,7 +1848,7 @@ if(related && !resultsScreen.contains(related)){
   resultsScreen.querySelector('.results-inner').after(related);
 }
 
-window.VatsalLolGameComplete?.();
+// window.VatsalLolGameComplete?.();
 }
 /* ==========================================
 PLAY AGAIN

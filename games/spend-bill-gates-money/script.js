@@ -388,7 +388,7 @@ function checkout() {
   renderCart();
 
   // Show footer below receipt
-  window.VatsalLolGameComplete?.();
+  // window.VatsalLolGameComplete?.();
   const related = document.querySelector('.vatsal-related');
   if (related) {
     related.removeAttribute('hidden');

@@ -438,7 +438,7 @@ if (related) {
   document.getElementById('result').appendChild(related);
   related.removeAttribute('hidden');
 }
-  window.VatsalLolGameComplete?.();
+  // window.VatsalLolGameComplete?.();
 }
 
 // ── SCREENS ────────────────────────────────────

@@ -904,7 +904,7 @@ const Game = (() => {
     UI.text('js-stat-reread',  State.reReadUsed ? 'Yes' : 'No');
 
     UI.show('section-results');
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
   }
 
   /* ── Public API ───────────────────────────────────────────── */

@@ -236,7 +236,7 @@ function submit(){
             showResultScreen(win, { target, win, row, date: getISTDateString() });
         }
 
-        window.VatsalLolGameComplete?.();
+        // window.VatsalLolGameComplete?.();
         return;
     }
 

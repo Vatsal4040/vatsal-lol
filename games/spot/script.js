@@ -1434,7 +1434,7 @@ function endGame(){
 
     );
     document.querySelector(".vatsal-related")?.removeAttribute("hidden");
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
 
 }
 /*=========================================

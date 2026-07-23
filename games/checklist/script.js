@@ -214,7 +214,7 @@ function updateCounter(){
     }
 
     if (checked === items.length) {
-        window.VatsalLolGameComplete?.();
+        // window.VatsalLolGameComplete?.();
     }
 }
 

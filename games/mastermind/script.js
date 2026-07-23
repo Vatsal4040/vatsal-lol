@@ -533,7 +533,7 @@ if (activeRow === 0) {
       // Show rules + footer
       show("rulesSection");
       document.querySelector(".vatsal-related")?.removeAttribute("hidden");
-      setTimeout(() => window.VatsalLolGameComplete?.(), 100);
+      /* window.VatsalLolGameComplete call removed */
     }
   }
 
@@ -584,7 +584,7 @@ if (activeRow === 0) {
 
     // Show footer
     document.querySelector(".vatsal-related")?.removeAttribute("hidden");
-    setTimeout(() => window.VatsalLolGameComplete?.(), 100);
+    /* window.VatsalLolGameComplete call removed */
 
     // Play Infinite from result
     document.getElementById("resultPlayInfinite")?.addEventListener("click", () => {

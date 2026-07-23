@@ -1470,7 +1470,7 @@ window.scrollTo({
   top: 0,
   behavior: "instant"
 });
-  window.VatsalLolGameComplete?.();
+  // window.VatsalLolGameComplete?.();
 }
 
 function startNewGame() {

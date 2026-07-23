@@ -205,7 +205,7 @@ function checkWin() {
         statusElement.style.color = '#4CAF50';
         document.body.classList.remove('game-started');
         document.body.classList.add('game-ended');
-        setTimeout(() => window.VatsalLolGameComplete?.(), 0);
+        /* window.VatsalLolGameComplete call removed */
     } else {
         statusElement.textContent = 'Tap a disk to continue';
         statusElement.style.color = '#feb47b';
@@ -278,7 +278,7 @@ function finishAutoSolve() {
     showResultWatermark();
     document.body.classList.remove('game-started');
     document.body.classList.add('game-ended');
-    setTimeout(() => window.VatsalLolGameComplete?.(), 0);
+    /* window.VatsalLolGameComplete call removed */
 }
 
 async function solve(n, source, target, auxiliary) {

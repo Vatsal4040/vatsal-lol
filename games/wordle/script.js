@@ -1539,7 +1539,7 @@ function showResultPanel(
     won
 ){
 
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
 
     resultPanel.innerHTML = `
 

@@ -219,7 +219,7 @@ document
   .getElementById("resultSection")
   .removeAttribute("hidden");
 
-window.VatsalLolGameComplete?.();
+// window.VatsalLolGameComplete?.();
   return true;
 }
 
@@ -262,5 +262,4 @@ function playAgain(){
   gameScreen.classList.remove("active");
   startScreen.classList.add("active");
 }
-
 

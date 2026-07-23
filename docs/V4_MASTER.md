@@ -2,7 +2,7 @@
 
 **Specification Version**: 1.0 (FROZEN & LOCKED)  
 **Status**: Active  
-**Last Updated**: 2026-07-22  
+**Last Updated**: 2026-07-23  
 
 This is the **permanently frozen governing master specification** for **VATSAL.LOL V4**.
 
@@ -10,7 +10,7 @@ This is the **permanently frozen governing master specification** for **VATSAL.L
 
 ## Core Philosophy
 
-Every game on VATSAL.LOL is intentionally different. V4 standardizes only the platform experience (branding, SDK, recommendation footer, mobile responsiveness, accessibility, performance) without imposing a uniform visual style across games.
+Every game on VATSAL.LOL is intentionally different. V4 standardizes only the platform experience (branding, SDK, mobile responsiveness, accessibility, performance) without imposing a uniform visual style across games.
 
 > *VATSAL.LOL is not trying to become a generic gaming platform. It is a curated collection of distinct interactive experiences that share a common platform foundation. V4 strengthens that foundation without reducing the individuality of the games themselves.*
 
@@ -26,10 +26,10 @@ unless measurable benefits justify additional complexity.
 ```
 
 ### 2. Platform Ownership Rule
-Platform code (`vatsal-sdk.js`, `vatsal-v4.css`, `suggest-footer-v4`) must **never** know internal game logic or inspect game state. Games notify the platform via `window.VatsalLolGameComplete()`.
+Platform code (`vatsal-sdk.js`, `vatsal-v4.css`) must **never** know internal game logic or inspect game state.
 
 ### 3. SDK Public API
-Exposes **only** `window.VatsalLolGameComplete()`.
+Exposes branding controls. `window.VatsalLolGameComplete()` is stubbed as a no-op to support compatibility with legacy game code.
 
 ### 4. Non-Goals
 V4 will **NOT** introduce user accounts, login, favorites, cloud saves, achievements, framework migrations (React/Vue), or automatic game redesigns.
@@ -45,10 +45,9 @@ V4 will **NOT** introduce user accounts, login, favorites, cloud saves, achievem
 - Thumbnail Image: < 50 KB (WebP, 16:9 aspect ratio preserved)
 - Branding Logo: < 60 KB
 - SDK (`vatsal-sdk.js`): < 10 KB
-- Footer: < 15 KB
 
-### 7. Footer Rule
-The recommendation footer appears **only after** `window.VatsalLolGameComplete()` is called. Never during or before gameplay.
+### 7. Footer Rule (Sunsetted in V4.0.1)
+The recommendation footer has been completely terminated from all games to prioritize immersive, distraction-free gameplay.
 
 ### 8. Branding Rule
 Branding identifies the platform subtly (`vatsal.lol`). It must **never** compete with the game's title, UI HUD, or primary artwork.
@@ -59,7 +58,7 @@ Branding identifies the platform subtly (`vatsal.lol`). It must **never** compet
 
 ```
 Phase 0: Platform Foundation
-✅ Complete (vatsal-v4.css, vatsal-sdk.js, suggest-footer-v4, games.json)
+✅ Complete (vatsal-v4.css, vatsal-sdk.js, games.json)
 
 ↓
 
@@ -88,8 +87,8 @@ Phase 4: Release Candidate Validation
 
 ↓
 
-Phase 5A: V4.0.0 Release
-✅ Complete (Legacy platform assets deleted, git commit completed, and repository tagged v4.0.0)
+Phase 5A: V4.0.1 Maintenance Release
+✅ Complete (Purged suggestion footer dependencies, stubbed callbacks, and tagged v4.0.1)
 
 ↓
 
@@ -101,8 +100,8 @@ Phase 5B: Post-Release Evolution
 
 ## Phase 4 — Release Candidate Validation Checklist
 
-- **Platform**: Verify SDK loading, suggestion footer, transparent branding CSS, and `games.json` parsing.
-- **Every Game**: Validate that each of the 36 games opens, plays, and completes correctly, that the footer displays, and that there are zero console errors or broken assets.
+- **Platform**: Verify SDK loading, transparent branding CSS, and `games.json` parsing.
+- **Every Game**: Validate that each of the 36 games opens and plays correctly, and that there are zero console errors or broken assets.
 - **Desktop**: Validate layouts on Chrome, Edge, and Firefox at standard resolutions.
 - **Mobile**: Portrait first, landscape where applicable on 360×800, 390×844, and 412×915 viewports.
 - **Lighthouse**: Measure Performance, Accessibility, Best Practices, and SEO targets for the homepage, redesign candidates, and representative games.
@@ -114,12 +113,12 @@ Phase 5B: Post-Release Evolution
 
 ## Release Blockers (Go/No-Go List)
 
-V4.0.0 cannot be released if any of these conditions are met:
+V4.0.1 cannot be released if any of these conditions are met:
 - ❌ Any broken game or gameplay regression.
 - ❌ Broken homepage link or layout overflow.
 - ❌ Missing thumbnail or brand logo asset.
 - ❌ Any console error or failed network request.
-- ❌ Missing SDK integration or footer recommendation callback.
+- ❌ Missing SDK integration.
 - ❌ Broken SEO canonical links or description tags.
 - ❌ Active V2.5 dependencies in live games.
 - ❌ Broken PWA offline page or service worker registration.

@@ -224,7 +224,7 @@
       if (related && !gameBody.contains(related)) {
         gameBody.appendChild(related);
       }
-      window.VatsalLolGameComplete?.();
+      // window.VatsalLolGameComplete?.();
     }, 500);
   }
 

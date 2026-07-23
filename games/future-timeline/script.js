@@ -788,9 +788,7 @@
           endingDivider?.classList.add("active");
 
           // Invoke parent footer recommend cards trigger
-          if (typeof window.VatsalLolGameComplete === "function") {
-            window.VatsalLolGameComplete();
-          }
+          /* window.VatsalLolGameComplete call removed */
           self.unobserve(entry.target);
         }
       });

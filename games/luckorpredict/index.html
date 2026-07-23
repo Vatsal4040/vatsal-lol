@@ -163,7 +163,7 @@
       const originalPredict = game.predict;
       game.predict = function(...args) {
           originalPredict.apply(this, args);
-          window.VatsalLolGameComplete?.();
+          // window.VatsalLolGameComplete?.();
       };
     </script>
 </body>

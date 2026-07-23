@@ -506,7 +506,7 @@ function checkWinner() {
       if (related && !winScreen.contains(related)) {
         winScreen.querySelector(".screen-body").appendChild(related);
       }
-      window.VatsalLolGameComplete?.();
+      // window.VatsalLolGameComplete?.();
     }, 600);
 
     switchScreen(winScreen);

@@ -261,7 +261,7 @@ function showResult() {
     footerSlot.appendChild(related);
   }
 
-  window.VatsalLolGameComplete?.();
+  // window.VatsalLolGameComplete?.();
 }
 
 /* on replay, move footer back to body */

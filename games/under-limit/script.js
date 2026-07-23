@@ -144,7 +144,7 @@ function stop() {
   if (navigator.vibrate) navigator.vibrate(scored ? 30 : [20, 40, 20]);
 
   revealTimer = setTimeout(() => {
-    window.VatsalLolGameComplete?.();
+    // window.VatsalLolGameComplete?.();
     revealTimer = null;
   }, 30000);
 }
