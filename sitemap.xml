@@ -1,128 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vatsal.lol/</loc>
   </url>
-  
   <url>
     <loc>https://vatsal.lol/games/2048/</loc>
   </url>
-
+  <url>
+    <loc>https://vatsal.lol/games/8bit-lab/</loc>
+  </url>
   <url>
     <loc>https://vatsal.lol/games/adjustme/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/bubbles/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/bugsmash/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/can-you-guess-indian-mom/</loc>
   </url>
-
-    <url>
+  <url>
     <loc>https://vatsal.lol/games/checklist/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/draw-a-circle/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/emojis-2-movies/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/everything-is-progressing/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/flash-memory/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/focus/</loc>
   </url>
-
+  <url>
+    <loc>https://vatsal.lol/games/future-timeline/</loc>
+  </url>
   <url>
     <loc>https://vatsal.lol/games/guess-the-lie/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/hardword/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/jokes-if-you-handle/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/lets-settle/</loc>
   </url>
-
+  <url>
+    <loc>https://vatsal.lol/games/luckorpredict/</loc>
+  </url>
   <url>
     <loc>https://vatsal.lol/games/mastermind/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/memory-tiles/</loc>
   </url>
-
+  <url>
+    <loc>https://vatsal.lol/games/not_scary/</loc>
+  </url>
   <url>
     <loc>https://vatsal.lol/games/onelightday/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/paddleclub/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/snake/</loc>
   </url>
-
+  <url>
+    <loc>https://vatsal.lol/games/soundbar/</loc>
+  </url>
   <url>
     <loc>https://vatsal.lol/games/spend-bill-gates-money/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/spot/</loc>
   </url>
-
-    <url>
+  <url>
+    <loc>https://vatsal.lol/games/standing/</loc>
+  </url>
+  <url>
     <loc>https://vatsal.lol/games/sudoku/</loc>
   </url>
-
-    <url>
+  <url>
     <loc>https://vatsal.lol/games/tower-of-hanoi/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/under-limit/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/which-number/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/wordle/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/would-you-press-the-button/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/xo/</loc>
   </url>
-
   <url>
     <loc>https://vatsal.lol/games/your-life-in-numbers/</loc>
   </url>
-
 </urlset>
