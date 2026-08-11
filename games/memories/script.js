@@ -134,6 +134,14 @@ let sweeps = [];
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+
+  // Update background image for mobile/desktop aspect ratio switch
+  const scene = scenes[currentSceneKey];
+  if (scene) {
+    const isMobile = window.innerWidth <= 768;
+    const sceneImg = isMobile ? `m_${scene.image}` : scene.image;
+    $("scene").style.backgroundImage = `url("${sceneImg}")`;
+  }
 }
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
@@ -465,7 +473,9 @@ function setScene(sceneKey) {
   }
 
   // 4. Update scene background image
-  sceneEl.style.backgroundImage = `url("${scene.image}")`;
+  const isMobile = window.innerWidth <= 768;
+  const sceneImg = isMobile ? `m_${scene.image}` : scene.image;
+  sceneEl.style.backgroundImage = `url("${sceneImg}")`;
 
   // 5. Handle Audio Loading
   if (isPlayerReady && player) {
