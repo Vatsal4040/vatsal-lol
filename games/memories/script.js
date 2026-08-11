@@ -280,7 +280,7 @@ function onPlayerReady(event) {
   isPlayerReady = true;
   // Load playlist for the default/current scene
   const playlistId = scenes[currentSceneKey].playlistId;
-  player.cuePlaylist({
+  player.loadPlaylist({
     listType: "playlist",
     list: playlistId,
     index: 0
@@ -297,7 +297,6 @@ function onPlayerStateChange(event) {
   if (state === YT.PlayerState.PLAYING) {
     playPauseBtn.innerHTML = "Ⅱ"; // Pause symbol
     cassette.classList.add("playing");
-    $("play-invite-text").textContent = "Tap to enter the memory";
     
     // Start metadata track updating
     startMetaTracking();
@@ -483,15 +482,15 @@ document.querySelectorAll(".scene-btn").forEach(btn => {
   };
 });
 
-// Autoplay Unlocker
-$("autoplay-invite").onclick = () => {
-  autoplayUnlocked = true;
-  $("autoplay-invite").classList.add("hide");
-
+// Fallback play gesture on first click if browser blocks autoplay
+document.addEventListener("click", () => {
   if (isPlayerReady && player) {
-    player.playVideo();
+    const state = player.getPlayerState?.();
+    if (state !== YT.PlayerState.PLAYING && state !== YT.PlayerState.BUFFERING) {
+      player.playVideo();
+    }
   }
-};
+}, { once: true });
 
 // Horn Hotspot Click Handler
 $("horn-hotspot").onclick = (e) => {

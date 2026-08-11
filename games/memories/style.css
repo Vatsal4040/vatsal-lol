@@ -143,59 +143,8 @@ html, body {
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
 }
 
-.ambient-mode #controls {
-  transform: translate(-50%, 15px);
-  opacity: 0.15;
-}
 
-#controls:hover {
-  transform: translate(-50%, 0);
-  opacity: 1;
-}
 
-/* Ambient Listen Invite Overlay (for browser autoplay) */
-#autoplay-invite {
-  position: fixed;
-  z-index: 8;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: var(--color-text-light);
-  font-family: var(--font-display);
-  cursor: pointer;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-#autoplay-invite.hide {
-  opacity: 0;
-  pointer-events: none;
-}
-
-#autoplay-invite h2 {
-  font-size: 28px;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  margin-bottom: 12px;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  text-transform: uppercase;
-}
-
-#autoplay-invite p {
-  font-size: 14px;
-  opacity: 0.8;
-  letter-spacing: 0.05em;
-  animation: pulse-slow 2s infinite alternate;
-}
-
-@keyframes pulse-slow {
-  0% { opacity: 0.4; transform: scale(0.98); }
-  100% { opacity: 0.9; transform: scale(1.02); }
-}
 
 /* Glassmorphism Player Card */
 .player-card {
