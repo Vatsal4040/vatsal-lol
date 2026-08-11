@@ -333,27 +333,35 @@ function formatTime(seconds) {
 function updateTrackMeta() {
   if (!isPlayerReady || !player) return;
 
-  // Update track title and artist
-  const data = player.getVideoData?.() || {};
-  const title = data.title || "Ambient Memory Song";
-  const channel = data.author || "Nostalgic Moments";
+  try {
+    const data = (typeof player.getVideoData === "function") ? player.getVideoData() : {};
+    const title = data.title || "Ambient Memory Song";
+    const channel = data.author || "Nostalgic Moments";
 
-  $("song-title").textContent = title;
-  $("song-artist").textContent = channel;
+    $("song-title").textContent = title;
+    $("song-artist").textContent = channel;
+  } catch (err) {
+    console.warn("Failed to get video data:", err);
+    $("song-title").textContent = "Ambient Memory Song";
+    $("song-artist").textContent = "Nostalgic Moments";
+  }
 
-  // Update progress slider and time texts
-  const current = player.getCurrentTime?.() || 0;
-  const duration = player.getDuration?.() || 0;
+  try {
+    const current = (typeof player.getCurrentTime === "function") ? player.getCurrentTime() : 0;
+    const duration = (typeof player.getDuration === "function") ? player.getDuration() : 0;
 
-  if (duration > 0) {
-    const percent = (current / duration) * 100;
-    $("progress-bar").style.width = `${percent}%`;
-    $("time-current").textContent = formatTime(current);
-    $("time-duration").textContent = formatTime(duration);
-  } else {
-    $("progress-bar").style.width = "0%";
-    $("time-current").textContent = "0:00";
-    $("time-duration").textContent = "0:00";
+    if (duration > 0) {
+      const percent = (current / duration) * 100;
+      $("progress-bar").style.width = `${percent}%`;
+      $("time-current").textContent = formatTime(current);
+      $("time-duration").textContent = formatTime(duration);
+    } else {
+      $("progress-bar").style.width = "0%";
+      $("time-current").textContent = "0:00";
+      $("time-duration").textContent = "0:00";
+    }
+  } catch (err) {
+    console.warn("Failed to get time/duration:", err);
   }
 }
 
@@ -544,7 +552,4 @@ $("playlist-modal").onclick = (e) => {
 };
 
 // Start default scene immediately
-document.addEventListener("DOMContentLoaded", () => {
-  // Initialize default scene state
-  setScene(currentSceneKey);
-});
+setScene(currentSceneKey);

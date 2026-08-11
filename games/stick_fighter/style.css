@@ -340,8 +340,8 @@ canvas#gameCanvas {
 
 /* Snug Solid Cards - Perfectly filled without extra black space */
 .weapon-card, .arena-card {
-  background: #111117;
-  border: 1px solid #282836;
+  background: #181824;
+  border: 1px solid #3c3c4e;
   border-radius: 6px;
   padding: 10px 8px;
   display: flex;
@@ -357,15 +357,15 @@ canvas#gameCanvas {
 }
 
 .weapon-card:hover, .arena-card:hover {
-  background: #1c1c28;
+  background: #222232;
   border-color: #ef4444;
   transform: translateY(-1px);
 }
 
 .weapon-card.selected, .arena-card.selected {
-  border-color: #ef4444;
-  background: #281216;
-  box-shadow: 0 0 12px rgba(220, 38, 38, 0.25);
+  border: 2px solid #ef4444;
+  background: #381418;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.4);
 }
 
 .weapon-card.selected::after, .arena-card.selected::after {
