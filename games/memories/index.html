@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memories — Nostalgic Indian Ambient Experience</title>
+  <meta name="description" content="An ambient web experience triggering familiar Indian memories through illustrated POV scenes and connected nostalgia.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../assets/vatsal-v4.css">
+</head>
+<body>
+
+  <!-- Fullscreen POV Illustration Background -->
+  <div id="scene" class="engine-vibrate"></div>
+
+  <!-- Drifting Particles / Light Sweeps Overlay -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Live Device Clock (Local Time) -->
+  <div id="clock" aria-label="Current Local Time">--:--</div>
+
+  <!-- Live Visitor Indicator (Green dot with count) -->
+  <div id="live-indicator" aria-label="Live listeners"><span class="green-dot"></span><span id="live-count">--</span></div>
+
+  <!-- Offscreen YouTube Player Container -->
+  <div id="yt-container">
+    <div id="yt-player"></div>
+  </div>
+
+  <!-- Autoplay User Interaction Invite (Prerequisite for audio play) -->
+  <div id="autoplay-invite" aria-label="Tap to unlock audio">
+    <h2>Memories</h2>
+    <p id="play-invite-text">Tap anywhere to tune in</p>
+  </div>
+
+  <!-- Steering Wheel Horn Hotspot (Active only in Desi Truck scene) -->
+  <div id="horn-hotspot" role="button" aria-label="Honk Horn" title="Click to Honk">
+    <div class="horn-indicator">HORN</div>
+  </div>
+
+  <!-- Core Player and Scene Control Center -->
+  <div id="controls">
+    
+    <!-- Tactile Music Player Card -->
+    <div class="player-card">
+      
+      <!-- Cassette Tape Animation -->
+      <div class="cassette-holder">
+        <div class="cassette-shell">
+          <div class="cassette-label">
+            <div class="cassette-window">
+              <div class="cassette-reel"></div>
+              <div class="cassette-reel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="row">
+        <button id="prev" class="btn-ctrl" title="Previous Song">⏮</button>
+        <button id="play-pause" class="btn-ctrl" title="Play / Pause">▶</button>
+        <button id="next" class="btn-ctrl" title="Next Song">⏭</button>
+        
+        <div class="track-info">
+          <div id="song-title" class="song-title">Connecting playlist...</div>
+          <div id="song-artist" class="song-artist">YouTube Player</div>
+        </div>
+        
+        <button id="mute" class="btn-ctrl" title="Mute/Unmute">🔊</button>
+      </div>
+
+      <!-- Live Seek Progress Slider -->
+      <div class="progress-area">
+        <div id="slider-container" class="slider-container">
+          <div id="progress-bar" class="progress-bar">
+            <div class="progress-handle"></div>
+          </div>
+        </div>
+        <div class="time-row">
+          <span id="time-current">0:00</span>
+          <span id="time-duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Custom Playlist Settings Drawer -->
+      <div class="player-footer">
+        <a id="playlist-link" class="playlist-link" href="#" target="_blank" rel="noopener">Open Playlist ↗</a>
+        <button id="playlist-edit-btn" class="playlist-edit-btn" title="Edit Playlist ID">⚙ Change Playlist</button>
+      </div>
+
+    </div>
+
+    <!-- Scene Switcher Selector -->
+    <div class="scene-selector" role="toolbar" aria-label="Memory Selector">
+      <button class="scene-btn active" data-scene="barber" title="Barber Shop — Waiting" aria-label="Enter Barber Shop memory">💈</button>
+      <button class="scene-btn" data-scene="auto" title="Auto — Crossroad" aria-label="Enter Auto-rickshaw memory">🛺</button>
+      <button class="scene-btn" data-scene="dad" title="Dad's Drive" aria-label="Enter Dad's Drive memory">🚗</button>
+      <button class="scene-btn" data-scene="truck" title="Desi Truck — Highway" aria-label="Enter Desi Truck memory">🚛</button>
+      <button class="scene-btn" data-scene="class95" title="Class of 1995" aria-label="Enter Study Table memory">📚</button>
+    </div>
+
+  </div>
+
+  <!-- Custom Playlist Modal Dialog -->
+  <div id="playlist-modal" class="playlist-modal">
+    <div class="playlist-modal-content">
+      <h3>Custom Playlist ID</h3>
+      <p>Configure a custom YouTube Music playlist ID for this scene. It will automatically save for your next visit.</p>
+      <input type="text" id="playlist-input" placeholder="Enter YouTube Playlist ID (e.g. PLbhNkpM-gLMM)">
+      <div class="playlist-modal-buttons">
+        <button id="modal-cancel" class="modal-btn cancel">Cancel</button>
+        <button id="modal-save" class="modal-btn save">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>

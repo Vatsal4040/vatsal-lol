@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHAOS - The Internet's Most Beautiful Sound Playground</title>
+  
+  <!-- Google Fonts for Hand-Drawn storybook feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Patrick+Hand&family=Schoolbell&family=Short+Stack&display=swap" rel="stylesheet">
+  
+  <!-- Local Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="../../assets/vatsal-v4.css">
+</head>
+<body>
+  <div id="app-container">
+    
+    <!-- Top Header -->
+    <header class="chaos-header">
+      <div class="logo-area">
+        <h1 class="logo-title">CHAOS</h1>
+        <p class="logo-subtitle">Click sounds. Build worlds.</p>
+      </div>
+      
+      <div class="chaos-meter-container">
+        <span class="meter-label">CHAOS METER</span>
+        <div class="chaos-meter-track">
+          <div id="chaos-meter-fill" style="width: 0%;"></div>
+        </div>
+        <span id="chaos-meter-text">PEACEFUL (0%)</span>
+      </div>
+      
+
+    </header>
+    
+    <!-- Main Playground Workspace (Grid only, sidebar removed!) -->
+    <main class="playground-layout">
+      <section class="sound-library-section">
+        <div id="sound-grid" class="sound-grid">
+          <!-- Dynamically populated sound card stickers -->
+        </div>
+      </section>
+    </main>
+    
+    <!-- Presets Shelf (Bottom - immediately visible, no 10s rule!) -->
+    <section id="presets-shelf" class="presets-shelf">
+      <div class="presets-header">
+        <h3 class="presets-title">CHAOS PRESETS</h3>
+        <button id="surprise-me-btn" class="text-btn-hand">🎲 Surprise Me</button>
+      </div>
+      <div class="presets-carousel-container">
+        <div id="presets-carousel" class="presets-carousel">
+          <!-- Dynamically populated presets -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- Permanent Master Volume Footer -->
+    <footer class="master-volume-footer">
+      <div class="master-volume-container">
+        <span class="volume-icon">🔊</span>
+        <input type="range" id="master-volume-slider" min="0" max="1" step="0.01" value="0.75" class="hand-slider" aria-label="Master Volume">
+        <span id="master-volume-text">75%</span>
+      </div>
+    </footer>
+    
+  </div>
+
+
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application JS Code -->
+  <script src="js/data.js"></script>
+  <script src="js/audio-manager.js"></script>
+  <script src="js/app.js"></script>
+  <script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>

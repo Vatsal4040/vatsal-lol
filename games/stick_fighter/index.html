@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>STICK FIGHTER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Russo+One&family=Teko:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app-container">
+      <button id="soundToggleBtn" class="sound-btn" title="Toggle Sound">🔊</button>
+      <canvas id="gameCanvas"></canvas>
+
+      <!-- HUD & Game Controls UI -->
+      <div class="ui-layer">
+        <div id="hud">
+          <!-- Player HUD -->
+          <div class="fighter-hud left">
+            <div class="fighter-meta">
+              <span>PLAYER</span>
+              <span id="playerWeaponBadge" class="weapon-badge">SWORD</span>
+            </div>
+            <div class="hp-bar-outer">
+              <div id="playerHpDamage" class="hp-bar-damage" style="width: 100%;"></div>
+              <div id="playerHpFill" class="hp-bar-fill" style="width: 100%;"></div>
+            </div>
+            <div id="playerHpText" class="hp-text">100 / 100</div>
+          </div>
+
+          <!-- Timer & Arena info -->
+          <div class="match-info">
+            <div class="timer-box">
+              <div id="timerText" class="timer-text">00:30</div>
+            </div>
+            <div id="arenaTag" class="arena-tag">FLAT ARENA</div>
+          </div>
+
+          <!-- Bot HUD -->
+          <div class="fighter-hud right">
+            <div class="fighter-meta">
+              <span id="botWeaponBadge" class="weapon-badge">SWORD</span>
+              <span>AI BOT</span>
+            </div>
+            <div class="hp-bar-outer">
+              <div id="botHpDamage" class="hp-bar-damage" style="width: 100%;"></div>
+              <div id="botHpFill" class="hp-bar-fill" style="width: 100%;"></div>
+            </div>
+            <div id="botHpText" class="hp-text">100 / 100</div>
+          </div>
+        </div>
+
+        <!-- Controls overlay (Desktop hints & Mobile touch buttons) -->
+        <div id="controlsOverlay">
+          <div class="touch-controls">
+            <!-- Left D-Pad -->
+            <div class="touch-group">
+              <button id="btnLeft" class="touch-btn">◀</button>
+              <button id="btnRight" class="touch-btn">▶</button>
+            </div>
+
+            <!-- Desktop Keyboard hints center -->
+            <div class="keyboard-hints">
+              <div class="key-badge"><span class="kbd">A</span><span class="kbd">D</span> MOVE</div>
+              <div class="key-badge"><span class="kbd">W</span> JUMP</div>
+              <div class="key-badge"><span class="kbd">J</span> ATTACK</div>
+              <div class="key-badge"><span class="kbd">K</span> SPECIAL</div>
+            </div>
+
+            <!-- Right Action Group -->
+            <div class="touch-group">
+              <button id="btnJump" class="touch-btn">▲</button>
+              <button id="btnAttack" class="touch-btn attack">⚔️</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Setup Screen -->
+      <div id="setupMenu" class="overlay-screen active">
+        <div class="setup-scroll-wrapper">
+          <h1 class="game-title"><span class="text-white">STICK</span> <span class="text-red">FIGHTER</span></h1>
+          <p class="game-subtitle">ONE WEAPON • ONE ARENA • NO MERCY</p>
+
+          <!-- WEAPON SELECTION SECTION -->
+          <div class="setup-section-title">CHOOSE YOUR WEAPON</div>
+          <div class="weapon-grid">
+            <div class="weapon-card selected" data-weapon="sword">
+              <div class="weapon-icon">🗡️</div>
+              <div class="weapon-name">SWORD</div>
+              <div class="weapon-desc">Fast • Balanced</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="axe">
+              <div class="weapon-icon">🪓</div>
+              <div class="weapon-name">AXE</div>
+              <div class="weapon-desc">Heavy • Powerful</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="boomerang">
+              <div class="weapon-icon">🪃</div>
+              <div class="weapon-name">BOOMERANG</div>
+              <div class="weapon-desc">Throw • Return</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="shield">
+              <div class="weapon-icon">🛡️</div>
+              <div class="weapon-name">SHIELD</div>
+              <div class="weapon-desc">Block • Bash</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="bow">
+              <div class="weapon-icon">🏹</div>
+              <div class="weapon-name">BOW</div>
+              <div class="weapon-desc">Range • Precision</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="hammer">
+              <div class="weapon-icon">🔨</div>
+              <div class="weapon-name">HAMMER</div>
+              <div class="weapon-desc">Slow • Massive</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="gloves">
+              <div class="weapon-icon">🥊</div>
+              <div class="weapon-name">GLOVES</div>
+              <div class="weapon-desc">Fast • Close</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="wand">
+              <div class="weapon-icon">🪄</div>
+              <div class="weapon-name">WAND</div>
+              <div class="weapon-desc">Magic • Range</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="yoyo">
+              <div class="weapon-icon">🪀</div>
+              <div class="weapon-name">YO-YO</div>
+              <div class="weapon-desc">Return • Trick</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="pan">
+              <div class="weapon-icon">🍳</div>
+              <div class="weapon-name">PAN</div>
+              <div class="weapon-desc">Funny • Heavy</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="broom">
+              <div class="weapon-icon">🧹</div>
+              <div class="weapon-name">BROOM</div>
+              <div class="weapon-desc">Wide • Sweep</div>
+            </div>
+
+            <div class="weapon-card" data-weapon="chair">
+              <div class="weapon-icon">🪑</div>
+              <div class="weapon-name">CHAIR</div>
+              <div class="weapon-desc">Heavy • Chaos</div>
+            </div>
+          </div>
+
+          <!-- ARENA SELECTION SECTION -->
+          <div class="setup-section-title">CHOOSE YOUR ARENA</div>
+          <div class="arena-grid">
+            <div class="arena-card selected" data-arena="flat">
+              <div class="arena-icon">⬛</div>
+              <div class="arena-name">1. FLAT</div>
+              <div class="arena-desc">Classic flat combat</div>
+            </div>
+
+            <div class="arena-card" data-arena="staircase">
+              <div class="arena-icon">🪜</div>
+              <div class="arena-name">2. STAIRCASE</div>
+              <div class="arena-desc">Uneven wide steps</div>
+            </div>
+
+            <div class="arena-card" data-arena="slope">
+              <div class="arena-icon">📐</div>
+              <div class="arena-name">3. SLOPE</div>
+              <div class="arena-desc">Pronounced angled hill</div>
+            </div>
+
+            <div class="arena-card" data-arena="split">
+              <div class="arena-icon">⏸️</div>
+              <div class="arena-name">4. SPLIT PLATFORM</div>
+              <div class="arena-desc">Two tops & central gap</div>
+            </div>
+
+            <div class="arena-card" data-arena="tower">
+              <div class="arena-icon">🏛️</div>
+              <div class="arena-name">5. TOWER</div>
+              <div class="arena-desc">Vertical stacked platforms</div>
+            </div>
+
+            <div class="arena-card" data-arena="valley">
+              <div class="arena-icon">🥣</div>
+              <div class="arena-name">6. VALLEY</div>
+              <div class="arena-desc">Raised sides & deep basin</div>
+            </div>
+
+            <div class="arena-card" data-arena="zigzag">
+              <div class="arena-icon">⚡</div>
+              <div class="arena-name">7. ZIGZAG</div>
+              <div class="arena-desc">Staggered diagonal steps</div>
+            </div>
+
+            <div class="arena-card" data-arena="smallbox">
+              <div class="arena-icon">📦</div>
+              <div class="arena-name">8. SMALL BOX</div>
+              <div class="arena-desc">Compact enclosed cage</div>
+            </div>
+          </div>
+
+          <div class="battle-btn-wrapper">
+            <button id="fightBtn" class="btn-primary">BATTLE</button>
+            <p class="fight-hint">Both fighters will use the selected weapon</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Match Screen -->
+      <div id="endScreen" class="overlay-screen">
+        <div class="result-box">
+          <div id="resultBanner" class="result-banner win">PLAYER WINS</div>
+          
+          <div class="result-stats">
+            <div class="stat-item">
+              <span class="stat-label">PLAYER HP</span>
+              <span id="finalPlayerHp" class="stat-value">84 HP</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">BOT HP</span>
+              <span id="finalBotHp" class="stat-value">0 HP</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">TIME LEFT</span>
+              <span id="finalTimeLeft" class="stat-value">14s</span>
+            </div>
+          </div>
+
+          <button id="playAgainBtn" class="btn-primary">PLAY AGAIN</button>
+          <button id="changeWeaponBtn" class="btn-secondary">CHANGE SETUP</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,656 @@
+/* STICK FIGHTER - Black, White, Grey & Blood Red Pure Arcade Style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #050507;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #ffffff;
+}
+
+#app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #050507;
+}
+
+/* Canvas - Fullscreen Edge-to-Edge */
+canvas#gameCanvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* UI Overlay Container */
+.ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+/* HUD Header */
+#hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 24px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#hud.visible {
+  opacity: 1;
+}
+
+.fighter-hud {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 38%;
+  max-width: 400px;
+}
+
+.fighter-hud.right {
+  align-items: flex-end;
+}
+
+.fighter-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #e2e8f0;
+}
+
+.fighter-hud.left .fighter-meta {
+  color: #ffffff;
+}
+
+.fighter-hud.right .fighter-meta {
+  color: #ef4444;
+}
+
+.weapon-badge {
+  background: #181822;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: #a1a1aa;
+  border: 1px solid #2e2e3e;
+}
+
+.hp-bar-outer {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background: #0f0f14;
+  border: 1.5px solid #2e2e3e;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hp-bar-fill {
+  height: 100%;
+  width: 100%;
+  transition: width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fighter-hud.left .hp-bar-fill {
+  background: #ffffff;
+}
+
+.fighter-hud.right .hp-bar-fill {
+  float: right;
+  background: #dc2626;
+}
+
+.hp-bar-damage {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #f87171;
+  transition: width 0.4s ease-out;
+}
+
+.fighter-hud.left .hp-bar-damage { left: 0; }
+.fighter-hud.right .hp-bar-damage { right: 0; }
+
+.hp-text {
+  font-size: 12px;
+  font-weight: 800;
+  color: #a1a1aa;
+  letter-spacing: 1px;
+  font-family: monospace;
+}
+
+/* Match Center Info */
+.match-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-box {
+  background: #0d0d12;
+  border: 1.5px solid #2a2a3a;
+  padding: 4px 18px;
+  border-radius: 6px;
+}
+
+.timer-text {
+  font-size: 28px;
+  font-weight: 900;
+  font-family: 'Orbitron', monospace;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.timer-text.warning {
+  color: #ef4444;
+  animation: pulse-red 0.5s infinite alternate;
+}
+
+.arena-tag {
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ef4444;
+}
+
+/* Fullscreen Overlays (Menu & End) */
+.overlay-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #07070a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  overflow: hidden;
+}
+
+.overlay-screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Compact Scroll Wrapper inside Setup Menu - Fits Single Page */
+.setup-scroll-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  max-height: 100vh;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.game-title {
+  font-family: 'Orbitron', 'Russo One', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.game-title .text-white {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.game-title .text-red {
+  color: #ef4444;
+  text-shadow: 0 0 28px rgba(239, 68, 68, 0.8), 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.game-subtitle {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #a1a1aa;
+  text-transform: uppercase;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.setup-section-title {
+  width: 100%;
+  max-width: 960px;
+  font-family: 'Russo One', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #2d181c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.setup-section-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+}
+
+/* Weapon Selection Grid (12 items in 6 columns x 2 rows) */
+.weapon-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 10px;
+}
+
+/* Arena Selection Grid (8 items in 4 columns x 2 rows) */
+.arena-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  max-width: 960px;
+  margin-bottom: 12px;
+}
+
+@media (max-height: 650px) {
+  .setup-scroll-wrapper {
+    padding: 10px 16px;
+  }
+  .game-title { font-size: 32px; letter-spacing: 5px; }
+  .game-subtitle { font-size: 9px; margin-bottom: 6px; }
+  .weapon-grid, .arena-grid { gap: 5px; }
+  .weapon-card, .arena-card { padding: 6px 4px; min-height: 52px; }
+  .weapon-icon, .arena-icon { font-size: 20px; margin-bottom: 1px; }
+}
+
+@media (max-width: 900px) {
+  .weapon-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .arena-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .weapon-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .arena-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .game-title { font-size: 28px; letter-spacing: 4px; }
+}
+
+/* Snug Solid Cards - Perfectly filled without extra black space */
+.weapon-card, .arena-card {
+  background: #111117;
+  border: 1px solid #282836;
+  border-radius: 6px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  min-height: 64px;
+}
+
+.weapon-card:hover, .arena-card:hover {
+  background: #1c1c28;
+  border-color: #ef4444;
+  transform: translateY(-1px);
+}
+
+.weapon-card.selected, .arena-card.selected {
+  border-color: #ef4444;
+  background: #281216;
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.25);
+}
+
+.weapon-card.selected::after, .arena-card.selected::after {
+  content: "SELECTED";
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  font-size: 6.5px;
+  font-family: 'Russo One', sans-serif;
+  font-weight: 900;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 1px 4px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+}
+
+.weapon-icon, .arena-icon {
+  font-size: 24px;
+  margin-bottom: 3px;
+  line-height: 1;
+}
+
+.weapon-name, .arena-name {
+  font-family: 'Russo One', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #f8fafc;
+  margin-bottom: 2px;
+  text-align: center;
+  line-height: 1;
+}
+
+.weapon-desc, .arena-desc {
+  font-size: 9.5px;
+  color: #a1a1aa;
+  text-align: center;
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+/* Battle Button Section */
+.battle-btn-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2px;
+}
+
+/* Action Buttons */
+.btn-primary {
+  font-family: 'Orbitron', 'Russo One', sans-serif;
+  background: #dc2626;
+  color: #ffffff;
+  border: 1px solid #ef4444;
+  padding: 12px 52px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+  transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  pointer-events: auto;
+}
+
+.btn-primary:hover {
+  background: #ef4444;
+  transform: scale(1.03);
+  box-shadow: 0 0 28px rgba(239, 68, 68, 0.7);
+}
+
+.btn-secondary {
+  font-family: 'Russo One', sans-serif;
+  background: #161620;
+  color: #e2e8f0;
+  border: 1px solid #2e2e3e;
+  padding: 10px 28px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background: #242432;
+  border-color: #444456;
+}
+
+.fight-hint {
+  font-size: 10px;
+  color: #52525b;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* End Game Card */
+#endScreen {
+  justify-content: center;
+  padding: 20px;
+}
+
+.result-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #0e0e14;
+  border: 1.5px solid #282838;
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.result-banner {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.result-banner.win {
+  color: #ffffff;
+}
+
+.result-banner.lose {
+  color: #ef4444;
+}
+
+.result-banner.draw {
+  color: #a1a1aa;
+}
+
+.result-stats {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 18px 0 24px 0;
+  padding: 12px 0;
+  border-top: 1px solid #242432;
+  border-bottom: 1px solid #242432;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #71717a;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+/* On-screen Controls (Touch & Key Hints) */
+#controlsOverlay {
+  padding: 12px 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+#controlsOverlay.visible {
+  opacity: 1;
+}
+
+.keyboard-hints {
+  display: flex;
+  gap: 14px;
+  background: #0d0d12;
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: 1px solid #282836;
+}
+
+.key-badge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.kbd {
+  background: #22222e;
+  border: 1px solid #3e3e52;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-weight: 800;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+/* Touch Controls */
+.touch-controls {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  pointer-events: none;
+}
+
+.touch-group {
+  display: flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.touch-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #14141c;
+  border: 2px solid #323244;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  touch-action: none;
+}
+
+.touch-btn:active {
+  background: #dc2626;
+  border-color: #ef4444;
+  transform: scale(0.92);
+}
+
+.touch-btn.attack {
+  background: #991b1b;
+  border-color: #ef4444;
+  width: 58px;
+  height: 58px;
+}
+
+.touch-btn.attack:active {
+  background: #ef4444;
+}
+
+/* Sound Toggle */
+.sound-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #0e0e14;
+  border: 1px solid #2a2a3a;
+  color: #cbd5e1;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  pointer-events: auto;
+  z-index: 30;
+  transition: background 0.15s ease;
+}
+
+.sound-btn:hover {
+  background: #1a1a24;
+  color: #fff;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.1); opacity: 0.8; }
+}
+

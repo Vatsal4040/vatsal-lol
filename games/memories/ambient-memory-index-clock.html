@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ambient Memory — Barber Shop</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#161915}
+body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#scene{position:fixed;inset:0;background:#222 center/cover no-repeat;transition:opacity .35s}
+.top{position:fixed;z-index:3;top:18px;left:20px;color:#fff;text-shadow:0 2px 12px #0008}
+.top small{letter-spacing:.15em;text-transform:uppercase}.top h1{margin:4px 0;font-size:22px}
+#clock{position:fixed;z-index:5;top:18px;right:20px;color:#fff;font-size:14px;font-weight:600;text-shadow:0 2px 12px #0008;letter-spacing:.02em}
+#enter{position:fixed;z-index:10;inset:0;display:grid;place-items:center;background:#0002}
+#enter button{border:0;border-radius:999px;padding:14px 24px;font-weight:700;cursor:pointer}
+#enter.hide{opacity:0;pointer-events:none;transition:.35s}
+#yt{position:fixed;z-index:2;right:14px;bottom:14px;width:200px;height:200px;background:#000;border-radius:12px;overflow:hidden;box-shadow:0 10px 30px #0005}
+#controls{position:fixed;z-index:4;left:50%;bottom:18px;transform:translateX(-50%);width:min(760px,calc(100% - 24px))}
+.card{width:min(430px,100%);margin:auto;background:#f3e9d4f2;border-radius:18px;padding:10px 12px;box-shadow:0 12px 40px #0003}
+.row{display:flex;align-items:center;gap:7px}.row button{border:0;background:transparent;font-size:17px;width:34px;height:30px;border-radius:8px;cursor:pointer}
+.track{min-width:0;flex:1;text-align:center}.title{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.artist{font-size:11px;opacity:.65}
+.progress{height:4px;margin-top:7px;background:#24251f22;border-radius:5px;overflow:hidden}.progress b{display:block;width:0;height:100%;background:#376d68}
+.meta{display:flex;align-items:center;font-size:9px;opacity:.7;margin-top:6px}.meta a{margin-left:auto;color:#24251f;text-decoration:none}
+.scenes{display:flex;justify-content:center;gap:8px;margin-top:9px}.scenes button{border:0;background:#f3e9d4d9;border-radius:10px;width:40px;height:34px;font-size:19px;cursor:pointer;opacity:.65}.scenes button.active{opacity:1;background:#dcebe5}
+@media(max-width:650px){#yt{bottom:110px}.top{left:12px;top:12px}.top h1{font-size:18px}#clock{right:12px;top:12px;font-size:13px}}
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<div class="top"><small>ambient memory</small><h1 id="sceneTitle">Barber Shop</h1></div>
+<div id="clock" aria-label="Current time"></div>
+<div id="yt"><div id="youtube-player"></div></div>
+
+
+<div id="controls">
+  <div class="card">
+    <div class="row">
+      <button id="prev" title="Previous">◀</button>
+      <button id="play" title="Play / Pause">▶</button>
+      <button id="next" title="Next">▶</button>
+      <div class="track"><div class="title" id="title">Choose a song to begin…</div><div class="artist" id="artist">YouTube</div></div>
+      <button id="mute" title="Mute">◉</button>
+    </div>
+    <div class="progress"><b id="bar"></b></div>
+    <div class="meta"><span id="time">0:00 / 0:00</span><a id="playlist" target="_blank" rel="noopener">Open playlist ↗</a></div>
+  </div>
+  <div class="scenes">
+    <button class="active" data-scene="barber" title="Barber Shop">💈</button>
+    <button data-scene="auto" title="Auto">🛺</button>
+    <button data-scene="dad" title="Dad's Drive">🚗</button>
+    <button data-scene="truck" title="Desi Truck">🚛</button>
+  </div>
+</div>
+
+<script>
+const PLAYLIST="PLbhNkpM-gLMM";
+const scenes={
+  barber:{name:"Barber Shop",image:"barber.png"},
+  auto:{name:"Auto",image:"auto.png"},
+  dad:{name:"Dad's Drive",image:"dad.png"},
+  truck:{name:"Desi Truck",image:"truck.png"}
+};
+const PLAYLIST_URL="https://music.youtube.com/playlist?list="+PLAYLIST;
+let player=null,ready=false,timer;
+
+const $=id=>document.getElementById(id);
+$("playlist").href=PLAYLIST_URL;
+
+function time(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")}
+function track(){
+  if(!ready)return;
+  const d=player.getVideoData?.()||{};
+  $("title").textContent=d.title||"YouTube playlist";
+  $("artist").textContent=d.author||"YouTube";
+}
+function tick(){
+  if(!ready)return;
+  const c=player.getCurrentTime?.()||0,d=player.getDuration?.()||0;
+  $("bar").style.width=d?(c/d*100)+"%":"0%";
+  $("time").textContent=time(c)+" / "+time(d);
+}
+function onYouTubeIframeAPIReady(){
+  player=new YT.Player("youtube-player",{
+    width:200,height:200,
+    playerVars:{playsinline:1,rel:0,origin:(location.protocol==="file:"?"":location.origin)},
+    events:{
+      onReady:()=>{
+        ready=true;
+        player.cuePlaylist({listType:"playlist",list:PLAYLIST,index:0});
+        player.setVolume(70); track();
+      },
+      onStateChange:e=>{
+        $("play").textContent=e.data===YT.PlayerState.PLAYING?"Ⅱ":"▶";
+        if(e.data===YT.PlayerState.PLAYING)track();
+      }
+    }
+  });
+}
+$("play").onclick=()=>{if(!ready)return;player.getPlayerState()===YT.PlayerState.PLAYING?player.pauseVideo():player.playVideo()}
+$("prev").onclick=()=>{if(ready)player.previousVideo()}
+$("next").onclick=()=>{if(ready)player.nextVideo()}
+$("mute").onclick=()=>{if(!ready)return;player.isMuted()?player.unMute():player.mute()}
+document.querySelectorAll(".scenes button").forEach(b=>b.onclick=()=>{
+  const key=b.dataset.scene;
+  document.querySelectorAll(".scenes button").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active");
+  $("sceneTitle").textContent=scenes[key].name;
+  $("scene").style.backgroundImage=`url("${scenes[key].image}")`;
+  if(ready)player.loadPlaylist({listType:"playlist",list:PLAYLIST,index:0});
+});
+function updateClock(){
+  const now=new Date();
+  $("clock").textContent=now.toLocaleTimeString([],{
+    hour:"numeric",
+    minute:"2-digit"
+  });
+}
+updateClock();
+setInterval(updateClock,1000);
+setInterval(()=>{tick();track()},1000);
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+document.getElementById("scene").style.backgroundImage=`url("${scenes.barber.image}")`;
+</script>
+</body>
+</html>

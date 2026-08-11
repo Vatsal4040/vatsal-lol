@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vatsal-lol-cache-v4.0.1';
+const CACHE_NAME = 'vatsal-lol-cache-v4.0.2';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -26,6 +26,7 @@ const PRECACHE_ASSETS = [
   '/assets/thumbnails/bubbles.webp',
   '/assets/thumbnails/bugsmash.webp',
   '/assets/thumbnails/can-you-guess-indian-mom.webp',
+  '/assets/thumbnails/chaos.webp',
   '/assets/thumbnails/checklist.webp',
   '/assets/thumbnails/draw-a-circle.webp',
   '/assets/thumbnails/emojis-2-movies.webp',
@@ -35,11 +36,13 @@ const PRECACHE_ASSETS = [
   '/assets/thumbnails/future-timeline.webp',
   '/assets/thumbnails/guess-the-lie.webp',
   '/assets/thumbnails/hardword.webp',
+  '/assets/thumbnails/how_many.webp',
   '/assets/thumbnails/jokes-if-you-handle.webp',
   '/assets/thumbnails/lets-settle.webp',
   '/assets/thumbnails/luckorpredict.webp',
   '/assets/thumbnails/not_scary.webp',
   '/assets/thumbnails/mastermind.webp',
+  '/assets/thumbnails/memories.webp',
   '/assets/thumbnails/memory-tiles.webp',
   '/assets/thumbnails/onelightday.webp',
   '/assets/thumbnails/paddleclub.webp',
@@ -48,6 +51,7 @@ const PRECACHE_ASSETS = [
   '/assets/thumbnails/spend-bill-gates-money.webp',
   '/assets/thumbnails/spot.webp',
   '/assets/thumbnails/standing.webp',
+  '/assets/thumbnails/stick_fighter.webp',
   '/assets/thumbnails/sudoku.webp',
   '/assets/thumbnails/tower-of-hanoi.webp',
   '/assets/thumbnails/under-limit.webp',

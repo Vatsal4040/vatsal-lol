@@ -6,6 +6,7 @@
     { slug: "bubbles", title: "Bubbles" },
     { slug: "bugsmash", title: "Bug Smash" },
     { slug: "can-you-guess-indian-mom", title: "Can You Guess Indian Mom?" },
+    { slug: "chaos", title: "Chaos" },
     { slug: "checklist", title: "Checklist" },
     { slug: "draw-a-circle", title: "Draw a Circle" },
     { slug: "emojis-2-movies", title: "Emojis 2 Movies" },
@@ -15,11 +16,13 @@
     { slug: "future-timeline", title: "Future Timeline" },
     { slug: "guess-the-lie", title: "Guess the Lie" },
     { slug: "hardword", title: "HardWord" },
+    { slug: "how_many", title: "How Many" },
     { slug: "jokes-if-you-handle", title: "JOKES If You Handle" },
     { slug: "lets-settle", title: "Let's Settle" },
     { slug: "luckorpredict", title: "Midnight Oracle (Luck or Predict)" },
     { slug: "not_scary", title: "This Is Not A Jump Scare" },
     { slug: "mastermind", title: "Mastermind" },
+    { slug: "memories", title: "Memories" },
     { slug: "memory-tiles", title: "Memory Tiles" },
     { slug: "onelightday", title: "One Light Day" },
     { slug: "paddleclub", title: "Paddle Club" },
@@ -28,6 +31,7 @@
     { slug: "spend-bill-gates-money", title: "Spend Bill Gates Money" },
     { slug: "spot", title: "Spot" },
     { slug: "standing", title: "Standing" },
+    { slug: "stick_fighter", title: "Stick Fighter" },
     { slug: "sudoku", title: "Sudoku" },
     { slug: "tower-of-hanoi", title: "Tower of Hanoi" },
     { slug: "under-limit", title: "Under Limit" },
@@ -98,6 +102,46 @@ const LivingSkyState = {
     checkDebugOverrides();
     applyLivingSky(LivingSkyState);
   }
+  let currentFakeCount = null;
+
+  function updateFakeViewerCount() {
+    try {
+      const istDate = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+      const istHour = istDate.getHours();
+      
+      let min, max;
+      if (istHour >= 18 && istHour < 22) {
+        // Prime time IST (6 PM - 10 PM)
+        min = 35;
+        max = 100;
+      } else {
+        // Non-prime time
+        min = 12;
+        max = 45;
+      }
+      
+      if (currentFakeCount === null || currentFakeCount < min || currentFakeCount > max) {
+        currentFakeCount = Math.floor(Math.random() * (max - min + 1)) + min;
+      } else {
+        const delta = Math.floor(Math.random() * 7) - 3;
+        currentFakeCount = Math.max(min, Math.min(max, currentFakeCount + delta));
+      }
+      
+      const countEl = document.getElementById('liveViewerCount');
+      if (countEl) {
+        countEl.textContent = currentFakeCount;
+      }
+    } catch (e) {
+      console.warn("Failed to calculate fake visitor count:", e);
+    }
+  }
+
+  function startFakeViewerFluctuation() {
+    updateFakeViewerCount();
+    const nextDelay = 3000 + Math.random() * 3000;
+    setTimeout(startFakeViewerFluctuation, nextDelay);
+  }
+
   function init() {
     document.body.className = 'view-grid';
 
@@ -105,6 +149,7 @@ const LivingSkyState = {
     setupDateTime();
     setupFlash();
     setupContact();
+    startFakeViewerFluctuation();
   }
 
   function setupDateTime() {

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOW MANY...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="../../assets/vatsal-v4.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="header">
+      <h1 class="title">HOW MANY...</h1>
+    </header>
+
+    <!-- Map Section -->
+    <div class="map-section">
+      <div class="map-container">
+        <!-- SVG container where map paths will be injected -->
+        <svg id="world-map" viewBox="0 0 1000 450" class="world-svg"></svg>
+      </div>
+    </div>
+
+    <!-- Black UI Section for Counters & Table -->
+    <div class="dark-section">
+      <!-- Info Bar Section -->
+      <div class="info-bar">
+        <div class="info-block">
+          <span class="info-label">Since You Arrived</span>
+          <span class="info-value">
+            <span class="emoji">👶</span> 
+            <span id="global-births">0</span> 
+            <span class="info-subtext">Babies Born</span>
+          </span>
+        </div>
+        <div class="info-block divider">
+          <span class="info-label">Global Impact</span>
+          <span class="info-value">
+            <span class="emoji">☠</span> 
+            <span id="global-deaths">0</span> 
+            <span class="info-subtext">Deaths</span>
+          </span>
+        </div>
+        <div class="info-block divider">
+          <span class="info-label">Net Growth</span>
+          <span class="info-value value-growth">
+            <span id="global-growth">+0</span> 
+            <span class="info-subtext subtext-light">Population Change</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Table Section -->
+      <div class="table-section">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="col-country">Country</th>
+              <th class="col-number">Births Since Arrival</th>
+              <th class="col-number">Deaths Since Arrival</th>
+              <th class="col-number">Current Population</th>
+            </tr>
+          </thead>
+          <tbody id="country-table-body">
+            <!-- Rows will be injected here -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer / Status -->
+      <footer class="footer">
+        Earth's Heartbeat &bull; Real-Time Mathematical Simulation &bull; Local Chronometer Active
+      </footer>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+  <script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Stick Fighter",
+  "description": "A fast 2D stickman fighting game with custom physics, 6 unique weapons, and 3 interactive arenas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

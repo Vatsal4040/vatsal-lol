@@ -1,0 +1,336 @@
+{
+  "standard": [
+    {
+      "id": "night_shift",
+      "title": "Night Shift",
+      "cover": "night_shift.png",
+      "sounds": [
+        { "id": "office", "volume": 0.5 },
+        { "id": "lofi", "volume": 0.6 },
+        { "id": "coffee", "volume": 0.4 },
+        { "id": "rain", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "camp_night",
+      "title": "Camp Night",
+      "cover": "camp_night.png",
+      "sounds": [
+        { "id": "campfire", "volume": 0.7 },
+        { "id": "forest", "volume": 0.5 },
+        { "id": "wind", "volume": 0.4 },
+        { "id": "barn", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "rainy_cafe",
+      "title": "Rainy Café",
+      "cover": "rainy_cafe.png",
+      "sounds": [
+        { "id": "rain", "volume": 0.7 },
+        { "id": "coffee", "volume": 0.5 },
+        { "id": "lofi", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "deep_forest",
+      "title": "Deep Forest",
+      "cover": "deep_forest.png",
+      "sounds": [
+        { "id": "forest", "volume": 0.8 },
+        { "id": "wind", "volume": 0.5 },
+        { "id": "bee", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "monday_morning",
+      "title": "Monday Morning",
+      "cover": "monday_morning.png",
+      "sounds": [
+        { "id": "coffee", "volume": 0.5 },
+        { "id": "highway", "volume": 0.4 },
+        { "id": "office", "volume": 0.6 },
+        { "id": "train", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "daily_commute",
+      "title": "Daily Commute",
+      "cover": "highway_rush.png",
+      "sounds": [
+        { "id": "highway", "volume": 0.6 },
+        { "id": "train", "volume": 0.5 },
+        { "id": "rain", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "lost_explorer",
+      "title": "Lost Explorer",
+      "cover": "lost_expolrer.png",
+      "sounds": [
+        { "id": "forest", "volume": 0.6 },
+        { "id": "campfire", "volume": 0.6 },
+        { "id": "haunted", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "first_contact",
+      "title": "First Contact",
+      "cover": "first_contact.png",
+      "sounds": [
+        { "id": "alien", "volume": 0.8 },
+        { "id": "wind", "volume": 0.4 },
+        { "id": "lofi", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "silent_hospital",
+      "title": "Silent Hospital",
+      "cover": "silent_hospital.png",
+      "sounds": [
+        { "id": "hospital", "volume": 0.5 },
+        { "id": "rain", "volume": 0.4 },
+        { "id": "wind", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "emergency",
+      "title": "Emergency",
+      "cover": "emergency.png",
+      "sounds": [
+        { "id": "crime", "volume": 0.6 },
+        { "id": "nuclear", "volume": 0.5 },
+        { "id": "rain", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "volcano_island",
+      "title": "Volcano Island",
+      "cover": "Volcano_island.png",
+      "sounds": [
+        { "id": "volcano", "volume": 0.7 },
+        { "id": "waves", "volume": 0.6 },
+        { "id": "wind", "volume": 0.4 },
+        { "id": "alien", "volume": 0.3 }
+      ]
+    },
+    {
+      "id": "summer_carnival",
+      "title": "Summer Carnival",
+      "cover": "summer_carnival.png",
+      "sounds": [
+        { "id": "carnival", "volume": 0.7 },
+        { "id": "playground", "volume": 0.5 },
+        { "id": "fireworks", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "medieval_siege",
+      "title": "Medieval Siege",
+      "cover": "medieval_siege.png",
+      "sounds": [
+        { "id": "battle", "volume": 0.7 },
+        { "id": "church", "volume": 0.5 },
+        { "id": "campfire", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "haunted_depths",
+      "title": "Haunted Depths",
+      "cover": "haunted_depths.png",
+      "sounds": [
+        { "id": "haunted", "volume": 0.7 },
+        { "id": "wind", "volume": 0.5 },
+        { "id": "zombie", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "worst_day_ever",
+      "title": "Worst Day Ever",
+      "cover": "worst_day_ever.png",
+      "sounds": [
+        { "id": "dentist", "volume": 0.8 },
+        { "id": "couple", "volume": 0.7 },
+        { "id": "lawnmower", "volume": 0.6 },
+        { "id": "construction", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "the_end",
+      "title": "The End",
+      "cover": "the_end.png",
+      "sounds": [
+        { "id": "nuclear", "volume": 0.7 },
+        { "id": "volcano", "volume": 0.6 },
+        { "id": "zombie", "volume": 0.5 }
+      ]
+    }
+  ],
+  "hidden": [
+    {
+      "id": "storm_watch",
+      "title": "Storm Watch",
+      "cover": "camp_night.png",
+      "recipe": ["rain", "wind", "waves"],
+      "sounds": [
+        { "id": "rain", "volume": 0.7 },
+        { "id": "wind", "volume": 0.6 },
+        { "id": "waves", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "peaceful_retreat",
+      "title": "Peaceful Retreat",
+      "cover": "deep_forest.png",
+      "recipe": ["forest", "wind", "lofi"],
+      "sounds": [
+        { "id": "forest", "volume": 0.7 },
+        { "id": "wind", "volume": 0.5 },
+        { "id": "lofi", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "bee_kingdom",
+      "title": "Bee Kingdom",
+      "cover": "deep_forest.png",
+      "recipe": ["bee", "forest", "lawnmower"],
+      "sounds": [
+        { "id": "bee", "volume": 0.8 },
+        { "id": "forest", "volume": 0.5 },
+        { "id": "lawnmower", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "inferno",
+      "title": "Inferno",
+      "cover": "Volcano_island.png",
+      "recipe": ["campfire", "volcano", "fireworks"],
+      "sounds": [
+        { "id": "campfire", "volume": 0.8 },
+        { "id": "volcano", "volume": 0.7 },
+        { "id": "fireworks", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "midnight_city",
+      "title": "Midnight City",
+      "cover": "night_shift.png",
+      "recipe": ["highway", "rain", "lofi"],
+      "sounds": [
+        { "id": "highway", "volume": 0.6 },
+        { "id": "rain", "volume": 0.5 },
+        { "id": "lofi", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "last_train_home",
+      "title": "Last Train Home",
+      "cover": "highway_rush.png",
+      "recipe": ["train", "rain", "wind"],
+      "sounds": [
+        { "id": "train", "volume": 0.7 },
+        { "id": "rain", "volume": 0.5 },
+        { "id": "wind", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "kingdom_siege",
+      "title": "Kingdom Under Siege",
+      "cover": "medieval_siege.png",
+      "recipe": ["battle", "church", "forest"],
+      "sounds": [
+        { "id": "battle", "volume": 0.7 },
+        { "id": "church", "volume": 0.6 },
+        { "id": "forest", "volume": 0.4 }
+      ]
+    },
+    {
+      "id": "deep_space",
+      "title": "Deep Space",
+      "cover": "first_contact.png",
+      "recipe": ["alien", "wind", "lofi"],
+      "sounds": [
+        { "id": "alien", "volume": 0.8 },
+        { "id": "wind", "volume": 0.4 },
+        { "id": "lofi", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "police_chase",
+      "title": "Police Chase",
+      "cover": "emergency.png",
+      "recipe": ["crime", "highway", "nuclear"],
+      "sounds": [
+        { "id": "crime", "volume": 0.7 },
+        { "id": "highway", "volume": 0.6 },
+        { "id": "nuclear", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "apocalypse_hidden",
+      "title": "Apocalypse",
+      "cover": "apocalypse.png",
+      "recipe": ["zombie", "volcano", "nuclear"],
+      "sounds": [
+        { "id": "zombie", "volume": 0.7 },
+        { "id": "volcano", "volume": 0.6 },
+        { "id": "nuclear", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "the_awakening",
+      "title": "The Awakening",
+      "cover": "Volcano_island.png",
+      "recipe": ["volcano", "haunted", "alien"],
+      "sounds": [
+        { "id": "volcano", "volume": 0.7 },
+        { "id": "haunted", "volume": 0.6 },
+        { "id": "alien", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "alien_signal",
+      "title": "Alien Signal",
+      "cover": "first_contact.png",
+      "recipe": ["alien", "church", "lofi"],
+      "sounds": [
+        { "id": "alien", "volume": 0.8 },
+        { "id": "church", "volume": 0.5 },
+        { "id": "lofi", "volume": 0.6 }
+      ]
+    },
+    {
+      "id": "endless_rain",
+      "title": "Endless Rain",
+      "cover": "rainy_cafe.png",
+      "recipe": ["rain", "waves", "lofi"],
+      "sounds": [
+        { "id": "rain", "volume": 0.7 },
+        { "id": "waves", "volume": 0.6 },
+        { "id": "lofi", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "forgotten_forest",
+      "title": "Forgotten Forest",
+      "cover": "deep_forest.png",
+      "recipe": ["forest", "haunted", "wind"],
+      "sounds": [
+        { "id": "forest", "volume": 0.7 },
+        { "id": "haunted", "volume": 0.6 },
+        { "id": "wind", "volume": 0.5 }
+      ]
+    },
+    {
+      "id": "camp_under_stars",
+      "title": "Camp Under Stars",
+      "cover": "camp_night.png",
+      "recipe": ["campfire", "wind", "waves"],
+      "sounds": [
+        { "id": "campfire", "volume": 0.7 },
+        { "id": "wind", "volume": 0.5 },
+        { "id": "waves", "volume": 0.5 }
+      ]
+    }
+  ]
+}
