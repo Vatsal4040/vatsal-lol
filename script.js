@@ -149,36 +149,114 @@ const LivingSkyState = {
     setupDateTime();
     setupFlash();
     setupContact();
+    setupSearch();
     startFakeViewerFluctuation();
   }
 
   function setupDateTime() {
-    const el = document.getElementById('statusArea');
-    if (!el) return;
+    const dateEl = document.getElementById('statusDate');
+    const timeEl = document.getElementById('statusTime');
+    if (!dateEl || !timeEl) return;
     const update = () => {
         const now = new Date();
         const dateStr = now.toLocaleDateString("en-GB", {
-    weekday: "short",
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-}).replace(",", ",");
+            weekday: "short",
+            day: "2-digit",
+            month: "short",
+            year: "numeric"
+        }).replace(",", ",");
 
-const timeStr = now.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true
-});
+        const timeStr = now.toLocaleTimeString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        });
 
-el.innerHTML = `
-<div class="status-date">${dateStr}</div>
-<div class="status-time">${timeStr}</div>
-`;
+        dateEl.textContent = dateStr;
+        timeEl.textContent = timeStr;
     };
     update();
     setInterval(update, 10000);
   }
-  // Handle mobile resize/orientation
+
+  function setupSearch() {
+    const container = document.getElementById('searchContainer');
+    const toggleBtn = document.getElementById('searchToggleBtn');
+    const input = document.getElementById('searchInput');
+    const closeBtn = document.getElementById('searchCloseBtn');
+    
+    if (!container || !toggleBtn || !input) return;
+
+    const openSearch = () => {
+      container.classList.add('search-active');
+      input.focus();
+    };
+
+    const closeSearch = () => {
+      container.classList.remove('search-active');
+      input.value = '';
+      filterGames('');
+    };
+
+    toggleBtn.onclick = (e) => {
+      e.stopPropagation();
+      if (container.classList.contains('search-active')) {
+        closeSearch();
+      } else {
+        openSearch();
+      }
+    };
+
+    if (closeBtn) {
+      closeBtn.onclick = (e) => {
+        e.stopPropagation();
+        closeSearch();
+      };
+    }
+
+    input.addEventListener('input', () => {
+      filterGames(input.value);
+    });
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearch();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (container.classList.contains('search-active') && !container.contains(e.target) && !input.value.trim()) {
+        closeSearch();
+      }
+    });
+  }
+
+  function filterGames(query) {
+    const q = query.trim().toLowerCase();
+    const cards = document.querySelectorAll('#traditionalGrid .t-card');
+    const noResults = document.getElementById('noResultsMessage');
+    let matchCount = 0;
+
+    games.forEach((game, index) => {
+      const card = cards[index];
+      if (!card) return;
+
+      if (!q || game.title.toLowerCase().includes(q)) {
+        card.style.display = '';
+        matchCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (noResults) {
+      if (matchCount === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+  }
   
 
   function renderGrid() {

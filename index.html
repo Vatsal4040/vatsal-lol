@@ -42,8 +42,17 @@
 
 <header class="v2-header">
     <div class="header-left">
-        <!-- Live Date & Time for Desktop Launcher -->
-        <div id="statusArea" class="status-area"></div>
+        <!-- Live Viewer Indicator & Live Date & Time -->
+        <div id="statusArea" class="status-area">
+            <div id="liveViewerIndicator" class="live-viewer-indicator" title="Currently checking vatsal.lol">
+                <span class="green-dot"></span>
+                <span id="liveViewerCount">--</span>
+            </div>
+            <div class="status-datetime">
+                <div id="statusDate" class="status-date"></div>
+                <div id="statusTime" class="status-time"></div>
+            </div>
+        </div>
     </div>
     <div class="header-center">
         <h1 class="v2-title">VATSAL.LOL</h1>
@@ -51,12 +60,18 @@
     </div>
 
     <div class="header-right">
-        <!-- Logo Button and View Toggle Side-by-Side -->
-        <div id="liveViewerIndicator" class="live-viewer-indicator" title="Currently checking vatsal.lol">
-            <span class="green-dot"></span>
-            <span id="liveViewerCount">--</span>
-        </div>
-        <div class="header-controls">
+        <!-- Search Control -->
+        <div id="searchContainer" class="search-container">
+            <button id="searchToggleBtn" class="search-toggle-btn" type="button" aria-label="Search games" title="Search">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+            <div id="searchInputWrapper" class="search-input-wrapper">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search games..." aria-label="Search game by title" autocomplete="off" spellcheck="false">
+                <button id="searchCloseBtn" class="search-close-btn" type="button" aria-label="Close search" title="Close search">&times;</button>
+            </div>
         </div>
     </div>
 </header>
@@ -65,6 +80,9 @@
     <!-- GRID: Traditional Browsing -->
     <section id="gridView" class="grid-view">
         <div id="traditionalGrid" class="cards-grid"></div>
+        <div id="noResultsMessage" class="no-results-message" style="display: none;">
+            <p>No results found</p>
+        </div>
         
         <footer class="vatsal-v2-footer">
             <div>
