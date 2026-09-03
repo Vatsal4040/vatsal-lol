@@ -140,6 +140,8 @@
         navigator.serviceWorker.register('/service-worker.js')
           .then(reg => {
             console.log('Service Worker registered', reg);
+            // Proactively check Netlify for service worker updates on page load
+            reg.update().catch(err => console.debug('SW update check:', err));
             
             // Check for updates
             reg.addEventListener('updatefound', () => {

@@ -111,10 +111,15 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Check if this is an HTML navigation request
+  // Check if this is an HTML navigation request or core app asset
   const isNavigation = event.request.mode === 'navigate' || 
                        url.pathname.endsWith('.html') || 
                        url.pathname.endsWith('/');
+  const isCoreAsset = url.pathname === '/style.css' || 
+                      url.pathname === '/script.js' || 
+                      url.pathname === '/manifest.json' ||
+                      url.pathname.endsWith('.css') ||
+                      url.pathname.endsWith('.js');
 
   // Only cache requests to our own origin OR specific external CDNs
   const isSelf = url.origin === self.location.origin;
@@ -125,12 +130,12 @@ self.addEventListener('fetch', event => {
                              url.hostname.includes('wikimedia.org');
 
   if (isSelf || isExternalResource) {
-    if (isNavigation && isSelf) {
-      // Network-First Strategy for local HTML/Navigation
+    if ((isNavigation || isCoreAsset) && isSelf) {
+      // Network-First Strategy for core app files (HTML, CSS, JS)
       event.respondWith(
         fetch(event.request)
           .then(response => {
-            if (response && response.status === 200) {
+            if (response && (response.status === 200 || response.status === 304)) {
               const responseToCache = response.clone();
               caches.open(CACHE_NAME).then(cache => {
                 cache.put(event.request, responseToCache);
@@ -139,15 +144,16 @@ self.addEventListener('fetch', event => {
             return response;
           })
           .catch(() => {
-            // Network failed, try to serve navigation from cache, fallback to offline.html
+            // Network failed, try to serve request from cache, fallback to offline.html for navigation
             return caches.match(event.request)
               .then(cachedResponse => {
-                return cachedResponse || caches.match('/offline.html');
+                if (cachedResponse) return cachedResponse;
+                if (isNavigation) return caches.match('/offline.html');
               });
           })
       );
     } else {
-      // Cache-First Strategy for static assets (local & trusted CDNs)
+      // Cache-First Strategy for static media, thumbnails & fonts
       event.respondWith(
         caches.match(event.request)
           .then(cachedResponse => {
