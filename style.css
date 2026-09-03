@@ -129,30 +129,55 @@ body[data-time="latenight"] {
 
 /* MOBILE V1 OVERRIDES (<768px) */
 @media (max-width: 768px) {
-    
-    
     body.view-launcher, body.view-grid { 
         overflow-y: auto !important; 
         height: auto !important; 
     }
-    .grid-view { display: block !important; padding-top: 110px; }
+    .grid-view { display: block !important; padding-top: 100px; }
 
-    /* HIDE CONTROLS ON MOBILE */
+    /* HIDE CONTROLS & DATE/TIME ON MOBILE */
     .header-controls { display: none !important; }
     .brand-controls-wrap { gap: 0; }
+    .status-datetime { display: none !important; }
 
-    /* MOBILE HEADER STYLE */
+    /* MOBILE HEADER STYLE: 🟢 [count] | VATSAL.LOL (TRUE CENTER) | 🔍 */
     .v2-header { 
-        padding: 20px 20px;
+        padding: 16px 20px;
         position: absolute;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    .header-left { flex: 1; }
-    .header-right { flex: 1; display: flex; justify-content: flex-end; }
-    .header-center { flex: 2; text-align: center; }
+    .header-left {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        z-index: 2;
+    }
+    .header-right {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        z-index: 2;
+    }
+    .header-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 1;
+        width: auto;
+    }
+    .v2-title {
+        font-size: 26px;
+        letter-spacing: 3px;
+        margin: 0;
+        white-space: nowrap;
+    }
+    .v2-tagline {
+        display: none !important;
+    }
 }
 /* HEADER */
 .v2-header {
@@ -400,9 +425,8 @@ body[data-time="latenight"] {
 }
 @media (max-width: 600px) {
     .cards-grid { grid-template-columns: 1fr; padding: 0 20px; }
-    .v2-header { padding: 20px; }
-    .v2-title { font-size: 32px; }
-    .v2-tagline { display: none; }
+    .v2-header { padding: 16px 16px; }
+    .v2-title { font-size: 24px; letter-spacing: 2.5px; }
 }
 
 @media (max-width: 768px) {
