@@ -1,45 +1,44 @@
 (function(){
     const games = [
-    { slug: "2048", title: "2048" },
-    { slug: "8bit-lab", title: "8-Bit Lab" },
-    { slug: "adjustme", title: "Adjust Me" },
-    { slug: "bubbles", title: "Bubbles" },
-    { slug: "bugsmash", title: "Bug Smash" },
-    { slug: "can-you-guess-indian-mom", title: "Can You Guess Indian Mom?" },
-    { slug: "chaos", title: "Chaos" },
-    { slug: "checklist", title: "Checklist" },
-    { slug: "draw-a-circle", title: "Draw a Circle" },
-    { slug: "emojis-2-movies", title: "Emojis 2 Movies" },
-    { slug: "everything-is-progressing", title: "Everything Is Processing" },
-    { slug: "flash-memory", title: "Flash Memory" },
-    { slug: "focus", title: "Focus" },
-    { slug: "future-timeline", title: "Future Timeline" },
-    { slug: "guess-the-lie", title: "Guess the Lie" },
-    { slug: "hardword", title: "HardWord" },
-    { slug: "how_many", title: "How Many" },
-    { slug: "jokes-if-you-handle", title: "JOKES If You Handle" },
-    { slug: "lets-settle", title: "Let's Settle" },
-    { slug: "luckorpredict", title: "Midnight Oracle (Luck or Predict)" },
-    { slug: "not_scary", title: "This Is Not A Jump Scare" },
-    { slug: "mastermind", title: "Mastermind" },
-    { slug: "memories", title: "Memories" },
-    { slug: "memory-tiles", title: "Memory Tiles" },
-    { slug: "onelightday", title: "One Light Day" },
-    { slug: "paddleclub", title: "Paddle Club" },
-    { slug: "snake", title: "Snake" },
-    { slug: "soundbar", title: "Sound Bar" },
-    { slug: "spend-bill-gates-money", title: "Spend Bill Gates Money" },
-    { slug: "spot", title: "Spot" },
-    { slug: "standing", title: "Standing" },
-    { slug: "stick_fighter", title: "Stick Fighter" },
-    { slug: "sudoku", title: "Sudoku" },
-    { slug: "tower-of-hanoi", title: "Tower of Hanoi" },
-    { slug: "under-limit", title: "Under Limit" },
-    { slug: "which-number", title: "Which Number" },
-    { slug: "wordle", title: "WORDLLE" },
-    { slug: "would-you-press-the-button", title: "Would You Press The Button" },
-    { slug: "xo", title: "XO" },
-    { slug: "your-life-in-numbers", title: "Your Life In Numbers" }
+    { slug: "2048", title: "2048", type: "game" },
+    { slug: "8bit-lab", title: "8-Bit Lab", type: "page" },
+    { slug: "adjustme", title: "Adjust Me", type: "game" },
+    { slug: "bubbles", title: "Bubbles", type: "game" },
+    { slug: "bugsmash", title: "Bug Smash", type: "game" },
+    { slug: "can-you-guess-indian-mom", title: "Can You Guess Indian Mom?", type: "game" },
+    { slug: "chaos", title: "Chaos", type: "page" },
+    { slug: "checklist", title: "Checklist", type: "page" },
+    { slug: "draw-a-circle", title: "Draw a Circle", type: "page" },
+    { slug: "emojis-2-movies", title: "Emojis 2 Movies", type: "game" },
+    { slug: "everything-is-progressing", title: "Everything Is Processing", type: "page" },
+    { slug: "flash-memory", title: "Flash Memory", type: "game" },
+    { slug: "focus", title: "Focus", type: "game" },
+    { slug: "future-timeline", title: "Future Timeline", type: "page" },
+    { slug: "guess-the-lie", title: "Guess the Lie", type: "game" },
+    { slug: "hardword", title: "HardWord", type: "game" },
+    { slug: "how_many", title: "How Many", type: "page" },
+    { slug: "lets-settle", title: "Let's Settle", type: "page" },
+    { slug: "luckorpredict", title: "Midnight Oracle (Luck or Predict)", type: "game" },
+    { slug: "not_scary", title: "This Is Not A Jump Scare", type: "page" },
+    { slug: "mastermind", title: "Mastermind", type: "game" },
+    { slug: "memories", title: "Memories", type: "page" },
+    { slug: "memory-tiles", title: "Memory Tiles", type: "game" },
+    { slug: "onelightday", title: "One Light Day", type: "page" },
+    { slug: "paddleclub", title: "Paddle Club", type: "game" },
+    { slug: "snake", title: "Snake", type: "game" },
+    { slug: "soundbar", title: "Sound Bar", type: "page" },
+    { slug: "spend-bill-gates-money", title: "Spend Bill Gates Money", type: "page" },
+    { slug: "spot", title: "Spot", type: "game" },
+    { slug: "standing", title: "Standing", type: "page" },
+    { slug: "stick_fighter", title: "Stick Fighter", type: "game" },
+    { slug: "sudoku", title: "Sudoku", type: "game" },
+    { slug: "tower-of-hanoi", title: "Tower of Hanoi", type: "game" },
+    { slug: "under-limit", title: "Under Limit", type: "game" },
+    { slug: "which-number", title: "Which Number", type: "page" },
+    { slug: "wordle", title: "WORDLLE", type: "game" },
+    { slug: "would-you-press-the-button", title: "Would You Press The Button", type: "game" },
+    { slug: "xo", title: "XO", type: "game" },
+    { slug: "your-life-in-numbers", title: "Your Life In Numbers", type: "page" }
   ];
 const LivingSkyState = {
     season: 'space',
@@ -142,6 +141,8 @@ const LivingSkyState = {
     setTimeout(startFakeViewerFluctuation, nextDelay);
   }
 
+  let currentCategory = 'all';
+
   function init() {
     document.body.className = 'view-grid';
 
@@ -150,7 +151,54 @@ const LivingSkyState = {
     setupFlash();
     setupContact();
     setupSearch();
+    setupCategoryFilter();
     startFakeViewerFluctuation();
+  }
+
+  function setupCategoryFilter() {
+    const container = document.getElementById('viewCategoryContainer');
+    const mobileBtn = document.getElementById('mobileViewToggleBtn');
+    if (!container) return;
+
+    if (mobileBtn) {
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const searchContainer = document.getElementById('searchContainer');
+        if (searchContainer && searchContainer.classList.contains('search-active')) {
+          const searchInput = document.getElementById('searchInput');
+          searchContainer.classList.remove('search-active');
+          if (searchInput) searchInput.value = '';
+          filterGames('');
+        }
+        container.classList.toggle('mobile-open');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (container.classList.contains('mobile-open') && !container.contains(e.target) && !mobileBtn.contains(e.target)) {
+          container.classList.remove('mobile-open');
+        }
+      });
+    }
+
+    const buttons = container.querySelectorAll('.view-cat-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const cat = btn.getAttribute('data-category');
+        if (cat) {
+          currentCategory = cat;
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const searchInput = document.getElementById('searchInput');
+          filterGames(searchInput ? searchInput.value : '');
+
+          if (window.innerWidth <= 768) {
+            container.classList.remove('mobile-open');
+          }
+        }
+      });
+    });
   }
 
   function setupDateTime() {
@@ -189,6 +237,8 @@ const LivingSkyState = {
 
     const openSearch = () => {
       container.classList.add('search-active');
+      const catContainer = document.getElementById('viewCategoryContainer');
+      if (catContainer) catContainer.classList.remove('mobile-open');
       input.focus();
     };
 
@@ -231,17 +281,37 @@ const LivingSkyState = {
     });
   }
 
+  const priorityOrder = ["memories", "wordle", "your-life-in-numbers"];
+
+  function getOrderedGames() {
+    const priorityItems = [];
+    priorityOrder.forEach(slug => {
+      const item = games.find(g => g.slug === slug);
+      if (item) priorityItems.push(item);
+    });
+
+    const remainingItems = games
+      .filter(g => !priorityOrder.includes(g.slug))
+      .sort((a, b) => a.slug.localeCompare(b.slug));
+
+    return [...priorityItems, ...remainingItems];
+  }
+
   function filterGames(query) {
-    const q = query.trim().toLowerCase();
+    const q = (query || '').trim().toLowerCase();
     const cards = document.querySelectorAll('#traditionalGrid .t-card');
     const noResults = document.getElementById('noResultsMessage');
     let matchCount = 0;
+    const orderedGames = getOrderedGames();
 
-    games.forEach((game, index) => {
+    orderedGames.forEach((game, index) => {
       const card = cards[index];
       if (!card) return;
 
-      if (!q || game.title.toLowerCase().includes(q)) {
+      const matchesSearch = !q || game.title.toLowerCase().includes(q) || game.slug.toLowerCase().includes(q);
+      const matchesCategory = currentCategory === 'all' || game.type === currentCategory;
+
+      if (matchesSearch && matchesCategory) {
         card.style.display = '';
         matchCount++;
       } else {
@@ -257,17 +327,18 @@ const LivingSkyState = {
       }
     }
   }
-  
 
   function renderGrid() {
     const grid = document.getElementById('traditionalGrid');
-    games.forEach((game, i) => {
+    const orderedGames = getOrderedGames();
+    orderedGames.forEach((game, i) => {
         const card = document.createElement('div');
         card.className = 't-card';
         const isCritical = i < 3;
         const lazyAttr = isCritical ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"';
         card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" alt="${game.title}" width="320" height="180"${lazyAttr} onerror="this.src='assets/logo.png'">`;
-        card.onclick = () => window.location.href = `./games/${game.slug}/`;
+        const folderPrefix = game.type === 'page' ? 'pages' : 'games';
+        card.onclick = () => window.location.href = `./${folderPrefix}/${game.slug}/`;
         grid.appendChild(card);
     });
   }

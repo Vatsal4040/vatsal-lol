@@ -1,3 +1,43 @@
 # VATSAL.LOL Production Redirection Rules
 /games/sudoko/    /games/sudoku/    301
 /games/sudoko     /games/sudoku/    301
+
+# Legacy Game to Page Redirects
+/games/8bit-lab/*                 /pages/8bit-lab/:splat                301
+/games/8bit-lab                  /pages/8bit-lab/                       301
+/games/chaos/*                    /pages/chaos/:splat                   301
+/games/chaos                     /pages/chaos/                          301
+/games/checklist/*                /pages/checklist/:splat               301
+/games/checklist                  /pages/checklist/                      301
+/games/draw-a-circle/*            /pages/draw-a-circle/:splat           301
+/games/draw-a-circle              /pages/draw-a-circle/                  301
+/games/everything-is-progressing/* /pages/everything-is-progressing/:splat 301
+/games/everything-is-progressing  /pages/everything-is-progressing/     301
+/games/future-timeline/*           /pages/future-timeline/:splat          301
+/games/future-timeline           /pages/future-timeline/                  301
+/games/how_many/*                 /pages/how_many/:splat                301
+/games/how_many                   /pages/how_many/                       301
+/games/lets-settle/*              /pages/lets-settle/:splat             301
+/games/lets-settle               /pages/lets-settle/                    301
+/games/memories/*                 /pages/memories/:splat                301
+/games/memories                   /pages/memories/                       301
+/games/not_scary/*                /pages/not_scary/:splat               301
+/games/not_scary                  /pages/not_scary/                      301
+/games/onelightday/*              /pages/onelightday/:splat             301
+/games/onelightday                /pages/onelightday/                    301
+/games/soundbar/*                 /pages/soundbar/:splat                301
+/games/soundbar                   /pages/soundbar/                       301
+/games/spend-bill-gates-money/*   /pages/spend-bill-gates-money/:splat  301
+/games/spend-bill-gates-money   /pages/spend-bill-gates-money/         301
+/games/standing/*                 /pages/standing/:splat                301
+/games/standing                   /pages/standing/                       301
+/games/which-number/*             /pages/which-number/:splat            301
+/games/which-number               /pages/which-number/                   301
+/games/your-life-in-numbers/*     /pages/your-life-in-numbers/:splat    301
+/games/your-life-in-numbers       /pages/your-life-in-numbers/           301
+
+# Terminated Jokes Route
+/games/jokes-if-you-handle/*     / 302
+/games/jokes-if-you-handle       / 302
+/jokes-if-you-handle/*           / 302
+/jokes-if-you-handle             / 302

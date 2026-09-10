@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Settle This</title>
-<link rel="canonical" href="https://vatsal.lol/games/lets-settle/">
-<meta property="og:url" content="https://vatsal.lol/games/lets-settle/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Draw a Perfect Circle</title>
+  <link rel="canonical" href="https://vatsal.lol/pages/draw-a-circle/">
+<meta property="og:url" content="https://vatsal.lol/pages/draw-a-circle/">
+<meta name="description" content="Play Draw a Circle instantly on VATSAL.LOL. No install, no login - just fun!">
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="Draw a Perfect Circle | vatsal.lol">
+<meta property="og:description" content="Play instant mini games on vatsal.lol.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../../assets/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Draw a Perfect Circle | vatsal.lol">
+<meta name="twitter:description" content="Play instant mini games on vatsal.lol.">
+
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
   <meta name="theme-color" content="#000000">
-  <meta name="description" content="Play Let's Settle instantly on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:title" content="Let's Settle | VATSAL.LOL">
-  <meta property="og:description" content="Play Let's Settle instantly on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="vatsal.lol">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Let's Settle | VATSAL.LOL">
-  <meta name="twitter:description" content="Play Let's Settle instantly on VATSAL.LOL. No install, no login - just fun!">
   <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -30,22 +28,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-<div class="app">
-  <div class="hero">
-    <h1>Let's Settle This</h1>
-    <p class="hero-sub">
-      Internet debates have raged for too long.<br>
-      Vote on the big questions. See where you stand.
-    </p>
+  <canvas id="canvas"></canvas>
+  <div class="controls">
+    <button id="gridBtn">Hide grid</button>
   </div>
-  <div class="game-instruction">
-  Vote on every debate to unlock your personality result.
-</div>
-  <div class="polls" id="polls"></div>
-  <div id="summary"></div>
-</div>
- <script src="script.js"></script>
-<script src="../../assets/vatsal-sdk.js" defer></script>
+  <div class="instructions" id="instructions">
+    <h1>Draw a perfect circle</h1>
+    <p>Click and drag to draw your circle</p>
+    <p class="stats">Best score: <span id="bestScoreText">0</span> | Attempts: <span id="attemptsText">0</span></p>
+  </div>
+  <div class="try-again hidden" id="tryAgain">
+    <button id="tryAgainBtn">Try again</button>
+  </div>
+<script src="script.js"></script>
   <!-- PWA Service Worker Registration & Update Notification -->
   <script>
     if ('serviceWorker' in navigator) {
@@ -143,5 +138,6 @@
     }
   </script>
 
+<script src="../../assets/vatsal-sdk.js" defer></script>
 </body>
 </html>

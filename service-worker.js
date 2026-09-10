@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vatsal-lol-cache-v4.0.2';
+const CACHE_NAME = 'vatsal-lol-cache-v4.1.0';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -37,7 +37,6 @@ const PRECACHE_ASSETS = [
   '/assets/thumbnails/guess-the-lie.webp',
   '/assets/thumbnails/hardword.webp',
   '/assets/thumbnails/how_many.webp',
-  '/assets/thumbnails/jokes-if-you-handle.webp',
   '/assets/thumbnails/lets-settle.webp',
   '/assets/thumbnails/luckorpredict.webp',
   '/assets/thumbnails/not_scary.webp',
@@ -68,10 +67,10 @@ const PRECACHE_ASSETS = [
   '/assets/data/vatsal-logo-font.woff2',
   '/assets/data/pinkend.woff2',
   '/assets/data/vns.woff2',
-  '/games/not_scary/horror_text.woff2',
-  '/games/not_scary/horror_title.woff2',
-  '/games/not_scary/rain.mp3',
-  '/games/not_scary/thunder.mp3'
+  '/pages/not_scary/horror_text.woff2',
+  '/pages/not_scary/horror_title.woff2',
+  '/pages/not_scary/rain.mp3',
+  '/pages/not_scary/thunder.mp3'
 ];
 
 // Install Event
