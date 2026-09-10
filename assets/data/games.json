@@ -18,10 +18,28 @@
     "thumbnail": "assets/thumbnails/your-life-in-numbers.webp"
   },
   {
-    "slug": "2048",
-    "title": "2048",
+    "slug": "not_scary",
+    "title": "Jump Scare",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/not_scary.webp"
+  },
+  {
+    "slug": "stick_fighter",
+    "title": "Stick Fighter",
     "type": "game",
-    "thumbnail": "assets/thumbnails/2048.webp"
+    "thumbnail": "assets/thumbnails/stick_fighter.webp"
+  },
+  {
+    "slug": "standing",
+    "title": "Standing",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/standing.webp"
+  },
+  {
+    "slug": "onelightday",
+    "title": "One Light Day",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/onelightday.webp"
   },
   {
     "slug": "8bit-lab",
@@ -30,28 +48,40 @@
     "thumbnail": "assets/thumbnails/8bit-lab.webp"
   },
   {
-    "slug": "adjustme",
-    "title": "Adjust Me",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/adjustme.webp"
+    "slug": "draw-a-circle",
+    "title": "Draw a Circle",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/draw-a-circle.webp"
   },
   {
-    "slug": "bubbles",
-    "title": "Bubbles",
+    "slug": "hardword",
+    "title": "Hardword",
     "type": "game",
-    "thumbnail": "assets/thumbnails/bubbles.webp"
+    "thumbnail": "assets/thumbnails/hardword.webp"
   },
   {
-    "slug": "bugsmash",
-    "title": "Bug Smash",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/bugsmash.webp"
+    "slug": "lets-settle",
+    "title": "Let's Settle",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/lets-settle.webp"
   },
   {
-    "slug": "can-you-guess-indian-mom",
-    "title": "Guess Indian Mom",
+    "slug": "how_many",
+    "title": "How Many",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/how_many.webp"
+  },
+  {
+    "slug": "luckorpredict",
+    "title": "Luck or Predict",
     "type": "game",
-    "thumbnail": "assets/thumbnails/can-you-guess-indian-mom.webp"
+    "thumbnail": "assets/thumbnails/luckorpredict.webp"
+  },
+  {
+    "slug": "everything-is-progressing",
+    "title": "Everything is Progressing",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/everything-is-progressing.webp"
   },
   {
     "slug": "chaos",
@@ -66,94 +96,10 @@
     "thumbnail": "assets/thumbnails/checklist.webp"
   },
   {
-    "slug": "draw-a-circle",
-    "title": "Draw a Circle",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/draw-a-circle.webp"
-  },
-  {
-    "slug": "emojis-2-movies",
-    "title": "Emojis 2 Movies",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/emojis-2-movies.webp"
-  },
-  {
-    "slug": "everything-is-progressing",
-    "title": "Everything is Progressing",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/everything-is-progressing.webp"
-  },
-  {
-    "slug": "flash-memory",
-    "title": "Flash Memory",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/flash-memory.webp"
-  },
-  {
-    "slug": "focus",
-    "title": "Focus",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/focus.webp"
-  },
-  {
     "slug": "future-timeline",
     "title": "Future Timeline",
     "type": "page",
     "thumbnail": "assets/thumbnails/future-timeline.webp"
-  },
-  {
-    "slug": "guess-the-lie",
-    "title": "Guess the Lie",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/guess-the-lie.webp"
-  },
-  {
-    "slug": "hardword",
-    "title": "Hardword",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/hardword.webp"
-  },
-  {
-    "slug": "how_many",
-    "title": "How Many",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/how_many.webp"
-  },
-  {
-    "slug": "lets-settle",
-    "title": "Let's Settle",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/lets-settle.webp"
-  },
-  {
-    "slug": "luckorpredict",
-    "title": "Luck or Predict",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/luckorpredict.webp"
-  },
-  {
-    "slug": "mastermind",
-    "title": "Mastermind",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/mastermind.webp"
-  },
-  {
-    "slug": "memory-tiles",
-    "title": "Memory Tiles",
-    "type": "game",
-    "thumbnail": "assets/thumbnails/memory-tiles.webp"
-  },
-  {
-    "slug": "not_scary",
-    "title": "Jump Scare",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/not_scary.webp"
-  },
-  {
-    "slug": "onelightday",
-    "title": "One Light Day",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/onelightday.webp"
   },
   {
     "slug": "paddleclub",
@@ -162,10 +108,16 @@
     "thumbnail": "assets/thumbnails/paddleclub.webp"
   },
   {
-    "slug": "snake",
-    "title": "Snake",
+    "slug": "would-you-press-the-button",
+    "title": "Would You Press the Button",
     "type": "game",
-    "thumbnail": "assets/thumbnails/snake.webp"
+    "thumbnail": "assets/thumbnails/would-you-press-the-button.webp"
+  },
+  {
+    "slug": "which-number",
+    "title": "Which Number",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/which-number.webp"
   },
   {
     "slug": "soundbar",
@@ -180,28 +132,40 @@
     "thumbnail": "assets/thumbnails/spend-bill-gates-money.webp"
   },
   {
-    "slug": "spot",
-    "title": "Spot",
+    "slug": "mastermind",
+    "title": "Mastermind",
     "type": "game",
-    "thumbnail": "assets/thumbnails/spot.webp"
+    "thumbnail": "assets/thumbnails/mastermind.webp"
   },
   {
-    "slug": "standing",
-    "title": "Standing",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/standing.webp"
+    "slug": "flash-memory",
+    "title": "Flash Memory",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/flash-memory.webp"
   },
   {
-    "slug": "stick_fighter",
-    "title": "Stick Fighter",
+    "slug": "bubbles",
+    "title": "Bubbles",
     "type": "game",
-    "thumbnail": "assets/thumbnails/stick_fighter.webp"
+    "thumbnail": "assets/thumbnails/bubbles.webp"
   },
   {
-    "slug": "sudoku",
-    "title": "Sudoku",
+    "slug": "emojis-2-movies",
+    "title": "Emojis 2 Movies",
     "type": "game",
-    "thumbnail": "assets/thumbnails/sudoku.webp"
+    "thumbnail": "assets/thumbnails/emojis-2-movies.webp"
+  },
+  {
+    "slug": "bugsmash",
+    "title": "Bug Smash",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/bugsmash.webp"
+  },
+  {
+    "slug": "snake",
+    "title": "Snake",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/snake.webp"
   },
   {
     "slug": "tower-of-hanoi",
@@ -210,27 +174,63 @@
     "thumbnail": "assets/thumbnails/tower-of-hanoi.webp"
   },
   {
+    "slug": "xo",
+    "title": "XO",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/xo.webp"
+  },
+  {
+    "slug": "spot",
+    "title": "Spot",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/spot.webp"
+  },
+  {
+    "slug": "sudoku",
+    "title": "Sudoku",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/sudoku.webp"
+  },
+  {
+    "slug": "2048",
+    "title": "2048",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/2048.webp"
+  },
+  {
+    "slug": "guess-the-lie",
+    "title": "Guess the Lie",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/guess-the-lie.webp"
+  },
+  {
+    "slug": "can-you-guess-indian-mom",
+    "title": "Guess Indian Mom",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/can-you-guess-indian-mom.webp"
+  },
+  {
     "slug": "under-limit",
     "title": "Under Limit",
     "type": "game",
     "thumbnail": "assets/thumbnails/under-limit.webp"
   },
   {
-    "slug": "which-number",
-    "title": "Which Number",
-    "type": "page",
-    "thumbnail": "assets/thumbnails/which-number.webp"
+    "slug": "focus",
+    "title": "Focus",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/focus.webp"
   },
   {
-    "slug": "would-you-press-the-button",
-    "title": "Would You Press the Button",
+    "slug": "memory-tiles",
+    "title": "Memory Tiles",
     "type": "game",
-    "thumbnail": "assets/thumbnails/would-you-press-the-button.webp"
+    "thumbnail": "assets/thumbnails/memory-tiles.webp"
   },
   {
-    "slug": "xo",
-    "title": "XO",
+    "slug": "adjustme",
+    "title": "Adjust Me",
     "type": "game",
-    "thumbnail": "assets/thumbnails/xo.webp"
+    "thumbnail": "assets/thumbnails/adjustme.webp"
   }
 ]

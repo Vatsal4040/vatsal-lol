@@ -190,8 +190,7 @@ const LivingSkyState = {
           buttons.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
 
-          const searchInput = document.getElementById('searchInput');
-          filterGames(searchInput ? searchInput.value : '');
+          renderGrid();
 
           if (window.innerWidth <= 768) {
             container.classList.remove('mobile-open');
@@ -281,20 +280,69 @@ const LivingSkyState = {
     });
   }
 
-  const priorityOrder = ["memories", "wordle", "your-life-in-numbers"];
+  const homeOrder = [
+    "memories",
+    "wordle",
+    "your-life-in-numbers",
+    "not_scary",
+    "stick_fighter",
+    "standing",
+    "onelightday",
+    "8bit-lab",
+    "draw-a-circle",
+    "hardword",
+    "lets-settle",
+    "how_many",
+    "luckorpredict",
+    "everything-is-progressing",
+    "chaos",
+    "checklist",
+    "future-timeline",
+    "paddleclub",
+    "would-you-press-the-button",
+    "which-number",
+    "soundbar",
+    "spend-bill-gates-money",
+    "mastermind",
+    "flash-memory",
+    "bubbles",
+    "emojis-2-movies",
+    "bugsmash",
+    "snake",
+    "tower-of-hanoi",
+    "xo",
+    "spot",
+    "sudoku",
+    "2048",
+    "guess-the-lie",
+    "can-you-guess-indian-mom",
+    "under-limit",
+    "focus",
+    "memory-tiles",
+    "adjustme"
+  ];
 
-  function getOrderedGames() {
-    const priorityItems = [];
-    priorityOrder.forEach(slug => {
-      const item = games.find(g => g.slug === slug);
-      if (item) priorityItems.push(item);
+  function getOrderedGames(category = currentCategory) {
+    if (category === 'game') {
+      return games
+        .filter(g => g.type === 'game')
+        .sort((a, b) => a.slug.localeCompare(b.slug));
+    }
+    if (category === 'page') {
+      return games
+        .filter(g => g.type === 'page')
+        .sort((a, b) => a.slug.localeCompare(b.slug));
+    }
+    const ordered = [];
+    homeOrder.forEach(slug => {
+      const targetSlug = (slug === 'shake') ? 'snake' : slug;
+      const item = games.find(g => g.slug === targetSlug);
+      if (item && !ordered.includes(item)) ordered.push(item);
     });
-
-    const remainingItems = games
-      .filter(g => !priorityOrder.includes(g.slug))
-      .sort((a, b) => a.slug.localeCompare(b.slug));
-
-    return [...priorityItems, ...remainingItems];
+    games.forEach(g => {
+      if (!ordered.includes(g)) ordered.push(g);
+    });
+    return ordered;
   }
 
   function filterGames(query) {
@@ -302,7 +350,7 @@ const LivingSkyState = {
     const cards = document.querySelectorAll('#traditionalGrid .t-card');
     const noResults = document.getElementById('noResultsMessage');
     let matchCount = 0;
-    const orderedGames = getOrderedGames();
+    const orderedGames = getOrderedGames(currentCategory);
 
     orderedGames.forEach((game, index) => {
       const card = cards[index];
@@ -330,10 +378,15 @@ const LivingSkyState = {
 
   function renderGrid() {
     const grid = document.getElementById('traditionalGrid');
-    const orderedGames = getOrderedGames();
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    const orderedGames = getOrderedGames(currentCategory);
     orderedGames.forEach((game, i) => {
         const card = document.createElement('div');
         card.className = 't-card';
+        card.dataset.slug = game.slug;
+        card.dataset.type = game.type;
         const isCritical = i < 3;
         const lazyAttr = isCritical ? ' fetchpriority="high"' : ' loading="lazy" decoding="async"';
         card.innerHTML = `<img src="assets/thumbnails/${game.slug}.webp" alt="${game.title}" width="320" height="180"${lazyAttr} onerror="this.src='assets/logo.png'">`;
@@ -341,6 +394,9 @@ const LivingSkyState = {
         card.onclick = () => window.location.href = `./${folderPrefix}/${game.slug}/`;
         grid.appendChild(card);
     });
+
+    const searchInput = document.getElementById('searchInput');
+    filterGames(searchInput ? searchInput.value : '');
   }
   function setupFlash() {
     if (window.innerWidth < 768) return; // Completely skip for mobile
