@@ -4,6 +4,14 @@
 
 // Scene Configurations
 const scenes = {
+  emraan: {
+    name: "Emraan",
+    image: "emraan.png",
+    playlistId: "PLcv8FmsexGHg",
+    effect: "road",
+    vibrate: false,
+    horn: false
+  },
   barber: {
     name: "Barber Shop",
     image: "saloon.png", // Mapped from saloon.png
@@ -46,7 +54,7 @@ const scenes = {
   }
 };
 
-let currentSceneKey = "barber";
+let currentSceneKey = "emraan";
 let player = null;
 let isPlayerReady = false;
 let updateInterval = null;
