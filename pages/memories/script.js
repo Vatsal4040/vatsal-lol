@@ -86,32 +86,6 @@ function updateClock() {
 setInterval(updateClock, 1000);
 updateClock();
 
-// Serverless Presence Tracking (Real-time concurrent users)
-const sessionId = Math.random().toString(36).substring(2, 10);
-const bucketUrl = "https://kvdb.io/YTGtTWiAdzX2RUo4Si6Fs8";
-
-async function updatePresence() {
-  try {
-    // 1. Send heartbeat key with 45 seconds TTL
-    await fetch(`${bucketUrl}/presence_${sessionId}?ttl=45`, {
-      method: "POST",
-      body: "1"
-    });
-
-    // 2. Query list of active keys
-    const res = await fetch(`${bucketUrl}/?prefix=presence_`);
-    const keys = await res.json();
-    if (Array.isArray(keys)) {
-      const count = keys.length || 1;
-      $("live-count").textContent = count;
-    }
-  } catch (err) {
-    console.warn("Presence count warning:", err);
-  }
-}
-updatePresence();
-setInterval(updatePresence, 20000); // Heartbeat every 20 seconds
-
 // Inactivity Dimmer (Ambient Mode)
 let inactivityTimer;
 const resetInactivityTimer = () => {
