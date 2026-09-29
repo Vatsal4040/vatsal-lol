@@ -39,7 +39,7 @@ const scenes = {
   truck: {
     name: "Desi Truck",
     image: "truck.png",
-    playlistId: "PLbhNkpM-gLMM",
+    playlistId: "PLZONSa-8HMVM",
     effect: "road",
     vibrate: true,
     horn: true
@@ -47,7 +47,7 @@ const scenes = {
   class95: {
     name: "Class of 1995",
     image: "class95.png",
-    playlistId: "PLbhNkpM-gLMM",
+    playlistId: "PLcv8FmsexGHg", // Temporary: Uses Emraan playlist until 90's Class playlist ID is provided
     effect: "dust",
     vibrate: false,
     horn: false
