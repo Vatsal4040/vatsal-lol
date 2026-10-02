@@ -55,6 +55,7 @@ const scenes = {
 };
 
 let currentSceneKey = "emraan";
+let currentLoadedPlaylistId = null;
 let player = null;
 let isPlayerReady = false;
 let updateInterval = null;
@@ -66,6 +67,18 @@ hornAudio.volume = 0.8;
 
 // DOM helper
 const $ = id => document.getElementById(id);
+
+// Clean up any stale localStorage overrides from previous testing
+["barber", "auto"].forEach(key => {
+  if (localStorage.getItem(`playlist_${key}`) === "PLcv8FmsexGHg") {
+    localStorage.removeItem(`playlist_${key}`);
+  }
+});
+["truck", "class95"].forEach(key => {
+  if (localStorage.getItem(`playlist_${key}`) === "PLbhNkpM-gLMM") {
+    localStorage.removeItem(`playlist_${key}`);
+  }
+});
 
 // Load Custom Playlists from localStorage if saved
 Object.keys(scenes).forEach(key => {
@@ -270,6 +283,7 @@ function onPlayerReady(event) {
   isPlayerReady = true;
   // Load playlist for the default/current scene
   const playlistId = scenes[currentSceneKey].playlistId;
+  currentLoadedPlaylistId = playlistId;
   player.loadPlaylist({
     listType: "playlist",
     list: playlistId,
@@ -462,7 +476,8 @@ function setScene(sceneKey) {
   // 5. Handle Audio Loading
   if (isPlayerReady && player) {
     // If the new scene uses a DIFFERENT playlist, load it
-    if (scene.playlistId !== scenes[oldSceneKey].playlistId) {
+    if (scene.playlistId !== currentLoadedPlaylistId) {
+      currentLoadedPlaylistId = scene.playlistId;
       player.loadPlaylist({
         listType: "playlist",
         list: scene.playlistId,
@@ -470,6 +485,8 @@ function setScene(sceneKey) {
       });
       updateFooterLink(scene.playlistId);
     }
+  } else {
+    updateFooterLink(scene.playlistId);
   }
 }
 
