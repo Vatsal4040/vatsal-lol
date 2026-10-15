@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "questions",
+    "name": "Questions",
+    "description": "Broad curiosity, how-to, why, what-if and everyday question searches.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "questions_001",
+      "prompt": "why do",
+      "answers": [
+        {
+          "id": "questions_001_a01",
+          "text": "we dream",
+          "points": 9333,
+          "aliases": [
+            "we dream"
+          ]
+        },
+        {
+          "id": "questions_001_a02",
+          "text": "people lie",
+          "points": 7409,
+          "aliases": [
+            "people lie"
+          ]
+        },
+        {
+          "id": "questions_001_a03",
+          "text": "we yawn",
+          "points": 6417,
+          "aliases": [
+            "we yawn"
+          ]
+        },
+        {
+          "id": "questions_001_a04",
+          "text": "we hiccup",
+          "points": 5941,
+          "aliases": [
+            "we hiccup"
+          ]
+        },
+        {
+          "id": "questions_001_a05",
+          "text": "people snore",
+          "points": 4128,
+          "aliases": [
+            "people snore"
+          ]
+        },
+        {
+          "id": "questions_001_a06",
+          "text": "we get goosebumps",
+          "points": 3379,
+          "aliases": [
+            "we get goosebumps"
+          ]
+        },
+        {
+          "id": "questions_001_a07",
+          "text": "we have eyebrows",
+          "points": 2776,
+          "aliases": [
+            "we have eyebrows"
+          ]
+        },
+        {
+          "id": "questions_001_a08",
+          "text": "we sneeze",
+          "points": 2473,
+          "aliases": [
+            "we sneeze"
+          ]
+        },
+        {
+          "id": "questions_001_a09",
+          "text": "people blush",
+          "points": 2032,
+          "aliases": [
+            "people blush"
+          ]
+        },
+        {
+          "id": "questions_001_a10",
+          "text": "we forget dreams",
+          "points": 847,
+          "aliases": [
+            "we forget dreams"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_002",
+      "prompt": "what happens if",
+      "answers": [
+        {
+          "id": "questions_002_a01",
+          "text": "you don't sleep",
+          "points": 8786,
+          "aliases": [
+            "you don't sleep"
+          ]
+        },
+        {
+          "id": "questions_002_a02",
+          "text": "you drink too much water",
+          "points": 6035,
+          "aliases": [
+            "you drink too much water"
+          ]
+        },
+        {
+          "id": "questions_002_a03",
+          "text": "you stop eating sugar",
+          "points": 5348,
+          "aliases": [
+            "you stop eating sugar"
+          ]
+        },
+        {
+          "id": "questions_002_a04",
+          "text": "you swallow gum",
+          "points": 4911,
+          "aliases": [
+            "you swallow gum"
+          ]
+        },
+        {
+          "id": "questions_002_a05",
+          "text": "you stay awake all night",
+          "points": 4780,
+          "aliases": [
+            "you stay awake all night"
+          ]
+        },
+        {
+          "id": "questions_002_a06",
+          "text": "you eat before bed",
+          "points": 4074,
+          "aliases": [
+            "you eat before bed"
+          ]
+        },
+        {
+          "id": "questions_002_a07",
+          "text": "you stop drinking coffee",
+          "points": 3913,
+          "aliases": [
+            "you stop drinking coffee"
+          ]
+        },
+        {
+          "id": "questions_002_a08",
+          "text": "you hold your breath",
+          "points": 3365,
+          "aliases": [
+            "you hold your breath"
+          ]
+        },
+        {
+          "id": "questions_002_a09",
+          "text": "you don't exercise",
+          "points": 2974,
+          "aliases": [
+            "you don't exercise"
+          ]
+        },
+        {
+          "id": "questions_002_a10",
+          "text": "you sleep too much",
+          "points": 1046,
+          "aliases": [
+            "you sleep too much"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_003",
+      "prompt": "how to know if",
+      "answers": [
+        {
+          "id": "questions_003_a01",
+          "text": "someone likes you",
+          "points": 9971,
+          "aliases": [
+            "someone likes you"
+          ]
+        },
+        {
+          "id": "questions_003_a02",
+          "text": "someone is lying",
+          "points": 8155,
+          "aliases": [
+            "someone is lying"
+          ]
+        },
+        {
+          "id": "questions_003_a03",
+          "text": "you're sick",
+          "points": 7982,
+          "aliases": [
+            "you're sick"
+          ]
+        },
+        {
+          "id": "questions_003_a04",
+          "text": "you're in love",
+          "points": 5663,
+          "aliases": [
+            "you're in love"
+          ]
+        },
+        {
+          "id": "questions_003_a05",
+          "text": "someone is angry",
+          "points": 4184,
+          "aliases": [
+            "someone is angry"
+          ]
+        },
+        {
+          "id": "questions_003_a06",
+          "text": "someone is avoiding you",
+          "points": 3687,
+          "aliases": [
+            "someone is avoiding you"
+          ]
+        },
+        {
+          "id": "questions_003_a07",
+          "text": "you're dehydrated",
+          "points": 3499,
+          "aliases": [
+            "you're dehydrated"
+          ]
+        },
+        {
+          "id": "questions_003_a08",
+          "text": "your phone is hacked",
+          "points": 3256,
+          "aliases": [
+            "your phone is hacked"
+          ]
+        },
+        {
+          "id": "questions_003_a09",
+          "text": "food is spoiled",
+          "points": 2659,
+          "aliases": [
+            "food is spoiled"
+          ]
+        },
+        {
+          "id": "questions_003_a10",
+          "text": "a website is safe",
+          "points": 1204,
+          "aliases": [
+            "a website is safe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_004",
+      "prompt": "can you really",
+      "answers": [
+        {
+          "id": "questions_004_a01",
+          "text": "sneeze with your eyes open",
+          "points": 9714,
+          "aliases": [
+            "sneeze with your eyes open"
+          ]
+        },
+        {
+          "id": "questions_004_a02",
+          "text": "see in the dark",
+          "points": 8831,
+          "aliases": [
+            "see in the dark"
+          ]
+        },
+        {
+          "id": "questions_004_a03",
+          "text": "live without sleep",
+          "points": 7541,
+          "aliases": [
+            "live without sleep"
+          ]
+        },
+        {
+          "id": "questions_004_a04",
+          "text": "breathe underwater",
+          "points": 5498,
+          "aliases": [
+            "breathe underwater"
+          ]
+        },
+        {
+          "id": "questions_004_a05",
+          "text": "tickle yourself",
+          "points": 5352,
+          "aliases": [
+            "tickle yourself"
+          ]
+        },
+        {
+          "id": "questions_004_a06",
+          "text": "dream in color",
+          "points": 4657,
+          "aliases": [
+            "dream in color"
+          ]
+        },
+        {
+          "id": "questions_004_a07",
+          "text": "hear your own snoring",
+          "points": 3436,
+          "aliases": [
+            "hear your own snoring"
+          ]
+        },
+        {
+          "id": "questions_004_a08",
+          "text": "survive without food",
+          "points": 2886,
+          "aliases": [
+            "survive without food"
+          ]
+        },
+        {
+          "id": "questions_004_a09",
+          "text": "learn while sleeping",
+          "points": 1905,
+          "aliases": [
+            "learn while sleeping"
+          ]
+        },
+        {
+          "id": "questions_004_a10",
+          "text": "read minds",
+          "points": 1378,
+          "aliases": [
+            "read minds"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_005",
+      "prompt": "is it normal to",
+      "answers": [
+        {
+          "id": "questions_005_a01",
+          "text": "talk to yourself",
+          "points": 9397,
+          "aliases": [
+            "talk to yourself"
+          ]
+        },
+        {
+          "id": "questions_005_a02",
+          "text": "sleep a lot",
+          "points": 7955,
+          "aliases": [
+            "sleep a lot"
+          ]
+        },
+        {
+          "id": "questions_005_a03",
+          "text": "overthink",
+          "points": 7590,
+          "aliases": [
+            "overthink"
+          ]
+        },
+        {
+          "id": "questions_005_a04",
+          "text": "have weird dreams",
+          "points": 6562,
+          "aliases": [
+            "have weird dreams"
+          ]
+        },
+        {
+          "id": "questions_005_a05",
+          "text": "be tired all the time",
+          "points": 6234,
+          "aliases": [
+            "be tired all the time"
+          ]
+        },
+        {
+          "id": "questions_005_a06",
+          "text": "forget things",
+          "points": 5703,
+          "aliases": [
+            "forget things"
+          ]
+        },
+        {
+          "id": "questions_005_a07",
+          "text": "want to be alone",
+          "points": 3750,
+          "aliases": [
+            "want to be alone"
+          ]
+        },
+        {
+          "id": "questions_005_a08",
+          "text": "have random thoughts",
+          "points": 2881,
+          "aliases": [
+            "have random thoughts"
+          ]
+        },
+        {
+          "id": "questions_005_a09",
+          "text": "feel nervous",
+          "points": 2152,
+          "aliases": [
+            "feel nervous"
+          ]
+        },
+        {
+          "id": "questions_005_a10",
+          "text": "wake up at night",
+          "points": 766,
+          "aliases": [
+            "wake up at night"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_006",
+      "prompt": "how long does",
+      "answers": [
+        {
+          "id": "questions_006_a01",
+          "text": "a cold last",
+          "points": 8850,
+          "aliases": [
+            "a cold last"
+          ]
+        },
+        {
+          "id": "questions_006_a02",
+          "text": "food last in the fridge",
+          "points": 8095,
+          "aliases": [
+            "food last in the fridge"
+          ]
+        },
+        {
+          "id": "questions_006_a03",
+          "text": "it take to fall asleep",
+          "points": 7404,
+          "aliases": [
+            "it take to fall asleep"
+          ]
+        },
+        {
+          "id": "questions_006_a04",
+          "text": "coffee last",
+          "points": 6756,
+          "aliases": [
+            "coffee last"
+          ]
+        },
+        {
+          "id": "questions_006_a05",
+          "text": "a headache last",
+          "points": 4574,
+          "aliases": [
+            "a headache last"
+          ]
+        },
+        {
+          "id": "questions_006_a06",
+          "text": "a movie last",
+          "points": 4211,
+          "aliases": [
+            "a movie last"
+          ]
+        },
+        {
+          "id": "questions_006_a07",
+          "text": "a passport last",
+          "points": 3515,
+          "aliases": [
+            "a passport last"
+          ]
+        },
+        {
+          "id": "questions_006_a08",
+          "text": "battery last",
+          "points": 2562,
+          "aliases": [
+            "battery last"
+          ]
+        },
+        {
+          "id": "questions_006_a09",
+          "text": "rice take to cook",
+          "points": 1560,
+          "aliases": [
+            "rice take to cook"
+          ]
+        },
+        {
+          "id": "questions_006_a10",
+          "text": "it take to recover from jet lag",
+          "points": 565,
+          "aliases": [
+            "it take to recover from jet lag"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_007",
+      "prompt": "why is",
+      "answers": [
+        {
+          "id": "questions_007_a01",
+          "text": "the sky blue",
+          "points": 8838,
+          "aliases": [
+            "the sky blue"
+          ]
+        },
+        {
+          "id": "questions_007_a02",
+          "text": "the ocean blue",
+          "points": 8452,
+          "aliases": [
+            "the ocean blue"
+          ]
+        },
+        {
+          "id": "questions_007_a03",
+          "text": "space dark",
+          "points": 8138,
+          "aliases": [
+            "space dark"
+          ]
+        },
+        {
+          "id": "questions_007_a04",
+          "text": "the moon bright",
+          "points": 7858,
+          "aliases": [
+            "the moon bright"
+          ]
+        },
+        {
+          "id": "questions_007_a05",
+          "text": "water wet",
+          "points": 7134,
+          "aliases": [
+            "water wet"
+          ]
+        },
+        {
+          "id": "questions_007_a06",
+          "text": "fire hot",
+          "points": 6937,
+          "aliases": [
+            "fire hot"
+          ]
+        },
+        {
+          "id": "questions_007_a07",
+          "text": "snow white",
+          "points": 6469,
+          "aliases": [
+            "snow white"
+          ]
+        },
+        {
+          "id": "questions_007_a08",
+          "text": "the grass green",
+          "points": 5210,
+          "aliases": [
+            "the grass green"
+          ]
+        },
+        {
+          "id": "questions_007_a09",
+          "text": "the sea salty",
+          "points": 3560,
+          "aliases": [
+            "the sea salty"
+          ]
+        },
+        {
+          "id": "questions_007_a10",
+          "text": "the sun hot",
+          "points": 1160,
+          "aliases": [
+            "the sun hot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_008",
+      "prompt": "what is the best",
+      "answers": [
+        {
+          "id": "questions_008_a01",
+          "text": "way to sleep",
+          "points": 9459,
+          "aliases": [
+            "way to sleep"
+          ]
+        },
+        {
+          "id": "questions_008_a02",
+          "text": "way to save money",
+          "points": 8244,
+          "aliases": [
+            "way to save money"
+          ]
+        },
+        {
+          "id": "questions_008_a03",
+          "text": "way to learn",
+          "points": 8102,
+          "aliases": [
+            "way to learn"
+          ]
+        },
+        {
+          "id": "questions_008_a04",
+          "text": "way to cook rice",
+          "points": 7215,
+          "aliases": [
+            "way to cook rice"
+          ]
+        },
+        {
+          "id": "questions_008_a05",
+          "text": "way to clean",
+          "points": 6778,
+          "aliases": [
+            "way to clean"
+          ]
+        },
+        {
+          "id": "questions_008_a06",
+          "text": "way to wake up early",
+          "points": 6154,
+          "aliases": [
+            "way to wake up early"
+          ]
+        },
+        {
+          "id": "questions_008_a07",
+          "text": "way to study",
+          "points": 4158,
+          "aliases": [
+            "way to study"
+          ]
+        },
+        {
+          "id": "questions_008_a08",
+          "text": "way to relax",
+          "points": 3058,
+          "aliases": [
+            "way to relax"
+          ]
+        },
+        {
+          "id": "questions_008_a09",
+          "text": "way to stay focused",
+          "points": 2563,
+          "aliases": [
+            "way to stay focused"
+          ]
+        },
+        {
+          "id": "questions_008_a10",
+          "text": "way to travel",
+          "points": 782,
+          "aliases": [
+            "way to travel"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_009",
+      "prompt": "how can i",
+      "answers": [
+        {
+          "id": "questions_009_a01",
+          "text": "sleep better",
+          "points": 9139,
+          "aliases": [
+            "sleep better"
+          ]
+        },
+        {
+          "id": "questions_009_a02",
+          "text": "save money",
+          "points": 6682,
+          "aliases": [
+            "save money"
+          ]
+        },
+        {
+          "id": "questions_009_a03",
+          "text": "learn faster",
+          "points": 5262,
+          "aliases": [
+            "learn faster"
+          ]
+        },
+        {
+          "id": "questions_009_a04",
+          "text": "stop overthinking",
+          "points": 4780,
+          "aliases": [
+            "stop overthinking"
+          ]
+        },
+        {
+          "id": "questions_009_a05",
+          "text": "focus better",
+          "points": 3346,
+          "aliases": [
+            "focus better"
+          ]
+        },
+        {
+          "id": "questions_009_a06",
+          "text": "wake up early",
+          "points": 2987,
+          "aliases": [
+            "wake up early"
+          ]
+        },
+        {
+          "id": "questions_009_a07",
+          "text": "clean my room",
+          "points": 2722,
+          "aliases": [
+            "clean my room"
+          ]
+        },
+        {
+          "id": "questions_009_a08",
+          "text": "remember things",
+          "points": 1300,
+          "aliases": [
+            "remember things"
+          ]
+        },
+        {
+          "id": "questions_009_a09",
+          "text": "be more productive",
+          "points": 1079,
+          "aliases": [
+            "be more productive"
+          ]
+        },
+        {
+          "id": "questions_009_a10",
+          "text": "make friends",
+          "points": 1015,
+          "aliases": [
+            "make friends"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_010",
+      "prompt": "why can't i",
+      "answers": [
+        {
+          "id": "questions_010_a01",
+          "text": "sleep",
+          "points": 9954,
+          "aliases": [
+            "sleep"
+          ]
+        },
+        {
+          "id": "questions_010_a02",
+          "text": "focus",
+          "points": 7625,
+          "aliases": [
+            "focus"
+          ]
+        },
+        {
+          "id": "questions_010_a03",
+          "text": "stop thinking",
+          "points": 7334,
+          "aliases": [
+            "stop thinking"
+          ]
+        },
+        {
+          "id": "questions_010_a04",
+          "text": "remember things",
+          "points": 7093,
+          "aliases": [
+            "remember things"
+          ]
+        },
+        {
+          "id": "questions_010_a05",
+          "text": "wake up",
+          "points": 6706,
+          "aliases": [
+            "wake up"
+          ]
+        },
+        {
+          "id": "questions_010_a06",
+          "text": "concentrate",
+          "points": 6391,
+          "aliases": [
+            "concentrate"
+          ]
+        },
+        {
+          "id": "questions_010_a07",
+          "text": "relax",
+          "points": 4520,
+          "aliases": [
+            "relax"
+          ]
+        },
+        {
+          "id": "questions_010_a08",
+          "text": "make decisions",
+          "points": 2854,
+          "aliases": [
+            "make decisions"
+          ]
+        },
+        {
+          "id": "questions_010_a09",
+          "text": "stay motivated",
+          "points": 2256,
+          "aliases": [
+            "stay motivated"
+          ]
+        },
+        {
+          "id": "questions_010_a10",
+          "text": "fall asleep",
+          "points": 1373,
+          "aliases": [
+            "fall asleep"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_011",
+      "prompt": "what should i do when",
+      "answers": [
+        {
+          "id": "questions_011_a01",
+          "text": "i'm bored",
+          "points": 9765,
+          "aliases": [
+            "i'm bored"
+          ]
+        },
+        {
+          "id": "questions_011_a02",
+          "text": "i can't sleep",
+          "points": 9406,
+          "aliases": [
+            "i can't sleep"
+          ]
+        },
+        {
+          "id": "questions_011_a03",
+          "text": "i'm stressed",
+          "points": 8599,
+          "aliases": [
+            "i'm stressed"
+          ]
+        },
+        {
+          "id": "questions_011_a04",
+          "text": "i'm angry",
+          "points": 8092,
+          "aliases": [
+            "i'm angry"
+          ]
+        },
+        {
+          "id": "questions_011_a05",
+          "text": "i feel lonely",
+          "points": 6893,
+          "aliases": [
+            "i feel lonely"
+          ]
+        },
+        {
+          "id": "questions_011_a06",
+          "text": "i have no money",
+          "points": 5478,
+          "aliases": [
+            "i have no money"
+          ]
+        },
+        {
+          "id": "questions_011_a07",
+          "text": "i have nothing to do",
+          "points": 3628,
+          "aliases": [
+            "i have nothing to do"
+          ]
+        },
+        {
+          "id": "questions_011_a08",
+          "text": "i feel lost",
+          "points": 3209,
+          "aliases": [
+            "i feel lost"
+          ]
+        },
+        {
+          "id": "questions_011_a09",
+          "text": "i make a mistake",
+          "points": 2666,
+          "aliases": [
+            "i make a mistake"
+          ]
+        },
+        {
+          "id": "questions_011_a10",
+          "text": "i don't know what to say",
+          "points": 557,
+          "aliases": [
+            "i don't know what to say"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_012",
+      "prompt": "why does my body",
+      "answers": [
+        {
+          "id": "questions_012_a01",
+          "text": "feel tired",
+          "points": 9171,
+          "aliases": [
+            "feel tired"
+          ]
+        },
+        {
+          "id": "questions_012_a02",
+          "text": "hurt",
+          "points": 8056,
+          "aliases": [
+            "hurt"
+          ]
+        },
+        {
+          "id": "questions_012_a03",
+          "text": "feel cold",
+          "points": 6832,
+          "aliases": [
+            "feel cold"
+          ]
+        },
+        {
+          "id": "questions_012_a04",
+          "text": "feel hot",
+          "points": 5880,
+          "aliases": [
+            "feel hot"
+          ]
+        },
+        {
+          "id": "questions_012_a05",
+          "text": "itch",
+          "points": 5009,
+          "aliases": [
+            "itch"
+          ]
+        },
+        {
+          "id": "questions_012_a06",
+          "text": "shake",
+          "points": 3458,
+          "aliases": [
+            "shake"
+          ]
+        },
+        {
+          "id": "questions_012_a07",
+          "text": "feel weak",
+          "points": 3196,
+          "aliases": [
+            "feel weak"
+          ]
+        },
+        {
+          "id": "questions_012_a08",
+          "text": "feel heavy",
+          "points": 2255,
+          "aliases": [
+            "feel heavy"
+          ]
+        },
+        {
+          "id": "questions_012_a09",
+          "text": "feel sore",
+          "points": 1752,
+          "aliases": [
+            "feel sore"
+          ]
+        },
+        {
+          "id": "questions_012_a10",
+          "text": "feel numb",
+          "points": 1275,
+          "aliases": [
+            "feel numb"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_013",
+      "prompt": "how do i get",
+      "answers": [
+        {
+          "id": "questions_013_a01",
+          "text": "better sleep",
+          "points": 9906,
+          "aliases": [
+            "better sleep"
+          ]
+        },
+        {
+          "id": "questions_013_a02",
+          "text": "more energy",
+          "points": 8463,
+          "aliases": [
+            "more energy"
+          ]
+        },
+        {
+          "id": "questions_013_a03",
+          "text": "rid of a headache",
+          "points": 7961,
+          "aliases": [
+            "rid of a headache"
+          ]
+        },
+        {
+          "id": "questions_013_a04",
+          "text": "more storage",
+          "points": 6230,
+          "aliases": [
+            "more storage"
+          ]
+        },
+        {
+          "id": "questions_013_a05",
+          "text": "better wifi",
+          "points": 6099,
+          "aliases": [
+            "better wifi"
+          ]
+        },
+        {
+          "id": "questions_013_a06",
+          "text": "organized",
+          "points": 5795,
+          "aliases": [
+            "organized"
+          ]
+        },
+        {
+          "id": "questions_013_a07",
+          "text": "motivated",
+          "points": 3912,
+          "aliases": [
+            "motivated"
+          ]
+        },
+        {
+          "id": "questions_013_a08",
+          "text": "better at studying",
+          "points": 3334,
+          "aliases": [
+            "better at studying"
+          ]
+        },
+        {
+          "id": "questions_013_a09",
+          "text": "rid of stress",
+          "points": 1779,
+          "aliases": [
+            "rid of stress"
+          ]
+        },
+        {
+          "id": "questions_013_a10",
+          "text": "started in the morning",
+          "points": 679,
+          "aliases": [
+            "started in the morning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_014",
+      "prompt": "what does it mean when",
+      "answers": [
+        {
+          "id": "questions_014_a01",
+          "text": "someone ignores you",
+          "points": 9237,
+          "aliases": [
+            "someone ignores you"
+          ]
+        },
+        {
+          "id": "questions_014_a02",
+          "text": "someone keeps looking at you",
+          "points": 6291,
+          "aliases": [
+            "someone keeps looking at you"
+          ]
+        },
+        {
+          "id": "questions_014_a03",
+          "text": "your eye twitches",
+          "points": 5770,
+          "aliases": [
+            "your eye twitches"
+          ]
+        },
+        {
+          "id": "questions_014_a04",
+          "text": "you dream about someone",
+          "points": 5524,
+          "aliases": [
+            "you dream about someone"
+          ]
+        },
+        {
+          "id": "questions_014_a05",
+          "text": "your phone gets hot",
+          "points": 4716,
+          "aliases": [
+            "your phone gets hot"
+          ]
+        },
+        {
+          "id": "questions_014_a06",
+          "text": "a dog licks you",
+          "points": 3658,
+          "aliases": [
+            "a dog licks you"
+          ]
+        },
+        {
+          "id": "questions_014_a07",
+          "text": "someone copies you",
+          "points": 2923,
+          "aliases": [
+            "someone copies you"
+          ]
+        },
+        {
+          "id": "questions_014_a08",
+          "text": "you wake up at night",
+          "points": 2302,
+          "aliases": [
+            "you wake up at night"
+          ]
+        },
+        {
+          "id": "questions_014_a09",
+          "text": "you keep seeing the same number",
+          "points": 1441,
+          "aliases": [
+            "you keep seeing the same number"
+          ]
+        },
+        {
+          "id": "questions_014_a10",
+          "text": "someone says nothing",
+          "points": 1282,
+          "aliases": [
+            "someone says nothing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "questions_015",
+      "prompt": "what should i search",
+      "answers": [
+        {
+          "id": "questions_015_a01",
+          "text": "for a gift",
+          "points": 8965,
+          "aliases": [
+            "for a gift"
+          ]
+        },
+        {
+          "id": "questions_015_a02",
+          "text": "when bored",
+          "points": 8288,
+          "aliases": [
+            "when bored"
+          ]
+        },
+        {
+          "id": "questions_015_a03",
+          "text": "when planning a trip",
+          "points": 7832,
+          "aliases": [
+            "when planning a trip"
+          ]
+        },
+        {
+          "id": "questions_015_a04",
+          "text": "to learn something",
+          "points": 7534,
+          "aliases": [
+            "to learn something"
+          ]
+        },
+        {
+          "id": "questions_015_a05",
+          "text": "for dinner ideas",
+          "points": 7159,
+          "aliases": [
+            "for dinner ideas"
+          ]
+        },
+        {
+          "id": "questions_015_a06",
+          "text": "for movie recommendations",
+          "points": 6080,
+          "aliases": [
+            "for movie recommendations"
+          ]
+        },
+        {
+          "id": "questions_015_a07",
+          "text": "to fix my phone",
+          "points": 5917,
+          "aliases": [
+            "to fix my phone"
+          ]
+        },
+        {
+          "id": "questions_015_a08",
+          "text": "to save money",
+          "points": 3741,
+          "aliases": [
+            "to save money"
+          ]
+        },
+        {
+          "id": "questions_015_a09",
+          "text": "for a new hobby",
+          "points": 3224,
+          "aliases": [
+            "for a new hobby"
+          ]
+        },
+        {
+          "id": "questions_015_a10",
+          "text": "for fun",
+          "points": 1294,
+          "aliases": [
+            "for fun"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "everyday_life",
+    "name": "Everyday Life",
+    "description": "Home, routines, travel, shopping and practical everyday searches.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "everyday_life_001",
+      "prompt": "things to do when",
+      "answers": [
+        {
+          "id": "everyday_life_001_a01",
+          "text": "you're bored",
+          "points": 9897,
+          "aliases": [
+            "you're bored"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a02",
+          "text": "it's raining",
+          "points": 9193,
+          "aliases": [
+            "it's raining"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a03",
+          "text": "you're home alone",
+          "points": 8811,
+          "aliases": [
+            "you're home alone"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a04",
+          "text": "you can't sleep",
+          "points": 8605,
+          "aliases": [
+            "you can't sleep"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a05",
+          "text": "you have no money",
+          "points": 5505,
+          "aliases": [
+            "you have no money"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a06",
+          "text": "you're traveling",
+          "points": 3560,
+          "aliases": [
+            "you're traveling"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a07",
+          "text": "you're waiting",
+          "points": 2738,
+          "aliases": [
+            "you're waiting"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a08",
+          "text": "you have a day off",
+          "points": 2393,
+          "aliases": [
+            "you have a day off"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a09",
+          "text": "you're stuck at home",
+          "points": 2047,
+          "aliases": [
+            "you're stuck at home"
+          ]
+        },
+        {
+          "id": "everyday_life_001_a10",
+          "text": "you finish work early",
+          "points": 1398,
+          "aliases": [
+            "you finish work early"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_002",
+      "prompt": "how to clean",
+      "answers": [
+        {
+          "id": "everyday_life_002_a01",
+          "text": "a mattress",
+          "points": 8767,
+          "aliases": [
+            "a mattress"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a02",
+          "text": "a keyboard",
+          "points": 8324,
+          "aliases": [
+            "a keyboard"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a03",
+          "text": "a tv screen",
+          "points": 5006,
+          "aliases": [
+            "a tv screen"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a04",
+          "text": "shoes",
+          "points": 4366,
+          "aliases": [
+            "shoes"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a05",
+          "text": "a sofa",
+          "points": 3600,
+          "aliases": [
+            "a sofa"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a06",
+          "text": "a microwave",
+          "points": 3079,
+          "aliases": [
+            "a microwave"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a07",
+          "text": "a laptop",
+          "points": 1363,
+          "aliases": [
+            "a laptop"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a08",
+          "text": "a fan",
+          "points": 1176,
+          "aliases": [
+            "a fan"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a09",
+          "text": "a window",
+          "points": 949,
+          "aliases": [
+            "a window"
+          ]
+        },
+        {
+          "id": "everyday_life_002_a10",
+          "text": "a carpet",
+          "points": 546,
+          "aliases": [
+            "a carpet"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_003",
+      "prompt": "how to save",
+      "answers": [
+        {
+          "id": "everyday_life_003_a01",
+          "text": "money",
+          "points": 9917,
+          "aliases": [
+            "money"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a02",
+          "text": "battery",
+          "points": 9122,
+          "aliases": [
+            "battery"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a03",
+          "text": "electricity",
+          "points": 7103,
+          "aliases": [
+            "electricity"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a04",
+          "text": "space",
+          "points": 6244,
+          "aliases": [
+            "space"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a05",
+          "text": "time",
+          "points": 5423,
+          "aliases": [
+            "time"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a06",
+          "text": "water",
+          "points": 5005,
+          "aliases": [
+            "water"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a07",
+          "text": "fuel",
+          "points": 4481,
+          "aliases": [
+            "fuel"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a08",
+          "text": "storage",
+          "points": 3935,
+          "aliases": [
+            "storage"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a09",
+          "text": "energy",
+          "points": 3192,
+          "aliases": [
+            "energy"
+          ]
+        },
+        {
+          "id": "everyday_life_003_a10",
+          "text": "food",
+          "points": 653,
+          "aliases": [
+            "food"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_004",
+      "prompt": "what should i buy",
+      "answers": [
+        {
+          "id": "everyday_life_004_a01",
+          "text": "for my room",
+          "points": 9062,
+          "aliases": [
+            "for my room"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a02",
+          "text": "for my girlfriend",
+          "points": 6907,
+          "aliases": [
+            "for my girlfriend"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a03",
+          "text": "for my boyfriend",
+          "points": 6770,
+          "aliases": [
+            "for my boyfriend"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a04",
+          "text": "for my mom",
+          "points": 6246,
+          "aliases": [
+            "for my mom"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a05",
+          "text": "for my dad",
+          "points": 5655,
+          "aliases": [
+            "for my dad"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a06",
+          "text": "for my birthday",
+          "points": 5180,
+          "aliases": [
+            "for my birthday"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a07",
+          "text": "for a new house",
+          "points": 4989,
+          "aliases": [
+            "for a new house"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a08",
+          "text": "for a friend",
+          "points": 4309,
+          "aliases": [
+            "for a friend"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a09",
+          "text": "for a road trip",
+          "points": 3486,
+          "aliases": [
+            "for a road trip"
+          ]
+        },
+        {
+          "id": "everyday_life_004_a10",
+          "text": "for a new job",
+          "points": 1022,
+          "aliases": [
+            "for a new job"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_005",
+      "prompt": "best way to",
+      "answers": [
+        {
+          "id": "everyday_life_005_a01",
+          "text": "wake up early",
+          "points": 9464,
+          "aliases": [
+            "wake up early"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a02",
+          "text": "fall asleep",
+          "points": 9156,
+          "aliases": [
+            "fall asleep"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a03",
+          "text": "save money",
+          "points": 6782,
+          "aliases": [
+            "save money"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a04",
+          "text": "learn something",
+          "points": 5749,
+          "aliases": [
+            "learn something"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a05",
+          "text": "remember things",
+          "points": 5251,
+          "aliases": [
+            "remember things"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a06",
+          "text": "stay focused",
+          "points": 4748,
+          "aliases": [
+            "stay focused"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a07",
+          "text": "clean your room",
+          "points": 2954,
+          "aliases": [
+            "clean your room"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a08",
+          "text": "organize your life",
+          "points": 2803,
+          "aliases": [
+            "organize your life"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a09",
+          "text": "pack a suitcase",
+          "points": 2081,
+          "aliases": [
+            "pack a suitcase"
+          ]
+        },
+        {
+          "id": "everyday_life_005_a10",
+          "text": "remove a stain",
+          "points": 835,
+          "aliases": [
+            "remove a stain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_006",
+      "prompt": "why is my room",
+      "answers": [
+        {
+          "id": "everyday_life_006_a01",
+          "text": "so dusty",
+          "points": 8800,
+          "aliases": [
+            "so dusty"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a02",
+          "text": "so hot",
+          "points": 6068,
+          "aliases": [
+            "so hot"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a03",
+          "text": "so cold",
+          "points": 5779,
+          "aliases": [
+            "so cold"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a04",
+          "text": "always messy",
+          "points": 4295,
+          "aliases": [
+            "always messy"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a05",
+          "text": "smelling weird",
+          "points": 3683,
+          "aliases": [
+            "smelling weird"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a06",
+          "text": "full of bugs",
+          "points": 2633,
+          "aliases": [
+            "full of bugs"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a07",
+          "text": "so dark",
+          "points": 2367,
+          "aliases": [
+            "so dark"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a08",
+          "text": "so humid",
+          "points": 2238,
+          "aliases": [
+            "so humid"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a09",
+          "text": "always noisy",
+          "points": 1890,
+          "aliases": [
+            "always noisy"
+          ]
+        },
+        {
+          "id": "everyday_life_006_a10",
+          "text": "so small",
+          "points": 549,
+          "aliases": [
+            "so small"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_007",
+      "prompt": "things you forget when",
+      "answers": [
+        {
+          "id": "everyday_life_007_a01",
+          "text": "traveling",
+          "points": 9540,
+          "aliases": [
+            "traveling"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a02",
+          "text": "moving house",
+          "points": 8031,
+          "aliases": [
+            "moving house"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a03",
+          "text": "going to work",
+          "points": 7194,
+          "aliases": [
+            "going to work"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a04",
+          "text": "going to school",
+          "points": 6099,
+          "aliases": [
+            "going to school"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a05",
+          "text": "going on vacation",
+          "points": 5291,
+          "aliases": [
+            "going on vacation"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a06",
+          "text": "leaving the house",
+          "points": 2160,
+          "aliases": [
+            "leaving the house"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a07",
+          "text": "going shopping",
+          "points": 1729,
+          "aliases": [
+            "going shopping"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a08",
+          "text": "packing for a flight",
+          "points": 1597,
+          "aliases": [
+            "packing for a flight"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a09",
+          "text": "going to the gym",
+          "points": 1258,
+          "aliases": [
+            "going to the gym"
+          ]
+        },
+        {
+          "id": "everyday_life_007_a10",
+          "text": "going camping",
+          "points": 851,
+          "aliases": [
+            "going camping"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_008",
+      "prompt": "how to pack",
+      "answers": [
+        {
+          "id": "everyday_life_008_a01",
+          "text": "a suitcase",
+          "points": 9466,
+          "aliases": [
+            "a suitcase"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a02",
+          "text": "for a flight",
+          "points": 8198,
+          "aliases": [
+            "for a flight"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a03",
+          "text": "for a weekend",
+          "points": 7604,
+          "aliases": [
+            "for a weekend"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a04",
+          "text": "a backpack",
+          "points": 5486,
+          "aliases": [
+            "a backpack"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a05",
+          "text": "for a road trip",
+          "points": 4492,
+          "aliases": [
+            "for a road trip"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a06",
+          "text": "lightly",
+          "points": 4300,
+          "aliases": [
+            "lightly"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a07",
+          "text": "clothes",
+          "points": 3647,
+          "aliases": [
+            "clothes"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a08",
+          "text": "shoes",
+          "points": 2920,
+          "aliases": [
+            "shoes"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a09",
+          "text": "toiletries",
+          "points": 2365,
+          "aliases": [
+            "toiletries"
+          ]
+        },
+        {
+          "id": "everyday_life_008_a10",
+          "text": "without wrinkles",
+          "points": 1399,
+          "aliases": [
+            "without wrinkles"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_009",
+      "prompt": "how to remove",
+      "answers": [
+        {
+          "id": "everyday_life_009_a01",
+          "text": "a stain",
+          "points": 9811,
+          "aliases": [
+            "a stain"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a02",
+          "text": "a sticker",
+          "points": 8322,
+          "aliases": [
+            "a sticker"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a03",
+          "text": "a bad smell",
+          "points": 5669,
+          "aliases": [
+            "a bad smell"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a04",
+          "text": "dust",
+          "points": 5313,
+          "aliases": [
+            "dust"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a05",
+          "text": "pet hair",
+          "points": 5077,
+          "aliases": [
+            "pet hair"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a06",
+          "text": "mold",
+          "points": 4572,
+          "aliases": [
+            "mold"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a07",
+          "text": "grease",
+          "points": 2450,
+          "aliases": [
+            "grease"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a08",
+          "text": "water marks",
+          "points": 1628,
+          "aliases": [
+            "water marks"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a09",
+          "text": "ink",
+          "points": 1489,
+          "aliases": [
+            "ink"
+          ]
+        },
+        {
+          "id": "everyday_life_009_a10",
+          "text": "rust",
+          "points": 508,
+          "aliases": [
+            "rust"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_010",
+      "prompt": "how to organize",
+      "answers": [
+        {
+          "id": "everyday_life_010_a01",
+          "text": "your room",
+          "points": 9295,
+          "aliases": [
+            "your room"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a02",
+          "text": "a closet",
+          "points": 8886,
+          "aliases": [
+            "a closet"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a03",
+          "text": "a desk",
+          "points": 7848,
+          "aliases": [
+            "a desk"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a04",
+          "text": "your clothes",
+          "points": 5087,
+          "aliases": [
+            "your clothes"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a05",
+          "text": "your kitchen",
+          "points": 4396,
+          "aliases": [
+            "your kitchen"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a06",
+          "text": "your schedule",
+          "points": 3958,
+          "aliases": [
+            "your schedule"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a07",
+          "text": "your phone",
+          "points": 3456,
+          "aliases": [
+            "your phone"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a08",
+          "text": "your files",
+          "points": 2703,
+          "aliases": [
+            "your files"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a09",
+          "text": "your day",
+          "points": 1404,
+          "aliases": [
+            "your day"
+          ]
+        },
+        {
+          "id": "everyday_life_010_a10",
+          "text": "your house",
+          "points": 992,
+          "aliases": [
+            "your house"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_011",
+      "prompt": "what to bring",
+      "answers": [
+        {
+          "id": "everyday_life_011_a01",
+          "text": "on a flight",
+          "points": 9416,
+          "aliases": [
+            "on a flight"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a02",
+          "text": "to the beach",
+          "points": 8931,
+          "aliases": [
+            "to the beach"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a03",
+          "text": "camping",
+          "points": 8751,
+          "aliases": [
+            "camping"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a04",
+          "text": "on a road trip",
+          "points": 8546,
+          "aliases": [
+            "on a road trip"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a05",
+          "text": "to a picnic",
+          "points": 6385,
+          "aliases": [
+            "to a picnic"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a06",
+          "text": "to a hotel",
+          "points": 6123,
+          "aliases": [
+            "to a hotel"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a07",
+          "text": "to the gym",
+          "points": 5485,
+          "aliases": [
+            "to the gym"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a08",
+          "text": "to work",
+          "points": 3970,
+          "aliases": [
+            "to work"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a09",
+          "text": "to school",
+          "points": 1280,
+          "aliases": [
+            "to school"
+          ]
+        },
+        {
+          "id": "everyday_life_011_a10",
+          "text": "on vacation",
+          "points": 743,
+          "aliases": [
+            "on vacation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_012",
+      "prompt": "how to sleep",
+      "answers": [
+        {
+          "id": "everyday_life_012_a01",
+          "text": "better",
+          "points": 9259,
+          "aliases": [
+            "better"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a02",
+          "text": "faster",
+          "points": 8282,
+          "aliases": [
+            "faster"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a03",
+          "text": "through the night",
+          "points": 6723,
+          "aliases": [
+            "through the night"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a04",
+          "text": "when stressed",
+          "points": 6367,
+          "aliases": [
+            "when stressed"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a05",
+          "text": "in a hot room",
+          "points": 5553,
+          "aliases": [
+            "in a hot room"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a06",
+          "text": "on a plane",
+          "points": 3898,
+          "aliases": [
+            "on a plane"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a07",
+          "text": "with noise",
+          "points": 3087,
+          "aliases": [
+            "with noise"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a08",
+          "text": "after coffee",
+          "points": 2210,
+          "aliases": [
+            "after coffee"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a09",
+          "text": "without waking up",
+          "points": 857,
+          "aliases": [
+            "without waking up"
+          ]
+        },
+        {
+          "id": "everyday_life_012_a10",
+          "text": "early",
+          "points": 571,
+          "aliases": [
+            "early"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_013",
+      "prompt": "how to wake up",
+      "answers": [
+        {
+          "id": "everyday_life_013_a01",
+          "text": "early",
+          "points": 9681,
+          "aliases": [
+            "early"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a02",
+          "text": "without an alarm",
+          "points": 9233,
+          "aliases": [
+            "without an alarm"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a03",
+          "text": "feeling refreshed",
+          "points": 8894,
+          "aliases": [
+            "feeling refreshed"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a04",
+          "text": "at 5am",
+          "points": 8197,
+          "aliases": [
+            "at 5am"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a05",
+          "text": "on time",
+          "points": 8039,
+          "aliases": [
+            "on time"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a06",
+          "text": "for work",
+          "points": 6401,
+          "aliases": [
+            "for work"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a07",
+          "text": "for school",
+          "points": 6054,
+          "aliases": [
+            "for school"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a08",
+          "text": "without feeling tired",
+          "points": 2815,
+          "aliases": [
+            "without feeling tired"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a09",
+          "text": "after a nap",
+          "points": 2499,
+          "aliases": [
+            "after a nap"
+          ]
+        },
+        {
+          "id": "everyday_life_013_a10",
+          "text": "in the morning",
+          "points": 1154,
+          "aliases": [
+            "in the morning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_014",
+      "prompt": "how to get rid of",
+      "answers": [
+        {
+          "id": "everyday_life_014_a01",
+          "text": "mosquitoes",
+          "points": 9629,
+          "aliases": [
+            "mosquitoes"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a02",
+          "text": "flies",
+          "points": 6536,
+          "aliases": [
+            "flies"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a03",
+          "text": "bad smells",
+          "points": 5548,
+          "aliases": [
+            "bad smells"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a04",
+          "text": "clutter",
+          "points": 4903,
+          "aliases": [
+            "clutter"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a05",
+          "text": "dust",
+          "points": 4522,
+          "aliases": [
+            "dust"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a06",
+          "text": "mold",
+          "points": 4257,
+          "aliases": [
+            "mold"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a07",
+          "text": "ants",
+          "points": 3988,
+          "aliases": [
+            "ants"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a08",
+          "text": "fruit flies",
+          "points": 2198,
+          "aliases": [
+            "fruit flies"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a09",
+          "text": "weeds",
+          "points": 1782,
+          "aliases": [
+            "weeds"
+          ]
+        },
+        {
+          "id": "everyday_life_014_a10",
+          "text": "stains",
+          "points": 1388,
+          "aliases": [
+            "stains"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "everyday_life_015",
+      "prompt": "why is my house",
+      "answers": [
+        {
+          "id": "everyday_life_015_a01",
+          "text": "so dusty",
+          "points": 9236,
+          "aliases": [
+            "so dusty"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a02",
+          "text": "so hot",
+          "points": 8832,
+          "aliases": [
+            "so hot"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a03",
+          "text": "so cold",
+          "points": 6169,
+          "aliases": [
+            "so cold"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a04",
+          "text": "so noisy",
+          "points": 5174,
+          "aliases": [
+            "so noisy"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a05",
+          "text": "smelling weird",
+          "points": 4899,
+          "aliases": [
+            "smelling weird"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a06",
+          "text": "full of bugs",
+          "points": 4188,
+          "aliases": [
+            "full of bugs"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a07",
+          "text": "so humid",
+          "points": 2924,
+          "aliases": [
+            "so humid"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a08",
+          "text": "always messy",
+          "points": 2678,
+          "aliases": [
+            "always messy"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a09",
+          "text": "so dark",
+          "points": 2024,
+          "aliases": [
+            "so dark"
+          ]
+        },
+        {
+          "id": "everyday_life_015_a10",
+          "text": "so quiet",
+          "points": 1243,
+          "aliases": [
+            "so quiet"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

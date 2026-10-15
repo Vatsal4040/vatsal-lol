@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "animals",
+    "name": "Animals",
+    "description": "Animal behavior, abilities and curiosities.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "animals_001",
+      "prompt": "why do cats",
+      "answers": [
+        {
+          "id": "animals_001_a01",
+          "text": "hate water",
+          "points": 8758,
+          "aliases": [
+            "hate water"
+          ]
+        },
+        {
+          "id": "animals_001_a02",
+          "text": "sleep so much",
+          "points": 6454,
+          "aliases": [
+            "sleep so much"
+          ]
+        },
+        {
+          "id": "animals_001_a03",
+          "text": "knead",
+          "points": 6012,
+          "aliases": [
+            "knead"
+          ]
+        },
+        {
+          "id": "animals_001_a04",
+          "text": "purr",
+          "points": 5813,
+          "aliases": [
+            "purr"
+          ]
+        },
+        {
+          "id": "animals_001_a05",
+          "text": "lick themselves",
+          "points": 4861,
+          "aliases": [
+            "lick themselves"
+          ]
+        },
+        {
+          "id": "animals_001_a06",
+          "text": "stare at walls",
+          "points": 4324,
+          "aliases": [
+            "stare at walls"
+          ]
+        },
+        {
+          "id": "animals_001_a07",
+          "text": "knock things over",
+          "points": 4085,
+          "aliases": [
+            "knock things over"
+          ]
+        },
+        {
+          "id": "animals_001_a08",
+          "text": "hide",
+          "points": 2511,
+          "aliases": [
+            "hide"
+          ]
+        },
+        {
+          "id": "animals_001_a09",
+          "text": "run around at night",
+          "points": 1953,
+          "aliases": [
+            "run around at night"
+          ]
+        },
+        {
+          "id": "animals_001_a10",
+          "text": "bring you dead animals",
+          "points": 1273,
+          "aliases": [
+            "bring you dead animals"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_002",
+      "prompt": "why do dogs",
+      "answers": [
+        {
+          "id": "animals_002_a01",
+          "text": "eat grass",
+          "points": 9619,
+          "aliases": [
+            "eat grass"
+          ]
+        },
+        {
+          "id": "animals_002_a02",
+          "text": "chase their tail",
+          "points": 8307,
+          "aliases": [
+            "chase their tail"
+          ]
+        },
+        {
+          "id": "animals_002_a03",
+          "text": "lick people",
+          "points": 8030,
+          "aliases": [
+            "lick people"
+          ]
+        },
+        {
+          "id": "animals_002_a04",
+          "text": "bark at night",
+          "points": 6625,
+          "aliases": [
+            "bark at night"
+          ]
+        },
+        {
+          "id": "animals_002_a05",
+          "text": "sniff everything",
+          "points": 6246,
+          "aliases": [
+            "sniff everything"
+          ]
+        },
+        {
+          "id": "animals_002_a06",
+          "text": "shake",
+          "points": 5267,
+          "aliases": [
+            "shake"
+          ]
+        },
+        {
+          "id": "animals_002_a07",
+          "text": "wag their tail",
+          "points": 4093,
+          "aliases": [
+            "wag their tail"
+          ]
+        },
+        {
+          "id": "animals_002_a08",
+          "text": "dig",
+          "points": 3709,
+          "aliases": [
+            "dig"
+          ]
+        },
+        {
+          "id": "animals_002_a09",
+          "text": "follow you",
+          "points": 2422,
+          "aliases": [
+            "follow you"
+          ]
+        },
+        {
+          "id": "animals_002_a10",
+          "text": "roll in the grass",
+          "points": 660,
+          "aliases": [
+            "roll in the grass"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_003",
+      "prompt": "can dogs",
+      "answers": [
+        {
+          "id": "animals_003_a01",
+          "text": "eat chocolate",
+          "points": 8795,
+          "aliases": [
+            "eat chocolate"
+          ]
+        },
+        {
+          "id": "animals_003_a02",
+          "text": "eat bananas",
+          "points": 7505,
+          "aliases": [
+            "eat bananas"
+          ]
+        },
+        {
+          "id": "animals_003_a03",
+          "text": "see in the dark",
+          "points": 7353,
+          "aliases": [
+            "see in the dark"
+          ]
+        },
+        {
+          "id": "animals_003_a04",
+          "text": "eat eggs",
+          "points": 5268,
+          "aliases": [
+            "eat eggs"
+          ]
+        },
+        {
+          "id": "animals_003_a05",
+          "text": "eat cheese",
+          "points": 4559,
+          "aliases": [
+            "eat cheese"
+          ]
+        },
+        {
+          "id": "animals_003_a06",
+          "text": "swim",
+          "points": 3645,
+          "aliases": [
+            "swim"
+          ]
+        },
+        {
+          "id": "animals_003_a07",
+          "text": "eat rice",
+          "points": 2429,
+          "aliases": [
+            "eat rice"
+          ]
+        },
+        {
+          "id": "animals_003_a08",
+          "text": "eat apples",
+          "points": 2231,
+          "aliases": [
+            "eat apples"
+          ]
+        },
+        {
+          "id": "animals_003_a09",
+          "text": "eat peanut butter",
+          "points": 1672,
+          "aliases": [
+            "eat peanut butter"
+          ]
+        },
+        {
+          "id": "animals_003_a10",
+          "text": "eat carrots",
+          "points": 1074,
+          "aliases": [
+            "eat carrots"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_004",
+      "prompt": "can cats",
+      "answers": [
+        {
+          "id": "animals_004_a01",
+          "text": "see in the dark",
+          "points": 9058,
+          "aliases": [
+            "see in the dark"
+          ]
+        },
+        {
+          "id": "animals_004_a02",
+          "text": "eat chocolate",
+          "points": 6858,
+          "aliases": [
+            "eat chocolate"
+          ]
+        },
+        {
+          "id": "animals_004_a03",
+          "text": "eat eggs",
+          "points": 6533,
+          "aliases": [
+            "eat eggs"
+          ]
+        },
+        {
+          "id": "animals_004_a04",
+          "text": "swim",
+          "points": 6276,
+          "aliases": [
+            "swim"
+          ]
+        },
+        {
+          "id": "animals_004_a05",
+          "text": "eat bananas",
+          "points": 6022,
+          "aliases": [
+            "eat bananas"
+          ]
+        },
+        {
+          "id": "animals_004_a06",
+          "text": "drink milk",
+          "points": 4673,
+          "aliases": [
+            "drink milk"
+          ]
+        },
+        {
+          "id": "animals_004_a07",
+          "text": "dream",
+          "points": 3078,
+          "aliases": [
+            "dream"
+          ]
+        },
+        {
+          "id": "animals_004_a08",
+          "text": "eat rice",
+          "points": 2538,
+          "aliases": [
+            "eat rice"
+          ]
+        },
+        {
+          "id": "animals_004_a09",
+          "text": "eat cheese",
+          "points": 2150,
+          "aliases": [
+            "eat cheese"
+          ]
+        },
+        {
+          "id": "animals_004_a10",
+          "text": "eat chicken",
+          "points": 1329,
+          "aliases": [
+            "eat chicken"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_005",
+      "prompt": "what do snakes",
+      "answers": [
+        {
+          "id": "animals_005_a01",
+          "text": "eat",
+          "points": 9988,
+          "aliases": [
+            "eat"
+          ]
+        },
+        {
+          "id": "animals_005_a02",
+          "text": "eat besides mice",
+          "points": 9620,
+          "aliases": [
+            "eat besides mice"
+          ]
+        },
+        {
+          "id": "animals_005_a03",
+          "text": "drink",
+          "points": 8762,
+          "aliases": [
+            "drink"
+          ]
+        },
+        {
+          "id": "animals_005_a04",
+          "text": "do in winter",
+          "points": 7869,
+          "aliases": [
+            "do in winter"
+          ]
+        },
+        {
+          "id": "animals_005_a05",
+          "text": "do when they shed",
+          "points": 7034,
+          "aliases": [
+            "do when they shed"
+          ]
+        },
+        {
+          "id": "animals_005_a06",
+          "text": "fear",
+          "points": 6506,
+          "aliases": [
+            "fear"
+          ]
+        },
+        {
+          "id": "animals_005_a07",
+          "text": "eat in the wild",
+          "points": 6060,
+          "aliases": [
+            "eat in the wild"
+          ]
+        },
+        {
+          "id": "animals_005_a08",
+          "text": "do at night",
+          "points": 2160,
+          "aliases": [
+            "do at night"
+          ]
+        },
+        {
+          "id": "animals_005_a09",
+          "text": "hear",
+          "points": 1962,
+          "aliases": [
+            "hear"
+          ]
+        },
+        {
+          "id": "animals_005_a10",
+          "text": "see",
+          "points": 1381,
+          "aliases": [
+            "see"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_006",
+      "prompt": "why do birds",
+      "answers": [
+        {
+          "id": "animals_006_a01",
+          "text": "fly",
+          "points": 8894,
+          "aliases": [
+            "fly"
+          ]
+        },
+        {
+          "id": "animals_006_a02",
+          "text": "migrate",
+          "points": 7634,
+          "aliases": [
+            "migrate"
+          ]
+        },
+        {
+          "id": "animals_006_a03",
+          "text": "sing",
+          "points": 6509,
+          "aliases": [
+            "sing"
+          ]
+        },
+        {
+          "id": "animals_006_a04",
+          "text": "chirp in the morning",
+          "points": 6356,
+          "aliases": [
+            "chirp in the morning"
+          ]
+        },
+        {
+          "id": "animals_006_a05",
+          "text": "sit on power lines",
+          "points": 5931,
+          "aliases": [
+            "sit on power lines"
+          ]
+        },
+        {
+          "id": "animals_006_a06",
+          "text": "puff up",
+          "points": 5635,
+          "aliases": [
+            "puff up"
+          ]
+        },
+        {
+          "id": "animals_006_a07",
+          "text": "fly in circles",
+          "points": 4170,
+          "aliases": [
+            "fly in circles"
+          ]
+        },
+        {
+          "id": "animals_006_a08",
+          "text": "build nests",
+          "points": 2619,
+          "aliases": [
+            "build nests"
+          ]
+        },
+        {
+          "id": "animals_006_a09",
+          "text": "flap their wings",
+          "points": 1899,
+          "aliases": [
+            "flap their wings"
+          ]
+        },
+        {
+          "id": "animals_006_a10",
+          "text": "peck at things",
+          "points": 804,
+          "aliases": [
+            "peck at things"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_007",
+      "prompt": "what animal has",
+      "answers": [
+        {
+          "id": "animals_007_a01",
+          "text": "the longest lifespan",
+          "points": 9104,
+          "aliases": [
+            "the longest lifespan"
+          ]
+        },
+        {
+          "id": "animals_007_a02",
+          "text": "the biggest eyes",
+          "points": 8708,
+          "aliases": [
+            "the biggest eyes"
+          ]
+        },
+        {
+          "id": "animals_007_a03",
+          "text": "the strongest bite",
+          "points": 8559,
+          "aliases": [
+            "the strongest bite"
+          ]
+        },
+        {
+          "id": "animals_007_a04",
+          "text": "the longest neck",
+          "points": 6641,
+          "aliases": [
+            "the longest neck"
+          ]
+        },
+        {
+          "id": "animals_007_a05",
+          "text": "the biggest brain",
+          "points": 6270,
+          "aliases": [
+            "the biggest brain"
+          ]
+        },
+        {
+          "id": "animals_007_a06",
+          "text": "the fastest speed",
+          "points": 5934,
+          "aliases": [
+            "the fastest speed"
+          ]
+        },
+        {
+          "id": "animals_007_a07",
+          "text": "the biggest teeth",
+          "points": 5728,
+          "aliases": [
+            "the biggest teeth"
+          ]
+        },
+        {
+          "id": "animals_007_a08",
+          "text": "the best memory",
+          "points": 3506,
+          "aliases": [
+            "the best memory"
+          ]
+        },
+        {
+          "id": "animals_007_a09",
+          "text": "the longest tongue",
+          "points": 2747,
+          "aliases": [
+            "the longest tongue"
+          ]
+        },
+        {
+          "id": "animals_007_a10",
+          "text": "the largest ears",
+          "points": 779,
+          "aliases": [
+            "the largest ears"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_008",
+      "prompt": "why do elephants",
+      "answers": [
+        {
+          "id": "animals_008_a01",
+          "text": "have big ears",
+          "points": 9302,
+          "aliases": [
+            "have big ears"
+          ]
+        },
+        {
+          "id": "animals_008_a02",
+          "text": "use their trunks",
+          "points": 6956,
+          "aliases": [
+            "use their trunks"
+          ]
+        },
+        {
+          "id": "animals_008_a03",
+          "text": "shake their ears",
+          "points": 6548,
+          "aliases": [
+            "shake their ears"
+          ]
+        },
+        {
+          "id": "animals_008_a04",
+          "text": "travel in groups",
+          "points": 4416,
+          "aliases": [
+            "travel in groups"
+          ]
+        },
+        {
+          "id": "animals_008_a05",
+          "text": "dust themselves",
+          "points": 3816,
+          "aliases": [
+            "dust themselves"
+          ]
+        },
+        {
+          "id": "animals_008_a06",
+          "text": "have tusks",
+          "points": 2929,
+          "aliases": [
+            "have tusks"
+          ]
+        },
+        {
+          "id": "animals_008_a07",
+          "text": "trumpet",
+          "points": 2427,
+          "aliases": [
+            "trumpet"
+          ]
+        },
+        {
+          "id": "animals_008_a08",
+          "text": "remember things",
+          "points": 1742,
+          "aliases": [
+            "remember things"
+          ]
+        },
+        {
+          "id": "animals_008_a09",
+          "text": "bathe in mud",
+          "points": 897,
+          "aliases": [
+            "bathe in mud"
+          ]
+        },
+        {
+          "id": "animals_008_a10",
+          "text": "walk long distances",
+          "points": 636,
+          "aliases": [
+            "walk long distances"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_009",
+      "prompt": "why do penguins",
+      "answers": [
+        {
+          "id": "animals_009_a01",
+          "text": "waddle",
+          "points": 9495,
+          "aliases": [
+            "waddle"
+          ]
+        },
+        {
+          "id": "animals_009_a02",
+          "text": "huddle together",
+          "points": 9073,
+          "aliases": [
+            "huddle together"
+          ]
+        },
+        {
+          "id": "animals_009_a03",
+          "text": "can't fly",
+          "points": 8792,
+          "aliases": [
+            "can't fly"
+          ]
+        },
+        {
+          "id": "animals_009_a04",
+          "text": "live in cold places",
+          "points": 8452,
+          "aliases": [
+            "live in cold places"
+          ]
+        },
+        {
+          "id": "animals_009_a05",
+          "text": "swim so well",
+          "points": 7235,
+          "aliases": [
+            "swim so well"
+          ]
+        },
+        {
+          "id": "animals_009_a06",
+          "text": "slide on ice",
+          "points": 6962,
+          "aliases": [
+            "slide on ice"
+          ]
+        },
+        {
+          "id": "animals_009_a07",
+          "text": "have wings",
+          "points": 4535,
+          "aliases": [
+            "have wings"
+          ]
+        },
+        {
+          "id": "animals_009_a08",
+          "text": "stand upright",
+          "points": 4152,
+          "aliases": [
+            "stand upright"
+          ]
+        },
+        {
+          "id": "animals_009_a09",
+          "text": "eat fish",
+          "points": 3349,
+          "aliases": [
+            "eat fish"
+          ]
+        },
+        {
+          "id": "animals_009_a10",
+          "text": "stay together",
+          "points": 852,
+          "aliases": [
+            "stay together"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_010",
+      "prompt": "why do horses",
+      "answers": [
+        {
+          "id": "animals_010_a01",
+          "text": "sleep standing up",
+          "points": 9483,
+          "aliases": [
+            "sleep standing up"
+          ]
+        },
+        {
+          "id": "animals_010_a02",
+          "text": "wear shoes",
+          "points": 8643,
+          "aliases": [
+            "wear shoes"
+          ]
+        },
+        {
+          "id": "animals_010_a03",
+          "text": "neigh",
+          "points": 8247,
+          "aliases": [
+            "neigh"
+          ]
+        },
+        {
+          "id": "animals_010_a04",
+          "text": "shake their heads",
+          "points": 7910,
+          "aliases": [
+            "shake their heads"
+          ]
+        },
+        {
+          "id": "animals_010_a05",
+          "text": "eat grass",
+          "points": 7325,
+          "aliases": [
+            "eat grass"
+          ]
+        },
+        {
+          "id": "animals_010_a06",
+          "text": "have long faces",
+          "points": 6451,
+          "aliases": [
+            "have long faces"
+          ]
+        },
+        {
+          "id": "animals_010_a07",
+          "text": "run fast",
+          "points": 4738,
+          "aliases": [
+            "run fast"
+          ]
+        },
+        {
+          "id": "animals_010_a08",
+          "text": "wear saddles",
+          "points": 2619,
+          "aliases": [
+            "wear saddles"
+          ]
+        },
+        {
+          "id": "animals_010_a09",
+          "text": "roll in dirt",
+          "points": 2185,
+          "aliases": [
+            "roll in dirt"
+          ]
+        },
+        {
+          "id": "animals_010_a10",
+          "text": "swish their tails",
+          "points": 1277,
+          "aliases": [
+            "swish their tails"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_011",
+      "prompt": "what do rabbits",
+      "answers": [
+        {
+          "id": "animals_011_a01",
+          "text": "eat",
+          "points": 9524,
+          "aliases": [
+            "eat"
+          ]
+        },
+        {
+          "id": "animals_011_a02",
+          "text": "eat for breakfast",
+          "points": 8770,
+          "aliases": [
+            "eat for breakfast"
+          ]
+        },
+        {
+          "id": "animals_011_a03",
+          "text": "do at night",
+          "points": 8139,
+          "aliases": [
+            "do at night"
+          ]
+        },
+        {
+          "id": "animals_011_a04",
+          "text": "eat besides carrots",
+          "points": 5922,
+          "aliases": [
+            "eat besides carrots"
+          ]
+        },
+        {
+          "id": "animals_011_a05",
+          "text": "drink",
+          "points": 5546,
+          "aliases": [
+            "drink"
+          ]
+        },
+        {
+          "id": "animals_011_a06",
+          "text": "do in winter",
+          "points": 4670,
+          "aliases": [
+            "do in winter"
+          ]
+        },
+        {
+          "id": "animals_011_a07",
+          "text": "fear",
+          "points": 3182,
+          "aliases": [
+            "fear"
+          ]
+        },
+        {
+          "id": "animals_011_a08",
+          "text": "do when scared",
+          "points": 2190,
+          "aliases": [
+            "do when scared"
+          ]
+        },
+        {
+          "id": "animals_011_a09",
+          "text": "eat in the wild",
+          "points": 1199,
+          "aliases": [
+            "eat in the wild"
+          ]
+        },
+        {
+          "id": "animals_011_a10",
+          "text": "like to play with",
+          "points": 978,
+          "aliases": [
+            "like to play with"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_012",
+      "prompt": "why do dolphins",
+      "answers": [
+        {
+          "id": "animals_012_a01",
+          "text": "jump",
+          "points": 8856,
+          "aliases": [
+            "jump"
+          ]
+        },
+        {
+          "id": "animals_012_a02",
+          "text": "smile",
+          "points": 8346,
+          "aliases": [
+            "smile"
+          ]
+        },
+        {
+          "id": "animals_012_a03",
+          "text": "swim in groups",
+          "points": 8199,
+          "aliases": [
+            "swim in groups"
+          ]
+        },
+        {
+          "id": "animals_012_a04",
+          "text": "make sounds",
+          "points": 7838,
+          "aliases": [
+            "make sounds"
+          ]
+        },
+        {
+          "id": "animals_012_a05",
+          "text": "follow boats",
+          "points": 6058,
+          "aliases": [
+            "follow boats"
+          ]
+        },
+        {
+          "id": "animals_012_a06",
+          "text": "sleep with one eye open",
+          "points": 5536,
+          "aliases": [
+            "sleep with one eye open"
+          ]
+        },
+        {
+          "id": "animals_012_a07",
+          "text": "play",
+          "points": 5408,
+          "aliases": [
+            "play"
+          ]
+        },
+        {
+          "id": "animals_012_a08",
+          "text": "jump out of water",
+          "points": 2959,
+          "aliases": [
+            "jump out of water"
+          ]
+        },
+        {
+          "id": "animals_012_a09",
+          "text": "eat fish",
+          "points": 1706,
+          "aliases": [
+            "eat fish"
+          ]
+        },
+        {
+          "id": "animals_012_a10",
+          "text": "use echolocation",
+          "points": 1078,
+          "aliases": [
+            "use echolocation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_013",
+      "prompt": "why do sharks",
+      "answers": [
+        {
+          "id": "animals_013_a01",
+          "text": "attack people",
+          "points": 9009,
+          "aliases": [
+            "attack people"
+          ]
+        },
+        {
+          "id": "animals_013_a02",
+          "text": "need to keep swimming",
+          "points": 7529,
+          "aliases": [
+            "need to keep swimming"
+          ]
+        },
+        {
+          "id": "animals_013_a03",
+          "text": "have so many teeth",
+          "points": 5878,
+          "aliases": [
+            "have so many teeth"
+          ]
+        },
+        {
+          "id": "animals_013_a04",
+          "text": "circle prey",
+          "points": 5561,
+          "aliases": [
+            "circle prey"
+          ]
+        },
+        {
+          "id": "animals_013_a05",
+          "text": "fear dolphins",
+          "points": 4298,
+          "aliases": [
+            "fear dolphins"
+          ]
+        },
+        {
+          "id": "animals_013_a06",
+          "text": "come close to shore",
+          "points": 2624,
+          "aliases": [
+            "come close to shore"
+          ]
+        },
+        {
+          "id": "animals_013_a07",
+          "text": "lose teeth",
+          "points": 2114,
+          "aliases": [
+            "lose teeth"
+          ]
+        },
+        {
+          "id": "animals_013_a08",
+          "text": "have rough skin",
+          "points": 1921,
+          "aliases": [
+            "have rough skin"
+          ]
+        },
+        {
+          "id": "animals_013_a09",
+          "text": "swim in groups",
+          "points": 1504,
+          "aliases": [
+            "swim in groups"
+          ]
+        },
+        {
+          "id": "animals_013_a10",
+          "text": "hunt at night",
+          "points": 893,
+          "aliases": [
+            "hunt at night"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_014",
+      "prompt": "can birds",
+      "answers": [
+        {
+          "id": "animals_014_a01",
+          "text": "fly backwards",
+          "points": 9362,
+          "aliases": [
+            "fly backwards"
+          ]
+        },
+        {
+          "id": "animals_014_a02",
+          "text": "swim",
+          "points": 7476,
+          "aliases": [
+            "swim"
+          ]
+        },
+        {
+          "id": "animals_014_a03",
+          "text": "talk",
+          "points": 7159,
+          "aliases": [
+            "talk"
+          ]
+        },
+        {
+          "id": "animals_014_a04",
+          "text": "see color",
+          "points": 3615,
+          "aliases": [
+            "see color"
+          ]
+        },
+        {
+          "id": "animals_014_a05",
+          "text": "sleep while flying",
+          "points": 3445,
+          "aliases": [
+            "sleep while flying"
+          ]
+        },
+        {
+          "id": "animals_014_a06",
+          "text": "eat bread",
+          "points": 3317,
+          "aliases": [
+            "eat bread"
+          ]
+        },
+        {
+          "id": "animals_014_a07",
+          "text": "remember faces",
+          "points": 3016,
+          "aliases": [
+            "remember faces"
+          ]
+        },
+        {
+          "id": "animals_014_a08",
+          "text": "see in the dark",
+          "points": 2647,
+          "aliases": [
+            "see in the dark"
+          ]
+        },
+        {
+          "id": "animals_014_a09",
+          "text": "live without water",
+          "points": 2228,
+          "aliases": [
+            "live without water"
+          ]
+        },
+        {
+          "id": "animals_014_a10",
+          "text": "fly in rain",
+          "points": 1391,
+          "aliases": [
+            "fly in rain"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "animals_015",
+      "prompt": "why do spiders",
+      "answers": [
+        {
+          "id": "animals_015_a01",
+          "text": "make webs",
+          "points": 9026,
+          "aliases": [
+            "make webs"
+          ]
+        },
+        {
+          "id": "animals_015_a02",
+          "text": "come inside",
+          "points": 7878,
+          "aliases": [
+            "come inside"
+          ]
+        },
+        {
+          "id": "animals_015_a03",
+          "text": "have so many legs",
+          "points": 7171,
+          "aliases": [
+            "have so many legs"
+          ]
+        },
+        {
+          "id": "animals_015_a04",
+          "text": "hide in corners",
+          "points": 5513,
+          "aliases": [
+            "hide in corners"
+          ]
+        },
+        {
+          "id": "animals_015_a05",
+          "text": "eat flies",
+          "points": 4541,
+          "aliases": [
+            "eat flies"
+          ]
+        },
+        {
+          "id": "animals_015_a06",
+          "text": "come out at night",
+          "points": 4167,
+          "aliases": [
+            "come out at night"
+          ]
+        },
+        {
+          "id": "animals_015_a07",
+          "text": "shed their skin",
+          "points": 2699,
+          "aliases": [
+            "shed their skin"
+          ]
+        },
+        {
+          "id": "animals_015_a08",
+          "text": "bite",
+          "points": 2092,
+          "aliases": [
+            "bite"
+          ]
+        },
+        {
+          "id": "animals_015_a09",
+          "text": "hang upside down",
+          "points": 1913,
+          "aliases": [
+            "hang upside down"
+          ]
+        },
+        {
+          "id": "animals_015_a10",
+          "text": "build webs in houses",
+          "points": 1090,
+          "aliases": [
+            "build webs in houses"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

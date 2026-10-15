@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "technology",
+    "name": "Technology",
+    "description": "Phones, computers, apps, internet and digital life.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "technology_001",
+      "prompt": "why is my phone",
+      "answers": [
+        {
+          "id": "technology_001_a01",
+          "text": "so slow",
+          "points": 9575,
+          "aliases": [
+            "so slow"
+          ]
+        },
+        {
+          "id": "technology_001_a02",
+          "text": "overheating",
+          "points": 7883,
+          "aliases": [
+            "overheating"
+          ]
+        },
+        {
+          "id": "technology_001_a03",
+          "text": "not charging",
+          "points": 7283,
+          "aliases": [
+            "not charging"
+          ]
+        },
+        {
+          "id": "technology_001_a04",
+          "text": "dying so fast",
+          "points": 6951,
+          "aliases": [
+            "dying so fast"
+          ]
+        },
+        {
+          "id": "technology_001_a05",
+          "text": "lagging",
+          "points": 6421,
+          "aliases": [
+            "lagging"
+          ]
+        },
+        {
+          "id": "technology_001_a06",
+          "text": "restarting",
+          "points": 5946,
+          "aliases": [
+            "restarting"
+          ]
+        },
+        {
+          "id": "technology_001_a07",
+          "text": "freezing",
+          "points": 4387,
+          "aliases": [
+            "freezing"
+          ]
+        },
+        {
+          "id": "technology_001_a08",
+          "text": "losing signal",
+          "points": 4198,
+          "aliases": [
+            "losing signal"
+          ]
+        },
+        {
+          "id": "technology_001_a09",
+          "text": "using so much storage",
+          "points": 1698,
+          "aliases": [
+            "using so much storage"
+          ]
+        },
+        {
+          "id": "technology_001_a10",
+          "text": "turning off by itself",
+          "points": 1001,
+          "aliases": [
+            "turning off by itself"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_002",
+      "prompt": "how to",
+      "answers": [
+        {
+          "id": "technology_002_a01",
+          "text": "recover deleted photos",
+          "points": 8814,
+          "aliases": [
+            "recover deleted photos"
+          ]
+        },
+        {
+          "id": "technology_002_a02",
+          "text": "recover deleted messages",
+          "points": 8044,
+          "aliases": [
+            "recover deleted messages"
+          ]
+        },
+        {
+          "id": "technology_002_a03",
+          "text": "hide apps",
+          "points": 7810,
+          "aliases": [
+            "hide apps"
+          ]
+        },
+        {
+          "id": "technology_002_a04",
+          "text": "block someone",
+          "points": 7006,
+          "aliases": [
+            "block someone"
+          ]
+        },
+        {
+          "id": "technology_002_a05",
+          "text": "free up storage",
+          "points": 5211,
+          "aliases": [
+            "free up storage"
+          ]
+        },
+        {
+          "id": "technology_002_a06",
+          "text": "clear cache",
+          "points": 4904,
+          "aliases": [
+            "clear cache"
+          ]
+        },
+        {
+          "id": "technology_002_a07",
+          "text": "transfer photos",
+          "points": 4663,
+          "aliases": [
+            "transfer photos"
+          ]
+        },
+        {
+          "id": "technology_002_a08",
+          "text": "change a password",
+          "points": 4023,
+          "aliases": [
+            "change a password"
+          ]
+        },
+        {
+          "id": "technology_002_a09",
+          "text": "take a screenshot",
+          "points": 3173,
+          "aliases": [
+            "take a screenshot"
+          ]
+        },
+        {
+          "id": "technology_002_a10",
+          "text": "backup my phone",
+          "points": 1144,
+          "aliases": [
+            "backup my phone"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_003",
+      "prompt": "why is my wifi",
+      "answers": [
+        {
+          "id": "technology_003_a01",
+          "text": "so slow",
+          "points": 9945,
+          "aliases": [
+            "so slow"
+          ]
+        },
+        {
+          "id": "technology_003_a02",
+          "text": "not working",
+          "points": 8050,
+          "aliases": [
+            "not working"
+          ]
+        },
+        {
+          "id": "technology_003_a03",
+          "text": "disconnecting",
+          "points": 6958,
+          "aliases": [
+            "disconnecting"
+          ]
+        },
+        {
+          "id": "technology_003_a04",
+          "text": "lagging",
+          "points": 6064,
+          "aliases": [
+            "lagging"
+          ]
+        },
+        {
+          "id": "technology_003_a05",
+          "text": "connected but no internet",
+          "points": 5609,
+          "aliases": [
+            "connected but no internet"
+          ]
+        },
+        {
+          "id": "technology_003_a06",
+          "text": "slow at night",
+          "points": 5207,
+          "aliases": [
+            "slow at night"
+          ]
+        },
+        {
+          "id": "technology_003_a07",
+          "text": "dropping",
+          "points": 4416,
+          "aliases": [
+            "dropping"
+          ]
+        },
+        {
+          "id": "technology_003_a08",
+          "text": "not showing up",
+          "points": 3325,
+          "aliases": [
+            "not showing up"
+          ]
+        },
+        {
+          "id": "technology_003_a09",
+          "text": "weak",
+          "points": 1784,
+          "aliases": [
+            "weak"
+          ]
+        },
+        {
+          "id": "technology_003_a10",
+          "text": "working on my phone but not my laptop",
+          "points": 1293,
+          "aliases": [
+            "working on my phone but not my laptop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_004",
+      "prompt": "how to make my computer",
+      "answers": [
+        {
+          "id": "technology_004_a01",
+          "text": "faster",
+          "points": 8872,
+          "aliases": [
+            "faster"
+          ]
+        },
+        {
+          "id": "technology_004_a02",
+          "text": "run games better",
+          "points": 8390,
+          "aliases": [
+            "run games better"
+          ]
+        },
+        {
+          "id": "technology_004_a03",
+          "text": "stop overheating",
+          "points": 6459,
+          "aliases": [
+            "stop overheating"
+          ]
+        },
+        {
+          "id": "technology_004_a04",
+          "text": "use less RAM",
+          "points": 5781,
+          "aliases": [
+            "use less RAM"
+          ]
+        },
+        {
+          "id": "technology_004_a05",
+          "text": "start faster",
+          "points": 5128,
+          "aliases": [
+            "start faster"
+          ]
+        },
+        {
+          "id": "technology_004_a06",
+          "text": "stop lagging",
+          "points": 4271,
+          "aliases": [
+            "stop lagging"
+          ]
+        },
+        {
+          "id": "technology_004_a07",
+          "text": "use less storage",
+          "points": 3630,
+          "aliases": [
+            "use less storage"
+          ]
+        },
+        {
+          "id": "technology_004_a08",
+          "text": "run quieter",
+          "points": 3094,
+          "aliases": [
+            "run quieter"
+          ]
+        },
+        {
+          "id": "technology_004_a09",
+          "text": "connect to wifi",
+          "points": 2049,
+          "aliases": [
+            "connect to wifi"
+          ]
+        },
+        {
+          "id": "technology_004_a10",
+          "text": "last longer",
+          "points": 821,
+          "aliases": [
+            "last longer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_005",
+      "prompt": "can my phone",
+      "answers": [
+        {
+          "id": "technology_005_a01",
+          "text": "be hacked",
+          "points": 9091,
+          "aliases": [
+            "be hacked"
+          ]
+        },
+        {
+          "id": "technology_005_a02",
+          "text": "get a virus",
+          "points": 7927,
+          "aliases": [
+            "get a virus"
+          ]
+        },
+        {
+          "id": "technology_005_a03",
+          "text": "be tracked",
+          "points": 7124,
+          "aliases": [
+            "be tracked"
+          ]
+        },
+        {
+          "id": "technology_005_a04",
+          "text": "survive underwater",
+          "points": 5997,
+          "aliases": [
+            "survive underwater"
+          ]
+        },
+        {
+          "id": "technology_005_a05",
+          "text": "explode",
+          "points": 5803,
+          "aliases": [
+            "explode"
+          ]
+        },
+        {
+          "id": "technology_005_a06",
+          "text": "record calls",
+          "points": 5635,
+          "aliases": [
+            "record calls"
+          ]
+        },
+        {
+          "id": "technology_005_a07",
+          "text": "work without a SIM",
+          "points": 4258,
+          "aliases": [
+            "work without a SIM"
+          ]
+        },
+        {
+          "id": "technology_005_a08",
+          "text": "be tracked when turned off",
+          "points": 3577,
+          "aliases": [
+            "be tracked when turned off"
+          ]
+        },
+        {
+          "id": "technology_005_a09",
+          "text": "share battery",
+          "points": 2912,
+          "aliases": [
+            "share battery"
+          ]
+        },
+        {
+          "id": "technology_005_a10",
+          "text": "work without internet",
+          "points": 1084,
+          "aliases": [
+            "work without internet"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_006",
+      "prompt": "why does youtube",
+      "answers": [
+        {
+          "id": "technology_006_a01",
+          "text": "buffer",
+          "points": 9257,
+          "aliases": [
+            "buffer"
+          ]
+        },
+        {
+          "id": "technology_006_a02",
+          "text": "keep recommending the same videos",
+          "points": 8068,
+          "aliases": [
+            "keep recommending the same videos"
+          ]
+        },
+        {
+          "id": "technology_006_a03",
+          "text": "stop playing",
+          "points": 7914,
+          "aliases": [
+            "stop playing"
+          ]
+        },
+        {
+          "id": "technology_006_a04",
+          "text": "use so much data",
+          "points": 6927,
+          "aliases": [
+            "use so much data"
+          ]
+        },
+        {
+          "id": "technology_006_a05",
+          "text": "look blurry",
+          "points": 3914,
+          "aliases": [
+            "look blurry"
+          ]
+        },
+        {
+          "id": "technology_006_a06",
+          "text": "keep pausing",
+          "points": 3472,
+          "aliases": [
+            "keep pausing"
+          ]
+        },
+        {
+          "id": "technology_006_a07",
+          "text": "show so many ads",
+          "points": 3044,
+          "aliases": [
+            "show so many ads"
+          ]
+        },
+        {
+          "id": "technology_006_a08",
+          "text": "change quality",
+          "points": 2171,
+          "aliases": [
+            "change quality"
+          ]
+        },
+        {
+          "id": "technology_006_a09",
+          "text": "not load comments",
+          "points": 1985,
+          "aliases": [
+            "not load comments"
+          ]
+        },
+        {
+          "id": "technology_006_a10",
+          "text": "play videos automatically",
+          "points": 870,
+          "aliases": [
+            "play videos automatically"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_007",
+      "prompt": "how to delete",
+      "answers": [
+        {
+          "id": "technology_007_a01",
+          "text": "search history",
+          "points": 9859,
+          "aliases": [
+            "search history"
+          ]
+        },
+        {
+          "id": "technology_007_a02",
+          "text": "browser history",
+          "points": 8299,
+          "aliases": [
+            "browser history"
+          ]
+        },
+        {
+          "id": "technology_007_a03",
+          "text": "instagram account",
+          "points": 7113,
+          "aliases": [
+            "instagram account"
+          ]
+        },
+        {
+          "id": "technology_007_a04",
+          "text": "facebook account",
+          "points": 5896,
+          "aliases": [
+            "facebook account"
+          ]
+        },
+        {
+          "id": "technology_007_a05",
+          "text": "google history",
+          "points": 5455,
+          "aliases": [
+            "google history"
+          ]
+        },
+        {
+          "id": "technology_007_a06",
+          "text": "duplicate photos",
+          "points": 3278,
+          "aliases": [
+            "duplicate photos"
+          ]
+        },
+        {
+          "id": "technology_007_a07",
+          "text": "unwanted apps",
+          "points": 2978,
+          "aliases": [
+            "unwanted apps"
+          ]
+        },
+        {
+          "id": "technology_007_a08",
+          "text": "old emails",
+          "points": 2181,
+          "aliases": [
+            "old emails"
+          ]
+        },
+        {
+          "id": "technology_007_a09",
+          "text": "cookies",
+          "points": 1943,
+          "aliases": [
+            "cookies"
+          ]
+        },
+        {
+          "id": "technology_007_a10",
+          "text": "downloaded files",
+          "points": 1052,
+          "aliases": [
+            "downloaded files"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_008",
+      "prompt": "iphone",
+      "answers": [
+        {
+          "id": "technology_008_a01",
+          "text": "iphone price",
+          "points": 9217,
+          "aliases": [
+            "iphone price"
+          ]
+        },
+        {
+          "id": "technology_008_a02",
+          "text": "iphone 17",
+          "points": 8270,
+          "aliases": [
+            "iphone 17"
+          ]
+        },
+        {
+          "id": "technology_008_a03",
+          "text": "iphone battery",
+          "points": 7875,
+          "aliases": [
+            "iphone battery"
+          ]
+        },
+        {
+          "id": "technology_008_a04",
+          "text": "iphone camera",
+          "points": 7392,
+          "aliases": [
+            "iphone camera"
+          ]
+        },
+        {
+          "id": "technology_008_a05",
+          "text": "iphone cases",
+          "points": 7156,
+          "aliases": [
+            "iphone cases"
+          ]
+        },
+        {
+          "id": "technology_008_a06",
+          "text": "iphone update",
+          "points": 2974,
+          "aliases": [
+            "iphone update"
+          ]
+        },
+        {
+          "id": "technology_008_a07",
+          "text": "iphone storage",
+          "points": 2626,
+          "aliases": [
+            "iphone storage"
+          ]
+        },
+        {
+          "id": "technology_008_a08",
+          "text": "iphone pro",
+          "points": 2417,
+          "aliases": [
+            "iphone pro"
+          ]
+        },
+        {
+          "id": "technology_008_a09",
+          "text": "iphone comparison",
+          "points": 2222,
+          "aliases": [
+            "iphone comparison"
+          ]
+        },
+        {
+          "id": "technology_008_a10",
+          "text": "iphone release date",
+          "points": 1421,
+          "aliases": [
+            "iphone release date"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_009",
+      "prompt": "android",
+      "answers": [
+        {
+          "id": "technology_009_a01",
+          "text": "android phones",
+          "points": 9668,
+          "aliases": [
+            "android phones"
+          ]
+        },
+        {
+          "id": "technology_009_a02",
+          "text": "android update",
+          "points": 8869,
+          "aliases": [
+            "android update"
+          ]
+        },
+        {
+          "id": "technology_009_a03",
+          "text": "android vs iphone",
+          "points": 6388,
+          "aliases": [
+            "android vs iphone"
+          ]
+        },
+        {
+          "id": "technology_009_a04",
+          "text": "android games",
+          "points": 4591,
+          "aliases": [
+            "android games"
+          ]
+        },
+        {
+          "id": "technology_009_a05",
+          "text": "android apps",
+          "points": 4217,
+          "aliases": [
+            "android apps"
+          ]
+        },
+        {
+          "id": "technology_009_a06",
+          "text": "android battery",
+          "points": 3821,
+          "aliases": [
+            "android battery"
+          ]
+        },
+        {
+          "id": "technology_009_a07",
+          "text": "android backup",
+          "points": 3359,
+          "aliases": [
+            "android backup"
+          ]
+        },
+        {
+          "id": "technology_009_a08",
+          "text": "android settings",
+          "points": 2482,
+          "aliases": [
+            "android settings"
+          ]
+        },
+        {
+          "id": "technology_009_a09",
+          "text": "android version",
+          "points": 1457,
+          "aliases": [
+            "android version"
+          ]
+        },
+        {
+          "id": "technology_009_a10",
+          "text": "android phone price",
+          "points": 517,
+          "aliases": [
+            "android phone price"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_010",
+      "prompt": "google",
+      "answers": [
+        {
+          "id": "technology_010_a01",
+          "text": "google maps",
+          "points": 9433,
+          "aliases": [
+            "google maps"
+          ]
+        },
+        {
+          "id": "technology_010_a02",
+          "text": "google drive",
+          "points": 7594,
+          "aliases": [
+            "google drive"
+          ]
+        },
+        {
+          "id": "technology_010_a03",
+          "text": "google account",
+          "points": 6996,
+          "aliases": [
+            "google account"
+          ]
+        },
+        {
+          "id": "technology_010_a04",
+          "text": "google translate",
+          "points": 6626,
+          "aliases": [
+            "google translate"
+          ]
+        },
+        {
+          "id": "technology_010_a05",
+          "text": "google docs",
+          "points": 4714,
+          "aliases": [
+            "google docs"
+          ]
+        },
+        {
+          "id": "technology_010_a06",
+          "text": "google photos",
+          "points": 4070,
+          "aliases": [
+            "google photos"
+          ]
+        },
+        {
+          "id": "technology_010_a07",
+          "text": "google chrome",
+          "points": 3844,
+          "aliases": [
+            "google chrome"
+          ]
+        },
+        {
+          "id": "technology_010_a08",
+          "text": "google classroom",
+          "points": 3209,
+          "aliases": [
+            "google classroom"
+          ]
+        },
+        {
+          "id": "technology_010_a09",
+          "text": "google meet",
+          "points": 1489,
+          "aliases": [
+            "google meet"
+          ]
+        },
+        {
+          "id": "technology_010_a10",
+          "text": "google search",
+          "points": 1007,
+          "aliases": [
+            "google search"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_011",
+      "prompt": "instagram",
+      "answers": [
+        {
+          "id": "technology_011_a01",
+          "text": "instagram login",
+          "points": 9031,
+          "aliases": [
+            "instagram login"
+          ]
+        },
+        {
+          "id": "technology_011_a02",
+          "text": "instagram reels",
+          "points": 7965,
+          "aliases": [
+            "instagram reels"
+          ]
+        },
+        {
+          "id": "technology_011_a03",
+          "text": "instagram story",
+          "points": 7655,
+          "aliases": [
+            "instagram story"
+          ]
+        },
+        {
+          "id": "technology_011_a04",
+          "text": "instagram followers",
+          "points": 6732,
+          "aliases": [
+            "instagram followers"
+          ]
+        },
+        {
+          "id": "technology_011_a05",
+          "text": "instagram bio",
+          "points": 6260,
+          "aliases": [
+            "instagram bio"
+          ]
+        },
+        {
+          "id": "technology_011_a06",
+          "text": "instagram settings",
+          "points": 5859,
+          "aliases": [
+            "instagram settings"
+          ]
+        },
+        {
+          "id": "technology_011_a07",
+          "text": "instagram messages",
+          "points": 4144,
+          "aliases": [
+            "instagram messages"
+          ]
+        },
+        {
+          "id": "technology_011_a08",
+          "text": "instagram account",
+          "points": 3865,
+          "aliases": [
+            "instagram account"
+          ]
+        },
+        {
+          "id": "technology_011_a09",
+          "text": "instagram privacy",
+          "points": 2564,
+          "aliases": [
+            "instagram privacy"
+          ]
+        },
+        {
+          "id": "technology_011_a10",
+          "text": "instagram music",
+          "points": 1481,
+          "aliases": [
+            "instagram music"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_012",
+      "prompt": "why is my laptop",
+      "answers": [
+        {
+          "id": "technology_012_a01",
+          "text": "slow",
+          "points": 9414,
+          "aliases": [
+            "slow"
+          ]
+        },
+        {
+          "id": "technology_012_a02",
+          "text": "overheating",
+          "points": 8728,
+          "aliases": [
+            "overheating"
+          ]
+        },
+        {
+          "id": "technology_012_a03",
+          "text": "not charging",
+          "points": 4015,
+          "aliases": [
+            "not charging"
+          ]
+        },
+        {
+          "id": "technology_012_a04",
+          "text": "battery draining",
+          "points": 3732,
+          "aliases": [
+            "battery draining"
+          ]
+        },
+        {
+          "id": "technology_012_a05",
+          "text": "fan so loud",
+          "points": 3410,
+          "aliases": [
+            "fan so loud"
+          ]
+        },
+        {
+          "id": "technology_012_a06",
+          "text": "screen black",
+          "points": 3052,
+          "aliases": [
+            "screen black"
+          ]
+        },
+        {
+          "id": "technology_012_a07",
+          "text": "wifi not working",
+          "points": 2462,
+          "aliases": [
+            "wifi not working"
+          ]
+        },
+        {
+          "id": "technology_012_a08",
+          "text": "freezing",
+          "points": 1872,
+          "aliases": [
+            "freezing"
+          ]
+        },
+        {
+          "id": "technology_012_a09",
+          "text": "not turning on",
+          "points": 1520,
+          "aliases": [
+            "not turning on"
+          ]
+        },
+        {
+          "id": "technology_012_a10",
+          "text": "running out of storage",
+          "points": 944,
+          "aliases": [
+            "running out of storage"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_013",
+      "prompt": "how to fix",
+      "answers": [
+        {
+          "id": "technology_013_a01",
+          "text": "wifi",
+          "points": 9901,
+          "aliases": [
+            "wifi"
+          ]
+        },
+        {
+          "id": "technology_013_a02",
+          "text": "a slow computer",
+          "points": 9314,
+          "aliases": [
+            "a slow computer"
+          ]
+        },
+        {
+          "id": "technology_013_a03",
+          "text": "a phone that won't charge",
+          "points": 8889,
+          "aliases": [
+            "a phone that won't charge"
+          ]
+        },
+        {
+          "id": "technology_013_a04",
+          "text": "bluetooth",
+          "points": 8464,
+          "aliases": [
+            "bluetooth"
+          ]
+        },
+        {
+          "id": "technology_013_a05",
+          "text": "a printer",
+          "points": 8222,
+          "aliases": [
+            "a printer"
+          ]
+        },
+        {
+          "id": "technology_013_a06",
+          "text": "a keyboard",
+          "points": 6119,
+          "aliases": [
+            "a keyboard"
+          ]
+        },
+        {
+          "id": "technology_013_a07",
+          "text": "a frozen phone",
+          "points": 3329,
+          "aliases": [
+            "a frozen phone"
+          ]
+        },
+        {
+          "id": "technology_013_a08",
+          "text": "a black screen",
+          "points": 3176,
+          "aliases": [
+            "a black screen"
+          ]
+        },
+        {
+          "id": "technology_013_a09",
+          "text": "a broken app",
+          "points": 1998,
+          "aliases": [
+            "a broken app"
+          ]
+        },
+        {
+          "id": "technology_013_a10",
+          "text": "a slow internet connection",
+          "points": 854,
+          "aliases": [
+            "a slow internet connection"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_014",
+      "prompt": "can i use",
+      "answers": [
+        {
+          "id": "technology_014_a01",
+          "text": "my phone as a hotspot",
+          "points": 9363,
+          "aliases": [
+            "my phone as a hotspot"
+          ]
+        },
+        {
+          "id": "technology_014_a02",
+          "text": "my phone as a webcam",
+          "points": 9002,
+          "aliases": [
+            "my phone as a webcam"
+          ]
+        },
+        {
+          "id": "technology_014_a03",
+          "text": "bluetooth without wifi",
+          "points": 7295,
+          "aliases": [
+            "bluetooth without wifi"
+          ]
+        },
+        {
+          "id": "technology_014_a04",
+          "text": "google drive offline",
+          "points": 7052,
+          "aliases": [
+            "google drive offline"
+          ]
+        },
+        {
+          "id": "technology_014_a05",
+          "text": "a laptop without a battery",
+          "points": 6687,
+          "aliases": [
+            "a laptop without a battery"
+          ]
+        },
+        {
+          "id": "technology_014_a06",
+          "text": "a tv as a monitor",
+          "points": 5152,
+          "aliases": [
+            "a tv as a monitor"
+          ]
+        },
+        {
+          "id": "technology_014_a07",
+          "text": "my phone as a remote",
+          "points": 4681,
+          "aliases": [
+            "my phone as a remote"
+          ]
+        },
+        {
+          "id": "technology_014_a08",
+          "text": "a keyboard with a tablet",
+          "points": 3993,
+          "aliases": [
+            "a keyboard with a tablet"
+          ]
+        },
+        {
+          "id": "technology_014_a09",
+          "text": "a mouse with a phone",
+          "points": 2842,
+          "aliases": [
+            "a mouse with a phone"
+          ]
+        },
+        {
+          "id": "technology_014_a10",
+          "text": "cloud storage offline",
+          "points": 960,
+          "aliases": [
+            "cloud storage offline"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology_015",
+      "prompt": "why does my computer",
+      "answers": [
+        {
+          "id": "technology_015_a01",
+          "text": "use so much RAM",
+          "points": 9009,
+          "aliases": [
+            "use so much RAM"
+          ]
+        },
+        {
+          "id": "technology_015_a02",
+          "text": "get hot",
+          "points": 7419,
+          "aliases": [
+            "get hot"
+          ]
+        },
+        {
+          "id": "technology_015_a03",
+          "text": "make noise",
+          "points": 6328,
+          "aliases": [
+            "make noise"
+          ]
+        },
+        {
+          "id": "technology_015_a04",
+          "text": "freeze",
+          "points": 5585,
+          "aliases": [
+            "freeze"
+          ]
+        },
+        {
+          "id": "technology_015_a05",
+          "text": "restart",
+          "points": 4744,
+          "aliases": [
+            "restart"
+          ]
+        },
+        {
+          "id": "technology_015_a06",
+          "text": "use so much CPU",
+          "points": 4004,
+          "aliases": [
+            "use so much CPU"
+          ]
+        },
+        {
+          "id": "technology_015_a07",
+          "text": "take so long to start",
+          "points": 3608,
+          "aliases": [
+            "take so long to start"
+          ]
+        },
+        {
+          "id": "technology_015_a08",
+          "text": "lose internet",
+          "points": 3015,
+          "aliases": [
+            "lose internet"
+          ]
+        },
+        {
+          "id": "technology_015_a09",
+          "text": "crash",
+          "points": 1505,
+          "aliases": [
+            "crash"
+          ]
+        },
+        {
+          "id": "technology_015_a10",
+          "text": "run out of storage",
+          "points": 1155,
+          "aliases": [
+            "run out of storage"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

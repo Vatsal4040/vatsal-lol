@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "movies_tv",
+    "name": "Movies & TV",
+    "description": "Movies, television, streaming, characters and entertainment searches.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "movies_tv_001",
+      "prompt": "breaking bad",
+      "answers": [
+        {
+          "id": "movies_tv_001_a01",
+          "text": "breaking bad",
+          "points": 9380,
+          "aliases": [
+            "breaking bad"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a02",
+          "text": "breaking bad ending",
+          "points": 8784,
+          "aliases": [
+            "breaking bad ending"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a03",
+          "text": "breaking bad characters",
+          "points": 8271,
+          "aliases": [
+            "breaking bad characters"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a04",
+          "text": "breaking bad cast",
+          "points": 7644,
+          "aliases": [
+            "breaking bad cast"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a05",
+          "text": "breaking bad episodes",
+          "points": 6888,
+          "aliases": [
+            "breaking bad episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a06",
+          "text": "breaking bad season 5",
+          "points": 6235,
+          "aliases": [
+            "breaking bad season 5"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a07",
+          "text": "breaking bad meaning",
+          "points": 5373,
+          "aliases": [
+            "breaking bad meaning"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a08",
+          "text": "breaking bad movie",
+          "points": 4923,
+          "aliases": [
+            "breaking bad movie"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a09",
+          "text": "breaking bad quotes",
+          "points": 4337,
+          "aliases": [
+            "breaking bad quotes"
+          ]
+        },
+        {
+          "id": "movies_tv_001_a10",
+          "text": "breaking bad soundtrack",
+          "points": 1181,
+          "aliases": [
+            "breaking bad soundtrack"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_002",
+      "prompt": "stranger things",
+      "answers": [
+        {
+          "id": "movies_tv_002_a01",
+          "text": "stranger things",
+          "points": 9792,
+          "aliases": [
+            "stranger things"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a02",
+          "text": "stranger things season 5",
+          "points": 7587,
+          "aliases": [
+            "stranger things season 5"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a03",
+          "text": "stranger things cast",
+          "points": 6734,
+          "aliases": [
+            "stranger things cast"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a04",
+          "text": "stranger things characters",
+          "points": 6068,
+          "aliases": [
+            "stranger things characters"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a05",
+          "text": "stranger things ending",
+          "points": 4138,
+          "aliases": [
+            "stranger things ending"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a06",
+          "text": "stranger things monsters",
+          "points": 3329,
+          "aliases": [
+            "stranger things monsters"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a07",
+          "text": "stranger things episodes",
+          "points": 3133,
+          "aliases": [
+            "stranger things episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a08",
+          "text": "stranger things netflix",
+          "points": 1808,
+          "aliases": [
+            "stranger things netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a09",
+          "text": "stranger things soundtrack",
+          "points": 1213,
+          "aliases": [
+            "stranger things soundtrack"
+          ]
+        },
+        {
+          "id": "movies_tv_002_a10",
+          "text": "stranger things release date",
+          "points": 812,
+          "aliases": [
+            "stranger things release date"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_003",
+      "prompt": "harry potter",
+      "answers": [
+        {
+          "id": "movies_tv_003_a01",
+          "text": "harry potter movies",
+          "points": 9304,
+          "aliases": [
+            "harry potter movies"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a02",
+          "text": "harry potter characters",
+          "points": 8958,
+          "aliases": [
+            "harry potter characters"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a03",
+          "text": "harry potter books",
+          "points": 6465,
+          "aliases": [
+            "harry potter books"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a04",
+          "text": "harry potter houses",
+          "points": 6211,
+          "aliases": [
+            "harry potter houses"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a05",
+          "text": "harry potter cast",
+          "points": 5468,
+          "aliases": [
+            "harry potter cast"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a06",
+          "text": "harry potter spells",
+          "points": 5257,
+          "aliases": [
+            "harry potter spells"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a07",
+          "text": "harry potter order",
+          "points": 4264,
+          "aliases": [
+            "harry potter order"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a08",
+          "text": "harry potter ending",
+          "points": 2267,
+          "aliases": [
+            "harry potter ending"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a09",
+          "text": "harry potter games",
+          "points": 1852,
+          "aliases": [
+            "harry potter games"
+          ]
+        },
+        {
+          "id": "movies_tv_003_a10",
+          "text": "harry potter series",
+          "points": 694,
+          "aliases": [
+            "harry potter series"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_004",
+      "prompt": "marvel",
+      "answers": [
+        {
+          "id": "movies_tv_004_a01",
+          "text": "marvel movies",
+          "points": 9301,
+          "aliases": [
+            "marvel movies"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a02",
+          "text": "marvel characters",
+          "points": 8410,
+          "aliases": [
+            "marvel characters"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a03",
+          "text": "marvel timeline",
+          "points": 8226,
+          "aliases": [
+            "marvel timeline"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a04",
+          "text": "marvel movies in order",
+          "points": 7428,
+          "aliases": [
+            "marvel movies in order"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a05",
+          "text": "marvel actors",
+          "points": 6984,
+          "aliases": [
+            "marvel actors"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a06",
+          "text": "marvel villains",
+          "points": 6528,
+          "aliases": [
+            "marvel villains"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a07",
+          "text": "marvel phases",
+          "points": 5397,
+          "aliases": [
+            "marvel phases"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a08",
+          "text": "marvel movies list",
+          "points": 3773,
+          "aliases": [
+            "marvel movies list"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a09",
+          "text": "marvel series",
+          "points": 2354,
+          "aliases": [
+            "marvel series"
+          ]
+        },
+        {
+          "id": "movies_tv_004_a10",
+          "text": "marvel games",
+          "points": 1122,
+          "aliases": [
+            "marvel games"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_005",
+      "prompt": "netflix",
+      "answers": [
+        {
+          "id": "movies_tv_005_a01",
+          "text": "netflix shows",
+          "points": 9023,
+          "aliases": [
+            "netflix shows"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a02",
+          "text": "netflix movies",
+          "points": 8366,
+          "aliases": [
+            "netflix movies"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a03",
+          "text": "netflix top 10",
+          "points": 6924,
+          "aliases": [
+            "netflix top 10"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a04",
+          "text": "netflix new releases",
+          "points": 6067,
+          "aliases": [
+            "netflix new releases"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a05",
+          "text": "netflix series",
+          "points": 5327,
+          "aliases": [
+            "netflix series"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a06",
+          "text": "netflix horror movies",
+          "points": 4132,
+          "aliases": [
+            "netflix horror movies"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a07",
+          "text": "netflix comedy",
+          "points": 3783,
+          "aliases": [
+            "netflix comedy"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a08",
+          "text": "netflix family movies",
+          "points": 2008,
+          "aliases": [
+            "netflix family movies"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a09",
+          "text": "netflix plans",
+          "points": 1553,
+          "aliases": [
+            "netflix plans"
+          ]
+        },
+        {
+          "id": "movies_tv_005_a10",
+          "text": "netflix password",
+          "points": 1306,
+          "aliases": [
+            "netflix password"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_006",
+      "prompt": "best movie",
+      "answers": [
+        {
+          "id": "movies_tv_006_a01",
+          "text": "best movie ever",
+          "points": 9333,
+          "aliases": [
+            "best movie ever"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a02",
+          "text": "best movie of all time",
+          "points": 7863,
+          "aliases": [
+            "best movie of all time"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a03",
+          "text": "best movie to watch",
+          "points": 7501,
+          "aliases": [
+            "best movie to watch"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a04",
+          "text": "best movie on netflix",
+          "points": 6971,
+          "aliases": [
+            "best movie on netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a05",
+          "text": "best movie comedy",
+          "points": 5346,
+          "aliases": [
+            "best movie comedy"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a06",
+          "text": "best movie thriller",
+          "points": 4614,
+          "aliases": [
+            "best movie thriller"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a07",
+          "text": "best movie horror",
+          "points": 4322,
+          "aliases": [
+            "best movie horror"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a08",
+          "text": "best movie action",
+          "points": 2102,
+          "aliases": [
+            "best movie action"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a09",
+          "text": "best movie ending",
+          "points": 1976,
+          "aliases": [
+            "best movie ending"
+          ]
+        },
+        {
+          "id": "movies_tv_006_a10",
+          "text": "best movie for family",
+          "points": 1249,
+          "aliases": [
+            "best movie for family"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_007",
+      "prompt": "what to watch",
+      "answers": [
+        {
+          "id": "movies_tv_007_a01",
+          "text": "what to watch tonight",
+          "points": 9361,
+          "aliases": [
+            "what to watch tonight"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a02",
+          "text": "what to watch on netflix",
+          "points": 8913,
+          "aliases": [
+            "what to watch on netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a03",
+          "text": "what to watch with family",
+          "points": 8497,
+          "aliases": [
+            "what to watch with family"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a04",
+          "text": "what to watch when bored",
+          "points": 6947,
+          "aliases": [
+            "what to watch when bored"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a05",
+          "text": "what to watch after a series",
+          "points": 6366,
+          "aliases": [
+            "what to watch after a series"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a06",
+          "text": "what to watch with friends",
+          "points": 6171,
+          "aliases": [
+            "what to watch with friends"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a07",
+          "text": "what to watch on a date",
+          "points": 4430,
+          "aliases": [
+            "what to watch on a date"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a08",
+          "text": "what to watch comedy",
+          "points": 3783,
+          "aliases": [
+            "what to watch comedy"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a09",
+          "text": "what to watch horror",
+          "points": 3497,
+          "aliases": [
+            "what to watch horror"
+          ]
+        },
+        {
+          "id": "movies_tv_007_a10",
+          "text": "what to watch next",
+          "points": 842,
+          "aliases": [
+            "what to watch next"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_008",
+      "prompt": "movie ending",
+      "answers": [
+        {
+          "id": "movies_tv_008_a01",
+          "text": "movie ending explained",
+          "points": 9903,
+          "aliases": [
+            "movie ending explained"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a02",
+          "text": "movie ending meaning",
+          "points": 7759,
+          "aliases": [
+            "movie ending meaning"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a03",
+          "text": "movie ending explained reddit",
+          "points": 7264,
+          "aliases": [
+            "movie ending explained reddit"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a04",
+          "text": "movie ending twist",
+          "points": 7002,
+          "aliases": [
+            "movie ending twist"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a05",
+          "text": "movie ending credits",
+          "points": 4353,
+          "aliases": [
+            "movie ending credits"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a06",
+          "text": "movie ending song",
+          "points": 2745,
+          "aliases": [
+            "movie ending song"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a07",
+          "text": "movie ending scene",
+          "points": 2541,
+          "aliases": [
+            "movie ending scene"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a08",
+          "text": "movie ending spoiler",
+          "points": 2020,
+          "aliases": [
+            "movie ending spoiler"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a09",
+          "text": "movie ending explained list",
+          "points": 1179,
+          "aliases": [
+            "movie ending explained list"
+          ]
+        },
+        {
+          "id": "movies_tv_008_a10",
+          "text": "movie ending differences",
+          "points": 688,
+          "aliases": [
+            "movie ending differences"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_009",
+      "prompt": "oscar",
+      "answers": [
+        {
+          "id": "movies_tv_009_a01",
+          "text": "oscar winners",
+          "points": 9924,
+          "aliases": [
+            "oscar winners"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a02",
+          "text": "oscar nominations",
+          "points": 9128,
+          "aliases": [
+            "oscar nominations"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a03",
+          "text": "oscar best picture",
+          "points": 8943,
+          "aliases": [
+            "oscar best picture"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a04",
+          "text": "oscar best actor",
+          "points": 7748,
+          "aliases": [
+            "oscar best actor"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a05",
+          "text": "oscar best actress",
+          "points": 7332,
+          "aliases": [
+            "oscar best actress"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a06",
+          "text": "oscar awards",
+          "points": 6922,
+          "aliases": [
+            "oscar awards"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a07",
+          "text": "oscar nominees",
+          "points": 6752,
+          "aliases": [
+            "oscar nominees"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a08",
+          "text": "oscar ceremony",
+          "points": 4068,
+          "aliases": [
+            "oscar ceremony"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a09",
+          "text": "oscar records",
+          "points": 3541,
+          "aliases": [
+            "oscar records"
+          ]
+        },
+        {
+          "id": "movies_tv_009_a10",
+          "text": "oscar movies",
+          "points": 1030,
+          "aliases": [
+            "oscar movies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_010",
+      "prompt": "sitcom",
+      "answers": [
+        {
+          "id": "movies_tv_010_a01",
+          "text": "best sitcoms",
+          "points": 9902,
+          "aliases": [
+            "best sitcoms"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a02",
+          "text": "sitcoms on netflix",
+          "points": 8762,
+          "aliases": [
+            "sitcoms on netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a03",
+          "text": "sitcom characters",
+          "points": 5932,
+          "aliases": [
+            "sitcom characters"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a04",
+          "text": "sitcoms to watch",
+          "points": 3138,
+          "aliases": [
+            "sitcoms to watch"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a05",
+          "text": "old sitcoms",
+          "points": 2925,
+          "aliases": [
+            "old sitcoms"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a06",
+          "text": "funny sitcoms",
+          "points": 2711,
+          "aliases": [
+            "funny sitcoms"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a07",
+          "text": "sitcom actors",
+          "points": 2372,
+          "aliases": [
+            "sitcom actors"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a08",
+          "text": "sitcom episodes",
+          "points": 2100,
+          "aliases": [
+            "sitcom episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a09",
+          "text": "sitcom recommendations",
+          "points": 1501,
+          "aliases": [
+            "sitcom recommendations"
+          ]
+        },
+        {
+          "id": "movies_tv_010_a10",
+          "text": "sitcom theme songs",
+          "points": 1115,
+          "aliases": [
+            "sitcom theme songs"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_011",
+      "prompt": "anime",
+      "answers": [
+        {
+          "id": "movies_tv_011_a01",
+          "text": "best anime",
+          "points": 8973,
+          "aliases": [
+            "best anime"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a02",
+          "text": "anime movies",
+          "points": 7542,
+          "aliases": [
+            "anime movies"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a03",
+          "text": "anime series",
+          "points": 6789,
+          "aliases": [
+            "anime series"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a04",
+          "text": "anime characters",
+          "points": 6347,
+          "aliases": [
+            "anime characters"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a05",
+          "text": "anime to watch",
+          "points": 5874,
+          "aliases": [
+            "anime to watch"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a06",
+          "text": "anime on netflix",
+          "points": 5667,
+          "aliases": [
+            "anime on netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a07",
+          "text": "anime openings",
+          "points": 2514,
+          "aliases": [
+            "anime openings"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a08",
+          "text": "anime villains",
+          "points": 2084,
+          "aliases": [
+            "anime villains"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a09",
+          "text": "anime games",
+          "points": 1361,
+          "aliases": [
+            "anime games"
+          ]
+        },
+        {
+          "id": "movies_tv_011_a10",
+          "text": "anime recommendations",
+          "points": 583,
+          "aliases": [
+            "anime recommendations"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_012",
+      "prompt": "horror movies",
+      "answers": [
+        {
+          "id": "movies_tv_012_a01",
+          "text": "best horror movies",
+          "points": 9591,
+          "aliases": [
+            "best horror movies"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a02",
+          "text": "horror movies based on true stories",
+          "points": 8720,
+          "aliases": [
+            "horror movies based on true stories"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a03",
+          "text": "horror movies on netflix",
+          "points": 8394,
+          "aliases": [
+            "horror movies on netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a04",
+          "text": "horror movies with ghosts",
+          "points": 7477,
+          "aliases": [
+            "horror movies with ghosts"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a05",
+          "text": "horror movies with clowns",
+          "points": 7196,
+          "aliases": [
+            "horror movies with clowns"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a06",
+          "text": "horror movies to watch",
+          "points": 6281,
+          "aliases": [
+            "horror movies to watch"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a07",
+          "text": "scary horror movies",
+          "points": 2444,
+          "aliases": [
+            "scary horror movies"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a08",
+          "text": "horror movies ending explained",
+          "points": 1697,
+          "aliases": [
+            "horror movies ending explained"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a09",
+          "text": "horror movie recommendations",
+          "points": 1657,
+          "aliases": [
+            "horror movie recommendations"
+          ]
+        },
+        {
+          "id": "movies_tv_012_a10",
+          "text": "new horror movies",
+          "points": 1387,
+          "aliases": [
+            "new horror movies"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_013",
+      "prompt": "disney",
+      "answers": [
+        {
+          "id": "movies_tv_013_a01",
+          "text": "disney movies",
+          "points": 9915,
+          "aliases": [
+            "disney movies"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a02",
+          "text": "disney plus",
+          "points": 8340,
+          "aliases": [
+            "disney plus"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a03",
+          "text": "disney characters",
+          "points": 7921,
+          "aliases": [
+            "disney characters"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a04",
+          "text": "disney princesses",
+          "points": 7435,
+          "aliases": [
+            "disney princesses"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a05",
+          "text": "disney movies list",
+          "points": 6970,
+          "aliases": [
+            "disney movies list"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a06",
+          "text": "disney songs",
+          "points": 6254,
+          "aliases": [
+            "disney songs"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a07",
+          "text": "disney villains",
+          "points": 3350,
+          "aliases": [
+            "disney villains"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a08",
+          "text": "disney cartoons",
+          "points": 2715,
+          "aliases": [
+            "disney cartoons"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a09",
+          "text": "disney movies for kids",
+          "points": 2112,
+          "aliases": [
+            "disney movies for kids"
+          ]
+        },
+        {
+          "id": "movies_tv_013_a10",
+          "text": "disney parks",
+          "points": 1468,
+          "aliases": [
+            "disney parks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_014",
+      "prompt": "the office",
+      "answers": [
+        {
+          "id": "movies_tv_014_a01",
+          "text": "the office characters",
+          "points": 9016,
+          "aliases": [
+            "the office characters"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a02",
+          "text": "the office episodes",
+          "points": 8527,
+          "aliases": [
+            "the office episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a03",
+          "text": "the office cast",
+          "points": 6010,
+          "aliases": [
+            "the office cast"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a04",
+          "text": "the office quotes",
+          "points": 5153,
+          "aliases": [
+            "the office quotes"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a05",
+          "text": "the office best episodes",
+          "points": 4961,
+          "aliases": [
+            "the office best episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a06",
+          "text": "the office ending",
+          "points": 4459,
+          "aliases": [
+            "the office ending"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a07",
+          "text": "the office theme song",
+          "points": 2923,
+          "aliases": [
+            "the office theme song"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a08",
+          "text": "the office memes",
+          "points": 2486,
+          "aliases": [
+            "the office memes"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a09",
+          "text": "the office netflix",
+          "points": 1624,
+          "aliases": [
+            "the office netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_014_a10",
+          "text": "the office seasons",
+          "points": 1406,
+          "aliases": [
+            "the office seasons"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "movies_tv_015",
+      "prompt": "friends",
+      "answers": [
+        {
+          "id": "movies_tv_015_a01",
+          "text": "friends characters",
+          "points": 9233,
+          "aliases": [
+            "friends characters"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a02",
+          "text": "friends episodes",
+          "points": 7434,
+          "aliases": [
+            "friends episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a03",
+          "text": "friends cast",
+          "points": 7306,
+          "aliases": [
+            "friends cast"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a04",
+          "text": "friends best episodes",
+          "points": 6994,
+          "aliases": [
+            "friends best episodes"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a05",
+          "text": "friends ending",
+          "points": 6132,
+          "aliases": [
+            "friends ending"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a06",
+          "text": "friends quotes",
+          "points": 5081,
+          "aliases": [
+            "friends quotes"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a07",
+          "text": "friends theme song",
+          "points": 4658,
+          "aliases": [
+            "friends theme song"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a08",
+          "text": "friends seasons",
+          "points": 2386,
+          "aliases": [
+            "friends seasons"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a09",
+          "text": "friends netflix",
+          "points": 1636,
+          "aliases": [
+            "friends netflix"
+          ]
+        },
+        {
+          "id": "movies_tv_015_a10",
+          "text": "friends reunion",
+          "points": 951,
+          "aliases": [
+            "friends reunion"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

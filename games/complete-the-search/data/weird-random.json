@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "weird_random",
+    "name": "Weird & Random",
+    "description": "Odd, funny and unexpectedly relatable searches.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "weird_random_001",
+      "prompt": "why do i want to",
+      "answers": [
+        {
+          "id": "weird_random_001_a01",
+          "text": "sleep all day",
+          "points": 9961,
+          "aliases": [
+            "sleep all day"
+          ]
+        },
+        {
+          "id": "weird_random_001_a02",
+          "text": "eat at night",
+          "points": 9382,
+          "aliases": [
+            "eat at night"
+          ]
+        },
+        {
+          "id": "weird_random_001_a03",
+          "text": "quit my job",
+          "points": 9128,
+          "aliases": [
+            "quit my job"
+          ]
+        },
+        {
+          "id": "weird_random_001_a04",
+          "text": "disappear",
+          "points": 7722,
+          "aliases": [
+            "disappear"
+          ]
+        },
+        {
+          "id": "weird_random_001_a05",
+          "text": "travel",
+          "points": 6588,
+          "aliases": [
+            "travel"
+          ]
+        },
+        {
+          "id": "weird_random_001_a06",
+          "text": "cry",
+          "points": 5449,
+          "aliases": [
+            "cry"
+          ]
+        },
+        {
+          "id": "weird_random_001_a07",
+          "text": "buy things",
+          "points": 4387,
+          "aliases": [
+            "buy things"
+          ]
+        },
+        {
+          "id": "weird_random_001_a08",
+          "text": "stay in bed",
+          "points": 2299,
+          "aliases": [
+            "stay in bed"
+          ]
+        },
+        {
+          "id": "weird_random_001_a09",
+          "text": "be alone",
+          "points": 1512,
+          "aliases": [
+            "be alone"
+          ]
+        },
+        {
+          "id": "weird_random_001_a10",
+          "text": "do nothing",
+          "points": 775,
+          "aliases": [
+            "do nothing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_002",
+      "prompt": "can you",
+      "answers": [
+        {
+          "id": "weird_random_002_a01",
+          "text": "sneeze with your eyes open",
+          "points": 9609,
+          "aliases": [
+            "sneeze with your eyes open"
+          ]
+        },
+        {
+          "id": "weird_random_002_a02",
+          "text": "sleep with your eyes open",
+          "points": 7849,
+          "aliases": [
+            "sleep with your eyes open"
+          ]
+        },
+        {
+          "id": "weird_random_002_a03",
+          "text": "burp on command",
+          "points": 5298,
+          "aliases": [
+            "burp on command"
+          ]
+        },
+        {
+          "id": "weird_random_002_a04",
+          "text": "hiccup in your sleep",
+          "points": 5103,
+          "aliases": [
+            "hiccup in your sleep"
+          ]
+        },
+        {
+          "id": "weird_random_002_a05",
+          "text": "survive without sleep",
+          "points": 4767,
+          "aliases": [
+            "survive without sleep"
+          ]
+        },
+        {
+          "id": "weird_random_002_a06",
+          "text": "live without a phone",
+          "points": 4141,
+          "aliases": [
+            "live without a phone"
+          ]
+        },
+        {
+          "id": "weird_random_002_a07",
+          "text": "tickle yourself",
+          "points": 2848,
+          "aliases": [
+            "tickle yourself"
+          ]
+        },
+        {
+          "id": "weird_random_002_a08",
+          "text": "breathe underwater",
+          "points": 2356,
+          "aliases": [
+            "breathe underwater"
+          ]
+        },
+        {
+          "id": "weird_random_002_a09",
+          "text": "dream in color",
+          "points": 1961,
+          "aliases": [
+            "dream in color"
+          ]
+        },
+        {
+          "id": "weird_random_002_a10",
+          "text": "hear yourself snore",
+          "points": 1388,
+          "aliases": [
+            "hear yourself snore"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_003",
+      "prompt": "what happens if you",
+      "answers": [
+        {
+          "id": "weird_random_003_a01",
+          "text": "don't sleep",
+          "points": 9386,
+          "aliases": [
+            "don't sleep"
+          ]
+        },
+        {
+          "id": "weird_random_003_a02",
+          "text": "eat too much",
+          "points": 7182,
+          "aliases": [
+            "eat too much"
+          ]
+        },
+        {
+          "id": "weird_random_003_a03",
+          "text": "swallow gum",
+          "points": 6702,
+          "aliases": [
+            "swallow gum"
+          ]
+        },
+        {
+          "id": "weird_random_003_a04",
+          "text": "stop drinking coffee",
+          "points": 6380,
+          "aliases": [
+            "stop drinking coffee"
+          ]
+        },
+        {
+          "id": "weird_random_003_a05",
+          "text": "never shower",
+          "points": 6048,
+          "aliases": [
+            "never shower"
+          ]
+        },
+        {
+          "id": "weird_random_003_a06",
+          "text": "eat before bed",
+          "points": 5260,
+          "aliases": [
+            "eat before bed"
+          ]
+        },
+        {
+          "id": "weird_random_003_a07",
+          "text": "hold your pee",
+          "points": 4119,
+          "aliases": [
+            "hold your pee"
+          ]
+        },
+        {
+          "id": "weird_random_003_a08",
+          "text": "drink too much water",
+          "points": 3562,
+          "aliases": [
+            "drink too much water"
+          ]
+        },
+        {
+          "id": "weird_random_003_a09",
+          "text": "stay awake all night",
+          "points": 2425,
+          "aliases": [
+            "stay awake all night"
+          ]
+        },
+        {
+          "id": "weird_random_003_a10",
+          "text": "eat too fast",
+          "points": 940,
+          "aliases": [
+            "eat too fast"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_004",
+      "prompt": "why does my",
+      "answers": [
+        {
+          "id": "weird_random_004_a01",
+          "text": "eye twitch",
+          "points": 8806,
+          "aliases": [
+            "eye twitch"
+          ]
+        },
+        {
+          "id": "weird_random_004_a02",
+          "text": "ear ring",
+          "points": 8257,
+          "aliases": [
+            "ear ring"
+          ]
+        },
+        {
+          "id": "weird_random_004_a03",
+          "text": "nose itch",
+          "points": 7837,
+          "aliases": [
+            "nose itch"
+          ]
+        },
+        {
+          "id": "weird_random_004_a04",
+          "text": "foot hurt",
+          "points": 7244,
+          "aliases": [
+            "foot hurt"
+          ]
+        },
+        {
+          "id": "weird_random_004_a05",
+          "text": "eye hurt",
+          "points": 6941,
+          "aliases": [
+            "eye hurt"
+          ]
+        },
+        {
+          "id": "weird_random_004_a06",
+          "text": "stomach growl",
+          "points": 6418,
+          "aliases": [
+            "stomach growl"
+          ]
+        },
+        {
+          "id": "weird_random_004_a07",
+          "text": "head hurt",
+          "points": 4298,
+          "aliases": [
+            "head hurt"
+          ]
+        },
+        {
+          "id": "weird_random_004_a08",
+          "text": "leg twitch",
+          "points": 2376,
+          "aliases": [
+            "leg twitch"
+          ]
+        },
+        {
+          "id": "weird_random_004_a09",
+          "text": "lip twitch",
+          "points": 1300,
+          "aliases": [
+            "lip twitch"
+          ]
+        },
+        {
+          "id": "weird_random_004_a10",
+          "text": "ear itch",
+          "points": 842,
+          "aliases": [
+            "ear itch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_005",
+      "prompt": "things you should never",
+      "answers": [
+        {
+          "id": "weird_random_005_a01",
+          "text": "google",
+          "points": 9963,
+          "aliases": [
+            "google"
+          ]
+        },
+        {
+          "id": "weird_random_005_a02",
+          "text": "say at work",
+          "points": 7440,
+          "aliases": [
+            "say at work"
+          ]
+        },
+        {
+          "id": "weird_random_005_a03",
+          "text": "say on a first date",
+          "points": 7028,
+          "aliases": [
+            "say on a first date"
+          ]
+        },
+        {
+          "id": "weird_random_005_a04",
+          "text": "do while driving",
+          "points": 6472,
+          "aliases": [
+            "do while driving"
+          ]
+        },
+        {
+          "id": "weird_random_005_a05",
+          "text": "do when you're angry",
+          "points": 4574,
+          "aliases": [
+            "do when you're angry"
+          ]
+        },
+        {
+          "id": "weird_random_005_a06",
+          "text": "do before bed",
+          "points": 4124,
+          "aliases": [
+            "do before bed"
+          ]
+        },
+        {
+          "id": "weird_random_005_a07",
+          "text": "search at 3am",
+          "points": 3932,
+          "aliases": [
+            "search at 3am"
+          ]
+        },
+        {
+          "id": "weird_random_005_a08",
+          "text": "text your ex",
+          "points": 3362,
+          "aliases": [
+            "text your ex"
+          ]
+        },
+        {
+          "id": "weird_random_005_a09",
+          "text": "post online",
+          "points": 1613,
+          "aliases": [
+            "post online"
+          ]
+        },
+        {
+          "id": "weird_random_005_a10",
+          "text": "say to your boss",
+          "points": 1187,
+          "aliases": [
+            "say to your boss"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_006",
+      "prompt": "why is there",
+      "answers": [
+        {
+          "id": "weird_random_006_a01",
+          "text": "a random hair",
+          "points": 9587,
+          "aliases": [
+            "a random hair"
+          ]
+        },
+        {
+          "id": "weird_random_006_a02",
+          "text": "a fly in my room",
+          "points": 9234,
+          "aliases": [
+            "a fly in my room"
+          ]
+        },
+        {
+          "id": "weird_random_006_a03",
+          "text": "water in my phone",
+          "points": 6315,
+          "aliases": [
+            "water in my phone"
+          ]
+        },
+        {
+          "id": "weird_random_006_a04",
+          "text": "dust everywhere",
+          "points": 4264,
+          "aliases": [
+            "dust everywhere"
+          ]
+        },
+        {
+          "id": "weird_random_006_a05",
+          "text": "a weird smell",
+          "points": 3870,
+          "aliases": [
+            "a weird smell"
+          ]
+        },
+        {
+          "id": "weird_random_006_a06",
+          "text": "a bug in my house",
+          "points": 3145,
+          "aliases": [
+            "a bug in my house"
+          ]
+        },
+        {
+          "id": "weird_random_006_a07",
+          "text": "no internet",
+          "points": 2918,
+          "aliases": [
+            "no internet"
+          ]
+        },
+        {
+          "id": "weird_random_006_a08",
+          "text": "a spider in my room",
+          "points": 2701,
+          "aliases": [
+            "a spider in my room"
+          ]
+        },
+        {
+          "id": "weird_random_006_a09",
+          "text": "a random noise",
+          "points": 2030,
+          "aliases": [
+            "a random noise"
+          ]
+        },
+        {
+          "id": "weird_random_006_a10",
+          "text": "hair in my food",
+          "points": 1430,
+          "aliases": [
+            "hair in my food"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_007",
+      "prompt": "i can't believe i",
+      "answers": [
+        {
+          "id": "weird_random_007_a01",
+          "text": "did that",
+          "points": 8770,
+          "aliases": [
+            "did that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a02",
+          "text": "said that",
+          "points": 8239,
+          "aliases": [
+            "said that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a03",
+          "text": "forgot",
+          "points": 7525,
+          "aliases": [
+            "forgot"
+          ]
+        },
+        {
+          "id": "weird_random_007_a04",
+          "text": "ate that",
+          "points": 6006,
+          "aliases": [
+            "ate that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a05",
+          "text": "bought that",
+          "points": 5393,
+          "aliases": [
+            "bought that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a06",
+          "text": "searched that",
+          "points": 5142,
+          "aliases": [
+            "searched that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a07",
+          "text": "sent that",
+          "points": 3395,
+          "aliases": [
+            "sent that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a08",
+          "text": "fell for that",
+          "points": 2305,
+          "aliases": [
+            "fell for that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a09",
+          "text": "posted that",
+          "points": 1516,
+          "aliases": [
+            "posted that"
+          ]
+        },
+        {
+          "id": "weird_random_007_a10",
+          "text": "watched that",
+          "points": 551,
+          "aliases": [
+            "watched that"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_008",
+      "prompt": "why do i keep",
+      "answers": [
+        {
+          "id": "weird_random_008_a01",
+          "text": "forgetting things",
+          "points": 9648,
+          "aliases": [
+            "forgetting things"
+          ]
+        },
+        {
+          "id": "weird_random_008_a02",
+          "text": "checking my phone",
+          "points": 8722,
+          "aliases": [
+            "checking my phone"
+          ]
+        },
+        {
+          "id": "weird_random_008_a03",
+          "text": "losing things",
+          "points": 8290,
+          "aliases": [
+            "losing things"
+          ]
+        },
+        {
+          "id": "weird_random_008_a04",
+          "text": "waking up at night",
+          "points": 8000,
+          "aliases": [
+            "waking up at night"
+          ]
+        },
+        {
+          "id": "weird_random_008_a05",
+          "text": "thinking about the same thing",
+          "points": 6714,
+          "aliases": [
+            "thinking about the same thing"
+          ]
+        },
+        {
+          "id": "weird_random_008_a06",
+          "text": "making the same mistake",
+          "points": 6025,
+          "aliases": [
+            "making the same mistake"
+          ]
+        },
+        {
+          "id": "weird_random_008_a07",
+          "text": "getting hungry",
+          "points": 4670,
+          "aliases": [
+            "getting hungry"
+          ]
+        },
+        {
+          "id": "weird_random_008_a08",
+          "text": "procrastinating",
+          "points": 2749,
+          "aliases": [
+            "procrastinating"
+          ]
+        },
+        {
+          "id": "weird_random_008_a09",
+          "text": "dropping things",
+          "points": 1768,
+          "aliases": [
+            "dropping things"
+          ]
+        },
+        {
+          "id": "weird_random_008_a10",
+          "text": "having weird dreams",
+          "points": 706,
+          "aliases": [
+            "having weird dreams"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_009",
+      "prompt": "is it weird to",
+      "answers": [
+        {
+          "id": "weird_random_009_a01",
+          "text": "talk to yourself",
+          "points": 9971,
+          "aliases": [
+            "talk to yourself"
+          ]
+        },
+        {
+          "id": "weird_random_009_a02",
+          "text": "sleep with socks on",
+          "points": 9578,
+          "aliases": [
+            "sleep with socks on"
+          ]
+        },
+        {
+          "id": "weird_random_009_a03",
+          "text": "eat breakfast at night",
+          "points": 8785,
+          "aliases": [
+            "eat breakfast at night"
+          ]
+        },
+        {
+          "id": "weird_random_009_a04",
+          "text": "name your car",
+          "points": 7985,
+          "aliases": [
+            "name your car"
+          ]
+        },
+        {
+          "id": "weird_random_009_a05",
+          "text": "talk to pets",
+          "points": 7758,
+          "aliases": [
+            "talk to pets"
+          ]
+        },
+        {
+          "id": "weird_random_009_a06",
+          "text": "replay conversations",
+          "points": 7573,
+          "aliases": [
+            "replay conversations"
+          ]
+        },
+        {
+          "id": "weird_random_009_a07",
+          "text": "laugh alone",
+          "points": 6052,
+          "aliases": [
+            "laugh alone"
+          ]
+        },
+        {
+          "id": "weird_random_009_a08",
+          "text": "sleep with the lights on",
+          "points": 3646,
+          "aliases": [
+            "sleep with the lights on"
+          ]
+        },
+        {
+          "id": "weird_random_009_a09",
+          "text": "check the door twice",
+          "points": 2045,
+          "aliases": [
+            "check the door twice"
+          ]
+        },
+        {
+          "id": "weird_random_009_a10",
+          "text": "make up stories",
+          "points": 941,
+          "aliases": [
+            "make up stories"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_010",
+      "prompt": "what is that smell",
+      "answers": [
+        {
+          "id": "weird_random_010_a01",
+          "text": "in my house",
+          "points": 9296,
+          "aliases": [
+            "in my house"
+          ]
+        },
+        {
+          "id": "weird_random_010_a02",
+          "text": "in my room",
+          "points": 7576,
+          "aliases": [
+            "in my room"
+          ]
+        },
+        {
+          "id": "weird_random_010_a03",
+          "text": "in my car",
+          "points": 7009,
+          "aliases": [
+            "in my car"
+          ]
+        },
+        {
+          "id": "weird_random_010_a04",
+          "text": "coming from the kitchen",
+          "points": 6232,
+          "aliases": [
+            "coming from the kitchen"
+          ]
+        },
+        {
+          "id": "weird_random_010_a05",
+          "text": "coming from the bathroom",
+          "points": 5996,
+          "aliases": [
+            "coming from the bathroom"
+          ]
+        },
+        {
+          "id": "weird_random_010_a06",
+          "text": "outside",
+          "points": 5707,
+          "aliases": [
+            "outside"
+          ]
+        },
+        {
+          "id": "weird_random_010_a07",
+          "text": "from the fridge",
+          "points": 3281,
+          "aliases": [
+            "from the fridge"
+          ]
+        },
+        {
+          "id": "weird_random_010_a08",
+          "text": "from my shoes",
+          "points": 2226,
+          "aliases": [
+            "from my shoes"
+          ]
+        },
+        {
+          "id": "weird_random_010_a09",
+          "text": "from the drain",
+          "points": 1939,
+          "aliases": [
+            "from the drain"
+          ]
+        },
+        {
+          "id": "weird_random_010_a10",
+          "text": "from the wall",
+          "points": 1356,
+          "aliases": [
+            "from the wall"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_011",
+      "prompt": "why is my",
+      "answers": [
+        {
+          "id": "weird_random_011_a01",
+          "text": "left eye twitching",
+          "points": 8977,
+          "aliases": [
+            "left eye twitching"
+          ]
+        },
+        {
+          "id": "weird_random_011_a02",
+          "text": "phone missing",
+          "points": 8498,
+          "aliases": [
+            "phone missing"
+          ]
+        },
+        {
+          "id": "weird_random_011_a03",
+          "text": "hair falling out",
+          "points": 7987,
+          "aliases": [
+            "hair falling out"
+          ]
+        },
+        {
+          "id": "weird_random_011_a04",
+          "text": "voice different",
+          "points": 5691,
+          "aliases": [
+            "voice different"
+          ]
+        },
+        {
+          "id": "weird_random_011_a05",
+          "text": "shadow weird",
+          "points": 5044,
+          "aliases": [
+            "shadow weird"
+          ]
+        },
+        {
+          "id": "weird_random_011_a06",
+          "text": "room echoing",
+          "points": 3848,
+          "aliases": [
+            "room echoing"
+          ]
+        },
+        {
+          "id": "weird_random_011_a07",
+          "text": "food moving",
+          "points": 3656,
+          "aliases": [
+            "food moving"
+          ]
+        },
+        {
+          "id": "weird_random_011_a08",
+          "text": "screen dirty",
+          "points": 3092,
+          "aliases": [
+            "screen dirty"
+          ]
+        },
+        {
+          "id": "weird_random_011_a09",
+          "text": "keyboard sticky",
+          "points": 1547,
+          "aliases": [
+            "keyboard sticky"
+          ]
+        },
+        {
+          "id": "weird_random_011_a10",
+          "text": "shoe squeaking",
+          "points": 1040,
+          "aliases": [
+            "shoe squeaking"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_012",
+      "prompt": "things that make",
+      "answers": [
+        {
+          "id": "weird_random_012_a01",
+          "text": "you sneeze",
+          "points": 9967,
+          "aliases": [
+            "you sneeze"
+          ]
+        },
+        {
+          "id": "weird_random_012_a02",
+          "text": "you laugh",
+          "points": 9638,
+          "aliases": [
+            "you laugh"
+          ]
+        },
+        {
+          "id": "weird_random_012_a03",
+          "text": "you sleepy",
+          "points": 8812,
+          "aliases": [
+            "you sleepy"
+          ]
+        },
+        {
+          "id": "weird_random_012_a04",
+          "text": "you hungry",
+          "points": 8296,
+          "aliases": [
+            "you hungry"
+          ]
+        },
+        {
+          "id": "weird_random_012_a05",
+          "text": "you thirsty",
+          "points": 8112,
+          "aliases": [
+            "you thirsty"
+          ]
+        },
+        {
+          "id": "weird_random_012_a06",
+          "text": "you nervous",
+          "points": 7921,
+          "aliases": [
+            "you nervous"
+          ]
+        },
+        {
+          "id": "weird_random_012_a07",
+          "text": "you cringe",
+          "points": 5756,
+          "aliases": [
+            "you cringe"
+          ]
+        },
+        {
+          "id": "weird_random_012_a08",
+          "text": "you angry",
+          "points": 4898,
+          "aliases": [
+            "you angry"
+          ]
+        },
+        {
+          "id": "weird_random_012_a09",
+          "text": "you happy",
+          "points": 2048,
+          "aliases": [
+            "you happy"
+          ]
+        },
+        {
+          "id": "weird_random_012_a10",
+          "text": "you jump",
+          "points": 838,
+          "aliases": [
+            "you jump"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_013",
+      "prompt": "why do people say",
+      "answers": [
+        {
+          "id": "weird_random_013_a01",
+          "text": "bless you",
+          "points": 9115,
+          "aliases": [
+            "bless you"
+          ]
+        },
+        {
+          "id": "weird_random_013_a02",
+          "text": "sorry so much",
+          "points": 8771,
+          "aliases": [
+            "sorry so much"
+          ]
+        },
+        {
+          "id": "weird_random_013_a03",
+          "text": "literally",
+          "points": 7897,
+          "aliases": [
+            "literally"
+          ]
+        },
+        {
+          "id": "weird_random_013_a04",
+          "text": "like",
+          "points": 7236,
+          "aliases": [
+            "like"
+          ]
+        },
+        {
+          "id": "weird_random_013_a05",
+          "text": "you know",
+          "points": 6249,
+          "aliases": [
+            "you know"
+          ]
+        },
+        {
+          "id": "weird_random_013_a06",
+          "text": "no worries",
+          "points": 5465,
+          "aliases": [
+            "no worries"
+          ]
+        },
+        {
+          "id": "weird_random_013_a07",
+          "text": "my bad",
+          "points": 5157,
+          "aliases": [
+            "my bad"
+          ]
+        },
+        {
+          "id": "weird_random_013_a08",
+          "text": "excuse me",
+          "points": 4014,
+          "aliases": [
+            "excuse me"
+          ]
+        },
+        {
+          "id": "weird_random_013_a09",
+          "text": "good luck",
+          "points": 2042,
+          "aliases": [
+            "good luck"
+          ]
+        },
+        {
+          "id": "weird_random_013_a10",
+          "text": "trust me",
+          "points": 590,
+          "aliases": [
+            "trust me"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_014",
+      "prompt": "why does everyone",
+      "answers": [
+        {
+          "id": "weird_random_014_a01",
+          "text": "love pizza",
+          "points": 8937,
+          "aliases": [
+            "love pizza"
+          ]
+        },
+        {
+          "id": "weird_random_014_a02",
+          "text": "have a phone",
+          "points": 8106,
+          "aliases": [
+            "have a phone"
+          ]
+        },
+        {
+          "id": "weird_random_014_a03",
+          "text": "use social media",
+          "points": 6965,
+          "aliases": [
+            "use social media"
+          ]
+        },
+        {
+          "id": "weird_random_014_a04",
+          "text": "say the same thing",
+          "points": 6357,
+          "aliases": [
+            "say the same thing"
+          ]
+        },
+        {
+          "id": "weird_random_014_a05",
+          "text": "look tired",
+          "points": 5323,
+          "aliases": [
+            "look tired"
+          ]
+        },
+        {
+          "id": "weird_random_014_a06",
+          "text": "drink coffee",
+          "points": 4073,
+          "aliases": [
+            "drink coffee"
+          ]
+        },
+        {
+          "id": "weird_random_014_a07",
+          "text": "have an opinion",
+          "points": 3496,
+          "aliases": [
+            "have an opinion"
+          ]
+        },
+        {
+          "id": "weird_random_014_a08",
+          "text": "check their phone",
+          "points": 3181,
+          "aliases": [
+            "check their phone"
+          ]
+        },
+        {
+          "id": "weird_random_014_a09",
+          "text": "hate Mondays",
+          "points": 1842,
+          "aliases": [
+            "hate Mondays"
+          ]
+        },
+        {
+          "id": "weird_random_014_a10",
+          "text": "like memes",
+          "points": 1017,
+          "aliases": [
+            "like memes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weird_random_015",
+      "prompt": "what if",
+      "answers": [
+        {
+          "id": "weird_random_015_a01",
+          "text": "the internet disappears",
+          "points": 9894,
+          "aliases": [
+            "the internet disappears"
+          ]
+        },
+        {
+          "id": "weird_random_015_a02",
+          "text": "you never sleep",
+          "points": 9449,
+          "aliases": [
+            "you never sleep"
+          ]
+        },
+        {
+          "id": "weird_random_015_a03",
+          "text": "gravity stopped",
+          "points": 8442,
+          "aliases": [
+            "gravity stopped"
+          ]
+        },
+        {
+          "id": "weird_random_015_a04",
+          "text": "the sun disappeared",
+          "points": 8013,
+          "aliases": [
+            "the sun disappeared"
+          ]
+        },
+        {
+          "id": "weird_random_015_a05",
+          "text": "you forgot your name",
+          "points": 7802,
+          "aliases": [
+            "you forgot your name"
+          ]
+        },
+        {
+          "id": "weird_random_015_a06",
+          "text": "you could read minds",
+          "points": 6532,
+          "aliases": [
+            "you could read minds"
+          ]
+        },
+        {
+          "id": "weird_random_015_a07",
+          "text": "animals could talk",
+          "points": 4255,
+          "aliases": [
+            "animals could talk"
+          ]
+        },
+        {
+          "id": "weird_random_015_a08",
+          "text": "time stopped",
+          "points": 3719,
+          "aliases": [
+            "time stopped"
+          ]
+        },
+        {
+          "id": "weird_random_015_a09",
+          "text": "everyone disappeared",
+          "points": 1490,
+          "aliases": [
+            "everyone disappeared"
+          ]
+        },
+        {
+          "id": "weird_random_015_a10",
+          "text": "you woke up invisible",
+          "points": 856,
+          "aliases": [
+            "you woke up invisible"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

@@ -1,0 +1,1315 @@
+{
+  "category": {
+    "id": "famous_people",
+    "name": "Famous People",
+    "description": "Search completions involving widely known public figures, entertainers, athletes, creators and other famous people.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "famous_people_001",
+      "prompt": "blake",
+      "answers": [
+        {
+          "id": "fp001_a01",
+          "text": "blake lively",
+          "points": 8859,
+          "aliases": [
+            "blake lively"
+          ]
+        },
+        {
+          "id": "fp001_a02",
+          "text": "blake shelton",
+          "points": 7000,
+          "aliases": [
+            "blake shelton"
+          ]
+        },
+        {
+          "id": "fp001_a03",
+          "text": "blake griffin",
+          "points": 6317,
+          "aliases": [
+            "blake griffin"
+          ]
+        },
+        {
+          "id": "fp001_a04",
+          "text": "blake lively husband",
+          "points": 6122,
+          "aliases": [
+            "blake lively husband"
+          ]
+        },
+        {
+          "id": "fp001_a05",
+          "text": "blake shelton songs",
+          "points": 5680,
+          "aliases": [
+            "blake shelton songs"
+          ]
+        },
+        {
+          "id": "fp001_a06",
+          "text": "blake lively movies",
+          "points": 5081,
+          "aliases": [
+            "blake lively movies"
+          ]
+        },
+        {
+          "id": "fp001_a07",
+          "text": "blake shelton wife",
+          "points": 4450,
+          "aliases": [
+            "blake shelton wife"
+          ]
+        },
+        {
+          "id": "fp001_a08",
+          "text": "blake lively age",
+          "points": 3762,
+          "aliases": [
+            "blake lively age"
+          ]
+        },
+        {
+          "id": "fp001_a09",
+          "text": "blake lively net worth",
+          "points": 1652,
+          "aliases": [
+            "blake lively net worth"
+          ]
+        },
+        {
+          "id": "fp001_a10",
+          "text": "blake shelton age",
+          "points": 1011,
+          "aliases": [
+            "blake shelton age"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_002",
+      "prompt": "taylor",
+      "answers": [
+        {
+          "id": "fp002_a01",
+          "text": "taylor swift",
+          "points": 8798,
+          "aliases": [
+            "taylor swift"
+          ]
+        },
+        {
+          "id": "fp002_a02",
+          "text": "taylor lautner",
+          "points": 6859,
+          "aliases": [
+            "taylor lautner"
+          ]
+        },
+        {
+          "id": "fp002_a03",
+          "text": "taylor swift songs",
+          "points": 6356,
+          "aliases": [
+            "taylor swift songs"
+          ]
+        },
+        {
+          "id": "fp002_a04",
+          "text": "taylor swift tour",
+          "points": 6093,
+          "aliases": [
+            "taylor swift tour"
+          ]
+        },
+        {
+          "id": "fp002_a05",
+          "text": "taylor swift age",
+          "points": 5304,
+          "aliases": [
+            "taylor swift age"
+          ]
+        },
+        {
+          "id": "fp002_a06",
+          "text": "taylor swift boyfriend",
+          "points": 5158,
+          "aliases": [
+            "taylor swift boyfriend"
+          ]
+        },
+        {
+          "id": "fp002_a07",
+          "text": "taylor swift net worth",
+          "points": 4107,
+          "aliases": [
+            "taylor swift net worth"
+          ]
+        },
+        {
+          "id": "fp002_a08",
+          "text": "taylor swift albums",
+          "points": 3693,
+          "aliases": [
+            "taylor swift albums"
+          ]
+        },
+        {
+          "id": "fp002_a09",
+          "text": "taylor lautner movies",
+          "points": 1160,
+          "aliases": [
+            "taylor lautner movies"
+          ]
+        },
+        {
+          "id": "fp002_a10",
+          "text": "taylor swift height",
+          "points": 602,
+          "aliases": [
+            "taylor swift height"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_003",
+      "prompt": "elon",
+      "answers": [
+        {
+          "id": "fp003_a01",
+          "text": "elon musk",
+          "points": 9475,
+          "aliases": [
+            "elon musk"
+          ]
+        },
+        {
+          "id": "fp003_a02",
+          "text": "elon musk net worth",
+          "points": 9010,
+          "aliases": [
+            "elon musk net worth"
+          ]
+        },
+        {
+          "id": "fp003_a03",
+          "text": "elon musk companies",
+          "points": 7305,
+          "aliases": [
+            "elon musk companies"
+          ]
+        },
+        {
+          "id": "fp003_a04",
+          "text": "elon musk twitter",
+          "points": 6700,
+          "aliases": [
+            "elon musk twitter",
+            "elon musk x"
+          ]
+        },
+        {
+          "id": "fp003_a05",
+          "text": "elon musk tesla",
+          "points": 5558,
+          "aliases": [
+            "elon musk tesla"
+          ]
+        },
+        {
+          "id": "fp003_a06",
+          "text": "elon musk age",
+          "points": 4768,
+          "aliases": [
+            "elon musk age"
+          ]
+        },
+        {
+          "id": "fp003_a07",
+          "text": "elon musk children",
+          "points": 2740,
+          "aliases": [
+            "elon musk kids"
+          ]
+        },
+        {
+          "id": "fp003_a08",
+          "text": "elon musk house",
+          "points": 2228,
+          "aliases": [
+            "elon musk home"
+          ]
+        },
+        {
+          "id": "fp003_a09",
+          "text": "elon musk biography",
+          "points": 1986,
+          "aliases": [
+            "elon musk bio"
+          ]
+        },
+        {
+          "id": "fp003_a10",
+          "text": "elon musk height",
+          "points": 1269,
+          "aliases": [
+            "elon musk height"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_004",
+      "prompt": "mr beast",
+      "answers": [
+        {
+          "id": "fp004_a01",
+          "text": "mr beast",
+          "points": 9468,
+          "aliases": [
+            "mrbeast",
+            "mr beast"
+          ]
+        },
+        {
+          "id": "fp004_a02",
+          "text": "mr beast net worth",
+          "points": 8377,
+          "aliases": [
+            "mrbeast net worth"
+          ]
+        },
+        {
+          "id": "fp004_a03",
+          "text": "mr beast age",
+          "points": 6963,
+          "aliases": [
+            "mrbeast age"
+          ]
+        },
+        {
+          "id": "fp004_a04",
+          "text": "mr beast real name",
+          "points": 6311,
+          "aliases": [
+            "mrbeast real name"
+          ]
+        },
+        {
+          "id": "fp004_a05",
+          "text": "mr beast videos",
+          "points": 5471,
+          "aliases": [
+            "mrbeast videos"
+          ]
+        },
+        {
+          "id": "fp004_a06",
+          "text": "mr beast chocolate",
+          "points": 4810,
+          "aliases": [
+            "feastables",
+            "mr beast chocolate"
+          ]
+        },
+        {
+          "id": "fp004_a07",
+          "text": "mr beast youtube",
+          "points": 4292,
+          "aliases": [
+            "mrbeast youtube"
+          ]
+        },
+        {
+          "id": "fp004_a08",
+          "text": "mr beast house",
+          "points": 4103,
+          "aliases": [
+            "mrbeast house"
+          ]
+        },
+        {
+          "id": "fp004_a09",
+          "text": "mr beast girlfriend",
+          "points": 2795,
+          "aliases": [
+            "mrbeast girlfriend"
+          ]
+        },
+        {
+          "id": "fp004_a10",
+          "text": "mr beast games",
+          "points": 598,
+          "aliases": [
+            "mrbeast game"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_005",
+      "prompt": "cristiano",
+      "answers": [
+        {
+          "id": "fp005_a01",
+          "text": "cristiano ronaldo",
+          "points": 9461,
+          "aliases": [
+            "cristiano ronaldo",
+            "ronaldo"
+          ]
+        },
+        {
+          "id": "fp005_a02",
+          "text": "cristiano ronaldo age",
+          "points": 8957,
+          "aliases": [
+            "ronaldo age"
+          ]
+        },
+        {
+          "id": "fp005_a03",
+          "text": "cristiano ronaldo net worth",
+          "points": 7188,
+          "aliases": [
+            "ronaldo net worth"
+          ]
+        },
+        {
+          "id": "fp005_a04",
+          "text": "cristiano ronaldo wife",
+          "points": 6239,
+          "aliases": [
+            "ronaldo wife"
+          ]
+        },
+        {
+          "id": "fp005_a05",
+          "text": "cristiano ronaldo children",
+          "points": 5763,
+          "aliases": [
+            "ronaldo children",
+            "ronaldo kids"
+          ]
+        },
+        {
+          "id": "fp005_a06",
+          "text": "cristiano ronaldo height",
+          "points": 3425,
+          "aliases": [
+            "ronaldo height"
+          ]
+        },
+        {
+          "id": "fp005_a07",
+          "text": "cristiano ronaldo goals",
+          "points": 2965,
+          "aliases": [
+            "ronaldo goals"
+          ]
+        },
+        {
+          "id": "fp005_a08",
+          "text": "cristiano ronaldo jersey number",
+          "points": 1135,
+          "aliases": [
+            "ronaldo jersey number"
+          ]
+        },
+        {
+          "id": "fp005_a09",
+          "text": "cristiano ronaldo records",
+          "points": 796,
+          "aliases": [
+            "ronaldo records"
+          ]
+        },
+        {
+          "id": "fp005_a10",
+          "text": "cristiano ronaldo haircut",
+          "points": 547,
+          "aliases": [
+            "ronaldo haircut"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_006",
+      "prompt": "zendaya",
+      "answers": [
+        {
+          "id": "fp006_a01",
+          "text": "zendaya",
+          "points": 9364,
+          "aliases": [
+            "zendaya"
+          ]
+        },
+        {
+          "id": "fp006_a02",
+          "text": "zendaya movies",
+          "points": 6674,
+          "aliases": [
+            "zendaya films"
+          ]
+        },
+        {
+          "id": "fp006_a03",
+          "text": "zendaya boyfriend",
+          "points": 6079,
+          "aliases": [
+            "zendaya partner"
+          ]
+        },
+        {
+          "id": "fp006_a04",
+          "text": "zendaya age",
+          "points": 3321,
+          "aliases": [
+            "zendaya age"
+          ]
+        },
+        {
+          "id": "fp006_a05",
+          "text": "zendaya height",
+          "points": 3152,
+          "aliases": [
+            "zendaya height"
+          ]
+        },
+        {
+          "id": "fp006_a06",
+          "text": "zendaya euphoria",
+          "points": 2891,
+          "aliases": [
+            "zendaya euphoria"
+          ]
+        },
+        {
+          "id": "fp006_a07",
+          "text": "zendaya spider man",
+          "points": 2112,
+          "aliases": [
+            "zendaya spiderman",
+            "zendaya spider-man"
+          ]
+        },
+        {
+          "id": "fp006_a08",
+          "text": "zendaya fashion",
+          "points": 1754,
+          "aliases": [
+            "zendaya outfits"
+          ]
+        },
+        {
+          "id": "fp006_a09",
+          "text": "zendaya net worth",
+          "points": 1539,
+          "aliases": [
+            "zendaya net worth"
+          ]
+        },
+        {
+          "id": "fp006_a10",
+          "text": "zendaya biography",
+          "points": 1311,
+          "aliases": [
+            "zendaya bio"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_007",
+      "prompt": "michael jackson",
+      "answers": [
+        {
+          "id": "fp007_a01",
+          "text": "michael jackson songs",
+          "points": 9884,
+          "aliases": [
+            "michael jackson music",
+            "michael jackson songs"
+          ]
+        },
+        {
+          "id": "fp007_a02",
+          "text": "michael jackson thriller",
+          "points": 9448,
+          "aliases": [
+            "thriller michael jackson"
+          ]
+        },
+        {
+          "id": "fp007_a03",
+          "text": "michael jackson moonwalk",
+          "points": 5606,
+          "aliases": [
+            "michael jackson moon walk"
+          ]
+        },
+        {
+          "id": "fp007_a04",
+          "text": "michael jackson albums",
+          "points": 5185,
+          "aliases": [
+            "michael jackson album"
+          ]
+        },
+        {
+          "id": "fp007_a05",
+          "text": "michael jackson dance",
+          "points": 5052,
+          "aliases": [
+            "michael jackson dancing"
+          ]
+        },
+        {
+          "id": "fp007_a06",
+          "text": "michael jackson biography",
+          "points": 4216,
+          "aliases": [
+            "michael jackson bio"
+          ]
+        },
+        {
+          "id": "fp007_a07",
+          "text": "michael jackson children",
+          "points": 3815,
+          "aliases": [
+            "michael jackson kids"
+          ]
+        },
+        {
+          "id": "fp007_a08",
+          "text": "michael jackson age",
+          "points": 3688,
+          "aliases": [
+            "michael jackson age"
+          ]
+        },
+        {
+          "id": "fp007_a09",
+          "text": "michael jackson net worth",
+          "points": 1945,
+          "aliases": [
+            "michael jackson net worth"
+          ]
+        },
+        {
+          "id": "fp007_a10",
+          "text": "michael jackson costumes",
+          "points": 1368,
+          "aliases": [
+            "michael jackson outfit",
+            "michael jackson clothes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_008",
+      "prompt": "leonardo",
+      "answers": [
+        {
+          "id": "famous_people_008_a01",
+          "text": "leonardo dicaprio",
+          "points": 9081,
+          "aliases": [
+            "leonardo dicaprio"
+          ]
+        },
+        {
+          "id": "famous_people_008_a02",
+          "text": "leonardo da vinci",
+          "points": 6505,
+          "aliases": [
+            "leonardo da vinci"
+          ]
+        },
+        {
+          "id": "famous_people_008_a03",
+          "text": "leonardo dicaprio movies",
+          "points": 6216,
+          "aliases": [
+            "leonardo dicaprio movies"
+          ]
+        },
+        {
+          "id": "famous_people_008_a04",
+          "text": "leonardo dicaprio age",
+          "points": 5292,
+          "aliases": [
+            "leonardo dicaprio age"
+          ]
+        },
+        {
+          "id": "famous_people_008_a05",
+          "text": "leonardo dicaprio net worth",
+          "points": 4500,
+          "aliases": [
+            "leonardo dicaprio net worth"
+          ]
+        },
+        {
+          "id": "famous_people_008_a06",
+          "text": "leonardo da vinci paintings",
+          "points": 3727,
+          "aliases": [
+            "leonardo da vinci paintings"
+          ]
+        },
+        {
+          "id": "famous_people_008_a07",
+          "text": "leonardo dicaprio girlfriend",
+          "points": 2666,
+          "aliases": [
+            "leonardo dicaprio girlfriend"
+          ]
+        },
+        {
+          "id": "famous_people_008_a08",
+          "text": "leonardo dicaprio oscar",
+          "points": 2301,
+          "aliases": [
+            "leonardo dicaprio oscar"
+          ]
+        },
+        {
+          "id": "famous_people_008_a09",
+          "text": "leonardo da vinci inventions",
+          "points": 1837,
+          "aliases": [
+            "leonardo da vinci inventions"
+          ]
+        },
+        {
+          "id": "famous_people_008_a10",
+          "text": "leonardo dicaprio height",
+          "points": 1155,
+          "aliases": [
+            "leonardo dicaprio height"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_009",
+      "prompt": "rihanna",
+      "answers": [
+        {
+          "id": "famous_people_009_a01",
+          "text": "rihanna",
+          "points": 8818,
+          "aliases": [
+            "rihanna"
+          ]
+        },
+        {
+          "id": "famous_people_009_a02",
+          "text": "rihanna songs",
+          "points": 7503,
+          "aliases": [
+            "rihanna songs"
+          ]
+        },
+        {
+          "id": "famous_people_009_a03",
+          "text": "rihanna net worth",
+          "points": 7340,
+          "aliases": [
+            "rihanna net worth"
+          ]
+        },
+        {
+          "id": "famous_people_009_a04",
+          "text": "rihanna age",
+          "points": 6530,
+          "aliases": [
+            "rihanna age"
+          ]
+        },
+        {
+          "id": "famous_people_009_a05",
+          "text": "rihanna husband",
+          "points": 6030,
+          "aliases": [
+            "rihanna husband"
+          ]
+        },
+        {
+          "id": "famous_people_009_a06",
+          "text": "rihanna albums",
+          "points": 5671,
+          "aliases": [
+            "rihanna albums"
+          ]
+        },
+        {
+          "id": "famous_people_009_a07",
+          "text": "rihanna movies",
+          "points": 4411,
+          "aliases": [
+            "rihanna movies"
+          ]
+        },
+        {
+          "id": "famous_people_009_a08",
+          "text": "rihanna fenty",
+          "points": 3869,
+          "aliases": [
+            "rihanna fenty"
+          ]
+        },
+        {
+          "id": "famous_people_009_a09",
+          "text": "rihanna baby",
+          "points": 1353,
+          "aliases": [
+            "rihanna baby"
+          ]
+        },
+        {
+          "id": "famous_people_009_a10",
+          "text": "rihanna makeup",
+          "points": 834,
+          "aliases": [
+            "rihanna makeup"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_010",
+      "prompt": "tom hanks",
+      "answers": [
+        {
+          "id": "famous_people_010_a01",
+          "text": "tom hanks movies",
+          "points": 9469,
+          "aliases": [
+            "tom hanks movies"
+          ]
+        },
+        {
+          "id": "famous_people_010_a02",
+          "text": "tom hanks age",
+          "points": 6849,
+          "aliases": [
+            "tom hanks age"
+          ]
+        },
+        {
+          "id": "famous_people_010_a03",
+          "text": "tom hanks wife",
+          "points": 6402,
+          "aliases": [
+            "tom hanks wife"
+          ]
+        },
+        {
+          "id": "famous_people_010_a04",
+          "text": "tom hanks net worth",
+          "points": 5615,
+          "aliases": [
+            "tom hanks net worth"
+          ]
+        },
+        {
+          "id": "famous_people_010_a05",
+          "text": "tom hanks sons",
+          "points": 5273,
+          "aliases": [
+            "tom hanks sons"
+          ]
+        },
+        {
+          "id": "famous_people_010_a06",
+          "text": "tom hanks best movies",
+          "points": 4299,
+          "aliases": [
+            "tom hanks best movies"
+          ]
+        },
+        {
+          "id": "famous_people_010_a07",
+          "text": "tom hanks biography",
+          "points": 4144,
+          "aliases": [
+            "tom hanks biography"
+          ]
+        },
+        {
+          "id": "famous_people_010_a08",
+          "text": "tom hanks cast away",
+          "points": 4000,
+          "aliases": [
+            "tom hanks cast away"
+          ]
+        },
+        {
+          "id": "famous_people_010_a09",
+          "text": "tom hanks toy story",
+          "points": 1489,
+          "aliases": [
+            "tom hanks toy story"
+          ]
+        },
+        {
+          "id": "famous_people_010_a10",
+          "text": "tom hanks height",
+          "points": 625,
+          "aliases": [
+            "tom hanks height"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_011",
+      "prompt": "dwayne johnson",
+      "answers": [
+        {
+          "id": "famous_people_011_a01",
+          "text": "dwayne johnson movies",
+          "points": 9778,
+          "aliases": [
+            "dwayne johnson movies"
+          ]
+        },
+        {
+          "id": "famous_people_011_a02",
+          "text": "dwayne johnson age",
+          "points": 8945,
+          "aliases": [
+            "dwayne johnson age"
+          ]
+        },
+        {
+          "id": "famous_people_011_a03",
+          "text": "dwayne johnson wife",
+          "points": 8692,
+          "aliases": [
+            "dwayne johnson wife"
+          ]
+        },
+        {
+          "id": "famous_people_011_a04",
+          "text": "dwayne johnson net worth",
+          "points": 8066,
+          "aliases": [
+            "dwayne johnson net worth"
+          ]
+        },
+        {
+          "id": "famous_people_011_a05",
+          "text": "dwayne johnson height",
+          "points": 7312,
+          "aliases": [
+            "dwayne johnson height"
+          ]
+        },
+        {
+          "id": "famous_people_011_a06",
+          "text": "dwayne johnson the rock",
+          "points": 6265,
+          "aliases": [
+            "dwayne johnson the rock"
+          ]
+        },
+        {
+          "id": "famous_people_011_a07",
+          "text": "dwayne johnson family",
+          "points": 4355,
+          "aliases": [
+            "dwayne johnson family"
+          ]
+        },
+        {
+          "id": "famous_people_011_a08",
+          "text": "dwayne johnson workout",
+          "points": 2989,
+          "aliases": [
+            "dwayne johnson workout"
+          ]
+        },
+        {
+          "id": "famous_people_011_a09",
+          "text": "dwayne johnson movies 2025",
+          "points": 1749,
+          "aliases": [
+            "dwayne johnson movies 2025"
+          ]
+        },
+        {
+          "id": "famous_people_011_a10",
+          "text": "dwayne johnson biography",
+          "points": 1448,
+          "aliases": [
+            "dwayne johnson biography"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_012",
+      "prompt": "ariana",
+      "answers": [
+        {
+          "id": "famous_people_012_a01",
+          "text": "ariana grande",
+          "points": 8821,
+          "aliases": [
+            "ariana grande"
+          ]
+        },
+        {
+          "id": "famous_people_012_a02",
+          "text": "ariana grande songs",
+          "points": 7672,
+          "aliases": [
+            "ariana grande songs"
+          ]
+        },
+        {
+          "id": "famous_people_012_a03",
+          "text": "ariana grande age",
+          "points": 6982,
+          "aliases": [
+            "ariana grande age"
+          ]
+        },
+        {
+          "id": "famous_people_012_a04",
+          "text": "ariana grande husband",
+          "points": 6802,
+          "aliases": [
+            "ariana grande husband"
+          ]
+        },
+        {
+          "id": "famous_people_012_a05",
+          "text": "ariana grande albums",
+          "points": 5774,
+          "aliases": [
+            "ariana grande albums"
+          ]
+        },
+        {
+          "id": "famous_people_012_a06",
+          "text": "ariana grande movies",
+          "points": 4589,
+          "aliases": [
+            "ariana grande movies"
+          ]
+        },
+        {
+          "id": "famous_people_012_a07",
+          "text": "ariana grande height",
+          "points": 3300,
+          "aliases": [
+            "ariana grande height"
+          ]
+        },
+        {
+          "id": "famous_people_012_a08",
+          "text": "ariana grande net worth",
+          "points": 3140,
+          "aliases": [
+            "ariana grande net worth"
+          ]
+        },
+        {
+          "id": "famous_people_012_a09",
+          "text": "ariana grande perfume",
+          "points": 2721,
+          "aliases": [
+            "ariana grande perfume"
+          ]
+        },
+        {
+          "id": "famous_people_012_a10",
+          "text": "ariana grande voice",
+          "points": 964,
+          "aliases": [
+            "ariana grande voice"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_013",
+      "prompt": "lebron",
+      "answers": [
+        {
+          "id": "famous_people_013_a01",
+          "text": "lebron james",
+          "points": 9932,
+          "aliases": [
+            "lebron james"
+          ]
+        },
+        {
+          "id": "famous_people_013_a02",
+          "text": "lebron james age",
+          "points": 8674,
+          "aliases": [
+            "lebron james age"
+          ]
+        },
+        {
+          "id": "famous_people_013_a03",
+          "text": "lebron james height",
+          "points": 7842,
+          "aliases": [
+            "lebron james height"
+          ]
+        },
+        {
+          "id": "famous_people_013_a04",
+          "text": "lebron james stats",
+          "points": 6868,
+          "aliases": [
+            "lebron james stats"
+          ]
+        },
+        {
+          "id": "famous_people_013_a05",
+          "text": "lebron james wife",
+          "points": 4273,
+          "aliases": [
+            "lebron james wife"
+          ]
+        },
+        {
+          "id": "famous_people_013_a06",
+          "text": "lebron james net worth",
+          "points": 3841,
+          "aliases": [
+            "lebron james net worth"
+          ]
+        },
+        {
+          "id": "famous_people_013_a07",
+          "text": "lebron james shoes",
+          "points": 3032,
+          "aliases": [
+            "lebron james shoes"
+          ]
+        },
+        {
+          "id": "famous_people_013_a08",
+          "text": "lebron james championships",
+          "points": 2604,
+          "aliases": [
+            "lebron james championships"
+          ]
+        },
+        {
+          "id": "famous_people_013_a09",
+          "text": "lebron james son",
+          "points": 1958,
+          "aliases": [
+            "lebron james son"
+          ]
+        },
+        {
+          "id": "famous_people_013_a10",
+          "text": "lebron james team",
+          "points": 1107,
+          "aliases": [
+            "lebron james team"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_014",
+      "prompt": "emma",
+      "answers": [
+        {
+          "id": "famous_people_014_a01",
+          "text": "emma watson",
+          "points": 8734,
+          "aliases": [
+            "emma watson"
+          ]
+        },
+        {
+          "id": "famous_people_014_a02",
+          "text": "emma stone",
+          "points": 6166,
+          "aliases": [
+            "emma stone"
+          ]
+        },
+        {
+          "id": "famous_people_014_a03",
+          "text": "emma watson movies",
+          "points": 4165,
+          "aliases": [
+            "emma watson movies"
+          ]
+        },
+        {
+          "id": "famous_people_014_a04",
+          "text": "emma stone movies",
+          "points": 3221,
+          "aliases": [
+            "emma stone movies"
+          ]
+        },
+        {
+          "id": "famous_people_014_a05",
+          "text": "emma watson age",
+          "points": 1987,
+          "aliases": [
+            "emma watson age"
+          ]
+        },
+        {
+          "id": "famous_people_014_a06",
+          "text": "emma stone age",
+          "points": 1850,
+          "aliases": [
+            "emma stone age"
+          ]
+        },
+        {
+          "id": "famous_people_014_a07",
+          "text": "emma watson husband",
+          "points": 1754,
+          "aliases": [
+            "emma watson husband"
+          ]
+        },
+        {
+          "id": "famous_people_014_a08",
+          "text": "emma stone husband",
+          "points": 1434,
+          "aliases": [
+            "emma stone husband"
+          ]
+        },
+        {
+          "id": "famous_people_014_a09",
+          "text": "emma watson net worth",
+          "points": 1106,
+          "aliases": [
+            "emma watson net worth"
+          ]
+        },
+        {
+          "id": "famous_people_014_a10",
+          "text": "emma stone net worth",
+          "points": 853,
+          "aliases": [
+            "emma stone net worth"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "famous_people_015",
+      "prompt": "jackie chan",
+      "answers": [
+        {
+          "id": "famous_people_015_a01",
+          "text": "jackie chan movies",
+          "points": 9521,
+          "aliases": [
+            "jackie chan movies"
+          ]
+        },
+        {
+          "id": "famous_people_015_a02",
+          "text": "jackie chan age",
+          "points": 8984,
+          "aliases": [
+            "jackie chan age"
+          ]
+        },
+        {
+          "id": "famous_people_015_a03",
+          "text": "jackie chan net worth",
+          "points": 8292,
+          "aliases": [
+            "jackie chan net worth"
+          ]
+        },
+        {
+          "id": "famous_people_015_a04",
+          "text": "jackie chan son",
+          "points": 7927,
+          "aliases": [
+            "jackie chan son"
+          ]
+        },
+        {
+          "id": "famous_people_015_a05",
+          "text": "jackie chan daughter",
+          "points": 7762,
+          "aliases": [
+            "jackie chan daughter"
+          ]
+        },
+        {
+          "id": "famous_people_015_a06",
+          "text": "jackie chan martial arts",
+          "points": 6680,
+          "aliases": [
+            "jackie chan martial arts"
+          ]
+        },
+        {
+          "id": "famous_people_015_a07",
+          "text": "jackie chan best movies",
+          "points": 6383,
+          "aliases": [
+            "jackie chan best movies"
+          ]
+        },
+        {
+          "id": "famous_people_015_a08",
+          "text": "jackie chan biography",
+          "points": 5516,
+          "aliases": [
+            "jackie chan biography"
+          ]
+        },
+        {
+          "id": "famous_people_015_a09",
+          "text": "jackie chan stunt",
+          "points": 5053,
+          "aliases": [
+            "jackie chan stunt"
+          ]
+        },
+        {
+          "id": "famous_people_015_a10",
+          "text": "jackie chan height",
+          "points": 774,
+          "aliases": [
+            "jackie chan height"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}

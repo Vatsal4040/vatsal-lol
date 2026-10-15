@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Complete the Search — an independent search-completion guessing game." />
+  <title>Complete the Search</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="app" class="app-shell">
+
+    <!-- ========================================== -->
+    <!-- 1. CATEGORY SELECTION SCREEN               -->
+    <!-- ========================================== -->
+    <section id="categoryScreen" class="screen active" aria-labelledby="mainTitle">
+      <div class="brand-lockup">
+        <div class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" class="logo-svg">
+            <circle cx="21" cy="21" r="14" stroke="#ffb52d" stroke-width="4.5"/>
+            <path d="M31.5 31.5L42 42" stroke="#2788ff" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="21" cy="21" r="7" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+          </svg>
+        </div>
+        <h1 id="mainTitle">COMPLETE THE <span class="brand-gold">SEARCH...</span></h1>
+        <p class="brand-tagline">How would people finish the search? Guess the top hidden completions.</p>
+      </div>
+
+      <div class="section-heading">
+        <div class="section-title-group">
+          <h2>Choose a Category</h2>
+          <span class="section-subtitle">Select any category to begin playing</span>
+        </div>
+        <div class="badge-total">8 categories · 15 rounds each</div>
+      </div>
+
+      <div id="categoryGrid" class="category-grid" role="list"></div>
+
+      <footer class="legal-note">
+        Independent search-completion guessing game. Prompts and answers are curated specifically for gameplay and are not live search results.
+      </footer>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. GAMEPLAY SCREEN                         -->
+    <!-- ========================================== -->
+    <section id="gameScreen" class="screen" aria-label="Game board">
+      <header class="game-header">
+        <button id="backToCategories" class="icon-button" aria-label="Back to category selection" title="Choose another category">
+          <span class="icon-arrow">←</span>
+          <span class="back-text">Categories</span>
+        </button>
+
+        <div class="header-center-info">
+          <span class="header-category" id="headerCategory">Famous People</span>
+          <span class="round-counter" id="roundCounter">ROUND 1 / 15</span>
+        </div>
+
+        <div class="header-score-pill" id="headerScorePill" title="Current Round Score">
+          <span class="score-label">SCORE</span>
+          <span class="score-value" id="currentScore">0</span>
+        </div>
+      </header>
+
+      <div class="game-content">
+        <!-- Title & Strike Info Row -->
+        <div class="game-title-row">
+          <div class="game-prompt-headings">
+            <div class="eyebrow">COMPLETE <strong class="brand-gold">THE SEARCH</strong></div>
+            <h2 id="questionPrompt">How would you complete this search?</h2>
+          </div>
+
+          <div class="strikes-wrapper" aria-label="Strikes counter">
+            <span class="strikes-label">STRIKES</span>
+            <div class="strike-dots" id="strikeDots">
+              <span class="strike-dot" data-index="0" aria-label="Strike 1">✕</span>
+              <span class="strike-dot" data-index="1" aria-label="Strike 2">✕</span>
+              <span class="strike-dot" data-index="2" aria-label="Strike 3">✕</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO SEARCH BOX -->
+        <div class="hero-search-bar" id="heroSearchBar" aria-label="Search prompt hero">
+          <div class="search-icon-wrapper" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" class="hero-search-svg">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="search-query-display">
+            <span id="searchPrompt" class="prompt-text">why do</span>
+            <span class="search-caret" aria-hidden="true">|</span>
+            <span class="prompt-blank" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- 10 ANSWER ROWS BOARD -->
+        <div id="answerBoard" class="answer-board" role="region" aria-label="Autocomplete answer board"></div>
+
+        <!-- FEEDBACK BAR -->
+        <div id="feedback" class="feedback-banner" aria-live="assertive" role="status"></div>
+
+        <!-- GUESS FORM -->
+        <form id="guessForm" class="guess-form" autocomplete="off" novalidate>
+          <div class="input-wrapper">
+            <input
+              id="guessInput"
+              type="text"
+              placeholder="Type your completion..."
+              aria-label="Type your search completion"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              maxlength="80"
+            />
+          </div>
+          <button type="submit" id="guessSubmit" class="primary-button">GUESS</button>
+          <button type="button" id="giveUp" class="secondary-button">GIVE UP</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. ROUND SUMMARY SCREEN                    -->
+    <!-- ========================================== -->
+    <section id="summaryScreen" class="screen" aria-label="Round summary">
+      <div class="summary-card">
+        <div class="summary-top-tag" id="summaryTopTag">ROUND COMPLETE</div>
+        <h2 id="summaryTitle" class="summary-headline">Search Complete</h2>
+        <p id="summarySubtitle" class="summary-subline">Here are all 10 search completions</p>
+
+        <div class="summary-search-pill" aria-label="Search prompt summary">
+          <span class="summary-pill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.5"/>
+              <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="summary-prompt-prefix" id="summaryPromptPrefix">Search:</span>
+          <strong id="summaryPromptText" class="summary-prompt-text">why do</strong>
+        </div>
+
+        <div class="summary-list-heading">
+          <span>RANK &amp; COMPLETION</span>
+          <span>POINTS</span>
+        </div>
+
+        <div id="summaryAnswers" class="summary-answers-list"></div>
+
+        <div class="summary-score-banner">
+          <div class="score-banner-label">
+            <span>ROUND SCORE</span>
+            <small id="summaryFoundCount">0 of 10 found</small>
+          </div>
+          <div class="score-banner-points" id="summaryScore">0</div>
+        </div>
+
+        <div class="summary-actions">
+          <button id="nextRound" class="primary-button wide">Next Round →</button>
+          <button id="chooseCategory" class="secondary-button wide">Choose Category</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

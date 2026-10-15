@@ -1,0 +1,1307 @@
+{
+  "category": {
+    "id": "food_drink",
+    "name": "Food & Drink",
+    "description": "Food, cooking, ingredients, drinks and restaurant searches.",
+    "data_note": "Curated game content. Points are gameplay weights, not live search-volume measurements."
+  },
+  "rounds": [
+    {
+      "id": "food_drink_001",
+      "prompt": "why does pizza",
+      "answers": [
+        {
+          "id": "food_drink_001_a01",
+          "text": "taste so good",
+          "points": 9580,
+          "aliases": [
+            "taste so good"
+          ]
+        },
+        {
+          "id": "food_drink_001_a02",
+          "text": "make me thirsty",
+          "points": 9119,
+          "aliases": [
+            "make me thirsty"
+          ]
+        },
+        {
+          "id": "food_drink_001_a03",
+          "text": "taste better cold",
+          "points": 8399,
+          "aliases": [
+            "taste better cold"
+          ]
+        },
+        {
+          "id": "food_drink_001_a04",
+          "text": "get soggy",
+          "points": 7272,
+          "aliases": [
+            "get soggy"
+          ]
+        },
+        {
+          "id": "food_drink_001_a05",
+          "text": "have so many calories",
+          "points": 5645,
+          "aliases": [
+            "have so many calories"
+          ]
+        },
+        {
+          "id": "food_drink_001_a06",
+          "text": "make me sleepy",
+          "points": 5419,
+          "aliases": [
+            "make me sleepy"
+          ]
+        },
+        {
+          "id": "food_drink_001_a07",
+          "text": "get cold quickly",
+          "points": 5119,
+          "aliases": [
+            "get cold quickly"
+          ]
+        },
+        {
+          "id": "food_drink_001_a08",
+          "text": "stick to the box",
+          "points": 4761,
+          "aliases": [
+            "stick to the box"
+          ]
+        },
+        {
+          "id": "food_drink_001_a09",
+          "text": "taste different the next day",
+          "points": 3371,
+          "aliases": [
+            "taste different the next day"
+          ]
+        },
+        {
+          "id": "food_drink_001_a10",
+          "text": "make me feel full",
+          "points": 1156,
+          "aliases": [
+            "make me feel full"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_002",
+      "prompt": "why does coffee",
+      "answers": [
+        {
+          "id": "food_drink_002_a01",
+          "text": "make me poop",
+          "points": 9338,
+          "aliases": [
+            "make me poop"
+          ]
+        },
+        {
+          "id": "food_drink_002_a02",
+          "text": "make me sleepy",
+          "points": 8223,
+          "aliases": [
+            "make me sleepy"
+          ]
+        },
+        {
+          "id": "food_drink_002_a03",
+          "text": "taste bitter",
+          "points": 7124,
+          "aliases": [
+            "taste bitter"
+          ]
+        },
+        {
+          "id": "food_drink_002_a04",
+          "text": "make me pee",
+          "points": 6960,
+          "aliases": [
+            "make me pee"
+          ]
+        },
+        {
+          "id": "food_drink_002_a05",
+          "text": "give me energy",
+          "points": 5476,
+          "aliases": [
+            "give me energy"
+          ]
+        },
+        {
+          "id": "food_drink_002_a06",
+          "text": "make me shaky",
+          "points": 4916,
+          "aliases": [
+            "make me shaky"
+          ]
+        },
+        {
+          "id": "food_drink_002_a07",
+          "text": "keep me awake",
+          "points": 4371,
+          "aliases": [
+            "keep me awake"
+          ]
+        },
+        {
+          "id": "food_drink_002_a08",
+          "text": "make my heart race",
+          "points": 3589,
+          "aliases": [
+            "make my heart race"
+          ]
+        },
+        {
+          "id": "food_drink_002_a09",
+          "text": "make me anxious",
+          "points": 2352,
+          "aliases": [
+            "make me anxious"
+          ]
+        },
+        {
+          "id": "food_drink_002_a10",
+          "text": "smell so good",
+          "points": 1448,
+          "aliases": [
+            "smell so good"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_003",
+      "prompt": "can you eat",
+      "answers": [
+        {
+          "id": "food_drink_003_a01",
+          "text": "raw eggs",
+          "points": 9920,
+          "aliases": [
+            "raw eggs"
+          ]
+        },
+        {
+          "id": "food_drink_003_a02",
+          "text": "banana peels",
+          "points": 8507,
+          "aliases": [
+            "banana peels"
+          ]
+        },
+        {
+          "id": "food_drink_003_a03",
+          "text": "watermelon seeds",
+          "points": 8272,
+          "aliases": [
+            "watermelon seeds"
+          ]
+        },
+        {
+          "id": "food_drink_003_a04",
+          "text": "chicken skin",
+          "points": 6402,
+          "aliases": [
+            "chicken skin"
+          ]
+        },
+        {
+          "id": "food_drink_003_a05",
+          "text": "potato skins",
+          "points": 5344,
+          "aliases": [
+            "potato skins"
+          ]
+        },
+        {
+          "id": "food_drink_003_a06",
+          "text": "apple seeds",
+          "points": 4683,
+          "aliases": [
+            "apple seeds"
+          ]
+        },
+        {
+          "id": "food_drink_003_a07",
+          "text": "mango skin",
+          "points": 3160,
+          "aliases": [
+            "mango skin"
+          ]
+        },
+        {
+          "id": "food_drink_003_a08",
+          "text": "ice",
+          "points": 2344,
+          "aliases": [
+            "ice"
+          ]
+        },
+        {
+          "id": "food_drink_003_a09",
+          "text": "raw corn",
+          "points": 1488,
+          "aliases": [
+            "raw corn"
+          ]
+        },
+        {
+          "id": "food_drink_003_a10",
+          "text": "kiwi skin",
+          "points": 1166,
+          "aliases": [
+            "kiwi skin"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_004",
+      "prompt": "how to make",
+      "answers": [
+        {
+          "id": "food_drink_004_a01",
+          "text": "scrambled eggs",
+          "points": 8961,
+          "aliases": [
+            "scrambled eggs"
+          ]
+        },
+        {
+          "id": "food_drink_004_a02",
+          "text": "pasta",
+          "points": 6800,
+          "aliases": [
+            "pasta"
+          ]
+        },
+        {
+          "id": "food_drink_004_a03",
+          "text": "pizza",
+          "points": 6317,
+          "aliases": [
+            "pizza"
+          ]
+        },
+        {
+          "id": "food_drink_004_a04",
+          "text": "pancakes",
+          "points": 6023,
+          "aliases": [
+            "pancakes"
+          ]
+        },
+        {
+          "id": "food_drink_004_a05",
+          "text": "fried rice",
+          "points": 5644,
+          "aliases": [
+            "fried rice"
+          ]
+        },
+        {
+          "id": "food_drink_004_a06",
+          "text": "coffee",
+          "points": 4319,
+          "aliases": [
+            "coffee"
+          ]
+        },
+        {
+          "id": "food_drink_004_a07",
+          "text": "noodles",
+          "points": 4167,
+          "aliases": [
+            "noodles"
+          ]
+        },
+        {
+          "id": "food_drink_004_a08",
+          "text": "omelette",
+          "points": 4000,
+          "aliases": [
+            "omelette"
+          ]
+        },
+        {
+          "id": "food_drink_004_a09",
+          "text": "garlic bread",
+          "points": 2535,
+          "aliases": [
+            "garlic bread"
+          ]
+        },
+        {
+          "id": "food_drink_004_a10",
+          "text": "hot chocolate",
+          "points": 1280,
+          "aliases": [
+            "hot chocolate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_005",
+      "prompt": "what goes well with",
+      "answers": [
+        {
+          "id": "food_drink_005_a01",
+          "text": "pizza",
+          "points": 9479,
+          "aliases": [
+            "pizza"
+          ]
+        },
+        {
+          "id": "food_drink_005_a02",
+          "text": "pasta",
+          "points": 7875,
+          "aliases": [
+            "pasta"
+          ]
+        },
+        {
+          "id": "food_drink_005_a03",
+          "text": "rice",
+          "points": 6250,
+          "aliases": [
+            "rice"
+          ]
+        },
+        {
+          "id": "food_drink_005_a04",
+          "text": "eggs",
+          "points": 5309,
+          "aliases": [
+            "eggs"
+          ]
+        },
+        {
+          "id": "food_drink_005_a05",
+          "text": "coffee",
+          "points": 3775,
+          "aliases": [
+            "coffee"
+          ]
+        },
+        {
+          "id": "food_drink_005_a06",
+          "text": "chicken",
+          "points": 3178,
+          "aliases": [
+            "chicken"
+          ]
+        },
+        {
+          "id": "food_drink_005_a07",
+          "text": "fries",
+          "points": 2250,
+          "aliases": [
+            "fries"
+          ]
+        },
+        {
+          "id": "food_drink_005_a08",
+          "text": "steak",
+          "points": 1805,
+          "aliases": [
+            "steak"
+          ]
+        },
+        {
+          "id": "food_drink_005_a09",
+          "text": "bread",
+          "points": 1282,
+          "aliases": [
+            "bread"
+          ]
+        },
+        {
+          "id": "food_drink_005_a10",
+          "text": "cheese",
+          "points": 652,
+          "aliases": [
+            "cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_006",
+      "prompt": "why does spicy food",
+      "answers": [
+        {
+          "id": "food_drink_006_a01",
+          "text": "burn",
+          "points": 9400,
+          "aliases": [
+            "burn"
+          ]
+        },
+        {
+          "id": "food_drink_006_a02",
+          "text": "make you sweat",
+          "points": 8909,
+          "aliases": [
+            "make you sweat"
+          ]
+        },
+        {
+          "id": "food_drink_006_a03",
+          "text": "make your nose run",
+          "points": 7716,
+          "aliases": [
+            "make your nose run"
+          ]
+        },
+        {
+          "id": "food_drink_006_a04",
+          "text": "taste good",
+          "points": 4237,
+          "aliases": [
+            "taste good"
+          ]
+        },
+        {
+          "id": "food_drink_006_a05",
+          "text": "make you thirsty",
+          "points": 3432,
+          "aliases": [
+            "make you thirsty"
+          ]
+        },
+        {
+          "id": "food_drink_006_a06",
+          "text": "make you cough",
+          "points": 3310,
+          "aliases": [
+            "make you cough"
+          ]
+        },
+        {
+          "id": "food_drink_006_a07",
+          "text": "make your eyes water",
+          "points": 2904,
+          "aliases": [
+            "make your eyes water"
+          ]
+        },
+        {
+          "id": "food_drink_006_a08",
+          "text": "make your face red",
+          "points": 2294,
+          "aliases": [
+            "make your face red"
+          ]
+        },
+        {
+          "id": "food_drink_006_a09",
+          "text": "feel addictive",
+          "points": 1685,
+          "aliases": [
+            "feel addictive"
+          ]
+        },
+        {
+          "id": "food_drink_006_a10",
+          "text": "hurt",
+          "points": 1040,
+          "aliases": [
+            "hurt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_007",
+      "prompt": "can i cook",
+      "answers": [
+        {
+          "id": "food_drink_007_a01",
+          "text": "eggs in the microwave",
+          "points": 8779,
+          "aliases": [
+            "eggs in the microwave"
+          ]
+        },
+        {
+          "id": "food_drink_007_a02",
+          "text": "rice in a microwave",
+          "points": 7626,
+          "aliases": [
+            "rice in a microwave"
+          ]
+        },
+        {
+          "id": "food_drink_007_a03",
+          "text": "pasta in the microwave",
+          "points": 7198,
+          "aliases": [
+            "pasta in the microwave"
+          ]
+        },
+        {
+          "id": "food_drink_007_a04",
+          "text": "chicken in an air fryer",
+          "points": 5860,
+          "aliases": [
+            "chicken in an air fryer"
+          ]
+        },
+        {
+          "id": "food_drink_007_a05",
+          "text": "pizza in an air fryer",
+          "points": 5263,
+          "aliases": [
+            "pizza in an air fryer"
+          ]
+        },
+        {
+          "id": "food_drink_007_a06",
+          "text": "noodles in a kettle",
+          "points": 5080,
+          "aliases": [
+            "noodles in a kettle"
+          ]
+        },
+        {
+          "id": "food_drink_007_a07",
+          "text": "an egg in an air fryer",
+          "points": 4612,
+          "aliases": [
+            "an egg in an air fryer"
+          ]
+        },
+        {
+          "id": "food_drink_007_a08",
+          "text": "bacon in the oven",
+          "points": 2425,
+          "aliases": [
+            "bacon in the oven"
+          ]
+        },
+        {
+          "id": "food_drink_007_a09",
+          "text": "potatoes in a microwave",
+          "points": 2140,
+          "aliases": [
+            "potatoes in a microwave"
+          ]
+        },
+        {
+          "id": "food_drink_007_a10",
+          "text": "frozen food in an air fryer",
+          "points": 668,
+          "aliases": [
+            "frozen food in an air fryer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_008",
+      "prompt": "best food for",
+      "answers": [
+        {
+          "id": "food_drink_008_a01",
+          "text": "breakfast",
+          "points": 8984,
+          "aliases": [
+            "breakfast"
+          ]
+        },
+        {
+          "id": "food_drink_008_a02",
+          "text": "weight loss",
+          "points": 8388,
+          "aliases": [
+            "weight loss"
+          ]
+        },
+        {
+          "id": "food_drink_008_a03",
+          "text": "dinner",
+          "points": 7548,
+          "aliases": [
+            "dinner"
+          ]
+        },
+        {
+          "id": "food_drink_008_a04",
+          "text": "a party",
+          "points": 7261,
+          "aliases": [
+            "a party"
+          ]
+        },
+        {
+          "id": "food_drink_008_a05",
+          "text": "a picnic",
+          "points": 7080,
+          "aliases": [
+            "a picnic"
+          ]
+        },
+        {
+          "id": "food_drink_008_a06",
+          "text": "a road trip",
+          "points": 5767,
+          "aliases": [
+            "a road trip"
+          ]
+        },
+        {
+          "id": "food_drink_008_a07",
+          "text": "a cold",
+          "points": 5577,
+          "aliases": [
+            "a cold"
+          ]
+        },
+        {
+          "id": "food_drink_008_a08",
+          "text": "a hangover",
+          "points": 2182,
+          "aliases": [
+            "a hangover"
+          ]
+        },
+        {
+          "id": "food_drink_008_a09",
+          "text": "a movie night",
+          "points": 1471,
+          "aliases": [
+            "a movie night"
+          ]
+        },
+        {
+          "id": "food_drink_008_a10",
+          "text": "a barbecue",
+          "points": 753,
+          "aliases": [
+            "a barbecue"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_009",
+      "prompt": "easy dinner",
+      "answers": [
+        {
+          "id": "food_drink_009_a01",
+          "text": "easy dinner recipes",
+          "points": 9368,
+          "aliases": [
+            "easy dinner recipes"
+          ]
+        },
+        {
+          "id": "food_drink_009_a02",
+          "text": "easy dinner ideas",
+          "points": 7843,
+          "aliases": [
+            "easy dinner ideas"
+          ]
+        },
+        {
+          "id": "food_drink_009_a03",
+          "text": "easy dinner for two",
+          "points": 4736,
+          "aliases": [
+            "easy dinner for two"
+          ]
+        },
+        {
+          "id": "food_drink_009_a04",
+          "text": "easy dinner with chicken",
+          "points": 4448,
+          "aliases": [
+            "easy dinner with chicken"
+          ]
+        },
+        {
+          "id": "food_drink_009_a05",
+          "text": "easy dinner with rice",
+          "points": 3425,
+          "aliases": [
+            "easy dinner with rice"
+          ]
+        },
+        {
+          "id": "food_drink_009_a06",
+          "text": "easy dinner with pasta",
+          "points": 2657,
+          "aliases": [
+            "easy dinner with pasta"
+          ]
+        },
+        {
+          "id": "food_drink_009_a07",
+          "text": "easy dinner vegetarian",
+          "points": 2186,
+          "aliases": [
+            "easy dinner vegetarian"
+          ]
+        },
+        {
+          "id": "food_drink_009_a08",
+          "text": "easy dinner under 30 minutes",
+          "points": 1942,
+          "aliases": [
+            "easy dinner under 30 minutes"
+          ]
+        },
+        {
+          "id": "food_drink_009_a09",
+          "text": "easy dinner for family",
+          "points": 1820,
+          "aliases": [
+            "easy dinner for family"
+          ]
+        },
+        {
+          "id": "food_drink_009_a10",
+          "text": "easy dinner in air fryer",
+          "points": 587,
+          "aliases": [
+            "easy dinner in air fryer"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_010",
+      "prompt": "how long to cook",
+      "answers": [
+        {
+          "id": "food_drink_010_a01",
+          "text": "chicken",
+          "points": 9493,
+          "aliases": [
+            "chicken"
+          ]
+        },
+        {
+          "id": "food_drink_010_a02",
+          "text": "eggs",
+          "points": 7698,
+          "aliases": [
+            "eggs"
+          ]
+        },
+        {
+          "id": "food_drink_010_a03",
+          "text": "rice",
+          "points": 7090,
+          "aliases": [
+            "rice"
+          ]
+        },
+        {
+          "id": "food_drink_010_a04",
+          "text": "pasta",
+          "points": 6640,
+          "aliases": [
+            "pasta"
+          ]
+        },
+        {
+          "id": "food_drink_010_a05",
+          "text": "potatoes",
+          "points": 5613,
+          "aliases": [
+            "potatoes"
+          ]
+        },
+        {
+          "id": "food_drink_010_a06",
+          "text": "steak",
+          "points": 4059,
+          "aliases": [
+            "steak"
+          ]
+        },
+        {
+          "id": "food_drink_010_a07",
+          "text": "corn",
+          "points": 2461,
+          "aliases": [
+            "corn"
+          ]
+        },
+        {
+          "id": "food_drink_010_a08",
+          "text": "broccoli",
+          "points": 1838,
+          "aliases": [
+            "broccoli"
+          ]
+        },
+        {
+          "id": "food_drink_010_a09",
+          "text": "salmon",
+          "points": 1576,
+          "aliases": [
+            "salmon"
+          ]
+        },
+        {
+          "id": "food_drink_010_a10",
+          "text": "bacon",
+          "points": 1154,
+          "aliases": [
+            "bacon"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_011",
+      "prompt": "why is my food",
+      "answers": [
+        {
+          "id": "food_drink_011_a01",
+          "text": "too salty",
+          "points": 9961,
+          "aliases": [
+            "too salty"
+          ]
+        },
+        {
+          "id": "food_drink_011_a02",
+          "text": "too spicy",
+          "points": 9350,
+          "aliases": [
+            "too spicy"
+          ]
+        },
+        {
+          "id": "food_drink_011_a03",
+          "text": "too sweet",
+          "points": 9000,
+          "aliases": [
+            "too sweet"
+          ]
+        },
+        {
+          "id": "food_drink_011_a04",
+          "text": "too bland",
+          "points": 8448,
+          "aliases": [
+            "too bland"
+          ]
+        },
+        {
+          "id": "food_drink_011_a05",
+          "text": "burnt",
+          "points": 7565,
+          "aliases": [
+            "burnt"
+          ]
+        },
+        {
+          "id": "food_drink_011_a06",
+          "text": "soggy",
+          "points": 6074,
+          "aliases": [
+            "soggy"
+          ]
+        },
+        {
+          "id": "food_drink_011_a07",
+          "text": "dry",
+          "points": 5519,
+          "aliases": [
+            "dry"
+          ]
+        },
+        {
+          "id": "food_drink_011_a08",
+          "text": "sticking to the pan",
+          "points": 2753,
+          "aliases": [
+            "sticking to the pan"
+          ]
+        },
+        {
+          "id": "food_drink_011_a09",
+          "text": "not cooking evenly",
+          "points": 2208,
+          "aliases": [
+            "not cooking evenly"
+          ]
+        },
+        {
+          "id": "food_drink_011_a10",
+          "text": "cold in the middle",
+          "points": 961,
+          "aliases": [
+            "cold in the middle"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_012",
+      "prompt": "what can i make with",
+      "answers": [
+        {
+          "id": "food_drink_012_a01",
+          "text": "eggs",
+          "points": 9406,
+          "aliases": [
+            "eggs"
+          ]
+        },
+        {
+          "id": "food_drink_012_a02",
+          "text": "chicken",
+          "points": 7473,
+          "aliases": [
+            "chicken"
+          ]
+        },
+        {
+          "id": "food_drink_012_a03",
+          "text": "rice",
+          "points": 6880,
+          "aliases": [
+            "rice"
+          ]
+        },
+        {
+          "id": "food_drink_012_a04",
+          "text": "potatoes",
+          "points": 6737,
+          "aliases": [
+            "potatoes"
+          ]
+        },
+        {
+          "id": "food_drink_012_a05",
+          "text": "bread",
+          "points": 6179,
+          "aliases": [
+            "bread"
+          ]
+        },
+        {
+          "id": "food_drink_012_a06",
+          "text": "pasta",
+          "points": 4796,
+          "aliases": [
+            "pasta"
+          ]
+        },
+        {
+          "id": "food_drink_012_a07",
+          "text": "leftover rice",
+          "points": 4477,
+          "aliases": [
+            "leftover rice"
+          ]
+        },
+        {
+          "id": "food_drink_012_a08",
+          "text": "bananas",
+          "points": 2644,
+          "aliases": [
+            "bananas"
+          ]
+        },
+        {
+          "id": "food_drink_012_a09",
+          "text": "oats",
+          "points": 2264,
+          "aliases": [
+            "oats"
+          ]
+        },
+        {
+          "id": "food_drink_012_a10",
+          "text": "cheese",
+          "points": 783,
+          "aliases": [
+            "cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_013",
+      "prompt": "best drink for",
+      "answers": [
+        {
+          "id": "food_drink_013_a01",
+          "text": "breakfast",
+          "points": 9356,
+          "aliases": [
+            "breakfast"
+          ]
+        },
+        {
+          "id": "food_drink_013_a02",
+          "text": "sleep",
+          "points": 8317,
+          "aliases": [
+            "sleep"
+          ]
+        },
+        {
+          "id": "food_drink_013_a03",
+          "text": "energy",
+          "points": 7067,
+          "aliases": [
+            "energy"
+          ]
+        },
+        {
+          "id": "food_drink_013_a04",
+          "text": "a sore throat",
+          "points": 5713,
+          "aliases": [
+            "a sore throat"
+          ]
+        },
+        {
+          "id": "food_drink_013_a05",
+          "text": "summer",
+          "points": 4996,
+          "aliases": [
+            "summer"
+          ]
+        },
+        {
+          "id": "food_drink_013_a06",
+          "text": "a party",
+          "points": 4264,
+          "aliases": [
+            "a party"
+          ]
+        },
+        {
+          "id": "food_drink_013_a07",
+          "text": "a workout",
+          "points": 4122,
+          "aliases": [
+            "a workout"
+          ]
+        },
+        {
+          "id": "food_drink_013_a08",
+          "text": "a cold",
+          "points": 2009,
+          "aliases": [
+            "a cold"
+          ]
+        },
+        {
+          "id": "food_drink_013_a09",
+          "text": "hydration",
+          "points": 1963,
+          "aliases": [
+            "hydration"
+          ]
+        },
+        {
+          "id": "food_drink_013_a10",
+          "text": "dinner",
+          "points": 1401,
+          "aliases": [
+            "dinner"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_014",
+      "prompt": "how to store",
+      "answers": [
+        {
+          "id": "food_drink_014_a01",
+          "text": "bread",
+          "points": 8841,
+          "aliases": [
+            "bread"
+          ]
+        },
+        {
+          "id": "food_drink_014_a02",
+          "text": "rice",
+          "points": 7471,
+          "aliases": [
+            "rice"
+          ]
+        },
+        {
+          "id": "food_drink_014_a03",
+          "text": "cooked chicken",
+          "points": 6756,
+          "aliases": [
+            "cooked chicken"
+          ]
+        },
+        {
+          "id": "food_drink_014_a04",
+          "text": "leftover food",
+          "points": 5619,
+          "aliases": [
+            "leftover food"
+          ]
+        },
+        {
+          "id": "food_drink_014_a05",
+          "text": "potatoes",
+          "points": 4555,
+          "aliases": [
+            "potatoes"
+          ]
+        },
+        {
+          "id": "food_drink_014_a06",
+          "text": "onions",
+          "points": 4369,
+          "aliases": [
+            "onions"
+          ]
+        },
+        {
+          "id": "food_drink_014_a07",
+          "text": "avocados",
+          "points": 3676,
+          "aliases": [
+            "avocados"
+          ]
+        },
+        {
+          "id": "food_drink_014_a08",
+          "text": "coffee",
+          "points": 2971,
+          "aliases": [
+            "coffee"
+          ]
+        },
+        {
+          "id": "food_drink_014_a09",
+          "text": "fresh herbs",
+          "points": 2590,
+          "aliases": [
+            "fresh herbs"
+          ]
+        },
+        {
+          "id": "food_drink_014_a10",
+          "text": "cheese",
+          "points": 1157,
+          "aliases": [
+            "cheese"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food_drink_015",
+      "prompt": "why do restaurants",
+      "answers": [
+        {
+          "id": "food_drink_015_a01",
+          "text": "serve small portions",
+          "points": 8860,
+          "aliases": [
+            "serve small portions"
+          ]
+        },
+        {
+          "id": "food_drink_015_a02",
+          "text": "give free bread",
+          "points": 5585,
+          "aliases": [
+            "give free bread"
+          ]
+        },
+        {
+          "id": "food_drink_015_a03",
+          "text": "use so much salt",
+          "points": 5195,
+          "aliases": [
+            "use so much salt"
+          ]
+        },
+        {
+          "id": "food_drink_015_a04",
+          "text": "serve water first",
+          "points": 4342,
+          "aliases": [
+            "serve water first"
+          ]
+        },
+        {
+          "id": "food_drink_015_a05",
+          "text": "use small plates",
+          "points": 3895,
+          "aliases": [
+            "use small plates"
+          ]
+        },
+        {
+          "id": "food_drink_015_a06",
+          "text": "have loud music",
+          "points": 3008,
+          "aliases": [
+            "have loud music"
+          ]
+        },
+        {
+          "id": "food_drink_015_a07",
+          "text": "close early",
+          "points": 2388,
+          "aliases": [
+            "close early"
+          ]
+        },
+        {
+          "id": "food_drink_015_a08",
+          "text": "charge so much",
+          "points": 1910,
+          "aliases": [
+            "charge so much"
+          ]
+        },
+        {
+          "id": "food_drink_015_a09",
+          "text": "use dim lighting",
+          "points": 1301,
+          "aliases": [
+            "use dim lighting"
+          ]
+        },
+        {
+          "id": "food_drink_015_a10",
+          "text": "give tiny desserts",
+          "points": 860,
+          "aliases": [
+            "give tiny desserts"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "type": "curated_irregular_descending",
+    "min": 500,
+    "max": 10000,
+    "descending": true,
+    "note": "Point values are intentionally irregular and descending within each round. They are gameplay weights, not live search-volume measurements."
+  }
+}
