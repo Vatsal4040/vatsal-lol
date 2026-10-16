@@ -4,13 +4,53 @@
    ========================================================= */
 
 /* ---------------------------------------------------------
-   CUSTOM BRAND TITLE FONT
+   LOCAL ASSET TITLE FONTS (Strict 5-Font Suite)
+   All assets locally hosted in portfolio/assets/
    --------------------------------------------------------- */
+
+/* 1. Oxanium */
+@font-face {
+  font-family: 'Oxanium';
+  src: url('assets/Oxanium-VariableFont_wght.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. JetBrains Mono */
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('assets/JetBrainsMono-Bold.woff2') format('woff2');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. Pixelify Sans */
+@font-face {
+  font-family: 'Pixelify Sans';
+  src: url('assets/PixelifySans-VariableFont_wght%20(1).woff2') format('woff2'),
+       url('assets/PixelifySans-VariableFont_wght (1).woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. Syne */
+@font-face {
+  font-family: 'Syne';
+  src: url('assets/Syne-VariableFont_wght.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 5. Vatsal Logo Font */
 @font-face {
   font-family: 'vatsallogofont';
-  src: url('../assets/data/vatsal-logo-font.woff2') format('woff2'),
-       url('/assets/data/vatsal-logo-font.woff2') format('woff2'),
-       url('assets/data/vatsal-logo-font.woff2') format('woff2');
+  src: url('assets/vatsal-logo-font.woff2') format('woff2'),
+       url('../assets/data/vatsal-logo-font.woff2') format('woff2'),
+       url('/assets/data/vatsal-logo-font.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -18,9 +58,9 @@
 
 @font-face {
   font-family: 'Vatsal-logo';
-  src: url('../assets/data/vatsal-logo-font.woff2') format('woff2'),
-       url('/assets/data/vatsal-logo-font.woff2') format('woff2'),
-       url('assets/data/vatsal-logo-font.woff2') format('woff2');
+  src: url('assets/vatsal-logo-font.woff2') format('woff2'),
+       url('../assets/data/vatsal-logo-font.woff2') format('woff2'),
+       url('/assets/data/vatsal-logo-font.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -259,11 +299,11 @@ a                { color: inherit; }
   color: #DDA135; /* Tungsten Amber */
 }
 
-/* Font 3: vatsallogofont */
-.font-vatsallogo {
-  font-family: 'vatsallogofont', sans-serif;
-  font-weight: normal;
-  letter-spacing: 0.04em;
+/* Font 3: Pixelify Sans */
+.font-pixelify {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   color: #EDEDF0;
 }
 
@@ -272,6 +312,14 @@ a                { color: inherit; }
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   letter-spacing: -0.03em;
+  color: #EDEDF0;
+}
+
+/* Font 5: vatsallogofont */
+.font-vatsallogo {
+  font-family: 'vatsallogofont', 'Vatsal-logo', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.04em;
   color: #EDEDF0;
 }
 

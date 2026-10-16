@@ -51,8 +51,9 @@
     const items = [
       { text: 'VATSAL BHAVSAR', font: 'font-oxanium' },
       { text: 'VATSAL_BHAVSAR', font: 'font-jetbrains' },
-      { text: 'VATSAL BHAVSAR', font: 'font-vatsallogo' },
-      { text: 'VATSAL BHAVSAR', font: 'font-syne' }
+      { text: 'VATSAL BHAVSAR', font: 'font-pixelify' },
+      { text: 'VATSAL BHAVSAR', font: 'font-syne' },
+      { text: 'VATSAL BHAVSAR', font: 'font-vatsallogo' }
     ];
 
     let itemIdx = 0;
