@@ -229,26 +229,70 @@ a                { color: inherit; }
 .hero__datum-sep { color: var(--border-hairline); }
 
 /* =========================================================
-   KINETIC MULTI-FONT TYPEWRITER SVG TITLE
+   KINETIC MULTI-FONT TYPEWRITER TITLE
    ========================================================= */
-.hero__svg-wrap {
-  width: 100%;
-  max-width: 920px;
-  margin: 0 auto clamp(16px, 2.5vh, 28px);
+.hero-name-typewriter {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+  min-height: 1.2em; /* Keeps the line height stable so nothing jumps */
   display: flex;
+  align-items: center;
   justify-content: center;
+  margin: 16px 0;
+  text-transform: uppercase;
   animation: heroFade 0.9s var(--ease-editorial) 0.12s both;
 }
 
-.hero__svg-wrap object,
-.hero__svg-wrap img,
-.kinetic-text-svg {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 920 / 180;
-  border: none;
-  overflow: visible;
-  display: block;
+/* Font 1: Oxanium */
+.font-oxanium {
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #EDEDF0;
+}
+
+/* Font 2: JetBrains Mono */
+.font-jetbrains {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #DDA135; /* Tungsten Amber */
+}
+
+/* Font 3: vatsallogofont */
+.font-vatsallogo {
+  font-family: 'vatsallogofont', sans-serif;
+  font-weight: normal;
+  letter-spacing: 0.04em;
+  color: #EDEDF0;
+}
+
+/* Font 4: Syne */
+.font-syne {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #EDEDF0;
+}
+
+/* Slim Amber Cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.9em;
+  background-color: #DDA135;
+  margin-left: 6px;
+  animation: cursorBlink 0.8s steps(2, start) infinite;
+}
+
+@keyframes cursorBlink {
+  to { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor {
+    animation: none;
+  }
 }
 
 .hero__role {

@@ -44,6 +44,56 @@
   }
 
   /* =========================================================
+     KINETIC MULTI-FONT TYPEWRITER
+     ========================================================= */
+  const typewriterTarget = document.getElementById('typewriterTarget');
+  if (typewriterTarget) {
+    const items = [
+      { text: 'VATSAL BHAVSAR', font: 'font-oxanium' },
+      { text: 'VATSAL_BHAVSAR', font: 'font-jetbrains' },
+      { text: 'VATSAL BHAVSAR', font: 'font-vatsallogo' },
+      { text: 'VATSAL BHAVSAR', font: 'font-syne' }
+    ];
+
+    let itemIdx = 0;
+    let charIdx = items[0].text.length;
+    let deleting = true;
+
+    function typewriterStep() {
+      const current = items[itemIdx];
+
+      if (deleting) {
+        charIdx--;
+        typewriterTarget.textContent = current.text.substring(0, charIdx);
+
+        if (charIdx === 0) {
+          deleting = false;
+          itemIdx = (itemIdx + 1) % items.length;
+          typewriterTarget.className = items[itemIdx].font;
+          setTimeout(typewriterStep, 300);
+          return;
+        }
+        setTimeout(typewriterStep, 40);
+      } else {
+        charIdx++;
+        typewriterTarget.textContent = current.text.substring(0, charIdx);
+
+        if (charIdx === current.text.length) {
+          deleting = true;
+          setTimeout(typewriterStep, 2000);
+          return;
+        }
+        setTimeout(typewriterStep, 80);
+      }
+    }
+
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      setTimeout(typewriterStep, 2000);
+    }
+  }
+
+  /* =========================================================
      SCROLL PROGRESS BAR
      ========================================================= */
   const progressBar = document.getElementById('scrollProgress');
