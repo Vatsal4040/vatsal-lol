@@ -228,22 +228,27 @@ a                { color: inherit; }
 }
 .hero__datum-sep { color: var(--border-hairline); }
 
-/* MAIN TITLE WITH VATSAL LOGO FONT */
-.hero__name {
-  font-family: var(--font-logo);
-  font-size: var(--fs-display);
-  font-weight: normal;
-  letter-spacing: 0.02em;
-  line-height: 0.96;
-  text-transform: uppercase;
+/* =========================================================
+   KINETIC MULTI-FONT TYPEWRITER SVG TITLE
+   ========================================================= */
+.hero__svg-wrap {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto clamp(16px, 2.5vh, 28px);
+  display: flex;
+  justify-content: center;
   animation: heroFade 0.9s var(--ease-editorial) 0.12s both;
 }
-.hero__name span { display: block; }
-.hero__name-first { color: var(--text); }
-.hero__name-last {
-  background: linear-gradient(90deg, var(--tungsten-gold) 0%, var(--titanium-white) 65%, var(--steel-subtle) 100%);
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent;
+
+.hero__svg-wrap object,
+.hero__svg-wrap img,
+.kinetic-text-svg {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 920 / 180;
+  border: none;
+  overflow: visible;
+  display: block;
 }
 
 .hero__role {
@@ -868,7 +873,7 @@ a                { color: inherit; }
 .footer__copy { font-size:.8rem; color:var(--text-muted); }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — MOBILE SPINE TIMELINE
    ========================================================= */
 @media (min-width:760px) {
   .lol__grid { grid-template-columns:1.1fr 1fr; }
@@ -876,110 +881,107 @@ a                { color: inherit; }
 }
 
 @media (max-width:900px) {
-  .section--journey { grid-template-columns: 1fr; }
-  .journey-map {
-    position: static; height: auto;
-    padding: 36px 20px 24px;
-    border-right: none; border-bottom: 1px solid var(--border-hairline);
-  }
-  .journey-map__title { font-size: 1.25rem; }
-  .jmap {
+  /* Stack journey vertically as a single fluid section */
+  .section--journey {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-  .jmap__item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 16px;
-    border-radius: 999px;
-    border: 1px solid var(--border-hairline);
-    background: rgba(17, 21, 27, 0.4);
-    cursor: pointer;
-    width: 100%;
-    box-sizing: border-box;
-    transition: border-color 0.25s ease, background 0.25s ease;
-  }
-  .jmap__item:hover,
-  .jmap__item:focus-visible {
-    border-color: var(--steel-subtle);
-    background: rgba(156, 165, 180, 0.1);
-  }
-  .jmap__item[data-state="active"] {
-    border-color: var(--tungsten-gold);
-    background: rgba(221, 161, 53, 0.12);
-  }
-  .jmap__index {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    color: var(--steel-subtle);
-    width: auto;
-    margin-top: 0;
-  }
-  .jmap__dot {
-    width: 8px;
-    height: 8px;
-    margin-top: 0;
-  }
-  .jmap__line { display: none; }
-  .jmap__meta {
-    flex-direction: row;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: left;
-  }
-  .jmap__year {
-    margin-bottom: 0;
-    font-size: 0.72rem;
-  }
-  .jmap__label {
-    font-size: 0.8rem;
+    padding: clamp(48px, 8vw, 80px) 20px;
+    border-top: 1px solid var(--border-hairline);
   }
 
-  .jmap .story-panel {
-    min-height: auto;
-    padding: 24px 20px;
-    margin: 4px 0 14px 0;
-    border-radius: 12px;
-    border: 1px solid var(--border-hairline);
-    background: rgba(9, 11, 14, 0.95);
-    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+  /* Compact section header */
+  .journey-map {
+    position: static;
+    height: auto;
+    padding: 0 0 32px 0;
+    border-right: none;
+    border-bottom: none;
+    background: transparent;
+  }
+  .journey-map__head { margin-bottom: 0; }
+  .journey-map__title { font-size: 1.8rem; line-height: 1.15; }
+  
+  /* Hide the desktop button column on mobile */
+  .journey-map .jmap {
     display: none;
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity 0.35s var(--ease-editorial), transform 0.35s var(--ease-editorial);
-    box-sizing: border-box;
-    width: 100%;
   }
-  .jmap .story-panel.is-active {
+
+  /* Connected Storyline Stream */
+  .story {
     display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    /* Continuous vertical line spine */
+    border-left: 2px solid var(--border-hairline);
+    margin-left: 12px;
+  }
+
+  .story-panel {
+    min-height: auto;
+    padding: 0 0 44px 28px;
+    border-bottom: none;
+    opacity: 0.4;
+    transform: none;
+    position: relative;
+    transition: opacity 0.4s var(--ease-editorial);
+  }
+
+  .story-panel:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Glowing node bullet on the vertical spine */
+  .story-panel::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--obsidian-black);
+    border: 2px solid var(--border-hairline);
+    transition: border-color 0.4s var(--ease-editorial), background 0.4s var(--ease-editorial), box-shadow 0.4s var(--ease-editorial);
+  }
+
+  /* Active panel state: highlights and illuminates node */
+  .story-panel.is-active {
     opacity: 1;
-    transform: translateY(0);
   }
-  .jmap .story-panel__meta {
+
+  .story-panel.is-active::before {
+    background: var(--tungsten-gold);
+    border-color: var(--tungsten-gold);
+    box-shadow: 0 0 16px 2px var(--amber-glow);
+  }
+
+  .story-panel__meta {
     margin-bottom: 12px;
-    gap: 10px;
+    gap: 12px;
   }
-  .jmap .story-panel__title {
-    font-size: clamp(1.4rem, 4.5vw, 1.85rem);
-    line-height: 1.15;
+
+  .story-panel__step {
+    font-size: 0.7rem;
+    color: var(--steel-subtle);
+  }
+
+  .story-panel__year {
+    font-size: 0.74rem;
+    font-weight: 700;
+  }
+
+  .story-panel__title {
+    font-size: clamp(1.4rem, 4.8vw, 1.9rem);
+    line-height: 1.18;
     max-width: 100%;
   }
-  .jmap .story-panel__text {
+
+  .story-panel__text {
     margin-top: 12px;
     font-size: 0.95rem;
     line-height: 1.6;
     max-width: 100%;
-  }
-
-  .story:empty,
-  #storyPanels:empty {
-    display: none;
   }
 
   .skills-grid {
