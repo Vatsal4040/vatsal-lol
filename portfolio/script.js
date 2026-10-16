@@ -81,43 +81,111 @@
   document.querySelectorAll('.stat__num').forEach(el => cntObs.observe(el));
 
   /* =========================================================
-     JOURNEY MAP — sticky active milestone tracking
+     JOURNEY MAP — interactive milestones & responsive stories
      ========================================================= */
   const panels = Array.from(document.querySelectorAll('.story-panel'));
   const mapItems = Array.from(document.querySelectorAll('.jmap__item'));
   const mapLines = Array.from(document.querySelectorAll('.jmap__line'));
+  const storyContainer = document.getElementById('storyPanels');
+  let currentActive = 0;
 
   const setMilestone = (activeIndex) => {
+    currentActive = activeIndex;
     mapItems.forEach((item, i) => {
-      if (i < activeIndex)       item.dataset.state = 'completed';
-      else if (i === activeIndex) item.dataset.state = 'active';
-      else                        item.dataset.state = 'upcoming';
+      const isActive = i === activeIndex;
+      if (i < activeIndex)        item.dataset.state = 'completed';
+      else if (isActive)          item.dataset.state = 'active';
+      else                         item.dataset.state = 'upcoming';
+      item.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     });
-    // fill connector lines up to active
+
+    // Fill connector lines up to active
     mapLines.forEach((line, i) => {
       line.style.setProperty('--fill', i < activeIndex ? '1' : '0');
-      // toggle inline via class
       if (i < activeIndex) line.classList.add('is-active');
       else line.classList.remove('is-active');
     });
+
+    // Update panel active states
+    panels.forEach((p, i) => {
+      if (i === activeIndex) p.classList.add('is-active');
+      else p.classList.remove('is-active');
+    });
   };
 
-  // Use IntersectionObserver for each story panel
+  // Move story panels beneath milestones on mobile, or restore to #storyPanels on desktop
+  const syncJourneyLayout = () => {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (isMobile) {
+      mapItems.forEach((item, i) => {
+        if (panels[i] && item.nextElementSibling !== panels[i]) {
+          item.after(panels[i]);
+        }
+      });
+    } else {
+      if (storyContainer) {
+        panels.forEach(p => {
+          if (p.parentElement !== storyContainer) {
+            storyContainer.appendChild(p);
+          }
+        });
+      }
+    }
+    setMilestone(currentActive);
+  };
+
+  // Milestone click / tap handler for both mobile and desktop
+  mapItems.forEach((item, i) => {
+    const onActivate = (e) => {
+      if (e) e.preventDefault();
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      if (isMobile) {
+        // Tapping expands the corresponding story directly beneath that milestone
+        setMilestone(i);
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        // Desktop: set milestone and scroll story panel into view
+        setMilestone(i);
+        if (panels[i]) {
+          panels[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    };
+
+    item.addEventListener('click', onActivate);
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        onActivate(e);
+      }
+    });
+  });
+
+  // Desktop scrolling tracking: IntersectionObserver when on desktop
   const panelObs = new IntersectionObserver((entries) => {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (isMobile) return;
+
     entries.forEach(e => {
       const idx = panels.indexOf(e.target);
       if (e.isIntersecting && idx !== -1) {
-        e.target.classList.add('is-active');
         setMilestone(idx);
-      } else {
-        e.target.classList.remove('is-active');
       }
     });
   }, { threshold: 0.45 });
 
   panels.forEach(p => panelObs.observe(p));
-  // init first
-  if (mapItems.length) setMilestone(0);
+
+  // Listen to viewport changes
+  const mqlJourney = window.matchMedia('(max-width: 900px)');
+  if (mqlJourney.addEventListener) {
+    mqlJourney.addEventListener('change', syncJourneyLayout);
+  } else {
+    window.addEventListener('resize', syncJourneyLayout);
+  }
+
+  // Initial setup
+  syncJourneyLayout();
+  setMilestone(0);
 
   /* =========================================================
      TURNING POINT — cinematic two-phase animation

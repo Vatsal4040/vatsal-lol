@@ -327,8 +327,14 @@ a                { color: inherit; }
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  cursor: default;
+  cursor: pointer;
+  user-select: none;
   transition: opacity 0.3s;
+}
+.jmap__item:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .jmap__index {
@@ -659,6 +665,105 @@ a                { color: inherit; }
 .achievement__desc  { font-size:.82rem; color:var(--text-muted); line-height:1.4; }
 
 /* =========================================================
+   SKILLS DOSSIER — open grid with brand & category icons
+   ========================================================= */
+.skills-dossier {
+  margin-top: 36px;
+  background: var(--ink-black);
+  border: 1px solid var(--charcoal);
+  border-radius: 14px;
+  padding: clamp(24px, 4vw, 36px) clamp(20px, 3.5vw, 32px);
+}
+.skills-dossier__head {
+  margin-bottom: 24px;
+}
+.skills-dossier__badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--coral);
+  display: block;
+  margin-bottom: 6px;
+}
+.skills-dossier__title {
+  font-family: var(--font-editorial);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--warm-white);
+  margin: 0;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.skill-card {
+  background: rgba(37, 43, 39, 0.25);
+  border: 1px solid var(--charcoal);
+  border-radius: 10px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.25s var(--ease-editorial), background 0.25s var(--ease-editorial);
+}
+.skill-card:hover {
+  border-color: var(--muted-teal);
+  background: rgba(37, 43, 39, 0.45);
+}
+.skill-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.skill-card__icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: rgba(100, 135, 125, 0.15);
+  color: var(--muted-teal);
+  flex-shrink: 0;
+}
+.skill-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--warm-white);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.skill-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: rgba(17, 20, 18, 0.9);
+  border: 1px solid var(--charcoal);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--warm-white);
+  line-height: 1;
+}
+.tech-badge svg {
+  flex-shrink: 0;
+}
+.skill-card__items {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* =========================================================
    ACCORDION
    ========================================================= */
 .accordion { margin-top:48px; display:flex; flex-direction:column; gap:12px; }
@@ -736,19 +841,112 @@ a                { color: inherit; }
     border-right: none; border-bottom: 1px solid var(--charcoal);
   }
   .journey-map__title { font-size: 1.25rem; }
-  .jmap { flex-direction: row; flex-wrap: wrap; gap: 8px; }
-  .jmap__item {
-    flex-direction: row; align-items: center; gap: 8px;
-    padding: 6px 12px; border-radius: 999px;
-    border: 1px solid var(--charcoal); background: rgba(37, 43, 39, 0.25);
+  .jmap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
   }
-  .jmap__index { display: none; }
-  .jmap__line { display: none; }
-  .jmap__meta { flex-direction: row; gap: 6px; align-items: center; text-align: left; }
-  .jmap__year { margin-bottom: 0; font-size: 0.68rem; }
-  .jmap__label { font-size: 0.72rem; }
+  .jmap__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--charcoal);
+    background: rgba(37, 43, 39, 0.35);
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .jmap__item:hover,
+  .jmap__item:focus-visible {
+    border-color: var(--muted-teal);
+    background: rgba(100, 135, 125, 0.12);
+  }
   .jmap__item[data-state="active"] {
-    border-color: var(--coral); background: rgba(233, 141, 120, 0.12);
+    border-color: var(--coral);
+    background: rgba(233, 141, 120, 0.14);
+  }
+  .jmap__index {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--muted-teal);
+    width: auto;
+    margin-top: 0;
+  }
+  .jmap__dot {
+    width: 8px;
+    height: 8px;
+    margin-top: 0;
+  }
+  .jmap__line { display: none; }
+  .jmap__meta {
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+  }
+  .jmap__year {
+    margin-bottom: 0;
+    font-size: 0.72rem;
+  }
+  .jmap__label {
+    font-size: 0.8rem;
+  }
+
+  /* Story panel when moved beneath milestone on mobile */
+  .jmap .story-panel {
+    min-height: auto;
+    padding: 24px 20px;
+    margin: 4px 0 14px 0;
+    border-radius: 12px;
+    border: 1px solid var(--charcoal);
+    background: rgba(17, 20, 18, 0.95);
+    box-shadow: 0 10px 24px -10px rgba(0, 0, 0, 0.5);
+    display: none;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.35s var(--ease-editorial), transform 0.35s var(--ease-editorial);
+    box-sizing: border-box;
+    width: 100%;
+  }
+  .jmap .story-panel.is-active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .jmap .story-panel__meta {
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+  .jmap .story-panel__title {
+    font-size: clamp(1.4rem, 4.5vw, 1.85rem);
+    line-height: 1.15;
+    max-width: 100%;
+  }
+  .jmap .story-panel__text {
+    margin-top: 12px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* Hide empty story container on mobile */
+  .story:empty,
+  #storyPanels:empty {
+    display: none;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .skills-dossier {
+    padding: 24px 18px;
   }
   .games-grid { grid-template-columns: repeat(2, 1fr); }
 }
