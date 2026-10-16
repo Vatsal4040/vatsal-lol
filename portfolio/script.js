@@ -88,10 +88,8 @@
       }
     }
 
-    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReducedMotion) {
-      setTimeout(typewriterStep, 2000);
-    }
+    // Start typewriter loop after 2s reading pause
+    setTimeout(typewriterStep, 2000);
   }
 
   /* =========================================================
