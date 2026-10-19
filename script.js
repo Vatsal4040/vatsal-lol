@@ -3,6 +3,7 @@
     { slug: "2048", title: "2048", type: "game" },
     { slug: "8bit-lab", title: "8-Bit Lab", type: "page" },
     { slug: "adjustme", title: "Adjust Me", type: "game" },
+    { slug: "balance", title: "Balance", type: "game" },
     { slug: "bubbles", title: "Bubbles", type: "game" },
     { slug: "bugsmash", title: "Bug Smash", type: "game" },
     { slug: "can-you-guess-indian-mom", title: "Can You Guess Indian Mom?", type: "game" },
@@ -281,6 +282,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "balance",
     "memories",
     "wordle",
     "your-life-in-numbers",

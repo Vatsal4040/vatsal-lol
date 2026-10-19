@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vatsal-lol-cache-v4.1.0';
+const CACHE_NAME = 'vatsal-lol-cache-v4.1.1';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -23,6 +23,7 @@ const PRECACHE_ASSETS = [
   '/assets/thumbnails/2048.webp',
   '/assets/thumbnails/8bit-lab.webp',
   '/assets/thumbnails/adjustme.webp',
+  '/assets/thumbnails/balance.webp',
   '/assets/thumbnails/bubbles.webp',
   '/assets/thumbnails/bugsmash.webp',
   '/assets/thumbnails/can-you-guess-indian-mom.webp',
