@@ -169,7 +169,8 @@ body[data-time="latenight"] {
         z-index: 1;
         width: auto;
     }
-    .v2-title {
+    .v2-title,
+    [data-vatsal-title] {
         font-size: 26px;
         letter-spacing: 3px;
         margin: 0;
@@ -243,7 +244,7 @@ body[data-time="latenight"] {
     justify-content: center;
     gap: 25px; /* Spacing between title and controls */
 }
-.v2-title { font-family: 'Vatsal-logo'; font-size: 44px; letter-spacing: 6px; }
+.v2-title, [data-vatsal-title] { font-family: 'Vatsal-logo'; font-size: 44px; letter-spacing: 6px; }
 .v2-tagline { 
     font-size: 11px; 
     color: rgba(255,255,255,0.4); 
@@ -426,7 +427,8 @@ body[data-time="latenight"] {
 @media (max-width: 600px) {
     .cards-grid { grid-template-columns: 1fr; padding: 0 20px; }
     .v2-header { padding: 16px 16px; }
-    .v2-title { font-size: 24px; letter-spacing: 2.5px; }
+    .v2-title,
+    [data-vatsal-title] { font-size: 24px; letter-spacing: 2.5px; }
 }
 
 @media (max-width: 768px) {
