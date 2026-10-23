@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VATSAL.LOL animated title
+   VATSAL.LOL — Living Title System V2: Shape-Shifting Logo Personalities
    Vanilla JS only. Local woff2 fonts only. No CDN, no external libraries.
 
    Usage:
@@ -9,50 +9,262 @@
 (() => {
   'use strict';
 
-  function initTitle() {
+  function initLivingTitle() {
     const root = document.querySelector('[data-vatsal-title]');
     if (!root || root.dataset.vtInitialized) return;
     root.dataset.vtInitialized = 'true';
 
-    /* ---------- config ---------- */
+    /* ---------- Configuration ---------- */
     const TEXT = 'VATSAL.LOL';
     const rawBase = root.getAttribute('data-font-base') || 'assets/fontsource/';
     const BASE = rawBase.replace(/\/?$/, '/');
-    const HOLD_LOGO = 4200;   // ms the logo font rests (keeps title still most of the time)
-    const HOLD_FONT = 1800;   // ms each personality font rests
 
-    // fx = entrance effects to pick from (random one each time)
-    const FONTS = [
-      { file: 'vatsal-logo-font.woff2',                    logo: true },
-      { file: 'Oxanium-VariableFont_wght.woff2',           fx: ['wipe', 'flip'],            w: '800' },
-      { file: 'JetBrainsMono-Bold.woff2',                  fx: ['type'] },
-      { file: 'PixelifySans-VariableFont_wght (1).woff2',  fx: ['pixel'],                   w: '700' },
-      { file: 'Syne-VariableFont_wght.woff2',              fx: ['stretch', 'flip'],         w: '800' },
-      { file: 'BankGothic Bold.woff2',                     fx: ['flip', 'wipe'] },
-      { file: 'BigParty4Blue.woff2',                       fx: ['bounce'] },
-      { file: 'Crackman.woff2',                            fx: ['pixel', 'bounce'] },
-      { file: 'Deliberate Projection Demo.woff2',          fx: ['blur'],                    noDot: true },
-      { file: 'Deliberate Projection Demo-2.woff2',        fx: ['blur', 'flicker'],         noDot: true },
-      { file: 'MIDELTANK_Demo.woff2',                      fx: ['slam'] },
-      { file: 'modernline bold.woff2',                     fx: ['flip', 'stretch'] },
-      { file: 'MysteryQuest-Regular.woff2',                fx: ['blur', 'flicker'] },
-      { file: 'OperationNapalm-Italic.woff2',              fx: ['slam'] },
-      { file: 'Pricedown Bl.woff2',                        fx: ['slam', 'bounce'] },
-      { file: 'Priestacy.woff2',                           fx: ['blur', 'wipe'] },
-      { file: 'ROGENZ.woff2',                              fx: ['glitch'] },
-      { file: 'Rostex-Oblique.woff2',                      fx: ['wipe', 'glitch'] },
-      { file: 'RusticRoadway.woff2',                       fx: ['slam', 'stretch'] },
-      { file: 'SDCyberPunkCityDemo.woff2',                 fx: ['glitch', 'flicker'],       noDot: true },
-      { file: 'TerminalVision.woff2',                      fx: ['type', 'flicker'] },
-      { file: 'TypoWriter Bold Demo.woff2',                fx: ['type'],                    noDot: true },
-      { file: 'TypoWriter Regular Demo.woff2',             fx: ['type'],                    noDot: true },
-      { file: 'Whimsy Pops Regular.woff2',                 fx: ['bounce'] },
-      { file: 'Whimsy Pops Slant.woff2',                   fx: ['bounce', 'flip'] },
+    // Display & transition timing (ms)
+    const testHold = (typeof window !== 'undefined' && window.__VT_TEST_HOLD__);
+    const DISPLAY_HOLD_MIN = testHold || 4500;
+    const DISPLAY_HOLD_MAX = testHold || 5500;
+    const EXTENDED_REST_MS = testHold ? testHold * 1.5 : 8500;
+    const EXTENDED_REST_EVERY_N = 4; // Take a longer breath every N cycles
+
+    /* ---------- Personality Registry ---------- */
+    // 25 local WOFF2 fonts with visual categories and compatible animation families
+    const PERSONALITIES = [
+      {
+        id: 'logo',
+        name: 'Vatsal Classic Logo',
+        file: 'vatsal-logo-font.woff2',
+        category: 'brand',
+        w: '400',
+        ls: '0.04em',
+        transitions: ['blur_sharp', 'erase', 'flip', 'roulette', 'dissolve']
+      },
+      {
+        id: 'oxanium',
+        name: 'Oxanium Bold',
+        file: 'Oxanium-VariableFont_wght.woff2',
+        category: 'geometric',
+        w: '800',
+        ls: '0.03em',
+        transitions: ['scanline', 'flip', 'flash_cut', 'erase']
+      },
+      {
+        id: 'jetbrains',
+        name: 'JetBrains Mono',
+        file: 'JetBrainsMono-Bold.woff2',
+        category: 'monospaced',
+        w: '700',
+        ls: '0.01em',
+        transitions: ['typewriter', 'scanline', 'erase']
+      },
+      {
+        id: 'pixelify',
+        name: 'Pixelify Sans',
+        file: 'PixelifySans-VariableFont_wght (1).woff2',
+        category: 'pixel',
+        w: '700',
+        ls: '0.02em',
+        transitions: ['pixel_dissolve', 'scanline', 'typewriter', 'fall']
+      },
+      {
+        id: 'syne',
+        name: 'Syne ExtraBold',
+        file: 'Syne-VariableFont_wght.woff2',
+        category: 'geometric',
+        w: '800',
+        ls: '-0.02em',
+        transitions: ['stretch_snap', 'flip', 'erase', 'dissolve']
+      },
+      {
+        id: 'bankgothic',
+        name: 'BankGothic Bold',
+        file: 'BankGothic Bold.woff2',
+        category: 'geometric',
+        w: '700',
+        ls: '0.05em',
+        transitions: ['flip', 'erase', 'scanline', 'flash_cut']
+      },
+      {
+        id: 'bigparty',
+        name: 'BigParty 4 Blue',
+        file: 'BigParty4Blue.woff2',
+        category: 'playful',
+        w: '400',
+        ls: '0.04em',
+        transitions: ['fall', 'stretch_snap', 'tilt_rebound']
+      },
+      {
+        id: 'crackman',
+        name: 'Crackman Arcade',
+        file: 'Crackman.woff2',
+        category: 'pixel',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['pixel_dissolve', 'fall', 'flash_cut']
+      },
+      {
+        id: 'deliberate',
+        name: 'Deliberate Projection Demo',
+        file: 'Deliberate Projection Demo.woff2',
+        category: 'decorative',
+        w: '400',
+        noDot: true,
+        ls: '0.02em',
+        transitions: ['blur_sharp', 'flip', 'dissolve']
+      },
+      {
+        id: 'deliberate2',
+        name: 'Deliberate Projection 2',
+        file: 'Deliberate Projection Demo-2.woff2',
+        category: 'decorative',
+        w: '400',
+        noDot: true,
+        ls: '0.02em',
+        transitions: ['blur_sharp', 'scanline', 'flip']
+      },
+      {
+        id: 'mideltank',
+        name: 'MIDELTANK Display',
+        file: 'MIDELTANK_Demo.woff2',
+        category: 'display',
+        w: '400',
+        ls: '0.03em',
+        transitions: ['fall', 'stretch_snap', 'dissolve']
+      },
+      {
+        id: 'modernline',
+        name: 'Modernline Signature',
+        file: 'modernline bold.woff2',
+        category: 'handwritten',
+        w: '700',
+        ls: '0.01em',
+        transitions: ['tilt_rebound', 'erase', 'blur_sharp']
+      },
+      {
+        id: 'mysteryquest',
+        name: 'Mystery Quest',
+        file: 'MysteryQuest-Regular.woff2',
+        category: 'decorative',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['blur_sharp', 'tilt_rebound', 'dissolve']
+      },
+      {
+        id: 'opnapalm',
+        name: 'Operation Napalm',
+        file: 'OperationNapalm-Italic.woff2',
+        category: 'slanted',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['fall', 'stretch_snap', 'flash_cut']
+      },
+      {
+        id: 'pricedown',
+        name: 'Pricedown Heavy',
+        file: 'Pricedown Bl.woff2',
+        category: 'display',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['fall', 'stretch_snap', 'dissolve']
+      },
+      {
+        id: 'priestacy',
+        name: 'Priestacy Gothic',
+        file: 'Priestacy.woff2',
+        category: 'decorative',
+        w: '400',
+        ls: '0.03em',
+        transitions: ['blur_sharp', 'dissolve', 'erase']
+      },
+      {
+        id: 'rogenz',
+        name: 'ROGENZ Cyber',
+        file: 'ROGENZ.woff2',
+        category: 'display',
+        w: '400',
+        ls: '0.04em',
+        transitions: ['flash_cut', 'scanline', 'dissolve']
+      },
+      {
+        id: 'rostex',
+        name: 'Rostex Oblique',
+        file: 'Rostex-Oblique.woff2',
+        category: 'slanted',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['scanline', 'flip', 'stretch_snap']
+      },
+      {
+        id: 'rusticroad',
+        name: 'Rustic Roadway',
+        file: 'RusticRoadway.woff2',
+        category: 'handwritten',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['tilt_rebound', 'fall', 'stretch_snap']
+      },
+      {
+        id: 'cyberpunk',
+        name: 'Cyberpunk City',
+        file: 'SDCyberPunkCityDemo.woff2',
+        category: 'display',
+        w: '400',
+        noDot: true,
+        ls: '0.03em',
+        transitions: ['scanline', 'flash_cut', 'pixel_dissolve']
+      },
+      {
+        id: 'terminal',
+        name: 'Terminal Vision',
+        file: 'TerminalVision.woff2',
+        category: 'monospaced',
+        w: '400',
+        ls: '0.02em',
+        transitions: ['typewriter', 'scanline', 'pixel_dissolve']
+      },
+      {
+        id: 'typowriter_b',
+        name: 'TypoWriter Bold',
+        file: 'TypoWriter Bold Demo.woff2',
+        category: 'monospaced',
+        w: '700',
+        noDot: true,
+        ls: '0.01em',
+        transitions: ['typewriter', 'erase', 'flash_cut']
+      },
+      {
+        id: 'typowriter_r',
+        name: 'TypoWriter Regular',
+        file: 'TypoWriter Regular Demo.woff2',
+        category: 'monospaced',
+        w: '400',
+        noDot: true,
+        ls: '0.01em',
+        transitions: ['typewriter', 'erase', 'blur_sharp']
+      },
+      {
+        id: 'whimsy',
+        name: 'Whimsy Pops',
+        file: 'Whimsy Pops Regular.woff2',
+        category: 'playful',
+        w: '400',
+        ls: '0.03em',
+        transitions: ['fall', 'tilt_rebound', 'stretch_snap']
+      },
+      {
+        id: 'whimsyslant',
+        name: 'Whimsy Pops Slant',
+        file: 'Whimsy Pops Slant.woff2',
+        category: 'playful',
+        w: '400',
+        ls: '0.03em',
+        transitions: ['tilt_rebound', 'flip', 'fall']
+      }
     ];
-    FONTS.forEach((f, i) => { f.fam = 'vt-font-' + i; });
-    let activeLogo = FONTS[0];
 
-    /* ---------- styles (injected, scoped to the component) ---------- */
+    PERSONALITIES.forEach((f, i) => { f.fam = 'vt-font-' + i; });
+    let anchorLogo = PERSONALITIES[0]; // fallback anchor for borrowed dots or missing fonts
+
+    /* ---------- Scoped Component Styles ---------- */
     const css = `
 [data-vatsal-title] {
   --vt-fg: #EDEDF0;
@@ -79,7 +291,7 @@
   justify-content: center;
   position: relative;
   line-height: 1;
-  transition: color .28s ease, text-shadow .5s ease;
+  transition: color .25s ease, text-shadow .4s ease;
   transform: scale(var(--fit, 1));
 }
 .vt-ch.lock {
@@ -111,21 +323,23 @@
   [data-vatsal-title] { font-size: 20px; }
 }
 `;
-    const style = document.createElement('style');
-    style.id = 'vt-title-styles';
-    style.textContent = css;
-    document.head.appendChild(style);
+    const styleEl = document.createElement('style');
+    styleEl.id = 'vt-living-title-styles';
+    styleEl.textContent = css;
+    document.head.appendChild(styleEl);
 
-    /* ---------- helpers ---------- */
+    /* ---------- Helpers & State ---------- */
     const rand = (a, b) => a + Math.random() * (b - a);
     const pick = arr => (arr && arr.length ? arr[(Math.random() * arr.length) | 0] : null);
     const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+    const activeTimers = [];
     const sleep = ms => new Promise(r => {
       const id = setTimeout(r, ms);
-      cursorTimers.push(id);
+      activeTimers.push(id);
     });
 
-    // Pause when tab is hidden, reduced motion is requested, or title is scrolled out of view
+    // Pause when tab hidden or title scrolled out of view
     let inView = true;
     let isDocVisible = !document.hidden;
     const waiters = [];
@@ -151,11 +365,11 @@
       }
     }
 
-    /* ---------- fonts: load + measure ---------- */
+    /* ---------- Fonts: Load + Measure ---------- */
     const cv = document.createElement('canvas').getContext('2d');
     const mc = new Map();
     function measure(font, str) {
-      const f = font || activeLogo;
+      const f = font || anchorLogo;
       const key = (f.fam || 'sans-serif') + '|' + (f.w || '400') + '|' + str;
       if (!mc.has(key)) {
         cv.font = `${f.w || 400} 100px "${f.fam}", sans-serif`;
@@ -164,38 +378,36 @@
       return mc.get(key);
     }
 
-    function calibrate(font, reference) {
-      const ref = reference || activeLogo || font;
+    function calibrate(font) {
       const V = measure(font, 'V');
-      font.tw = measure(font, TEXT).width || 300;
+      font.tw = measure(font, TEXT).width || 600;
       font.cap = V.actualBoundingBoxAscent || 70;
       const asc = V.fontBoundingBoxAscent || V.actualBoundingBoxAscent || 70;
       const desc = V.fontBoundingBoxDescent || V.actualBoundingBoxDescent || 20;
       font.bl = (100 - (asc + desc)) / 2 + asc;
       font.dy = 50 - (font.bl - font.cap / 2);
       if (isNaN(font.dy)) font.dy = 0;
-    }
 
-    function normalise(font, reference) {
-      const ref = reference || activeLogo || font;
-      const refTw = ref.tw || 300;
-      const refCap = ref.cap || 70;
-      const kw = refTw / (font.tw || refTw);
-      const kh = (refCap / (font.cap || refCap)) * 1.15;
-      font.k = font.logo ? 1 : clamp(Math.min(kw, kh), 0.65, 1.35);
+      // Normalization scale factor k
+      // Target word width ~620 at 100px font-size
+      const targetTw = 620;
+      const kw = targetTw / (font.tw || targetTw);
+      const kh = (70 / (font.cap || 70)) * 1.12;
+      font.k = clamp(Math.min(kw, kh), 0.65, 1.38);
       if (isNaN(font.k) || font.k <= 0) font.k = 1;
     }
 
-    const ready = []; // fonts that loaded OK
+    const readyPersonalities = [];
     async function loadFont(font) {
       const url = BASE + encodeURI(font.file);
       const ff = new FontFace(font.fam, `url("${url}") format("woff2")`, font.w ? { weight: font.w } : {});
       await ff.load();
       document.fonts.add(ff);
+      calibrate(font);
       return font;
     }
 
-    /* ---------- letters ---------- */
+    /* ---------- Letters Management ---------- */
     const letters = [];
     function buildLetters() {
       root.textContent = '';
@@ -209,240 +421,428 @@
       });
     }
 
-    function applyFont(l, font) {
-      const f = font || activeLogo;
-      const targetFont = (f.noDot && l.textContent === '.') ? activeLogo : f;
-      if (targetFont.fam) {
-        l.style.fontFamily = `"${targetFont.fam}", sans-serif`;
-      }
-      l.style.fontWeight = targetFont.w || '400';
-      l.style.fontSize = (targetFont.k || 1) + 'em';
-      l.style.top = ((targetFont.dy || 0) / 100) + 'em';
+    function applyPersonality(font) {
+      const f = font || anchorLogo;
+      letters.forEach(l => {
+        const isDot = l.textContent === '.';
+        const targetFont = (f.noDot && isDot) ? anchorLogo : f;
+        if (targetFont.fam) {
+          l.style.fontFamily = `"${targetFont.fam}", sans-serif`;
+        }
+        l.style.fontWeight = targetFont.w || '400';
+        l.style.fontSize = (f.k || 1) + 'em';
+        l.style.top = ((f.dy || 0) / 100) + 'em';
+        l.style.letterSpacing = f.ls || 'normal';
+      });
     }
 
-    const cursorTimers = [];
-    function resetLetters() {
-      cursorTimers.forEach(clearTimeout);
-      cursorTimers.length = 0;
+    function resetLetterAnimations() {
+      activeTimers.forEach(clearTimeout);
+      activeTimers.length = 0;
       letters.forEach(l => {
         l.getAnimations().forEach(a => a.cancel());
         l.classList.remove('cur', 'lock');
+        l.style.removeProperty('opacity');
+        l.style.removeProperty('transform');
+        l.style.removeProperty('filter');
+        l.style.removeProperty('clip-path');
         l.style.removeProperty('width');
         l.style.removeProperty('--fit');
         l.style.removeProperty('transform-origin');
       });
       root.getAnimations().forEach(a => a.cancel());
+      root.style.removeProperty('filter');
+      root.style.removeProperty('transform');
     }
 
-    /* ---------- scramble -> logo ---------- */
-    async function scrambleToLogo() {
-      resetLetters();
-      const fsBase = parseFloat(getComputedStyle(root).fontSize) || 44;
-      const pool = ready.filter(f => !f.logo);
-      if (!pool.length) pool.push(activeLogo);
+    const A = (el, kf, dur, delay, easing, fill) =>
+      el.animate(kf, {
+        duration: dur,
+        delay: delay || 0,
+        easing: easing || 'cubic-bezier(.2,.8,.2,1)',
+        fill: fill || 'none'
+      });
 
-      const slotW = letters.map((l, i) => (measure(activeLogo, TEXT[i]).width || 30) * fsBase / 100);
-      letters.forEach((l, i) => { l.style.width = Math.ceil(slotW[i]) + 'px'; });
+    /* ==========================================================================
+       Diverse Transition Engine (12 Families)
+       ========================================================================== */
+    const TRANSITIONS = {
+      // Family A: Erase -> New Font (horizontal mask wipe, brief breath, incoming reveal)
+      async erase(L, outFont, inFont) {
+        // Outgoing wipe-out
+        const outAnim = L.map((l, i) => A(l, [
+          { clipPath: 'inset(0 0 0 0)', opacity: 1, transform: 'translateX(0)' },
+          { clipPath: 'inset(0 100% 0 0)', opacity: 0.1, transform: 'translateX(-0.15em)' }
+        ], 280, i * 20, 'ease-in', 'forwards'));
+        await sleep(280 + L.length * 20 + 80);
+        outAnim.forEach(a => a.cancel());
 
-      const lockAt = i => 380 + i * 90;
-      const locked = letters.map(() => false);
-      const t0 = performance.now();
+        // Apply new personality
+        applyPersonality(inFont);
 
-      for (;;) {
-        await vis();
-        const t = performance.now() - t0;
-        let all = true;
-        letters.forEach((l, i) => {
-          if (locked[i]) return;
-          if (t >= lockAt(i)) {
-            locked[i] = true;
-            applyFont(l, activeLogo);
-            l.style.removeProperty('--fit');
-            l.classList.add('lock');
-            const timer = setTimeout(() => l.classList.remove('lock'), 380);
-            cursorTimers.push(timer);
-          } else {
-            all = false;
-            let f = pick(pool) || activeLogo;
-            let guard = 0;
-            while (f.noDot && TEXT[i] === '.' && guard < 8 && pool.length > 1) {
-              f = pick(pool) || activeLogo;
-              guard++;
-            }
-            applyFont(l, f);
-            const cw = (measure(f, TEXT[i]).width || 30) * fsBase / 100 * (f.k || 1);
-            l.style.setProperty('--fit', Math.min(1, (slotW[i] * 1.2) / (cw || 1)).toFixed(3));
-          }
-        });
-        if (all) break;
-        await sleep(58);
-      }
-      await sleep(380); // let the amber lock settled
-      letters.forEach(l => { l.style.removeProperty('width'); });
-    }
-
-    /* ---------- entrance effects ---------- */
-    const A = (l, kf, dur, delay, easing) =>
-      l.animate(kf, { duration: dur, delay: delay || 0, easing: easing || 'cubic-bezier(.2,.8,.2,1)', fill: 'backwards' });
-
-    const FX = {
-      slam(L) {
+        // Incoming wipe-in
         L.forEach((l, i) => A(l, [
-          { opacity: 0, transform: 'scale(2.2) translateY(-0.6em)', filter: 'blur(8px)' },
-          { opacity: 1, transform: 'scale(.92)', filter: 'blur(0)', offset: .62 },
-          { transform: 'scale(1)' }], 380, i * 55, 'cubic-bezier(.2,.9,.3,1)'));
-        root.animate([
-          { transform: 'translate(0,0)' }, { transform: 'translate(-4px,2px)' },
-          { transform: 'translate(4px,-2px)' }, { transform: 'translate(-1px,1px)' }, { transform: 'translate(0,0)' }],
-          { duration: 260, delay: L.length * 55 * .55 });
-        return 380 + L.length * 55;
+          { clipPath: 'inset(0 0 0 100%)', opacity: 0, transform: 'translateX(0.15em)' },
+          { clipPath: 'inset(0 0 0 0)', opacity: 1, transform: 'translateX(0)' }
+        ], 380, i * 32, 'cubic-bezier(.16,1,.3,1)'));
+        await sleep(380 + L.length * 32);
       },
-      bounce(L) {
+
+      // Family B: Fall From Above (descend with restrained bounce)
+      async fall(L, outFont, inFont) {
+        // Outgoing quick dip
+        const outAnim = L.map((l, i) => A(l, [
+          { transform: 'translateY(0)', opacity: 1 },
+          { transform: 'translateY(0.3em) scale(0.96)', opacity: 0 }
+        ], 180, i * 15, 'ease-in', 'forwards'));
+        await sleep(180 + L.length * 15 + 40);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        // Incoming fall with restrained squash/stretch bounce
         L.forEach((l, i) => A(l, [
-          { opacity: 0, transform: 'translateY(-1.2em) scale(.85,1.2)' },
-          { opacity: 1, transform: 'translateY(0) scale(1.18,.82)', offset: .5 },
-          { transform: 'translateY(-0.25em) scale(.97,1.04)', offset: .72 },
-          { transform: 'translateY(0) scale(1)' }], 680, i * 70, 'cubic-bezier(.3,.7,.4,1)'));
-        return 680 + L.length * 70;
+          { transform: 'translateY(-1.2em) scale(0.88, 1.16)', opacity: 0 },
+          { transform: 'translateY(0) scale(1.12, 0.88)', opacity: 1, offset: 0.55 },
+          { transform: 'translateY(-0.16em) scale(0.98, 1.02)', offset: 0.76 },
+          { transform: 'translateY(0) scale(1)', offset: 1.0 }
+        ], 620, i * 48, 'cubic-bezier(.3,.7,.4,1)'));
+        await sleep(620 + L.length * 48);
       },
-      flip(L) {
+
+      // Family C: Dissolve -> Reassemble (break into soft dissolve, reassemble)
+      async dissolve(L, outFont, inFont) {
+        // Outgoing dissolve
+        const outAnim = L.map((l, i) => A(l, [
+          { opacity: 1, filter: 'blur(0px)', transform: 'scale(1)' },
+          { opacity: 0, filter: 'blur(10px)', transform: 'scale(0.92)' }
+        ], 220, i * 18, 'ease-in', 'forwards'));
+        await sleep(220 + L.length * 18 + 60);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        // Incoming reassemble
+        const order = L.map((_, i) => i).sort(() => Math.random() - 0.5);
         L.forEach((l, i) => A(l, [
-          { opacity: 0, transform: 'perspective(500px) rotateX(-95deg) translateY(.2em)' },
-          { opacity: 1, transform: 'perspective(500px) rotateX(0) translateY(0)' }], 460, i * 60));
-        return 460 + L.length * 60;
+          { opacity: 0, filter: 'blur(10px)', transform: 'scale(1.18)' },
+          { opacity: 1, filter: 'blur(0px)', transform: 'scale(1)' }
+        ], 480, order.indexOf(i) * 36, 'cubic-bezier(.2,.9,.3,1)'));
+        await sleep(480 + L.length * 36);
       },
-      blur(L) {
-        L.forEach((l, i) => A(l, [
-          { opacity: 0, filter: 'blur(16px)', transform: 'scale(1.25)' },
-          { opacity: 1, filter: 'blur(0)', transform: 'scale(1)' }], 720, i * 45));
-        return 720 + L.length * 45;
-      },
-      stretch(L) {
+
+      // Family D: Stretch -> Snap (vertical stretch and elastic settle)
+      async stretch_snap(L, outFont, inFont) {
+        // Outgoing stretch
+        L.forEach(l => { l.style.transformOrigin = '50% 100%'; });
+        const outAnim = L.map((l, i) => A(l, [
+          { transform: 'scaleY(1)', opacity: 1 },
+          { transform: 'scaleY(1.35) scaleX(0.85)', opacity: 0 }
+        ], 210, i * 16, 'ease-in', 'forwards'));
+        await sleep(210 + L.length * 16 + 50);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        // Incoming snap
         L.forEach((l, i) => {
           l.style.transformOrigin = '50% 100%';
           A(l, [
-            { opacity: 0, transform: 'scaleY(0)' },
-            { opacity: 1, transform: 'scaleY(1.22)', offset: .7 },
-            { transform: 'scaleY(1)' }], 520, i * 50, 'cubic-bezier(.3,.8,.3,1)');
+            { transform: 'scaleY(0) scaleX(1.3)', opacity: 0 },
+            { transform: 'scaleY(1.22) scaleX(0.88)', opacity: 1, offset: 0.65 },
+            { transform: 'scaleY(0.96) scaleX(1.02)', offset: 0.82 },
+            { transform: 'scaleY(1) scaleX(1)', offset: 1.0 }
+          ], 480, i * 40, 'cubic-bezier(.3,.8,.3,1)');
         });
-        return 520 + L.length * 50;
+        await sleep(480 + L.length * 40);
+        L.forEach(l => l.style.removeProperty('transform-origin'));
       },
-      wipe(L) {
+
+      // Family E: Blur -> Sharp (brief blur transition to crisp focus)
+      async blur_sharp(L, outFont, inFont) {
+        const outAnim = L.map((l, i) => A(l, [
+          { opacity: 1, filter: 'blur(0px)', transform: 'scale(1)' },
+          { opacity: 0, filter: 'blur(14px)', transform: 'scale(1.06)' }
+        ], 220, i * 15, 'ease-in', 'forwards'));
+        await sleep(220 + L.length * 15 + 40);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
         L.forEach((l, i) => A(l, [
-          { opacity: 0, clipPath: 'inset(0 100% 0 0)', transform: 'translateX(-.25em)' },
-          { opacity: 1, clipPath: 'inset(0 0 0 0)', transform: 'translateX(0)' }], 420, i * 65));
-        return 420 + L.length * 65;
+          { opacity: 0, filter: 'blur(16px)', transform: 'scale(1.2)' },
+          { opacity: 1, filter: 'blur(0px)', transform: 'scale(1)' }
+        ], 580, i * 35, 'cubic-bezier(.16,1,.3,1)'));
+        await sleep(580 + L.length * 35);
       },
-      pixel(L) {
-        const order = L.map((_, i) => i).sort(() => Math.random() - .5);
+
+      // Family F: Scanline Reveal (smooth moving horizontal mask)
+      async scanline(L, outFont, inFont) {
+        const outAnim = L.map(l => A(l, [
+          { opacity: 1, transform: 'translateY(0)' },
+          { opacity: 0, transform: 'translateY(-0.14em)' }
+        ], 180, 0, 'ease-in', 'forwards'));
+        await sleep(220);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        // Wipe with a subtle luminous leading edge
+        A(root, [
+          { filter: 'brightness(1)' },
+          { filter: 'brightness(1.35)', offset: 0.4 },
+          { filter: 'brightness(1)' }
+        ], 480, 0, 'ease-out');
+
         L.forEach((l, i) => A(l, [
-          { opacity: 0, transform: 'scale(.4)' },
-          { opacity: 1, transform: 'scale(1.25)', offset: .25 },
-          { opacity: 0, transform: 'scale(.8)', offset: .45 },
-          { opacity: 1, transform: 'scale(1.1)', offset: .65 },
-          { opacity: 1, transform: 'scale(1)' }], 480, order.indexOf(i) * 55, 'steps(5, jump-none)'));
-        return 480 + L.length * 55;
+          { clipPath: 'inset(0 100% 0 0)', opacity: 0, transform: 'translateX(-0.2em)' },
+          { clipPath: 'inset(0 0 0 0)', opacity: 1, transform: 'translateX(0)' }
+        ], 420, i * 50, 'cubic-bezier(.2,.8,.2,1)'));
+        await sleep(420 + L.length * 50);
       },
-      glitch(L) {
-        L.forEach((l, i) => A(l, [
-          { opacity: 0, transform: 'translateX(-.3em) skewX(28deg)', textShadow: '.06em 0 #2ee6ff, -.06em 0 #DDA135' },
-          { opacity: 1, transform: 'translateX(.14em) skewX(-14deg)', textShadow: '-.06em 0 #2ee6ff, .06em 0 #DDA135', offset: .2 },
-          { opacity: .25, transform: 'translateX(-.08em)', textShadow: '.08em 0 #2ee6ff, -.08em 0 #DDA135', offset: .38 },
-          { opacity: 1, transform: 'translateX(.05em) skewX(6deg)', textShadow: '-.04em 0 #2ee6ff, .04em 0 #DDA135', offset: .6 },
-          { opacity: 1, transform: 'none', textShadow: '0 0 0 transparent' }], 560, i * 42 + rand(0, 60), 'linear'));
-        return 560 + L.length * 42 + 60;
-      },
-      flicker(L) {
-        L.forEach((l, i) => A(l, [
-          { opacity: 0, textShadow: '0 0 0 transparent' },
-          { opacity: 1, textShadow: '0 0 .5em #DDA135', offset: .12 },
-          { opacity: .15, textShadow: '0 0 0 transparent', offset: .22 },
-          { opacity: 1, textShadow: '0 0 .45em #DDA135', offset: .4 },
-          { opacity: .3, textShadow: '0 0 .2em #DDA135', offset: .52 },
-          { opacity: 1, textShadow: '0 0 .35em #DDA135', offset: .7 },
-          { opacity: 1, textShadow: '0 0 0 transparent' }], 800, i * 80, 'linear'));
-        return 800 + L.length * 80;
-      },
-      type(L) {
-        const step = 82;
+
+      // Family G: Tilt -> Rebound (playful rotation with elastic settling)
+      async tilt_rebound(L, outFont, inFont) {
+        const outAnim = L.map((l, i) => A(l, [
+          { opacity: 1, transform: 'rotate(0deg) translateY(0)' },
+          { opacity: 0, transform: `rotate(${i % 2 === 0 ? -12 : 12}deg) translateY(0.25em)` }
+        ], 200, i * 16, 'ease-in', 'forwards'));
+        await sleep(200 + L.length * 16 + 50);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
         L.forEach((l, i) => {
-          A(l, [{ opacity: 0 }, { opacity: 1 }], 1, i * step, 'steps(1)');
-          cursorTimers.push(setTimeout(() => {
+          const deg = i % 2 === 0 ? -16 : 16;
+          A(l, [
+            { opacity: 0, transform: `rotate(${deg}deg) translateY(-0.4em) scale(0.85)` },
+            { opacity: 1, transform: `rotate(${-deg * 0.3}deg) translateY(0.06em) scale(1.05)`, offset: 0.65 },
+            { transform: 'rotate(0deg) translateY(0) scale(1)', offset: 1.0 }
+          ], 520, i * 42, 'cubic-bezier(.34,1.56,.64,1)');
+        });
+        await sleep(520 + L.length * 42);
+      },
+
+      // Family H: Pixel Dissolve (retro block mask / stepped scale pop)
+      async pixel_dissolve(L, outFont, inFont) {
+        const orderOut = L.map((_, i) => i).sort(() => Math.random() - 0.5);
+        const outAnim = L.map((l, i) => A(l, [
+          { opacity: 1, transform: 'scale(1)' },
+          { opacity: 0.2, transform: 'scale(0.8)', offset: 0.5 },
+          { opacity: 0, transform: 'scale(0.4)' }
+        ], 240, orderOut.indexOf(i) * 20, 'steps(4, jump-none)', 'forwards'));
+        await sleep(240 + L.length * 20 + 50);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        const orderIn = L.map((_, i) => i).sort(() => Math.random() - 0.5);
+        L.forEach((l, i) => A(l, [
+          { opacity: 0, transform: 'scale(0.35)' },
+          { opacity: 1, transform: 'scale(1.22)', offset: 0.35 },
+          { opacity: 0.6, transform: 'scale(0.88)', offset: 0.6 },
+          { opacity: 1, transform: 'scale(1)' }
+        ], 440, orderIn.indexOf(i) * 44, 'steps(4, jump-none)'));
+        await sleep(440 + L.length * 44);
+      },
+
+      // Family I: Flash-Cut (punchy micro visual cut, zero strobing)
+      async flash_cut(L, outFont, inFont) {
+        // Micro flash bloom on root
+        A(root, [
+          { filter: 'brightness(1) scale(1)', opacity: 1 },
+          { filter: 'brightness(1.5) scale(1.03)', opacity: 0.9, offset: 0.4 },
+          { filter: 'brightness(1) scale(1)', opacity: 1 }
+        ], 220, 0, 'cubic-bezier(.2,.9,.3,1)');
+
+        await sleep(90);
+        applyPersonality(inFont);
+
+        L.forEach((l, i) => A(l, [
+          { opacity: 0.4, transform: 'scale(1.08)' },
+          { opacity: 1, transform: 'scale(1)' }
+        ], 240, i * 14, 'cubic-bezier(.2,.9,.3,1)'));
+        await sleep(240 + L.length * 14);
+      },
+
+      // Family J: Font Roulette (controlled brief shuffle through 3-4 styles before settling)
+      async roulette(L, outFont, inFont) {
+        const pool = readyPersonalities.filter(p => p.id !== inFont.id);
+        const steps = 3;
+        const fsBase = parseFloat(getComputedStyle(root).fontSize) || 44;
+        const slotW = L.map((l, i) => (measure(inFont, TEXT[i]).width || 30) * fsBase / 100);
+        L.forEach((l, i) => { l.style.width = Math.ceil(slotW[i]) + 'px'; });
+
+        for (let s = 0; s < steps; s++) {
+          await vis();
+          L.forEach(l => {
+            const randFont = pick(pool) || inFont;
+            const target = (randFont.noDot && l.textContent === '.') ? anchorLogo : randFont;
+            l.style.fontFamily = `"${target.fam}", sans-serif`;
+            l.style.fontWeight = target.w || '400';
+            l.style.fontSize = (randFont.k || 1) + 'em';
+            l.style.top = ((randFont.dy || 0) / 100) + 'em';
+          });
+          await sleep(90);
+        }
+
+        // Lock onto incoming font with amber flash
+        applyPersonality(inFont);
+        L.forEach((l, i) => {
+          l.classList.add('lock');
+          const tid = setTimeout(() => l.classList.remove('lock'), 350);
+          activeTimers.push(tid);
+        });
+        await sleep(350);
+        L.forEach(l => l.style.removeProperty('width'));
+      },
+
+      // Family K: Typewriter Reveal (sequential reveal with tracking cursor)
+      async typewriter(L, outFont, inFont) {
+        // Outgoing fast blur fade
+        const outAnim = L.map(l => A(l, [
+          { opacity: 1 },
+          { opacity: 0 }
+        ], 140, 0, 'ease-in', 'forwards'));
+        await sleep(160);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+        L.forEach(l => { l.style.opacity = '0'; });
+
+        const step = 68;
+        L.forEach((l, i) => {
+          activeTimers.push(setTimeout(() => {
+            l.style.opacity = '1';
             L.forEach(x => x.classList.remove('cur'));
             l.classList.add('cur');
           }, i * step));
         });
-        cursorTimers.push(setTimeout(() => {
+
+        const totalTyping = L.length * step;
+        await sleep(totalTyping);
+        activeTimers.push(setTimeout(() => {
           L.forEach(x => x.classList.remove('cur'));
-        }, L.length * step + 450));
-        return L.length * step + 200;
+        }, 400));
+        await sleep(400);
+        L.forEach(l => l.style.removeProperty('opacity'));
       },
+
+      // Family L: Flip / Layered Transformation (3D perspective card flip)
+      async flip(L, outFont, inFont) {
+        const outAnim = L.map((l, i) => A(l, [
+          { opacity: 1, transform: 'perspective(500px) rotateX(0deg) translateY(0)' },
+          { opacity: 0, transform: 'perspective(500px) rotateX(85deg) translateY(-0.15em)' }
+        ], 200, i * 22, 'ease-in', 'forwards'));
+        await sleep(200 + L.length * 22 + 40);
+        outAnim.forEach(a => a.cancel());
+
+        applyPersonality(inFont);
+
+        L.forEach((l, i) => A(l, [
+          { opacity: 0, transform: 'perspective(500px) rotateX(-85deg) translateY(0.15em)' },
+          { opacity: 1, transform: 'perspective(500px) rotateX(0deg) translateY(0)' }
+        ], 440, i * 40, 'cubic-bezier(.2,.8,.2,1)'));
+        await sleep(440 + L.length * 40);
+      }
     };
 
-    function exitAll() {
-      letters.forEach((l, i) => l.animate(
-        [{ opacity: 1, filter: 'blur(0)', transform: 'translateY(0)' },
-         { opacity: 0, filter: 'blur(5px)', transform: 'translateY(-.12em)' }],
-        { duration: 170, delay: i * 10, easing: 'ease-in', fill: 'forwards' }));
-      return sleep(170 + letters.length * 10);
-    }
+    /* ==========================================================================
+       Non-Repeating Queue & Intelligent Pairing
+       ========================================================================== */
+    let personalityQueue = [];
+    let lastPersonality = null;
+    let lastTransition = null;
+    const recentPairs = []; // window of 'fontId:transition' to avoid repetition
 
-    /* ---------- non-repeating personality queue ---------- */
-    let queue = [];
-    let lastFont = null;
-    function getNextPersonalityFont() {
-      const pool = ready.filter(f => !f.logo);
-      if (!pool.length) return null;
-      if (!queue.length) {
-        queue = [...pool].sort(() => Math.random() - 0.5);
-        if (queue.length > 1 && queue[0] === lastFont) {
-          queue.push(queue.shift());
+    function getNextPersonality() {
+      if (!readyPersonalities.length) return null;
+      if (!personalityQueue.length) {
+        // Re-shuffle all ready personalities
+        personalityQueue = [...readyPersonalities].sort(() => Math.random() - 0.5);
+        // Avoid starting the new round with the exact same personality
+        if (personalityQueue.length > 1 && personalityQueue[0].id === (lastPersonality && lastPersonality.id)) {
+          personalityQueue.push(personalityQueue.shift());
         }
       }
-      const f = queue.shift();
-      lastFont = f;
-      return f;
+      const next = personalityQueue.shift();
+      return next;
     }
 
-    /* ---------- main loop ---------- */
+    function pickTransition(nextFont) {
+      const allowed = (nextFont.transitions && nextFont.transitions.length)
+        ? nextFont.transitions
+        : Object.keys(TRANSITIONS);
+
+      // Filter out immediate previous transition if possible
+      let candidates = allowed.filter(t => t !== lastTransition && TRANSITIONS[t]);
+      if (!candidates.length) candidates = allowed.filter(t => TRANSITIONS[t]);
+      if (!candidates.length) candidates = ['erase', 'blur_sharp', 'fall'];
+
+      // Prefer pairs not seen recently in memory
+      const freshCandidates = candidates.filter(t => !recentPairs.includes(`${nextFont.id}:${t}`));
+      const chosen = pick(freshCandidates.length ? freshCandidates : candidates) || 'erase';
+
+      // Update memory window (keep last 6 pairs)
+      recentPairs.push(`${nextFont.id}:${chosen}`);
+      if (recentPairs.length > 6) recentPairs.shift();
+
+      lastTransition = chosen;
+      return chosen;
+    }
+
+    /* ==========================================================================
+       Living Title Animation Lifecycle
+       ========================================================================== */
     let isLooping = false;
-    async function loop() {
+    let cycleCount = 0;
+
+    async function runCycle() {
+      const nextFont = getNextPersonality();
+      if (!nextFont) return;
+
+      const transitionName = pickTransition(nextFont);
+      const transitionFn = TRANSITIONS[transitionName] || TRANSITIONS.erase;
+
+      // 1. Execute expressive transition
+      await vis();
+      resetLetterAnimations();
+      try {
+        await transitionFn(letters, lastPersonality || nextFont, nextFont);
+      } catch (e) {
+        // Fallback safety
+        applyPersonality(nextFont);
+      }
+      resetLetterAnimations();
+      applyPersonality(nextFont);
+      lastPersonality = nextFont;
+      cycleCount++;
+
+      // 2. Settle completely & hold still (readable and distinct brand presence)
+      await vis();
+      const isExtended = (cycleCount % EXTENDED_REST_EVERY_N === 0);
+      const holdTime = isExtended ? EXTENDED_REST_MS : rand(DISPLAY_HOLD_MIN, DISPLAY_HOLD_MAX);
+      await sleep(holdTime);
+    }
+
+    async function startLivingCycle() {
       if (isLooping) return;
       isLooping = true;
       try {
         while (!reduceMotion) {
           await vis();
-          // 1. Scramble and resolve to the recognizable logo
-          await scrambleToLogo();
-          root.classList.add('vt-glow');
-          await vis();
-          await sleep(HOLD_LOGO);
-          root.classList.remove('vt-glow');
-
-          // 2. Occasionally introduce one personality font
-          const nextFont = getNextPersonalityFont();
-          if (nextFont && !reduceMotion) {
-            await vis();
-            await exitAll();
-            resetLetters();
-            letters.forEach(l => applyFont(l, nextFont));
-            const fxList = (nextFont.fx && nextFont.fx.length) ? nextFont.fx : ['type', 'bounce', 'wipe', 'flip', 'blur'];
-            const fxName = pick(fxList) || 'wipe';
-            const fxFn = FX[fxName] || FX.wipe;
-            const animDuration = fxFn(letters);
-            await sleep(animDuration + HOLD_FONT);
-            await vis();
-            await exitAll();
-          }
+          await runCycle();
         }
-      } catch (e) {
+      } catch (err) {
         // Safe exit
       } finally {
         isLooping = false;
       }
     }
 
-    /* ---------- boot ---------- */
+    /* ==========================================================================
+       Boot & Reduced Motion Handling
+       ========================================================================== */
     buildLetters();
 
     let reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -451,10 +851,10 @@
       const handleMotionChange = e => {
         reduceMotion = e.matches;
         if (reduceMotion) {
-          resetLetters();
-          letters.forEach(l => applyFont(l, activeLogo));
-        } else if (!isLooping && ready.length >= 2) {
-          loop();
+          resetLetterAnimations();
+          applyPersonality(anchorLogo);
+        } else if (!isLooping && readyPersonalities.length >= 2) {
+          startLivingCycle();
         }
       };
       if (mq.addEventListener) {
@@ -465,58 +865,61 @@
     }
 
     (async () => {
-      // 1. Load logo font
-      let logoLoaded = false;
+      // 1. Preload primary anchor logo font
       try {
-        await loadFont(FONTS[0]);
-        logoLoaded = true;
+        await loadFont(PERSONALITIES[0]);
+        readyPersonalities.push(PERSONALITIES[0]);
+        anchorLogo = PERSONALITIES[0];
       } catch (err) {
-        console.warn('[VATSAL.LOL Title] Primary logo font failed to load. Falling back to alternative.', err);
+        console.warn('[VATSAL.LOL] Primary logo font failed to load, falling back to alternative.', err);
       }
 
-      // 2. Load remaining fonts
-      const rest = FONTS.slice(1);
-      const loads = rest.map(f =>
-        loadFont(f).then(
-          () => { ready.push(f); },
+      // 2. Load remaining personalities in parallel
+      const rest = PERSONALITIES.slice(1);
+      const loads = rest.map(p =>
+        loadFont(p).then(
+          () => { readyPersonalities.push(p); },
           () => { /* Exclude unavailable font safely */ }
         )
       );
 
-      // Give quick fonts up to 1200ms to arrive
-      await Promise.race([Promise.all(loads), sleep(1200)]);
+      // Fast-boot: give fast fonts up to 1000ms, then begin experience
+      await Promise.race([Promise.all(loads), sleep(1000)]);
 
-      if (logoLoaded) {
-        activeLogo = FONTS[0];
-        ready.unshift(activeLogo);
-      } else if (ready.length > 0) {
-        // Fallback to first verified available font
-        activeLogo = ready[0];
-        activeLogo.logo = true;
-      } else {
-        // System fallback
-        activeLogo = { fam: 'sans-serif', w: '700', logo: true };
+      if (!readyPersonalities.includes(anchorLogo) && readyPersonalities.length > 0) {
+        anchorLogo = readyPersonalities[0];
       }
 
-      // Calibrate and normalize all ready fonts against activeLogo
-      ready.forEach(f => {
-        calibrate(f, activeLogo);
-        normalise(f, activeLogo);
-      });
+      // Display initial personality
+      const initialFont = readyPersonalities[0] || anchorLogo;
+      lastPersonality = initialFont;
+      applyPersonality(initialFont);
 
-      // Apply initial logo font
-      letters.forEach(l => applyFont(l, activeLogo));
+      // If user prefers reduced motion, remain static
+      if (reduceMotion) return;
 
-      if (reduceMotion) return; // Keep static on reduced motion
-      if (ready.length < 2) return; // Need at least 2 fonts to animate
+      // Initial expressive entrance on page opening
+      try {
+        await TRANSITIONS.fall(letters, initialFont, initialFont);
+      } catch (e) {
+        applyPersonality(initialFont);
+      }
+      resetLetterAnimations();
+      applyPersonality(initialFont);
 
-      loop();
+      // Settle on initial personality
+      await sleep(DISPLAY_HOLD_MIN);
+
+      // Begin perpetual living title cycle
+      if (readyPersonalities.length >= 2) {
+        startLivingCycle();
+      }
     })();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTitle);
+    document.addEventListener('DOMContentLoaded', initLivingTitle);
   } else {
-    initTitle();
+    initLivingTitle();
   }
 })();
