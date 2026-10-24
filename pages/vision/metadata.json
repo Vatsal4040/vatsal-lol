@@ -1,0 +1,6 @@
+{
+  "name": "VISION",
+  "description": "An interactive Canvas-based Perception Engine that scientifically models point-of-vision light processing across biological visual systems.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

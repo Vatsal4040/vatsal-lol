@@ -1,5 +1,11 @@
 [
   {
+    "slug": "vision",
+    "title": "Vision",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/vision.webp"
+  },
+  {
     "slug": "dimensions",
     "title": "Dimensions",
     "type": "page",

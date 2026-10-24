@@ -36,6 +36,7 @@
     { slug: "sudoku", title: "Sudoku", type: "game" },
     { slug: "tower-of-hanoi", title: "Tower of Hanoi", type: "game" },
     { slug: "under-limit", title: "Under Limit", type: "game" },
+    { slug: "vision", title: "Vision", type: "page" },
     { slug: "which-number", title: "Which Number", type: "page" },
     { slug: "wordle", title: "WORDLLE", type: "game" },
     { slug: "would-you-press-the-button", title: "Would You Press The Button", type: "game" },
@@ -283,6 +284,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "vision",
     "dimensions",
     "balance",
     "memories",
