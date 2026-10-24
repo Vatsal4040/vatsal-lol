@@ -1,5 +1,11 @@
 [
   {
+    "slug": "dimensions",
+    "title": "Dimensions",
+    "type": "page",
+    "thumbnail": "assets/thumbnails/dimensions.webp"
+  },
+  {
     "slug": "memories",
     "title": "Memories",
     "type": "page",

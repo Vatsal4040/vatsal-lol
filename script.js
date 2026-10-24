@@ -9,6 +9,7 @@
     { slug: "can-you-guess-indian-mom", title: "Can You Guess Indian Mom?", type: "game" },
     { slug: "chaos", title: "Chaos", type: "page" },
     { slug: "checklist", title: "Checklist", type: "page" },
+    { slug: "dimensions", title: "Dimensions", type: "page" },
     { slug: "draw-a-circle", title: "Draw a Circle", type: "page" },
     { slug: "emojis-2-movies", title: "Emojis 2 Movies", type: "game" },
     { slug: "everything-is-progressing", title: "Everything Is Processing", type: "page" },
@@ -282,6 +283,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "dimensions",
     "balance",
     "memories",
     "wordle",

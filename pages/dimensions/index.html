@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dimensions — Evolving Reality | VATSAL.LOL</title>
+    <link rel="canonical" href="https://vatsal.lol/pages/dimensions/">
+    <meta name="description" content="A continuous journey through 0D to 11D and beyond. An interactive cinematic WebGL experience on VATSAL.LOL exploring the dimensions of reality.">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:site_name" content="vatsal.lol">
+    <meta property="og:title" content="Dimensions — Evolving Reality | VATSAL.LOL">
+    <meta property="og:description" content="A continuous journey through 0D to 11D and beyond. An interactive cinematic WebGL experience on VATSAL.LOL exploring the dimensions of reality.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vatsal.lol/pages/dimensions/">
+    <meta property="og:image" content="https://vatsal.lol/assets/thumbnails/dimensions.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dimensions — Evolving Reality | VATSAL.LOL">
+    <meta name="twitter:description" content="A continuous journey through 0D to 11D and beyond. An interactive cinematic WebGL experience on VATSAL.LOL exploring the dimensions of reality.">
+    <meta name="twitter:image" content="https://vatsal.lol/assets/thumbnails/dimensions.webp">
+
+    <!-- Favicon & PWA -->
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Platform Styles -->
+    <link rel="stylesheet" href="../../assets/vatsal-v4.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Outfit:wght@100;300;600;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- WebGL Stage -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- LOADING / START SCREEN -->
+    <div id="loader" class="screen-overlay active">
+        <div class="loader-content">
+            <h1 class="glitch-title" data-text="DIMENSIONS">DIMENSIONS</h1>
+            <p class="subtitle">AN INTERACTIVE CINEMATIC EXPERIENCE</p>
+            <div class="divider"></div>
+            <p class="tagline">A continuous transformation of reality from nothing to infinity.</p>
+            <button id="btn-enter" class="btn-primary">ENTER EXPERIENCE</button>
+            <p class="hint">
+                <span class="hint-desktop">Use your Scroll Wheel to navigate after entering.</span>
+                <span class="hint-touch">Swipe up to explore after entering.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- HUD (Heads-Up Display) -->
+    <div id="hud">
+        <!-- Top Bar -->
+        <header class="hud-header glass">
+            <a href="/" id="vatsal-v4-logo" class="hud-brand" aria-label="Return to VATSAL.LOL home">
+                <span class="logo-dot"></span>
+                <span class="logo-text">DIMENSIONS</span>
+            </a>
+            <div class="hud-dimension">
+                <span id="active-act-name" class="act">ACT I: THE PHYSICAL REALMS</span>
+                <span class="label">STAGE</span>
+                <span id="active-dimension-num" class="accent">INTRO</span>
+                <span class="dash">—</span>
+                <span id="active-dimension-name" class="dim">THE VOID</span>
+            </div>
+            <div class="hud-audio">
+                <button id="btn-audio-toggle" class="btn-icon muted" title="Toggle Soundtrack">
+                    <svg viewBox="0 0 24 24" id="audio-icon-unmuted" class="icon hidden">
+                        <path d="M14,3.23V5.29C16.89,6.15 19,8.83 19,12C19,15.17 16.89,17.85 14,18.71V20.77C18.01,19.86 21,16.28 21,12C21,7.72 18.01,4.14 14,3.23M16.5,12C16.5,10.23 15.5,8.71 14,7.97V16C15.5,15.29 16.5,13.77 16.5,12M3,9V15H7L12,20V4L7,9H3Z" fill="currentColor"/>
+                    </svg>
+                    <svg viewBox="0 0 24 24" id="audio-icon-muted" class="icon">
+                        <path d="M12,4L7,9H3V15H7L12,20V4M16.5,12A4.5,4.5 0 0,0 14,7.97v8.05c1.48-.73 2.5-2.25 2.5-4.08m2.5,0a6.96,6.96 0 0,1-1.71,4.55l1.49,1.49A8.93,8.93 0 0,0 21,12a9,9 0 0,0-7-8.77v2.06c4,1 7,4.58 7,8.71m-10.15,10.15l-1.49-1.49L3.41,20.66L2,19.24L4.85,16.4L1.29,12.83l1.41-1.41L6.28,15L19.07,2.21l1.41,1.41L12.85,11.23l2.84,2.83L12.85,16.9L16.4,20.45l-1.41,1.41L12,18.91l-3.15,3.15z" fill="currentColor"/>
+                    </svg>
+                    <span id="audio-status-text">AUDIO MUTED</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Progress Tracker -->
+        <div class="hud-progress-container">
+            <div id="hud-progress-bar"></div>
+        </div>
+
+
+
+        <!-- Dynamic Narrative Overlay Container -->
+        <div id="narrative-container">
+            <!-- Content will be injected dynamically by each scene.js for clean modularity -->
+        </div>
+
+        <!-- Scroll Indicator Prompt -->
+        <div id="scroll-prompt">
+            <span class="mouse-icon">
+                <span class="wheel"></span>
+            </span>
+            <span class="text">SCROLL TO DRIFT</span>
+        </div>
+    </div>
+
+    <!-- Scroll proxy driver -->
+    <div id="scroll-engine"></div>
+
+    <!-- Three.js and plugins from JSdelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+
+    <!-- GSAP & ScrollTrigger from Cdnjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+    <!-- Audio Controller and Scene Modules -->
+    <script src="./scenes/audio.js?v=2.2"></script>
+    <script src="./scenes/intro.js?v=2.2"></script>
+    <script src="./scenes/0d.js?v=2.2"></script>
+    <script src="./scenes/1d.js?v=2.2"></script>
+    <script src="./scenes/2d.js?v=2.2"></script>
+    <script src="./scenes/3d.js?v=2.2"></script>
+    <script src="./scenes/4d.js?v=2.2"></script>
+    <script src="./scenes/5d.js?v=2.2"></script>
+    <script src="./scenes/6d.js?v=2.2"></script>
+    <script src="./scenes/7d.js?v=2.2"></script>
+    <script src="./scenes/8d.js?v=2.2"></script>
+    <script src="./scenes/9d.js?v=2.2"></script>
+    <script src="./scenes/10d.js?v=2.2"></script>
+    <script src="./scenes/11d.js?v=2.2"></script>
+    <script src="./scenes/ending.js?v=2.2"></script>
+
+    <!-- Orchestrator entry script (No type="module" to allow file:// protocol) -->
+    <script src="./main.js?v=2.2"></script>
+    <script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>
