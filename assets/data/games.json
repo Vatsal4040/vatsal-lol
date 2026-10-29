@@ -1,5 +1,11 @@
 [
   {
+    "slug": "trust-issues",
+    "title": "Trust Issues",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/trust-issues.webp"
+  },
+  {
     "slug": "vision",
     "title": "Vision",
     "type": "page",

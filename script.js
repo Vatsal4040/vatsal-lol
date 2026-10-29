@@ -35,6 +35,7 @@
     { slug: "stick_fighter", title: "Stick Fighter", type: "game" },
     { slug: "sudoku", title: "Sudoku", type: "game" },
     { slug: "tower-of-hanoi", title: "Tower of Hanoi", type: "game" },
+    { slug: "trust-issues", title: "Trust Issues", type: "game" },
     { slug: "under-limit", title: "Under Limit", type: "game" },
     { slug: "vision", title: "Vision", type: "page" },
     { slug: "which-number", title: "Which Number", type: "page" },
@@ -284,6 +285,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "trust-issues",
     "vision",
     "dimensions",
     "balance",

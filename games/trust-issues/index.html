@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Trust Issues — 8-Bit Trap Platformer | VATSAL.LOL</title>
+<link rel="canonical" href="https://vatsal.lol/games/trust-issues/" />
+<meta name="description" content="A deceitful neo-retro 8-bit precision platformer where every step tests your trust. Play Trust Issues free on VATSAL.LOL." />
+
+<!-- Open Graph Metadata -->
+<meta property="og:site_name" content="vatsal.lol" />
+<meta property="og:title" content="Trust Issues — 8-Bit Trap Platformer | VATSAL.LOL" />
+<meta property="og:description" content="A deceitful neo-retro 8-bit precision platformer where every step tests your trust. Play Trust Issues free on VATSAL.LOL." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://vatsal.lol/games/trust-issues/" />
+<meta property="og:image" content="https://vatsal.lol/assets/thumbnails/trust-issues.webp" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Trust Issues — 8-Bit Trap Platformer | VATSAL.LOL" />
+<meta name="twitter:description" content="A deceitful neo-retro 8-bit precision platformer where every step tests your trust. Play Trust Issues free on VATSAL.LOL." />
+<meta name="twitter:image" content="https://vatsal.lol/assets/thumbnails/trust-issues.webp" />
+
+<!-- Favicon & PWA -->
+<meta name="theme-color" content="#0c0403" />
+<link rel="manifest" href="/manifest.json" />
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Platform Styles -->
+<link rel="stylesheet" href="../../assets/vatsal-v4.css" />
+
+<!-- Fonts & Game Styles -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="stage">
+  <canvas id="game" width="1920" height="1080"></canvas>
+</div>
+
+<!-- Touch controls (mobile only) -->
+<div id="touch-controls" class="hidden">
+  <div class="tc-group tc-move">
+    <button id="tc-left" class="tc-btn" aria-label="Move left">◀</button>
+    <button id="tc-right" class="tc-btn" aria-label="Move right">▶</button>
+  </div>
+  <div class="tc-group tc-actions">
+    <button id="tc-restart" class="tc-btn tc-small" aria-label="Restart">↺</button>
+    <button id="tc-jump" class="tc-btn tc-jump" aria-label="Jump">▲</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+<script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>
