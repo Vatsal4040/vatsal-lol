@@ -38,6 +38,7 @@
     { slug: "trust-issues", title: "Trust Issues", type: "game" },
     { slug: "under-limit", title: "Under Limit", type: "game" },
     { slug: "vision", title: "Vision", type: "page" },
+    { slug: "what-beats", title: "What Beats What?", type: "game" },
     { slug: "which-number", title: "Which Number", type: "page" },
     { slug: "wordle", title: "WORDLLE", type: "game" },
     { slug: "would-you-press-the-button", title: "Would You Press The Button", type: "game" },
@@ -285,6 +286,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "what-beats",
     "trust-issues",
     "vision",
     "dimensions",

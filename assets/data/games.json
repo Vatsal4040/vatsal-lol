@@ -1,5 +1,11 @@
 [
   {
+    "slug": "what-beats",
+    "title": "What Beats What?",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/what-beats.webp"
+  },
+  {
     "slug": "trust-issues",
     "title": "Trust Issues",
     "type": "game",
