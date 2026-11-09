@@ -19,6 +19,7 @@
     { slug: "guess-the-lie", title: "Guess the Lie", type: "game" },
     { slug: "hardword", title: "HardWord", type: "game" },
     { slug: "how_many", title: "How Many", type: "page" },
+    { slug: "hunch", title: "Hunch", type: "game" },
     { slug: "lets-settle", title: "Let's Settle", type: "page" },
     { slug: "luckorpredict", title: "Midnight Oracle (Luck or Predict)", type: "game" },
     { slug: "not_scary", title: "This Is Not A Jump Scare", type: "page" },
@@ -286,6 +287,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "hunch",
     "what-beats",
     "trust-issues",
     "vision",

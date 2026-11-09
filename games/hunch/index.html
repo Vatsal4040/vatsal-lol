@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Hunch — Trust Your Gut | VATSAL.LOL</title>
+<link rel="canonical" href="https://vatsal.lol/games/hunch/">
+<meta name="description" content="A five-round test of intuition, perception and instinct. Put your raw gut feelings to the test on VATSAL.LOL.">
+
+<!-- Open Graph Metadata -->
+<meta property="og:site_name" content="vatsal.lol">
+<meta property="og:title" content="Hunch — Trust Your Gut | VATSAL.LOL">
+<meta property="og:description" content="A five-round test of intuition, perception and instinct. Put your raw gut feelings to the test on VATSAL.LOL.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vatsal.lol/games/hunch/">
+<meta property="og:image" content="https://vatsal.lol/assets/thumbnails/hunch.webp">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hunch — Trust Your Gut | VATSAL.LOL">
+<meta name="twitter:description" content="A five-round test of intuition, perception and instinct. Put your raw gut feelings to the test on VATSAL.LOL.">
+<meta name="twitter:image" content="https://vatsal.lol/assets/thumbnails/hunch.webp">
+
+<!-- Favicon & PWA -->
+<meta name="theme-color" content="#e4e3dc">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%230e0e0e'/%3E%3Crect%20x='3.0'%20y='13.36'%20width='4'%20height='13.64'%20fill='%232338c9'/%3E%3Crect%20x='8.5'%20y='8.08'%20width='4'%20height='18.92'%20fill='%23f0cf2b'/%3E%3Crect%20x='14.0'%20y='18.20'%20width='4'%20height='8.80'%20fill='%2312563a'/%3E%3Crect%20x='19.5'%20y='10.72'%20width='4'%20height='16.28'%20fill='%23e8352b'/%3E%3Crect%20x='25.0'%20y='15.56'%20width='4'%20height='11.44'%20fill='%23e4e3dc'/%3E%3C/svg%3E">
+
+<!-- Platform Styles -->
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
+<style>
+:root{
+  --blue:#2338c9; --lemon:#f0cf2b; --forest:#12563a; --red:#e8352b; --black:#0e0e0e; --bone:#e4e3dc;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0}
+html,body{height:100%;overflow:hidden;background:var(--black);overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+body{font-family:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",sans-serif;-webkit-font-smoothing:antialiased}
+#stage{
+  position:fixed; inset:0; background:var(--bg,var(--bone)); color:var(--fg,var(--black));
+  transition:background .45s, color .45s; overflow:hidden; touch-action:none; user-select:none; -webkit-user-select:none;
+  cursor:crosshair;
+}
+#layer{position:absolute; inset:0}
+/* hud */
+.hud{position:absolute; z-index:6; top:calc(16px + env(safe-area-inset-top)); left:calc(20px + env(safe-area-inset-left)); right:calc(20px + env(safe-area-inset-right)); display:flex; justify-content:space-between; align-items:flex-start; font-weight:800; font-size:15px; letter-spacing:-.01em; pointer-events:none}
+.bars{display:flex; gap:7px; align-items:flex-end}
+.bars i{display:block; width:12px; height:26px; border:2px solid currentColor; position:relative}
+.bars i.now{box-shadow:0 7px 0 -0px currentColor; margin-bottom:7px}
+.bars b{position:absolute; left:0; right:0; bottom:0; background:currentColor}
+/* text */
+.say{position:absolute; z-index:6; left:calc(20px + env(safe-area-inset-left)); bottom:calc(22px + env(safe-area-inset-bottom)); max-width:min(46vw,520px); font-weight:800; font-size:clamp(17px,2.5vw,28px); line-height:1.08; letter-spacing:-.02em; pointer-events:none}
+.score{position:absolute; z-index:5; right:12px; bottom:-.02em; font-weight:900; font-size:min(34vw,46dvh); line-height:.74; letter-spacing:-.07em; color:var(--hi); transform:translateY(70%); opacity:0; transition:transform .5s cubic-bezier(.15,.9,.2,1), opacity .2s; pointer-events:none}
+.score.show{transform:none; opacity:1}
+.big{position:absolute; font-weight:900; letter-spacing:-.07em; line-height:.8; font-size:min(30vw,36dvh); pointer-events:none}
+.big.tl{left:14px; top:62px}
+.big.mid{left:0; right:0; top:46%; transform:translateY(-50%); text-align:center}
+/* count */
+.seeds{position:absolute; inset:0; transition:opacity .08s}
+.seeds s{position:absolute; width:10px; height:10px; background:var(--fg)}
+.seeds s.hi{background:var(--hi)}
+/* tempo */
+.flash{position:absolute; inset:0; background:var(--hi); opacity:0; transition:opacity .22s}
+.flash.on{opacity:1; transition:none}
+.row4{position:absolute; left:0; right:0; display:flex; justify-content:center; gap:3vw}
+.row4 i{display:block; width:9vw; max-width:80px; height:9vw; max-height:80px; border:3px solid var(--fg)}
+.row4 i.on{background:var(--fg)}
+.row4.y i.on{background:var(--hi); border-color:var(--hi)}
+/* track */
+.ball{position:absolute; width:28px; height:28px; border-radius:50%; background:var(--fg); margin:-14px 0 0 -14px; z-index:1}
+.curtain{position:absolute; z-index:2; top:70px; bottom:130px; right:0; background:var(--blue); transition:opacity .5s}
+/* intro / result */
+.cols{position:absolute; left:0; right:0; bottom:0; display:flex; align-items:flex-end}
+.col{flex:1; position:relative; transform-origin:bottom; animation:rise .8s cubic-bezier(.15,.9,.2,1) both}
+@keyframes rise{from{transform:scaleY(0)}}
+.col span{position:absolute; top:8px; left:10px; font-weight:900; font-size:clamp(18px,4vw,44px); letter-spacing:-.05em}
+.col em{position:absolute; bottom:10px; left:10px; font-style:normal; font-weight:800; font-size:13px; writing-mode:vertical-rl; transform:rotate(180deg)}
+.word{position:absolute; left:10px; top:-1.5vw; font-weight:900; font-size:min(27vw,38dvh); line-height:.9; letter-spacing:-.08em}
+.tag{position:absolute; left:20px; top:min(34vw,44dvh); font-weight:800; font-size:clamp(17px,2.4vw,26px); letter-spacing:-.02em; max-width:20em; line-height:1.1}
+.links{position:absolute; left:20px; top:calc(min(34vw,44dvh) + 70px); display:flex; gap:28px; flex-wrap:wrap}
+.lk{font:inherit; font-weight:900; font-size:clamp(30px,5vw,54px); letter-spacing:-.04em; background:none; border:0; color:inherit; cursor:pointer; border-bottom:6px solid currentColor; line-height:1; padding-bottom:2px}
+.lk:hover{background:var(--fg); color:var(--bg)}
+.rtop{position:absolute; left:0; right:0; top:0; height:32dvh; display:flex; align-items:flex-start; gap:4vw; padding:10px 20px}
+.grade{font-weight:900; font-size:min(40vw,30dvh); line-height:.78; letter-spacing:-.08em}
+.rinfo{padding-top:10px}
+.rinfo b{display:block; font-weight:900; font-size:clamp(34px,6vw,70px); letter-spacing:-.05em; line-height:1}
+.rinfo p{font-weight:800; font-size:clamp(15px,2vw,22px); margin:6px 0 14px; max-width:18em; line-height:1.1}
+.rinfo .lk{font-size:clamp(20px,3vw,32px); border-bottom-width:4px; margin-right:18px}
+/* test-to-test wipe */
+.wipe{position:fixed; inset:0; z-index:50; display:flex; flex-direction:column; justify-content:flex-end; padding:0 20px calc(24px + env(safe-area-inset-bottom)); transform:translateX(101%); will-change:transform}
+.wipe.in{transform:none; transition:transform .42s cubic-bezier(.7,0,.2,1)}
+.wipe.out{transform:translateX(-101%); transition:transform .42s cubic-bezier(.7,0,.2,1)}
+.wn{font-weight:900; font-size:min(52vw,44dvh); line-height:.74; letter-spacing:-.09em}
+.wt{font-weight:900; font-size:clamp(34px,9vw,96px); letter-spacing:-.05em; line-height:1; margin-top:12px}
+.ws{font-weight:800; font-size:clamp(16px,2.4vw,26px); letter-spacing:-.02em; margin-top:4px; opacity:.85}
+/* curtain test */
+.wall{position:absolute; left:0; right:0; height:3px; background:var(--fg); opacity:.55}
+.exit{position:absolute; z-index:3; width:0; border-left:4px dashed var(--lemon)}
+.exitl{position:absolute; z-index:3; color:var(--lemon); font-weight:900; font-size:16px; letter-spacing:.04em; writing-mode:vertical-rl; transform:rotate(180deg)}
+#trail i{position:absolute; width:8px; height:8px; margin:-4px 0 0 -4px; border-radius:50%; background:var(--fg); opacity:.35}
+#mk .th{position:absolute; z-index:3; width:8px; height:8px; margin:-4px 0 0 -4px; border-radius:50%; background:var(--lemon)}
+.hline{position:absolute; z-index:3; height:0; border-top:3px solid var(--bone)}
+.mark{position:absolute; z-index:4; width:22px; height:22px; background:var(--bone); outline:3px solid var(--black)}
+/* results */
+.res{position:absolute; inset:0; display:flex; flex-direction:column; padding-top:calc(12px + env(safe-area-inset-top))}
+.rhead{display:flex; align-items:flex-start; gap:4vw; padding:0 20px 12px; flex:0 0 auto}
+.rows{flex:1; display:flex; flex-direction:column; gap:4px; min-height:0; padding-bottom:env(safe-area-inset-bottom)}
+.rw{flex:1; position:relative; background:#1d1d1d; overflow:hidden; isolation:isolate; min-height:0; animation:fadein .4s both}
+.fill{position:absolute; left:0; top:0; bottom:0; transform-origin:left; animation:growx .8s cubic-bezier(.15,.9,.2,1) both}
+@keyframes growx{from{transform:scaleX(0)}}
+@keyframes fadein{from{opacity:0}}
+.rl,.rn{position:absolute; z-index:1; mix-blend-mode:difference; color:#fff; top:50%; transform:translateY(-50%)}
+.rl{left:20px; max-width:72%}
+.rl b{display:block; font-weight:900; font-size:clamp(22px,4.4dvh,40px); letter-spacing:-.04em; line-height:1}
+.rl span{display:block; font-weight:700; font-size:clamp(12px,1.9dvh,17px); margin-top:3px; line-height:1.15}
+.rn{right:16px; font-weight:900; font-size:clamp(34px,8dvh,84px); letter-spacing:-.06em; line-height:1}
+.rinfo .sw{font-size:13px; opacity:.7; margin-top:-8px}
+@media (max-height:520px) and (orientation:landscape){
+  .res{flex-direction:row; padding-top:0}
+  .rhead{flex-direction:column; width:38%; gap:0; padding-top:calc(10px + env(safe-area-inset-top))}
+  .rows{padding-top:4px}
+}
+/* phones, portrait */
+@media (max-width:640px){
+  .hud{left:16px; right:16px}
+  .say{left:16px; right:16px; max-width:none; font-size:18px; bottom:calc(18px + env(safe-area-inset-bottom))}
+  .score{font-size:min(44vw,26dvh); bottom:calc(var(--sayh,64px) + 22px + env(safe-area-inset-bottom))}
+  .big.tl{top:calc(58px + env(safe-area-inset-top))}
+  .row4 i{width:14vw; height:14vw}
+  .links{gap:20px}
+}
+/* phones, landscape */
+@media (max-height:520px) and (orientation:landscape){
+  .word{font-size:34dvh; top:-2dvh}
+  .tag{top:38dvh}
+  .links{top:calc(38dvh + 50px)}
+  .cols.intro{height:30dvh !important}
+  .say{max-width:52vw; font-size:16px}
+  .big{font-size:min(30vw,34dvh)}
+}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s), stage=$('#stage');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function hash(s){let h=1779033703^s.length;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19}return h>>>0}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+let audioCtx; function ensureAudio(){try{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume()}catch(e){}}
+const buzz=ms=>{try{navigator.vibrate&&navigator.vibrate(ms)}catch(e){}};
+const BLOCKS='▁▂▃▄▅▆▇█';
+const grade=a=>a>=92?'S':a>=85?'A':a>=75?'B':a>=60?'C':a>=45?'D':'F';
+
+/* ---------- state ---------- */
+let P,scores,notes,idx,label,over,W,H,L,started,BP,scr;
+function reset(){ stage.onpointerdown=stage.onpointermove=stage.onpointerup=null; stage.oncontextmenu=e=>e.preventDefault(); }
+function newGame(daily){
+  const d=new Date(), key=d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  label=daily?d.toLocaleDateString(undefined,{day:'numeric',month:'short'}).toLowerCase():'random';
+  const seed=daily?hash('hunch'+key):Math.floor(Math.random()*4e9), R=rng(seed);
+  P={seed,count:18+Math.floor(R()*122),angle:20+Math.floor(R()*320),split:12+Math.floor(R()*76),bpm:66+Math.floor(R()*62),y0:40+R()*220,vy:(0.08+R()*0.2)*(R()<.5?-1:1)};
+  scores=[]; notes=[]; idx=0; enter();
+}
+
+/* ---------- shell ---------- */
+function setTheme(bg,fg,hi){const m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',bg);stage.style.setProperty('--bg',bg);stage.style.setProperty('--fg',fg);stage.style.setProperty('--hi',hi)}
+function round(){
+  reset(); over=false; started=false; scr='round'; W=innerWidth; H=innerHeight;
+  BP=H<480?100:(W<640?190:150);
+  stage.addEventListener('pointerdown',()=>{started=true},{capture:true,once:true});
+  const r=ROUNDS[idx]; setTheme(r.bg,r.fg,r.hi);
+  const bars=ROUNDS.map((_,i)=>`<i class="${i===idx?'now':''}"><b style="height:${i<scores.length?scores[i]:0}%"></b></i>`).join('');
+  stage.innerHTML=`<div id="layer"></div><div class="hud"><div id="hl">${idx+1}/5 &nbsp;${r.name}</div><div id="hm"></div><div class="bars">${bars}</div></div><div class="score" id="score"></div><div class="say" id="say"></div>`;
+  L=$('#layer'); r.run();
+}
+const say=t=>{const s=$('#say');s.textContent=t;stage.style.setProperty('--sayh',s.offsetHeight+'px')};
+function commit(s,msg){
+  if(over)return; over=true; s=Math.round(clamp(s,0,100)); scores.push(s); notes.push(msg); buzz(30);
+  say(msg); const sc=$('#score'); sc.textContent=s; requestAnimationFrame(()=>requestAnimationFrame(()=>sc.classList.add('show')));
+  $('#hm').textContent='tap anywhere';
+  const last=scores.length===ROUNDS.length;
+  setTimeout(()=>stage.addEventListener('pointerdown',()=>{ if(last)wipe(RES,'end',results); else{idx++;enter()} },{once:true}),700);
+}
+
+/* ---------- 1: seeds ---------- */
+function runCount(){
+  let N=P.count; const R=rng(P.seed+7); let st='idle',g=100,down=false;
+  say('seeds appear for a moment. count them. tap to start.');
+  /* grid-jitter placement: every seed owns its own cell, so nothing overlaps and the count stays honest */
+  const fx=18,fy=88,fw=W-36,fh=H-88-BP;
+  const cs=Math.max(22,Math.floor(Math.sqrt(fw*fh/(N*1.5)))), cols=Math.max(1,Math.floor(fw/cs)), rows=Math.max(1,Math.floor(fh/cs));
+  const cells=[]; for(let i=0;i<cols*rows;i++)cells.push(i);
+  for(let i=cells.length-1;i>0;i--){const j=Math.floor(R()*(i+1));[cells[i],cells[j]]=[cells[j],cells[i]]}
+  if(cells.length<N)N=cells.length;
+  const ox=fx+(fw-cols*cs)/2, oy=fy+(fh-rows*cs)/2;
+  let h=''; for(let i=0;i<N;i++){const c=cells[i],jx=(cs-12)*R(),jy=(cs-12)*R();
+    h+=`<s class="${R()<.2?'hi':''}" style="left:${(ox+(c%cols)*cs+jx).toFixed(0)}px;top:${(oy+Math.floor(c/cols)*cs+jy).toFixed(0)}px"></s>`;}
+  L.innerHTML=`<div id="seeds" class="seeds" style="opacity:0">${h}</div><div id="big" class="big mid"></div>`;
+  const seeds=$('#seeds'),big=$('#big');
+  const setG=e=>{g=clamp(Math.round(1+e.clientX/W*199),1,200);big.textContent=g};
+  stage.onpointerdown=e=>{
+    if(over)return;
+    if(st==='idle'){st='show';say('');seeds.style.opacity=1;setTimeout(()=>{seeds.style.opacity=0;st='guess';say('how many? drag across the screen. release to commit.');big.textContent='?'},1200+N*7)}
+    else if(st==='guess'){down=true;stage.setPointerCapture(e.pointerId);setG(e)}
+  };
+  stage.onpointermove=e=>{if(down&&!over)setG(e)};
+  stage.onpointerup=()=>{if(down&&!over){down=false;seeds.style.opacity=1;commit(100*(1-Math.abs(g-N)/N/.4),`${N} seeds. you said ${g}.`);
+    /* count them out so the answer can be checked */
+    let k=0;big.textContent=0;const t=setInterval(()=>{k=Math.min(N,k+Math.ceil(N/22));big.textContent=k;if(k>=N)clearInterval(t)},40);}};
+}
+
+/* ---------- 2: needle ---------- */
+function runAngle(){
+  const T=P.angle,cx=W/2,cy=H/2+10,Rr=Math.min(W,H)*.34; let cur=0,down=false;
+  say(`point the needle at ${T}°, counterclockwise from the red mark. release to commit.`);
+  L.innerHTML=`<div class="big tl">${T}°</div><svg width="${W}" height="${H}" style="position:absolute;left:0;top:0">
+    <rect x="${cx+Rr+16}" y="${cy-5}" width="46" height="10" style="fill:var(--hi)"/>
+    <line id="tr" x1="${cx}" y1="${cy}" x2="${cx+Rr+40}" y2="${cy}" style="stroke:var(--hi);stroke-width:6;opacity:0" transform="rotate(${-T} ${cx} ${cy})"/>
+    <g id="nd"><polygon points="${cx-14},${cy-9} ${cx+Rr},${cy} ${cx-14},${cy+9}" style="fill:var(--fg)"/></g></svg>`;
+  const nd=$('#nd');
+  const upd=e=>{const a=Math.atan2(cy-e.clientY,e.clientX-cx)*180/Math.PI;cur=((a%360)+360)%360;nd.setAttribute('transform',`rotate(${-cur} ${cx} ${cy})`)};
+  stage.onpointerdown=e=>{if(over)return;down=true;stage.setPointerCapture(e.pointerId);upd(e)};
+  stage.onpointermove=e=>{if(down&&!over)upd(e)};
+  stage.onpointerup=()=>{if(down&&!over){down=false;$('#tr').style.opacity=1;let d=Math.abs(cur-T);d=Math.min(d,360-d);commit(100-d*2.2,`target ${T}°. you ${Math.round(cur)}°. off by ${d.toFixed(1)}°.`)}};
+}
+
+/* ---------- 3: split ---------- */
+function runSplit(){
+  const T=P.split; let pos=null,down=false;
+  say(`split the screen. the left side should be ${T}% of the width. release to commit.`);
+  L.innerHTML=`<div id="lf" style="position:absolute;left:0;top:0;bottom:0;width:0;background:#0e0e0e"></div>
+    <div id="tl" style="position:absolute;top:0;bottom:0;left:${T}%;width:8px;margin-left:-4px;background:var(--hi);opacity:0"></div>
+    <div class="big tl">${T}%</div>`;
+  const upd=e=>{pos=clamp(e.clientX/W,0,1);$('#lf').style.width=(pos*100)+'%'};
+  stage.onpointerdown=e=>{if(over)return;down=true;stage.setPointerCapture(e.pointerId);upd(e)};
+  stage.onpointermove=e=>{if(down&&!over)upd(e)};
+  stage.onpointerup=()=>{if(down&&!over){down=false;$('#tl').style.opacity=1;const err=Math.abs(pos*100-T);commit(100-err*5,`target ${T}%. you ${(pos*100).toFixed(1)}%. off by ${err.toFixed(1)}.`)}};
+}
+
+/* ---------- 4: pulse ---------- */
+function runTempo(){
+  const iv=60000/P.bpm; let st='idle',taps=[];
+  say('four beats, then silence. keep the same pace: tap four times. one listen only. tap to start.');
+  L.innerHTML=`<div class="flash" id="fl"></div><div class="row4" id="hb" style="top:34%">${'<i></i>'.repeat(4)}</div><div class="row4 y" id="yb" style="top:56%">${'<i></i>'.repeat(4)}</div>`;
+  const hb=[...$('#hb').children],yb=[...$('#yb').children],fl=$('#fl');
+  const click=t=>{if(!audioCtx)return;const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='square';o.frequency.value=520;
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.35,t+.004);g.gain.exponentialRampToValueAtTime(.0001,t+.09);o.connect(g).connect(audioCtx.destination);o.start(t);o.stop(t+.12)};
+  stage.onpointerdown=()=>{
+    if(over)return;
+    if(st==='idle'){
+      ensureAudio(); st='play'; say('listen.');
+      const t0=audioCtx?audioCtx.currentTime+.15:0;
+      for(let i=0;i<4;i++){click(t0+i*iv/1000);setTimeout(()=>{buzz(25);hb[i].classList.add('on');fl.classList.add('on');setTimeout(()=>fl.classList.remove('on'),70)},150+i*iv)}
+      setTimeout(()=>{st='tap';say('your turn. four taps.')},150+3*iv+250);
+    } else if(st==='tap'){
+      taps.push(performance.now()); buzz(15); yb[taps.length-1].classList.add('on');
+      if(taps.length===4){
+        const a=[taps[1]-taps[0],taps[2]-taps[1],taps[3]-taps[2]],m=(a[0]+a[1]+a[2])/3,rel=Math.abs(m-iv)/iv;
+        commit(100-rel*400,`${P.bpm} bpm. you ${Math.round(60000/m)}.`);
+      }
+    }
+  };
+}
+
+/* ---------- 5: curtain ---------- */
+function runTrack(){
+  const top=84,bot=H-BP,fh=bot-top,NX=.38,D=2400,ex=.95*W;
+  const y0=clamp((P.y0-12)/276,.08,.92),vy=P.vy/276;
+  const fold=u=>{let t=u%2;if(t<0)t+=2;return t>1?2-t:t};
+  const landY=top+fold(y0+vy*D)*fh; let st='idle',down=false,my=null;
+  say('a ball rolls right and bounces off the top and bottom lines. the blue block hides it. tap to release it.');
+  L.innerHTML=`<div class="wall" style="top:${top-17}px"></div><div class="wall" style="top:${bot+16}px"></div>
+    <div class="curtain" id="cu" style="left:${NX*100}%;bottom:${BP-20}px"></div>
+    <div class="exit" style="left:${ex}px;top:${top-16}px;height:${fh+32}px"></div>
+    <div class="exitl" style="left:${ex-26}px;top:${top+fh/2-28}px">exit</div>
+    <div id="trail"></div><div class="ball" id="ball" style="left:${.04*W}px;top:${top+y0*fh}px"></div><div id="mk"></div>`;
+  const ball=$('#ball'),tr=$('#trail');
+  const setY=e=>{my=clamp(e.clientY,top,bot);
+    $('#mk').innerHTML=`<div class="hline" style="top:${my}px;left:${NX*W}px;width:${ex-NX*W}px"></div><div class="mark" style="left:${ex-11}px;top:${my-11}px"></div>`};
+  const reveal=()=>{
+    const dt=18/(.92*W/D); let h='';
+    for(let t=(NX-.04)/.92*D;t<D;t+=dt){const x=.04*W+.92*W*(t/D),y=top+fold(y0+vy*t)*fh;h+=`<i class="th" style="left:${x.toFixed(0)}px;top:${y.toFixed(0)}px"></i>`}
+    h+=`<div style="position:absolute;z-index:4;left:${ex-16}px;top:${landY-16}px;width:32px;height:32px;border-radius:50%;background:var(--lemon)"></div>`;
+    $('#mk').insertAdjacentHTML('beforeend',h); $('#cu').style.opacity=.35; ball.style.opacity=0;
+  };
+  stage.onpointerdown=e=>{
+    if(over)return;
+    if(st==='idle'){
+      st='run'; say('1. watch the path.'); let t0=null,lx=-99,ly=-99,hid=false;
+      const f=ts=>{if(t0===null)t0=ts;const t=Math.min(ts-t0,D),x=.04*W+.92*W*(t/D),y=top+fold(y0+vy*t)*fh,vis=x<=NX*W;
+        ball.style.left=x+'px';ball.style.top=y+'px';ball.style.opacity=vis?1:0;
+        if(vis&&Math.hypot(x-lx,y-ly)>=18){lx=x;ly=y;tr.insertAdjacentHTML('beforeend',`<i style="left:${x.toFixed(0)}px;top:${y.toFixed(0)}px"></i>`)}
+        if(!vis&&!hid){hid=true;say('2. it is hidden now. keep tracking it in your head.')}
+        if(t<D)requestAnimationFrame(f);else{st='ready';say('3. touch the screen and slide to where it comes out on the yellow line. release to commit.')}};
+      requestAnimationFrame(f);
+    } else if(st==='ready'){down=true;stage.setPointerCapture(e.pointerId);setY(e)}
+  };
+  stage.onpointermove=e=>{if(down&&!over)setY(e)};
+  stage.onpointerup=()=>{if(down&&!over){down=false;reveal();commit(100-Math.abs(my-landY)/fh*300,`${Math.round(Math.abs(my-landY))}px off. the yellow dot is where it came out.`)}};
+}
+
+/* ---------- registry ---------- */
+const ROUNDS=[
+  {name:'seeds',  short:'seeds',  sub:'count what you see',        bg:'#2338c9',fg:'#e4e3dc',hi:'#f0cf2b',col:'#2338c9',run:runCount},
+  {name:'needle', short:'needle', sub:'aim without a dial',        bg:'#f0cf2b',fg:'#0e0e0e',hi:'#e8352b',col:'#f0cf2b',run:runAngle},
+  {name:'split',  short:'split',  sub:'divide the screen',         bg:'#12563a',fg:'#e4e3dc',hi:'#f0cf2b',col:'#12563a',run:runSplit},
+  {name:'pulse',  short:'pulse',  sub:'hold the beat',             bg:'#0e0e0e',fg:'#e4e3dc',hi:'#e8352b',col:'#e8352b',run:runTempo},
+  {name:'curtain',short:'curtain',sub:'follow a ball you cannot see',bg:'#e4e3dc',fg:'#0e0e0e',hi:'#e8352b',col:'#e4e3dc',run:runTrack},
+];
+const RES={name:'report',sub:'how your gut did',bg:'#0e0e0e',fg:'#e4e3dc'};
+
+/* colour wipe between screens: the next test slides in and announces itself, then slides away */
+function wipe(r,num,cb){
+  const o=document.createElement('div'); o.className='wipe'; o.style.background=r.bg; o.style.color=r.fg;
+  o.innerHTML=`<div class="wn">${num}</div><div class="wt">${r.name}</div><div class="ws">${r.sub}</div>`;
+  document.body.appendChild(o); buzz(12);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>o.classList.add('in')));
+  setTimeout(cb,480);
+  setTimeout(()=>{o.classList.remove('in');o.classList.add('out')},1250);
+  setTimeout(()=>o.remove(),1750);
+}
+function enter(){wipe(ROUNDS[idx],String(idx+1).padStart(2,'0'),round)}
+
+/* ---------- intro ---------- */
+function intro(){
+  reset(); scr='intro'; setTheme('#e4e3dc','#0e0e0e','#e8352b');
+  const hs=[.62,.86,.4,.74,.52], cs=['#2338c9','#f0cf2b','#12563a','#e8352b','#0e0e0e'];
+  const best=store('hunch-best');
+  stage.innerHTML=`<div class="cols intro" style="height:46dvh">${cs.map((c,i)=>`<div class="col" style="height:${hs[i]*100}%;background:${c};animation-delay:${i*110}ms"></div>`).join('')}</div>
+    <div class="word">hunch</div>
+    <div class="tag">five guesses. nothing on screen to help you.${best?`<br>best: ${best}`:''}</div>
+    <div class="links"><button class="lk" id="d">today</button><button class="lk" id="r">random</button></div>`;
+  $('#d').onclick=()=>{ensureAudio();newGame(true)}; $('#r').onclick=()=>{ensureAudio();newGame(false)};
+}
+
+/* ---------- results ---------- */
+function results(){
+  reset(); scr='results'; setTheme('#0e0e0e','#e4e3dc','#e8352b');
+  const avg=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length), g=grade(avg);
+  const prev=parseInt(store('hunch-best')||'0',10); const nb=avg>prev; if(nb)store('hunch-best',String(avg));
+  const line=avg>=85?'unreasonably good.':avg>=65?'decent. some drift.':avg>=45?'your gut guessed.':'not today.';
+  const hiI=scores.indexOf(Math.max(...scores)), loI=scores.indexOf(Math.min(...scores));
+  const sw=scores[hiI]!==scores[loI]?`best: ${ROUNDS[hiI].name} ${scores[hiI]}. worst: ${ROUNDS[loI].name} ${scores[loI]}.`:'';
+  const share=`hunch · ${label}\n${scores.map(s=>BLOCKS[Math.min(7,Math.floor(s/12.5))]).join('')} ${avg} ${g}`;
+  const rows=ROUNDS.map((r,i)=>`<div class="rw" style="animation-delay:${i*90}ms"><div class="fill" style="width:${Math.max(scores[i],2)}%;background:${r.col};animation-delay:${i*90+120}ms"></div><div class="rl"><b>${r.name}</b><span>${notes[i]||''}</span></div><div class="rn">${scores[i]}</div></div>`).join('');
+  stage.innerHTML=`<div class="res"><div class="rhead"><div class="grade">${g}</div><div class="rinfo"><b>${avg}</b><p>${line}${nb?' new best.':''}</p>${sw?`<p class="sw">${sw}</p>`:''}<button class="lk" id="cp">copy</button><button class="lk" id="ag">again</button></div></div><div class="rows">${rows}</div></div>`;
+  $('#cp').onclick=async e=>{try{await navigator.clipboard.writeText(share);e.target.textContent='copied'}catch(_){e.target.textContent='press ctrl+c'}};
+  $('#ag').onclick=intro;
+}
+/* rotate / resize: rebuild only when nothing has been seen or touched yet */
+let rz; const onResize=()=>{clearTimeout(rz);rz=setTimeout(()=>{ if(scr==='intro')intro(); else if(scr==='round'&&!over&&!started)round(); },250)};
+addEventListener('resize',onResize); addEventListener('orientationchange',onResize);
+intro();
+</script>
+<script src="../../assets/vatsal-sdk.js" defer></script>
+</body>
+</html>

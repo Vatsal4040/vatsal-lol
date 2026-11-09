@@ -1,5 +1,11 @@
 [
   {
+    "slug": "hunch",
+    "title": "Hunch",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/hunch.webp"
+  },
+  {
     "slug": "what-beats",
     "title": "What Beats What?",
     "type": "game",
