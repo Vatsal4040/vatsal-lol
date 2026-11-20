@@ -11,6 +11,32 @@ let currentMilestoneId = "earth";
 let analyserNode = null;
 let dataArray = null;
 
+// =========================================================
+// VOYAGER 1 LIVE DISTANCE CALCULATION (NASA/JPL TELEMETRY)
+// Reference Source: NASA/JPL Voyager Mission Status & Horizons Ephemeris
+// Reference Epoch: 2026-01-01T00:00:00Z
+// Reference Distance: 25,000,000,000 km (~167.1 AU)
+// Average Radial Heliocentric Velocity: ~17.0 km/s (approx 61,200 km/h)
+// Fallback Distance: 25,902,068,371 km
+// =========================================================
+const VOYAGER_REF_EPOCH_MS = new Date('2026-01-01T00:00:00Z').getTime();
+const VOYAGER_REF_DIST_KM = 25000000000;
+const VOYAGER_SPEED_KM_S = 17.0;
+const VOYAGER_FALLBACK_MAX_KM = 25902068371;
+
+function getVoyagerLiveDistanceKm() {
+  const now = Date.now();
+  if (now < VOYAGER_REF_EPOCH_MS) {
+    return VOYAGER_FALLBACK_MAX_KM;
+  }
+  const deltaSeconds = (now - VOYAGER_REF_EPOCH_MS) / 1000;
+  const liveKm = VOYAGER_REF_DIST_KM + (deltaSeconds * VOYAGER_SPEED_KM_S);
+  return Math.max(VOYAGER_FALLBACK_MAX_KM, liveKm);
+}
+
+const MAX_VOYAGER_KM = getVoyagerLiveDistanceKm();
+
+
 // Milestones Database
 const MILESTONES = {
   earth: {
@@ -240,7 +266,7 @@ const MUSEUM_DATA = [
   }
 ];
 
-// 1. Initialize Space Background Canvas (2D Parallax)
+// 1. Initialize Space Background Canvas (Original Behavior + Calm Twinkle)
 class SpaceStarfield {
   constructor(canvasId) {
     this.canvas = document.getElementById(canvasId);
@@ -249,10 +275,11 @@ class SpaceStarfield {
     this.stars = [];
     this.shootingStars = [];
     this.lastScrollY = window.scrollY;
-    
+    this.isRunning = true;
+    this.animId = null;
+
     this.resize();
     this.generateStars();
-    
     window.addEventListener('resize', () => this.resize());
     window.addEventListener('scroll', () => this.onScroll());
     this.animate();
@@ -267,11 +294,15 @@ class SpaceStarfield {
     this.stars = [];
     const starCount = Math.min(220, Math.floor(window.innerWidth / 6));
     for (let i = 0; i < starCount; i++) {
+      const baseOpacity = Math.random() * 0.8 + 0.1;
       this.stars.push({
         x: Math.random() * this.canvas.width,
         y: Math.random() * this.canvas.height,
         size: Math.random() * 1.6 + 0.2,
-        opacity: Math.random() * 0.8 + 0.1,
+        baseOpacity: baseOpacity,
+        opacity: baseOpacity,
+        twinklePhase: Math.random() * Math.PI * 2,
+        twinkleSpeed: 0.005 + Math.random() * 0.008, // Very slow, calm twinkle
         speedFactor: Math.random() * 0.05 + 0.015,
         color: Math.random() > 0.85 ? '#a5f3fc' : (Math.random() > 0.9 ? '#fef08a' : '#ffffff')
       });
@@ -283,7 +314,6 @@ class SpaceStarfield {
     const delta = currentScroll - this.lastScrollY;
     this.lastScrollY = currentScroll;
 
-    // Beautiful parallax drift scrolling
     this.stars.forEach(star => {
       star.y -= delta * star.speedFactor * 0.8;
       if (star.y < 0) {
@@ -295,7 +325,6 @@ class SpaceStarfield {
       }
     });
 
-    // Occasional shooting stars trigger on heavy scrolls
     if (Math.abs(delta) > 5 && Math.random() < 0.08 && this.shootingStars.length < 2) {
       this.triggerShootingStar();
     }
@@ -314,29 +343,31 @@ class SpaceStarfield {
   }
 
   animate() {
-    // Clear canvas
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Slowly drift stars sideways to make space alive
     this.stars.forEach(star => {
       star.x -= 0.015;
       if (star.x < 0) star.x = this.canvas.width;
 
+      // Subtle, calm twinkle
+      star.twinklePhase += star.twinkleSpeed;
+      const twinkle = Math.sin(star.twinklePhase) * 0.15;
+      const currentOpacity = Math.max(0.05, Math.min(1.0, star.baseOpacity + twinkle));
+
       this.ctx.beginPath();
       this.ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
       this.ctx.fillStyle = star.color;
-      this.ctx.globalAlpha = star.opacity;
+      this.ctx.globalAlpha = currentOpacity;
       this.ctx.fill();
     });
 
-    // Render shooting stars
     this.shootingStars.forEach((ss, idx) => {
       this.ctx.beginPath();
       const grad = this.ctx.createLinearGradient(ss.x, ss.y, ss.x - ss.dx, ss.y - ss.dy);
       grad.addColorStop(0, `rgba(165, 243, 252, ${ss.opacity})`);
       grad.addColorStop(0.3, `rgba(56, 189, 248, ${ss.opacity * 0.4})`);
       grad.addColorStop(1, 'rgba(0,0,0,0)');
-      
+
       this.ctx.strokeStyle = grad;
       this.ctx.lineWidth = 1.8;
       this.ctx.moveTo(ss.x, ss.y);
@@ -353,7 +384,24 @@ class SpaceStarfield {
     });
 
     this.ctx.globalAlpha = 1.0;
-    requestAnimationFrame(() => this.animate());
+    if (this.isRunning) {
+      this.animId = requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  start() {
+    if (!this.isRunning) {
+      this.isRunning = true;
+      this.animate();
+    }
+  }
+
+  stop() {
+    this.isRunning = false;
+    if (this.animId) {
+      cancelAnimationFrame(this.animId);
+      this.animId = null;
+    }
   }
 }
 
@@ -557,6 +605,88 @@ function toggleAudio() {
   initSpaceSynth();
 }
 
+// =========================================================
+// MILESTONE ANCHOR INTERPOLATION ENGINE
+// =========================================================
+let MILESTONE_ANCHORS = [];
+
+function buildMilestoneAnchors() {
+  const sections = document.querySelectorAll('section[data-milestone-id]');
+  const anchors = [];
+
+  sections.forEach(sec => {
+    const id = sec.getAttribute('data-milestone-id');
+    if (MILESTONES[id]) {
+      const rect = sec.getBoundingClientRect();
+      const docY = window.scrollY + rect.top + (rect.height / 2);
+      anchors.push({
+        id: id,
+        y: docY,
+        km: MILESTONES[id].distanceKm
+      });
+    }
+  });
+
+  // Sort descending by y (Earth at bottom = km 0, Voyager 1 at top = 25,902,068,371)
+  anchors.sort((a, b) => b.y - a.y);
+
+  // Enforce monotonicity: km must never decrease as y decreases (as we go up)
+  let maxKmSeen = 0;
+  for (let i = 0; i < anchors.length; i++) {
+    if (anchors[i].km < maxKmSeen) {
+      anchors[i].km = maxKmSeen;
+    } else {
+      maxKmSeen = anchors[i].km;
+    }
+  }
+
+  MILESTONE_ANCHORS = anchors;
+}
+
+function calculateCurrentKmFromScroll(currentCenterY) {
+  if (!MILESTONE_ANCHORS || MILESTONE_ANCHORS.length === 0) {
+    buildMilestoneAnchors();
+  }
+  const anchors = MILESTONE_ANCHORS;
+  if (!anchors || anchors.length === 0) return 0;
+
+  const earthAnchor = anchors[0];
+  const voyagerAnchor = anchors[anchors.length - 1];
+
+  // Clamp below Earth (at or below Earth's center in doc coords)
+  if (currentCenterY >= earthAnchor.y) {
+    return 0;
+  }
+  // Clamp above Voyager 1 (at or above Voyager's center in doc coords)
+  if (currentCenterY <= voyagerAnchor.y) {
+    return VOYAGER_FALLBACK_MAX_KM;
+  }
+
+  // Find the two bracketing anchors where anchors[i].y >= currentCenterY >= anchors[i+1].y
+  for (let i = 0; i < anchors.length - 1; i++) {
+    const a1 = anchors[i];     // lower in doc, larger y, smaller km
+    const a2 = anchors[i + 1]; // higher in doc, smaller y, larger km
+
+    if (currentCenterY <= a1.y && currentCenterY >= a2.y) {
+      const span = a1.y - a2.y;
+      if (span <= 0) return a1.km;
+
+      // t goes from 0 (at a1.y) to 1 (at a2.y)
+      const t = (a1.y - currentCenterY) / span;
+
+      // Interpolate in log10 space: km = 10^(lerp(log10(km1+1), log10(km2+1), t)) - 1
+      const logKm1 = Math.log10(a1.km + 1);
+      const logKm2 = Math.log10(a2.km + 1);
+      const logKm = logKm1 + t * (logKm2 - logKm1);
+      const interpolatedKm = Math.pow(10, logKm) - 1;
+
+      return Math.max(0, Math.min(VOYAGER_FALLBACK_MAX_KM, interpolatedKm));
+    }
+  }
+
+  return 0;
+}
+
 // 3. Dynamic Telemetry Scrolling Mechanics & Tracking
 function handleScrollingTelemetry() {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -564,14 +694,25 @@ function handleScrollingTelemetry() {
   
   if (docHeight <= 0) return;
 
-  // Calculate scrolling progression inverted (Bottom = 0, Top = 1)
-  const rawProgress = 1 - (scrollY / docHeight);
-  // Apply a smooth non-linear curve to model the immense gaps in space
-  const progress = Math.pow(Math.max(0, Math.min(rawProgress, 1)), 1.5);
+  // Piecewise log-space distance interpolation between milestone anchors
+  const currentCenterY = scrollY + (window.innerHeight / 2);
+  const currentAltKm = calculateCurrentKmFromScroll(currentCenterY);
 
-  // Deep space stats mapping
-  const currentAltKm = progress * 25902068371; // Max Voyager KM
-  const currentLightSeconds = progress * 86400; // Max 24 hours
+  // Derive progress for audio modulation and other consumers
+  const progress = Math.max(0, Math.min(1, currentAltKm / VOYAGER_FALLBACK_MAX_KM));
+
+  // Hide YOU location marker as user scrolls away from Earth
+  const youMarker = document.getElementById('you-marker');
+  if (youMarker) {
+    if (progress > 0.005 || currentAltKm > 50) {
+      youMarker.style.opacity = '0';
+    } else {
+      youMarker.style.opacity = '1';
+    }
+  }
+
+  // Compute light-travel time based on physical c = 299,792.458 km/s
+  const currentLightSeconds = currentAltKm / 299792.458;
 
   // Update Top HUD
   const formatter = new Intl.NumberFormat('en-US');
@@ -589,6 +730,49 @@ function handleScrollingTelemetry() {
     timeStr = `${(currentLightSeconds / 3600).toFixed(2)} HOURS`;
   }
   document.getElementById('hud-lighttime').innerText = timeStr;
+
+  // Update mobile bar telemetry
+  const mobDist = document.getElementById('mobile-distance');
+  const mobLight = document.getElementById('mobile-lighttime');
+  if (mobDist) mobDist.innerText = formatter.format(Math.round(currentAltKm)) + ' KM';
+  if (mobLight) mobLight.innerText = timeStr;
+
+  // Pale Blue Dot interactive zoom and Sagan quote line-by-line reveal
+  const pbdSec = document.querySelector('section[data-milestone-id="pluto"]');
+  let pbdFactor = 0;
+  if (pbdSec) {
+    const pbdRect = pbdSec.getBoundingClientRect();
+    const pbdTop = pbdRect.top;
+    const pbdHeight = pbdRect.height;
+    // When inside the pinned scene container
+    if (pbdTop <= 0 && pbdTop > -pbdHeight + window.innerHeight) {
+      pbdFactor = Math.min(1, Math.max(0, -pbdTop / (pbdHeight - window.innerHeight)));
+    } else if (pbdTop > 0) {
+      pbdFactor = 0;
+    } else {
+      pbdFactor = 1;
+    }
+
+    const pbdImg = document.getElementById('pbd-image');
+    if (pbdImg) {
+      // Slow smooth zoom from 1.0 to 1.7 into the Pale Blue Dot
+      const zoom = 1.0 + pbdFactor * 0.70;
+      pbdImg.style.transform = `scale(${zoom})`;
+    }
+
+    // Line-by-line reveal of Sagan quote
+    const lines = document.querySelectorAll('#sagan-quote .sagan-line');
+    lines.forEach((line, idx) => {
+      const threshold = (idx + 0.5) / (lines.length + 0.5);
+      if (pbdFactor >= threshold * 0.6) {
+        line.style.opacity = '1';
+        line.style.color = '#ffffff';
+      } else {
+        line.style.opacity = '0.25';
+        line.style.color = '#a1a1aa';
+      }
+    });
+  }
 
   // Track active milestone sections & highlight target
   const sections = document.querySelectorAll('section[data-milestone-id]');
@@ -650,15 +834,35 @@ function handleScrollingTelemetry() {
     }
   }
 
-  // Audio Synthesizer real-time modulation on scroll
+  // Audio Synthesizer real-time modulation: Per-zone sound
   if (isAudioPlaying && spaceDrone) {
     try {
-      // Adjust master lowpass cutoff based on height (gets darker/softer in interstellar vacuum)
-      const baseFreq = 80 + (1 - progress) * 160;
-      spaceDrone.filter.frequency.setValueAtTime(baseFreq, audioCtx.currentTime);
-      
-      // Shift detuned beating rate slightly to reflect velocity variations
-      spaceDrone.beatOsc.frequency.setValueAtTime(55.4 + (progress * 0.8), audioCtx.currentTime);
+      // Zone 1: Near Earth (progress < 0.20) -> warm, richer analog harmonics
+      // Zone 2: Mid-system (0.20 <= progress <= 0.65) -> steady resonant cosmic drone
+      // Zone 3: Past Neptune / Kuiper / Heliopause (progress > 0.65) -> thin, high-vacuum cold sine
+      // Zone 4: Pale Blue Dot scene -> dips to near-silence
+      let baseFilter = 240;
+      let targetVolume = 0.15;
+
+      if (progress < 0.20) {
+        // Warm near Earth
+        baseFilter = 240 - (progress * 300);
+        targetVolume = 0.18;
+      } else if (progress > 0.65) {
+        // Thin and cold past Neptune into deep void
+        baseFilter = Math.max(50, 140 - (progress - 0.65) * 220);
+        targetVolume = 0.08;
+      }
+
+      // If in Pale Blue Dot pinned scene, fade to near-silence
+      if (typeof pbdFactor !== 'undefined' && pbdFactor > 0.1 && pbdFactor < 0.95) {
+        targetVolume = 0.015; // Near-silence
+        baseFilter = 60;
+      }
+
+      spaceDrone.filter.frequency.setTargetAtTime(baseFilter, audioCtx.currentTime, 0.2);
+      spaceDrone.masterGain.gain.setTargetAtTime(targetVolume, audioCtx.currentTime, 0.2);
+      spaceDrone.beatOsc.frequency.setTargetAtTime(55.4 + (progress * 0.5), audioCtx.currentTime, 0.2);
     } catch(e){}
   }
 }
@@ -701,6 +905,10 @@ function updateSelectedMilestoneCard(id) {
     });
   }, 180);
 
+  // Update mobile bottom info bar
+  const mName = document.getElementById('mobile-milestone-name');
+  if (mName) mName.innerText = data.name;
+
   // Highlight active Left Timeline Node
   document.querySelectorAll('.timeline-node').forEach(node => {
     const nodeKey = node.getAttribute('data-node-key');
@@ -737,9 +945,10 @@ function renderLeftTimeline() {
     const data = MILESTONES[key];
     if (!data) return;
 
-    const node = document.createElement('div');
-    node.className = "timeline-node flex items-center gap-3 cursor-pointer group select-none py-1";
+    const node = document.createElement('button');
+    node.className = "timeline-node flex items-center gap-3 cursor-pointer group select-none py-1 bg-transparent border-0 text-left w-full focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded";
     node.setAttribute('data-node-key', key);
+    node.setAttribute('aria-label', `Navigate to ${data.name}`);
     node.onclick = () => scrollToMilestone(key);
 
     node.innerHTML = `
@@ -763,11 +972,16 @@ function renderMuseumExhibits() {
     const card = document.createElement('div');
     card.className = "bg-white/5 border border-white/5 hover:border-blue-500/20 p-6 rounded-2xl backdrop-blur-md hover:bg-white/10 transition-all duration-300 flex flex-col gap-4 group";
     
-    let iconName = ex.icon;
+    const svgIcons = {
+      'music': '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+      'battery-charging': '<path d="M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2"/><path d="M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1"/><line x1="11" x2="13" y1="7" y2="17"/><line x1="22" x2="22" y1="11" y2="13"/>',
+      'moon-star': '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M19 3v4"/><path d="M21 5h-4"/>'
+    };
+    const iconInner = svgIcons[ex.icon] || svgIcons['music'];
 
     card.innerHTML = `
       <div class="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-xl w-fit group-hover:bg-cyan-500/25 transition-colors">
-        <i data-lucide="${iconName}" class="w-4 h-4 text-cyan-400"></i>
+        <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${iconInner}</svg>
       </div>
       <div class="space-y-1.5">
         <h4 class="text-sm font-bold uppercase tracking-wide text-zinc-100">${ex.title}</h4>
@@ -836,8 +1050,9 @@ if (vatsalHeader) {
   const hud = document.getElementById('hud-deck');
   const leftTimeline = document.getElementById('left-timeline');
   const rightConsole = document.getElementById('right-console');
+  const mobileBar = document.getElementById('mobile-infobar');
   
-  [hud, leftTimeline, rightConsole].forEach(el => {
+  [hud, leftTimeline, rightConsole, mobileBar].forEach(el => {
     if (el) {
       el.classList.remove('opacity-0');
       el.classList.add('opacity-100');
@@ -846,32 +1061,28 @@ if (vatsalHeader) {
 
   // Smooth scroll user to Earth (bottom of page) immediately to begin ascent!
   setTimeout(() => {
+    buildMilestoneAnchors();
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: 'auto'
     });
+    handleScrollingTelemetry();
   }, 50);
-
-  // Trigger floating alert banner after launch
-  const tip = document.getElementById('download-tip');
-  if (tip) {
-    setTimeout(() => {
-      tip.classList.remove('translate-y-20', 'opacity-0');
-    }, 4500);
-  }
-}
-
-function closeTip() {
-  const tip = document.getElementById('download-tip');
-  if (tip) {
-    tip.classList.add('opacity-0', 'pointer-events-none');
-  }
 }
 
 // Main initializer on page readiness
 window.addEventListener('DOMContentLoaded', () => {
   // Generate Canvas starfield background
-  new SpaceStarfield('starfield-canvas');
+  const starfield = new SpaceStarfield('starfield-canvas');
+
+  // Pause starfield and animations when document is hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      starfield.stop();
+    } else {
+      starfield.start();
+    }
+  });
 
   // Set height lock on landing
   document.body.classList.add('h-screen', 'overflow-y-hidden');
@@ -881,8 +1092,104 @@ window.addEventListener('DOMContentLoaded', () => {
   renderMuseumExhibits();
   renderFlightLogs();
 
-  // Re-enable lucide icons for dynamic classes
-  lucide.createIcons();
+  // Initialize WebGL/Canvas Planets with procedural fallback
+  try {
+    // Earth (23.4 deg tilt, no glow ring)
+    const earthCanvas = document.getElementById('earth-canvas');
+    if (earthCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(earthCanvas, './assets/planets/earth.jpg', {
+        tilt: 23.4,
+        rotationSpeed: 0.0012,
+        hasAtmosphere: false
+      });
+    }
+
+    // Moon (1.5 deg tilt, no atmosphere)
+    const moonCanvas = document.getElementById('moon-canvas');
+    if (moonCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(moonCanvas, './assets/planets/moon.jpg', {
+        tilt: 1.5,
+        rotationSpeed: 0.0008,
+        hasAtmosphere: false
+      });
+    }
+
+    // Mars (25.2 deg tilt, real webp texture, no atmosphere ring)
+    const marsCanvas = document.getElementById('mars-canvas');
+    if (marsCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(marsCanvas, './assets/planets/19-mars.webp', {
+        tilt: 25.2,
+        rotationSpeed: 0.0011,
+        hasAtmosphere: false
+      });
+    }
+
+    // Jupiter (3.1 deg tilt, Great Red Spot, band rotation, soft subtle glow)
+    const jupiterCanvas = document.getElementById('jupiter-canvas');
+    if (jupiterCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(jupiterCanvas, './assets/planets/25-jupiter.webp', {
+        tilt: 3.1,
+        rotationSpeed: 0.0022,
+        hasAtmosphere: false
+      });
+    }
+
+    // Saturn (26.7 deg tilt, multi-band tilted rings fitting within canvas)
+    const saturnCanvas = document.getElementById('saturn-canvas');
+    if (saturnCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(saturnCanvas, './assets/planets/24-saturn.webp', {
+        tilt: 26.7,
+        rotationSpeed: 0.0018,
+        hasAtmosphere: false,
+        isSaturn: true
+      });
+    }
+
+    // Uranus (97.8 deg axial tilt - spins on its side, depth-rendered thin ring)
+    const uranusCanvas = document.getElementById('uranus-canvas');
+    if (uranusCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(uranusCanvas, './assets/planets/23-uranus.webp', {
+        tilt: 97.8,
+        rotationSpeed: 0.0014,
+        hasAtmosphere: false,
+        isUranus: true
+      });
+    }
+
+    // Neptune (28.3 deg tilt, deep oceanic blue tuned saturation, no outline ring)
+    const neptuneCanvas = document.getElementById('neptune-canvas');
+    if (neptuneCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(neptuneCanvas, './assets/planets/22-neptune.webp', {
+        tilt: 28.3,
+        rotationSpeed: 0.0013,
+        hasAtmosphere: false,
+        saturationFactor: 0.78
+      });
+    }
+
+    // Pluto (122.5 deg tilt, icy nitrogen plains)
+    const plutoCanvas = document.getElementById('pluto-canvas');
+    if (plutoCanvas && window.PlanetRenderer) {
+      new PlanetRenderer(plutoCanvas, './assets/planets/09-pluto.webp', {
+        tilt: 57.5,
+        rotationSpeed: 0.0006,
+        hasAtmosphere: false
+      });
+    }
+  } catch(e) {
+    console.warn("Planet renderer initialization:", e);
+  }
+
+  // Build milestone anchors
+  buildMilestoneAnchors();
+  window.addEventListener('resize', () => {
+    buildMilestoneAnchors();
+    handleScrollingTelemetry();
+  });
+  window.addEventListener('load', () => {
+    buildMilestoneAnchors();
+    handleScrollingTelemetry();
+  });
 
   // Listen to scroll actions
   window.addEventListener('scroll', handleScrollingTelemetry);

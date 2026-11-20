@@ -1,0 +1,1178 @@
+export type CelestialCategory =
+  | 'Star'
+  | 'Terrestrial planet'
+  | 'Natural satellite'
+  | 'Artificial satellite'
+  | 'Gas giant'
+  | 'Ice giant'
+  | 'Dwarf planet'
+  | 'Asteroid region'
+  | 'Comet'
+  | 'Spacecraft'
+  | 'Star system'
+  | 'Galactic core'
+  | 'Spiral galaxy';
+
+export type CosmicScaleTier = 'solar' | 'interstellar' | 'galactic' | 'universe';
+
+export interface ExoplanetSeed {
+  name: string;
+  color: string;
+  radius: number;
+  orbitRadius: number;
+  orbitSpeed: number;
+  hasRings?: boolean;
+}
+
+export interface CelestialBodyData {
+  id: string;
+  name: string;
+  type: CelestialCategory;
+  isHidden?: boolean;
+  /** Which cosmic exploration scale tier this object inhabits (defaults to 'solar') */
+  scaleTier?: CosmicScaleTier;
+  /** Fixed 3D coordinates for Deep Space star systems, Galactic core, and distant Galaxies */
+  cosmicPos?: [number, number, number];
+  /** Optional procedural low-poly exoplanets orbiting a neighboring star system */
+  exoplanets?: ExoplanetSeed[];
+  /** Visual radius in the enlarged 25x 3D universe */
+  radius: number;
+  /** Orbital distance from Sun (or from parentId if moon / satellite) */
+  orbitRadius: number;
+  /** Orbital speed in radians per second */
+  orbitSpeed: number;
+  /** Initial orbital angle in radians so the solar system starts in a scenic layout */
+  initialAngle: number;
+  /** Self-rotation speed in radians per second */
+  rotationSpeed: number;
+  /** Axial tilt in radians */
+  tilt: number;
+  /** Vertical orbital inclination offset */
+  inclination?: number;
+  /** Optional parent body id (e.g. Moon & ISS orbit Earth, Europa orbits Jupiter, Titan orbits Saturn) */
+  parentId?: string;
+  /** Primary color for UI accents, orbits, and maps */
+  color: string;
+  secondaryColor: string;
+  atmosphereColor?: string;
+  hasRings?: boolean;
+  ringInner?: number;
+  ringOuter?: number;
+  ringColor?: string;
+  /** Kid-friendly short tagline */
+  shortTagline: string;
+  /** Badge name awarded when discovered */
+  badgeTitle: string;
+  /** Curiosity hint shown before discovery */
+  discoveryHint: string;
+  /** Basic astronomical facts in clear kid-friendly format */
+  basicInfo: {
+    distanceFromSun: string;
+    diameter: string;
+    lengthOfDay: string;
+    lengthOfYear: string;
+    moons: string;
+    temperature: string;
+    age: string;
+  };
+  /** Historical discovery facts */
+  discoveryInfo: {
+    discoveredBy: string;
+    discoveryDate: string;
+    howDiscovered: string;
+    historicalBackground: string;
+  };
+  /** 3-5 fascinating child-friendly facts */
+  funFacts: string[];
+}
+
+export const CELESTIAL_BODIES: CelestialBodyData[] = [
+  {
+    id: 'sun',
+    name: 'The Sun',
+    type: 'Star',
+    radius: 165,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.04,
+    tilt: 0.12,
+    color: '#FBBF24',
+    secondaryColor: '#F97316',
+    atmosphereColor: '#FDE047',
+    shortTagline: 'The glowing golden star that warms our entire solar system.',
+    badgeTitle: 'Solar Starfinder',
+    discoveryHint: 'Follow the brightest golden light at the very center of the solar system.',
+    basicInfo: {
+      distanceFromSun: 'Center of the solar system (0 km)',
+      diameter: 'About 1,392,700 kilometers',
+      lengthOfDay: 'About 25 Earth days at its middle',
+      lengthOfYear: '230 million years around our galaxy',
+      moons: '0 (8 planets orbit around it!)',
+      temperature: 'About 5,500 °C on its glowing surface',
+      age: 'About 4.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Known to humanity since the very beginning',
+      discoveryDate: 'Prehistoric times',
+      howDiscovered: 'Seen shining brightly in the sky every single day.',
+      historicalBackground:
+        'Ancient people built stone circles and calendars to track the Sun. Centuries later, astronomers discovered that the Sun is actually a giant star just like the tiny twinkles we see at night—only much closer!',
+    },
+    funFacts: [
+      'More than one million Earths could fit inside the Sun!',
+      'Sunlight takes about 8 minutes to travel through space and reach Earth.',
+      'The Sun is a huge spinning ball of super-hot glowing gas called plasma.',
+      'Without the Sun’s gentle warmth and light, plants, animals, and oceans could not exist on Earth.',
+    ],
+  },
+  {
+    id: 'mercury',
+    name: 'Mercury',
+    type: 'Terrestrial planet',
+    radius: 6.2,
+    orbitRadius: 960,
+    orbitSpeed: 0.018,
+    initialAngle: 0.9,
+    rotationSpeed: 0.11,
+    tilt: 0.03,
+    color: '#A8A29E',
+    secondaryColor: '#78716C',
+    shortTagline: 'The smallest, speediest rocky planet zipping closest to the Sun.',
+    badgeTitle: 'Swift Sprinter',
+    discoveryHint: 'Look very close to the Sun for a tiny cratered gray world moving fast.',
+    basicInfo: {
+      distanceFromSun: 'About 58 million kilometers',
+      diameter: 'About 4,879 kilometers',
+      lengthOfDay: 'About 59 Earth days',
+      lengthOfYear: '88 Earth days',
+      moons: '0',
+      temperature: '-180 °C at night up to 430 °C in daytime',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient sky-watchers (Babylonians & Greeks)',
+      discoveryDate: 'Over 3,000 years ago',
+      howDiscovered: 'Spotted with the naked eye low on the horizon near sunrise and sunset.',
+      historicalBackground:
+        'Because Mercury zips across the sky so quickly, the ancient Romans named it after Mercury, their swift messenger with winged sandals.',
+    },
+    funFacts: [
+      'Mercury is the fastest planet—it zooms around the Sun in just 88 Earth days!',
+      'Even though it is closest to the Sun, it gets super freezing cold at night because it has almost no air blanket.',
+      'Mercury is covered in round bowls called craters from ancient space rocks.',
+      'If you stood on Mercury, the Sun would look three times bigger than it does from Earth!',
+    ],
+  },
+  {
+    id: 'venus',
+    name: 'Venus',
+    type: 'Terrestrial planet',
+    radius: 15.2,
+    orbitRadius: 1780,
+    orbitSpeed: 0.012,
+    initialAngle: 2.45,
+    rotationSpeed: -0.06,
+    tilt: 3.09,
+    color: '#F5C16C',
+    secondaryColor: '#D97706',
+    atmosphereColor: '#FDE68A',
+    shortTagline: 'A golden planet wrapped in thick, swirling sunny clouds.',
+    badgeTitle: 'Golden Cloud Seeker',
+    discoveryHint: 'Spot a warm golden-yellow planet orbiting between Mercury and Earth.',
+    basicInfo: {
+      distanceFromSun: 'About 108 million kilometers',
+      diameter: 'About 12,104 kilometers',
+      lengthOfDay: 'About 243 Earth days (spinning backwards!)',
+      lengthOfYear: 'About 225 Earth days',
+      moons: '0',
+      temperature: 'About 465 °C (hottest planet!)',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient civilizations worldwide',
+      discoveryDate: 'Prehistoric times',
+      howDiscovered: 'Visible as the brightest sparkling “star” in the morning and evening sky.',
+      historicalBackground:
+        'People used to call Venus the Morning Star and Evening Star before realizing they were the same bright planet. In 1610, Galileo pointed his telescope at Venus and saw it had phases just like our Moon!',
+    },
+    funFacts: [
+      'Venus is the brightest planet we can see in Earth’s night sky.',
+      'Venus spins backwards compared to almost every other planet—the Sun rises in the west there!',
+      'A single day on Venus is actually longer than its whole year.',
+      'Its thick yellow clouds trap heat like a cozy greenhouse, making it the hottest planet in our solar system.',
+    ],
+  },
+  {
+    id: 'earth',
+    name: 'Earth',
+    type: 'Terrestrial planet',
+    radius: 16.0,
+    orbitRadius: 2450,
+    orbitSpeed: 0.0085,
+    initialAngle: 0.4,
+    rotationSpeed: 0.16,
+    tilt: 0.36,
+    color: '#38BDF8',
+    secondaryColor: '#22C55E',
+    atmosphereColor: '#38BDF8',
+    shortTagline: 'Our sparkling blue-and-green home planet teeming with life.',
+    badgeTitle: 'Home World Guardian',
+    discoveryHint: 'Look for sparkling blue oceans, emerald forests, and puffy white clouds.',
+    basicInfo: {
+      distanceFromSun: 'About 149.6 million kilometers (1.0 AU)',
+      diameter: 'About 12,742 kilometers',
+      lengthOfDay: 'About 24 hours',
+      lengthOfYear: 'About 365.25 days',
+      moons: '1 natural moon + thousands of satellites',
+      temperature: 'Average 15 °C (just right for life!)',
+      age: 'About 4.54 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Everyone on Earth!',
+      discoveryDate: 'Since the dawn of humanity',
+      howDiscovered: 'We live on it—and astronauts first photographed it as a whole blue marble from space in 1968.',
+      historicalBackground:
+        'For a long time, people thought Earth was the center of everything. Astronomers like Nicolaus Copernicus helped humanity realize Earth is a wonderful spinning planet orbiting around the Sun.',
+    },
+    funFacts: [
+      'Earth is our home planet and the only world currently known to have living plants, animals, and people.',
+      'More than two-thirds of Earth’s surface is covered by shimmering liquid water oceans.',
+      'Earth’s gentle blue atmosphere acts like a cozy shield, protecting us from space rocks and harsh sunbeams.',
+      'Earth is tilted slightly as it orbits the Sun, which gives us spring, summer, autumn, and winter!',
+    ],
+  },
+  {
+    id: 'iss-station',
+    name: 'ISS Space Station',
+    type: 'Artificial satellite',
+    radius: 1.5,
+    orbitRadius: 24.0,
+    orbitSpeed: 0.36,
+    initialAngle: 0.25,
+    rotationSpeed: 0.12,
+    tilt: 0.22,
+    inclination: 4.6,
+    parentId: 'earth',
+    color: '#E2E8F0',
+    secondaryColor: '#38BDF8',
+    shortTagline: 'Humanity’s glowing orbital science lab zooming above Earth’s clouds.',
+    badgeTitle: 'Orbital Astronaut',
+    discoveryHint: 'Circle close above Earth’s atmosphere to spot its twin-winged solar space station!',
+    basicInfo: {
+      distanceFromSun: '408 km above Earth’s surface (Low Earth Orbit)',
+      diameter: '109 meters wide (size of a football field!)',
+      lengthOfDay: 'Sees 16 sunrises and sunsets every Earth day',
+      lengthOfYear: 'Orbits Earth once every 90 minutes',
+      moons: 'Home to 7 astronauts living in zero gravity',
+      temperature: '-157 °C in shadow to +121 °C in sunlight',
+      age: 'First module launched in 1998',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Built together by NASA, ESA, JAXA, CSA & Roscosmos',
+      discoveryDate: 'November 20, 1998 (assembly begun)',
+      howDiscovered: 'Assembled piece-by-piece in space during more than 40 rocket flights.',
+      historicalBackground:
+        'Astronauts from over 20 countries have lived and worked together aboard the International Space Station continuously since November 2000, growing space vegetables and testing tech for Moon and Mars trips.',
+    },
+    funFacts: [
+      'The ISS races around Earth at 28,000 kilometers per hour—fast enough to go to the Moon and back in a day!',
+      'Astronauts aboard float everywhere and sleep inside cozy zippered sleeping bags clipped to the wall.',
+      'On clear evenings, you can spot the ISS with your bare eyes as a bright steady star gliding across the sky!',
+      'Its eight giant golden-blue solar wings convert sunlight into electricity for the entire laboratory.',
+    ],
+  },
+  {
+    id: 'hubble-telescope',
+    name: 'Hubble Telescope',
+    type: 'Artificial satellite',
+    radius: 1.25,
+    orbitRadius: 33.5,
+    orbitSpeed: 0.24,
+    initialAngle: 2.35,
+    rotationSpeed: 0.18,
+    tilt: -0.35,
+    inclination: -6.8,
+    parentId: 'earth',
+    color: '#93C5FD',
+    secondaryColor: '#CBD5E1',
+    shortTagline: 'A legendary silver space observatory snapping crystal-clear photos of galaxies.',
+    badgeTitle: 'Deep Eye Astronomer',
+    discoveryHint: 'Look just outside the ISS orbit around Earth for a gleaming silver telescope.',
+    basicInfo: {
+      distanceFromSun: 'About 535 km above Earth’s surface',
+      diameter: '13.2 meters long (about the size of a school bus)',
+      lengthOfDay: 'Orbits Earth in 95 minutes',
+      lengthOfYear: 'Has traveled over 6 billion kilometers in orbit!',
+      moons: '2.4-meter mirror peering billions of light-years deep',
+      temperature: 'Controlled cozy ~21 °C inside its mirror bay',
+      age: 'Launched April 24, 1990',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Built by NASA and the European Space Agency (ESA)',
+      discoveryDate: 'Deployed April 25, 1990',
+      howDiscovered: 'Carried into orbit aboard Space Shuttle Discovery.',
+      historicalBackground:
+        'Named after astronomer Edwin Hubble, this orbital telescope floats above Earth’s blurry clouds so it can capture razor-sharp portraits of colorful nebulae, colliding galaxies, and distant planets.',
+    },
+    funFacts: [
+      'Hubble has taken more than 1.6 million space observations since 1990!',
+      'Because it orbits above Earth’s atmosphere, stars never twinkle or blur in Hubble’s camera.',
+      'Hubble helped scientists figure out the age of the universe—about 13.8 billion years old!',
+      'Astronauts visited Hubble five separate times in space shuttles to upgrade its cameras and mirrors.',
+    ],
+  },
+  {
+    id: 'gps-satellite',
+    name: 'GPS Nav Satellite',
+    type: 'Artificial satellite',
+    radius: 1.15,
+    orbitRadius: 48.0,
+    orbitSpeed: 0.15,
+    initialAngle: 4.55,
+    rotationSpeed: 0.2,
+    tilt: 0.55,
+    inclination: 12.5,
+    parentId: 'earth',
+    color: '#FBBF24',
+    secondaryColor: '#38BDF8',
+    shortTagline: 'A golden atomic-clock beacon helping maps, ships, and planes find their way.',
+    badgeTitle: 'Orbital Pathfinder',
+    discoveryHint: 'Venture halfway between Earth and the Moon to find a golden navigation satellite.',
+    basicInfo: {
+      distanceFromSun: '20,200 km above Earth (Medium Earth Orbit)',
+      diameter: '5.3 meters across its solar wings',
+      lengthOfDay: 'Circles Earth twice every 24 hours',
+      lengthOfYear: 'Part of a 31-satellite constellation',
+      moons: 'Carries ultra-precise atomic clocks onboard',
+      temperature: 'Wrapped in golden thermal foil against space cold',
+      age: 'Constellation active since 1978',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Engineered by space navigation & atomic-clock pioneers',
+      discoveryDate: 'First satellite launched February 22, 1978',
+      howDiscovered: 'Designed to beam synchronized radio timestamps everywhere on Earth.',
+      historicalBackground:
+        'By listening to tiny time signals from at least four GPS satellites at once, phones, rescue helicopters, and ocean ships can pinpoint their exact spot anywhere on Earth within a few meters!',
+    },
+    funFacts: [
+      'GPS satellites carry atomic clocks so accurate they won’t lose a single second in millions of years!',
+      'Engineers have to use Albert Einstein’s relativity math because time ticks slightly faster up in orbit!',
+      'At least four GPS satellites are visible in the sky above almost every spot on Earth right now.',
+      'Its shiny golden blanket isn’t real gold—it is multi-layer foil that protects electronics from sun heat.',
+    ],
+  },
+  {
+    id: 'moon',
+    name: 'The Moon',
+    type: 'Natural satellite',
+    radius: 4.35,
+    orbitRadius: 88,
+    orbitSpeed: 0.085,
+    initialAngle: 1.1,
+    rotationSpeed: 0.085,
+    tilt: 0.11,
+    inclination: 4.2,
+    parentId: 'earth',
+    color: '#E2E8F0',
+    secondaryColor: '#94A3B8',
+    shortTagline: 'Earth’s loyal silver neighbor that lights up our night sky.',
+    badgeTitle: 'Lunar Hopper',
+    discoveryHint: 'Fly outward past Earth’s satellites to find its glowing silver natural moon.',
+    basicInfo: {
+      distanceFromSun: 'About 149.6 million km (384,400 km from Earth)',
+      diameter: 'About 3,474 kilometers',
+      lengthOfDay: 'About 27.3 Earth days',
+      lengthOfYear: 'Orbits Earth every 27.3 days',
+      moons: '0 (It is Earth’s natural satellite!)',
+      temperature: '-173 °C at night to 127 °C in sunlight',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Known to humans forever',
+      discoveryDate: 'Prehistoric times (first visited by astronauts in 1969)',
+      howDiscovered: 'Easily spotted glowing in the night—and sometimes daytime—sky.',
+      historicalBackground:
+        'In 1969, the Apollo 11 astronauts landed on the Moon and took the very first human footprints on another world. Because there is no wind on the Moon, those footprints are still there today!',
+    },
+    funFacts: [
+      'The Moon does not make its own light—it shines like a giant mirror reflecting sunlight!',
+      'Gravity on the Moon is so light that you could jump six times higher than you can on Earth.',
+      'The Moon gently pulls on Earth’s oceans, creating rising and falling beach tides every day.',
+      'Astronauts brought back 382 kilograms of Moon rocks for scientists to study.',
+    ],
+  },
+  {
+    id: 'mars',
+    name: 'Mars',
+    type: 'Terrestrial planet',
+    radius: 8.6,
+    orbitRadius: 3720,
+    orbitSpeed: 0.0062,
+    initialAngle: 4.15,
+    rotationSpeed: 0.17,
+    tilt: 0.44,
+    color: '#EA580C',
+    secondaryColor: '#C2410C',
+    atmosphereColor: '#FB923C',
+    shortTagline: 'The dusty Red Planet home to giant volcanoes and robot rovers.',
+    badgeTitle: 'Red Rover Scout',
+    discoveryHint: 'Fly outward past Earth to spot a rusty orange-red world with icy white poles.',
+    basicInfo: {
+      distanceFromSun: 'About 228 million kilometers (1.52 AU)',
+      diameter: 'About 6,779 kilometers',
+      lengthOfDay: 'About 24 hours and 37 minutes',
+      lengthOfYear: 'About 687 Earth days',
+      moons: '2 tiny moons (Phobos and Deimos)',
+      temperature: 'Average -63 °C (chilly dusty desert)',
+      age: 'About 4.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient Egyptian and Babylonian astronomers',
+      discoveryDate: 'Over 4,000 years ago',
+      howDiscovered: 'Spotted as a glowing reddish point wandering across the starry night sky.',
+      historicalBackground:
+        'Because of its fiery rusty color, ancient peoples associated Mars with strength and courage. Today, friendly robotic rovers like Curiosity and Perseverance drive across Mars taking photos and searching for ancient water.',
+    },
+    funFacts: [
+      'Mars looks rusty red because its soil is full of iron dust—just like rust on an old bicycle!',
+      'Mars has the tallest volcano in the entire solar system, Olympus Mons, which is nearly three times taller than Mount Everest.',
+      'A Martian day is almost the exact same length as a day on Earth.',
+      'Sunsets on Mars actually glow a soft, dreamy blue instead of red!',
+    ],
+  },
+  {
+    id: 'asteroid-belt',
+    name: 'Asteroid Belt',
+    type: 'Asteroid region',
+    radius: 16,
+    orbitRadius: 5600,
+    orbitSpeed: 0.0038,
+    initialAngle: 1.9,
+    rotationSpeed: 0.05,
+    tilt: 0,
+    color: '#9CA3AF',
+    secondaryColor: '#6B7280',
+    shortTagline: 'A vast swirling ring of ancient rocky space boulders between Mars and Jupiter.',
+    badgeTitle: 'Rock Dodger',
+    discoveryHint: 'Cruise into the sparkling ring of floating boulders between Mars and Jupiter.',
+    basicInfo: {
+      distanceFromSun: 'About 329 to 478 million kilometers (2.2–3.2 AU)',
+      diameter: 'Millions of space rocks across a wide ring',
+      lengthOfDay: 'Each rock tumbles at its own pace',
+      lengthOfYear: 'About 3 to 6 Earth years',
+      moons: 'Some large asteroids even have tiny moonlets!',
+      temperature: 'Around -73 °C to -108 °C',
+      age: 'About 4.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Giuseppe Piazzi (found Ceres, the largest object here)',
+      discoveryDate: 'January 1, 1801',
+      howDiscovered: 'Spotted through an observatory telescope while mapping faint stars.',
+      historicalBackground:
+        'Astronomers noticed a big empty gap between Mars and Jupiter and started hunting for a missing planet. Instead, they discovered thousands of leftover rocky building blocks from when the solar system was born!',
+    },
+    funFacts: [
+      'Even though movies show asteroids packed tightly, real asteroids are actually very far apart—spaceships fly right through safely!',
+      'The biggest member of the Asteroid Belt is a round dwarf planet named Ceres.',
+      'Asteroids are like cosmic time capsules made of leftover rock and metal from the birth of the planets.',
+      'Some asteroids are shaped like potatoes, peanuts, or even dog bones!',
+    ],
+  },
+  {
+    id: 'jupiter',
+    name: 'Jupiter',
+    type: 'Gas giant',
+    radius: 64.0,
+    orbitRadius: 8200,
+    orbitSpeed: 0.003,
+    initialAngle: 5.45,
+    rotationSpeed: 0.25,
+    tilt: 0.05,
+    color: '#D97706',
+    secondaryColor: '#FEF3C7',
+    atmosphereColor: '#FDBA74',
+    shortTagline: 'The colossal striped king of planets with its Great Red Spot.',
+    badgeTitle: 'Giant Storm Watcher',
+    discoveryHint: 'Head far past the Asteroid Belt to find the biggest striped planet in the solar system.',
+    basicInfo: {
+      distanceFromSun: 'About 778 million kilometers (5.2 AU)',
+      diameter: 'About 139,820 kilometers',
+      lengthOfDay: 'Only 9 hours and 55 minutes!',
+      lengthOfYear: 'About 11.9 Earth years',
+      moons: '95 known moons (including icy Europa!)',
+      temperature: 'Cloud tops around -110 °C',
+      age: 'About 4.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient sky-watchers (moons found by Galileo)',
+      discoveryDate: 'Prehistoric times (moons discovered in 1610)',
+      howDiscovered: 'Shines brightly in the night sky; Galileo used a handmade telescope to see its four biggest moons.',
+      historicalBackground:
+        'When Galileo saw four little moons dancing around Jupiter in 1610, it proved that not everything in space orbits Earth—a discovery that changed science forever.',
+    },
+    funFacts: [
+      'Jupiter is so enormous that all the other planets in the solar system could fit inside it!',
+      'Its famous Great Red Spot is a giant swirling storm bigger than the entire planet Earth.',
+      'Even though it is huge, Jupiter spins faster than any other planet—a day is under 10 hours long!',
+      'Jupiter has no solid ground to stand on—it is made mostly of swirling clouds of gas.',
+    ],
+  },
+  {
+    id: 'europa',
+    name: 'Europa',
+    type: 'Natural satellite',
+    radius: 4.8,
+    orbitRadius: 118,
+    orbitSpeed: 0.14,
+    initialAngle: 0.85,
+    rotationSpeed: 0.14,
+    tilt: 0.06,
+    inclination: 3.0,
+    parentId: 'jupiter',
+    color: '#BAE6FD',
+    secondaryColor: '#D97706',
+    atmosphereColor: '#E0F2FE',
+    shortTagline: 'Jupiter’s gleaming ice-crusted moon hiding a warm saltwater ocean below!',
+    badgeTitle: 'Ice Ocean Diver',
+    discoveryHint: 'Orbit closely around giant Jupiter to spot a bright cracked-ice moon.',
+    basicInfo: {
+      distanceFromSun: '778 million km (671,000 km from Jupiter)',
+      diameter: 'About 3,121 kilometers (slightly smaller than our Moon)',
+      lengthOfDay: '3.55 Earth days (tidally locked to Jupiter)',
+      lengthOfYear: 'Orbits Jupiter every 3.55 days',
+      moons: '0 (Galilean moon of Jupiter)',
+      temperature: 'Freezing -170 °C on its icy shell',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Galileo Galilei',
+      discoveryDate: 'January 8, 1610',
+      howDiscovered: 'Spotted as a tiny moving point of light beside Jupiter through Galileo’s telescope.',
+      historicalBackground:
+        'Spacecraft flybys revealed Europa has one of the smoothest, brightest icy surfaces in the solar system—criss-crossed with reddish cracks above a hidden global ocean holding twice as much water as Earth!',
+    },
+    funFacts: [
+      'Beneath Europa’s thick ice shell lies a vast hidden ocean with more water than all of Earth’s oceans combined!',
+      'Jupiter’s mighty gravity gently squeezes Europa, warming its deep underwater ocean from below.',
+      'Reddish streaks painted across its white ice are likely salty minerals frozen along giant cracks.',
+      'NASA’s Europa Clipper spacecraft is flying all the way to Jupiter to study if Europa could host tiny ocean life!',
+    ],
+  },
+  {
+    id: 'saturn',
+    name: 'Saturn',
+    type: 'Gas giant',
+    radius: 54.0,
+    orbitRadius: 11800,
+    orbitSpeed: 0.0021,
+    initialAngle: 1.48,
+    rotationSpeed: 0.22,
+    tilt: 0.47,
+    color: '#FCD34D',
+    secondaryColor: '#D97706',
+    atmosphereColor: '#FEF08A',
+    hasRings: true,
+    ringInner: 72,
+    ringOuter: 132,
+    ringColor: '#FDE68A',
+    shortTagline: 'The dazzling jewel of the solar system wearing shimmering icy rings.',
+    badgeTitle: 'Ringed Wonder',
+    discoveryHint: 'Look out past Jupiter for a creamy gold giant crowned with gleaming flat rings.',
+    basicInfo: {
+      distanceFromSun: 'About 1.43 billion kilometers (9.5 AU)',
+      diameter: 'About 116,460 kilometers',
+      lengthOfDay: 'About 10 hours and 33 minutes',
+      lengthOfYear: 'About 29.5 Earth years',
+      moons: '146 known moons (including golden Titan!)',
+      temperature: 'Cloud tops around -140 °C',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient astronomers (rings first noticed by Galileo)',
+      discoveryDate: 'Prehistoric times (rings first seen in 1610)',
+      howDiscovered: 'Visible to the unaided eye; Galileo thought its rings looked like “ears” until Christiaan Huygens saw they were a flat ring in 1655.',
+      historicalBackground:
+        'The Cassini spacecraft orbited Saturn for 13 years, sending back breathtaking close-up pictures of its icy rings and mysterious moons like Titan and Enceladus.',
+    },
+    funFacts: [
+      'Saturn’s dazzling rings are made of billions of sparkling pieces of water ice and rock—from tiny dust specks to chunks as big as houses!',
+      'Saturn is so light for its size that if you had a giant cosmic bathtub, Saturn would float in water!',
+      'The rings stretch wide enough to reach almost from Earth to the Moon, yet they are super thin.',
+      'Saturn has a giant hexagon-shaped cloud storm spinning right at its north pole!',
+    ],
+  },
+  {
+    id: 'titan',
+    name: 'Titan',
+    type: 'Natural satellite',
+    radius: 6.4,
+    orbitRadius: 175,
+    orbitSpeed: 0.1,
+    initialAngle: 3.25,
+    rotationSpeed: 0.1,
+    tilt: 0.3,
+    inclination: -5.5,
+    parentId: 'saturn',
+    color: '#F59E0B',
+    secondaryColor: '#B45309',
+    atmosphereColor: '#FDBA74',
+    shortTagline: 'Saturn’s giant amber moon wrapped in golden clouds with icy lakes!',
+    badgeTitle: 'Golden Haze Voyager',
+    discoveryHint: 'Cruise just beyond Saturn’s shimmering rings to discover its largest golden moon.',
+    basicInfo: {
+      distanceFromSun: '1.43 billion km (1.22 million km from Saturn)',
+      diameter: 'About 5,150 kilometers (bigger than planet Mercury!)',
+      lengthOfDay: 'About 16 Earth days',
+      lengthOfYear: 'Orbits Saturn every 15.95 Earth days',
+      moons: '0 (Saturn’s largest moon)',
+      temperature: 'Super chilly -179 °C',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Christiaan Huygens',
+      discoveryDate: 'March 25, 1655',
+      howDiscovered: 'Spotted using a homemade brass refracting telescope in the Netherlands.',
+      historicalBackground:
+        'In 2005, the European Huygens probe parachuted right through Titan’s thick orange haze and landed on its icy pebbles—the farthest landing human-built machines have ever made!',
+    },
+    funFacts: [
+      'Titan is larger than the entire planet Mercury—and it is the only moon with a thick, hazy atmosphere!',
+      'Instead of water rain, Titan has clouds, rivers, and lakes made of chilly liquid methane and ethane.',
+      'Titan’s air is so thick and its gravity so gentle that if you strapped on wings, you could flap and fly!',
+      'NASA is building a flying rotorcraft drone called Dragonfly to explore Titan’s dunes and craters.',
+    ],
+  },
+  {
+    id: 'uranus',
+    name: 'Uranus',
+    type: 'Ice giant',
+    radius: 26.0,
+    orbitRadius: 16400,
+    orbitSpeed: 0.0014,
+    initialAngle: 3.32,
+    rotationSpeed: -0.18,
+    tilt: 1.71,
+    color: '#67E8F9',
+    secondaryColor: '#06B6D4',
+    atmosphereColor: '#A5F3FC',
+    hasRings: true,
+    ringInner: 34,
+    ringOuter: 46,
+    ringColor: '#CFFAFE',
+    shortTagline: 'A serene turquoise ice giant that rolls through space on its side.',
+    badgeTitle: 'Sideways Roller',
+    discoveryHint: 'Journey far beyond Saturn to find a pale mint-blue planet tilted right on its side.',
+    basicInfo: {
+      distanceFromSun: 'About 2.87 billion kilometers (19.2 AU)',
+      diameter: 'About 50,724 kilometers',
+      lengthOfDay: 'About 17 hours and 14 minutes',
+      lengthOfYear: 'About 84 Earth years',
+      moons: '28 known moons',
+      temperature: 'Freezing -195 °C (coldest atmosphere!)',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'William Herschel',
+      discoveryDate: 'March 13, 1781',
+      howDiscovered: 'Spotted in a homemade backyard telescope in Bath, England.',
+      historicalBackground:
+        'Uranus was the very first planet ever discovered using a telescope! At first William Herschel thought he had found a comet, until careful tracking proved it was a brand-new planet.',
+    },
+    funFacts: [
+      'Uranus is tipped completely on its side, so it rolls around the Sun like a giant blue bowling ball!',
+      'Its lovely aqua-blue color comes from a chilly gas called methane in its upper clouds.',
+      'Because of its big tilt, each pole gets 42 straight years of sunlight followed by 42 years of winter night.',
+      'Uranus actually has 13 faint, vertical rings spinning up-and-down around it!',
+    ],
+  },
+  {
+    id: 'neptune',
+    name: 'Neptune',
+    type: 'Ice giant',
+    radius: 25.2,
+    orbitRadius: 21500,
+    orbitSpeed: 0.001,
+    initialAngle: 0.78,
+    rotationSpeed: 0.2,
+    tilt: 0.49,
+    color: '#3B82F6',
+    secondaryColor: '#1D4ED8',
+    atmosphereColor: '#60A5FA',
+    shortTagline: 'A deep sapphire-blue ice giant swept by the fastest winds in space.',
+    badgeTitle: 'Sapphire Voyager',
+    discoveryHint: 'Venture far into the outer solar system to spot a deep royal-blue world.',
+    basicInfo: {
+      distanceFromSun: 'About 4.5 billion kilometers (30.1 AU)',
+      diameter: 'About 49,244 kilometers',
+      lengthOfDay: 'About 16 hours and 6 minutes',
+      lengthOfYear: 'About 165 Earth years',
+      moons: '16 known moons',
+      temperature: 'Super icy -200 °C',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Urbain Le Verrier, John Couch Adams & Johann Galle',
+      discoveryDate: 'September 23, 1846',
+      howDiscovered: 'Predicted with math first, then spotted right where math said it would be!',
+      historicalBackground:
+        'Astronomers noticed Uranus was being gently tugged by an invisible neighbor. Mathematicians solved the puzzle on paper, pointed a telescope at that exact spot, and discovered Neptune on the very first night!',
+    },
+    funFacts: [
+      'Neptune was the first planet ever found using mathematics before anyone saw it with a telescope!',
+      'It has the strongest winds in our solar system—blowing faster than a supersonic jet plane.',
+      'Neptune is so far from the Sun that it has only completed one full orbit since it was discovered in 1846!',
+      'Its largest moon, Triton, shoots icy geysers high into space.',
+    ],
+  },
+  {
+    id: 'pluto',
+    name: 'Pluto',
+    type: 'Dwarf planet',
+    radius: 3.8,
+    orbitRadius: 26200,
+    orbitSpeed: 0.00075,
+    initialAngle: 4.85,
+    rotationSpeed: 0.12,
+    tilt: 2.13,
+    inclination: 1200,
+    color: '#E5C4A1',
+    secondaryColor: '#9A6B52',
+    atmosphereColor: '#CBD5E1',
+    shortTagline: 'A cozy icy dwarf planet wearing a giant frosty heart.',
+    badgeTitle: 'Heart of Ice Explorer',
+    discoveryHint: 'Drift to the chilly outer frontier to find a small tan world with a bright icy heart.',
+    basicInfo: {
+      distanceFromSun: 'About 5.9 billion kilometers (39.5 AU)',
+      diameter: 'About 2,377 kilometers',
+      lengthOfDay: 'About 6.4 Earth days',
+      lengthOfYear: 'About 248 Earth years',
+      moons: '5 moons (Charon is the biggest!)',
+      temperature: 'Brrr! Around -229 °C',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Clyde Tombaugh',
+      discoveryDate: 'February 18, 1930',
+      howDiscovered: 'Found by comparing star photographs taken days apart at Lowell Observatory.',
+      historicalBackground:
+        'An 11-year-old girl named Venetia Burney suggested the name Pluto! In 2015, the New Horizons spacecraft flew right past Pluto and revealed its adorable giant heart-shaped ice plain.',
+    },
+    funFacts: [
+      'Pluto has a giant bright heart-shaped glacier on its surface made of frozen nitrogen snow!',
+      'An 11-year-old kid named Venetia Burney chose Pluto’s name over breakfast in 1930.',
+      'Pluto is smaller than Earth’s Moon, yet it still has five moons of its own!',
+      'Its largest moon, Charon, is half as big as Pluto—they dance around each other like cosmic best friends.',
+    ],
+  },
+  {
+    id: 'halley-comet',
+    name: "Halley's Comet",
+    type: 'Comet',
+    isHidden: true,
+    radius: 9.0,
+    orbitRadius: 9600,
+    orbitSpeed: 0.0055,
+    initialAngle: 2.6,
+    rotationSpeed: 0.35,
+    tilt: 0.4,
+    inclination: 1850,
+    color: '#7DD3FC',
+    secondaryColor: '#E0F2FE',
+    atmosphereColor: '#38BDF8',
+    shortTagline: 'A hidden icy space traveler streaking through the sky with a glowing tail!',
+    badgeTitle: 'Secret Comet Chaser',
+    discoveryHint: 'Hidden Wonder! Look high above the planetary plane between Jupiter and Saturn for a glowing icy tail.',
+    basicInfo: {
+      distanceFromSun: 'Loops from near Venus all the way past Neptune!',
+      diameter: 'About 11 kilometers wide (with a million-km tail!)',
+      lengthOfDay: 'Tumbles every 2 to 7 days',
+      lengthOfYear: 'Returns every 75 to 76 Earth years',
+      moons: '0',
+      temperature: 'Around -200 °C (warms near the Sun!)',
+      age: 'About 4.5 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Edmond Halley (proved it returns!)',
+      discoveryDate: '1705 (observed for over 2,000 years)',
+      howDiscovered: 'Edmond Halley studied old records and noticed the same bright comet visited every 76 years.',
+      historicalBackground:
+        'People all across history watched this glowing comet sail across the night sky. Edmond Halley correctly predicted when it would return, so the comet was named in his honor! It will visit Earth’s sky again in 2061.',
+    },
+    funFacts: [
+      'Comets are often called “dirty snowballs” because they are made of frozen ice, dust, and rock.',
+      'A comet’s glowing tail always points AWAY from the Sun because solar wind blows the dust back like a cosmic breeze!',
+      'Halley’s Comet will shine brightly in Earth’s sky again in the year 2061!',
+      'Tiny grains of dust left behind by Halley’s Comet create shooting star showers every October.',
+    ],
+  },
+  {
+    id: 'voyager-probe',
+    name: 'Voyager Star Probe',
+    type: 'Spacecraft',
+    isHidden: true,
+    radius: 8.5,
+    orbitRadius: 23800,
+    orbitSpeed: 0.0014,
+    initialAngle: 2.15,
+    rotationSpeed: 0.16,
+    tilt: 0.25,
+    inclination: -1200,
+    color: '#FBBF24',
+    secondaryColor: '#38BDF8',
+    atmosphereColor: '#FDE68A',
+    shortTagline: 'A hidden golden robot explorer carrying Earth’s music to the stars!',
+    badgeTitle: 'Golden Record Finder',
+    discoveryHint: 'Hidden Wonder! Search below the outer orbits near Neptune for a tiny golden glowing beacon.',
+    basicInfo: {
+      distanceFromSun: 'Over 24 billion kilometers away in real life!',
+      diameter: 'About 3.7 meters wide antenna dish',
+      lengthOfDay: 'Always awake exploring space',
+      lengthOfYear: 'Sailing forever into interstellar space',
+      moons: '0 (Carries the Golden Record!)',
+      temperature: 'Cruising through -270 °C deep space',
+      age: 'Launched in 1977',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Built by NASA scientists & engineers',
+      discoveryDate: 'Launched September 5, 1977',
+      howDiscovered: 'Sent from Earth on a giant rocket to visit Jupiter and Saturn and keep flying beyond.',
+      historicalBackground:
+        'Voyager 1 is the farthest human-made object from Earth! It carries a golden phonograph record filled with greetings in 55 languages, whale songs, laughter, and music from around our planet.',
+    },
+    funFacts: [
+      'Voyager carries a “Golden Record” with music, ocean waves, bird songs, and hellos from Earth!',
+      'In 1990, Voyager turned its camera backward and took the famous “Pale Blue Dot” picture of Earth.',
+      'Even though it is billions of kilometers away, Voyager still whispers radio signals back to Earth.',
+      'Voyager is now the very first human spacecraft sailing in the open space between the stars!',
+    ],
+  },
+  // --- LEVEL 3: DEEP SPACE NEIGHBORING STAR SYSTEMS (25x SCALE) ---
+  {
+    id: 'alpha-centauri',
+    name: 'Alpha Centauri',
+    type: 'Star system',
+    scaleTier: 'interstellar',
+    cosmicPos: [42000, 3800, -28000],
+    radius: 260,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.06,
+    tilt: 0.1,
+    color: '#FCD34D',
+    secondaryColor: '#F59E0B',
+    atmosphereColor: '#FEF08A',
+    exoplanets: [
+      { name: 'Proxima b', color: '#34D399', radius: 22, orbitRadius: 720, orbitSpeed: 0.08 },
+      { name: 'Centauri Prime', color: '#F97316', radius: 34, orbitRadius: 1320, orbitSpeed: 0.045 },
+    ],
+    shortTagline: 'Our closest neighboring star system shining just 4.37 light-years away!',
+    badgeTitle: 'Interstellar Pioneer',
+    discoveryHint: 'Fly beyond Pluto into Deep Space toward the bright golden star beacon!',
+    basicInfo: {
+      distanceFromSun: '4.37 light-years (closest star system to Earth!)',
+      diameter: 'Three stars dancing together (A, B, and Proxima)',
+      lengthOfDay: 'Stars spin every 22 to 83 Earth days',
+      lengthOfYear: 'Proxima b orbits its star in just 11.2 days',
+      moons: 'Home to exoplanet Proxima b!',
+      temperature: 'Main star surface around 5,790 °C',
+      age: 'About 5.3 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient sky-watchers (Proxima found by Robert Innes)',
+      discoveryDate: '1915 (Proxima Centauri)',
+      howDiscovered: 'Studied through southern telescopes as the third-brightest star in Earth’s night sky.',
+      historicalBackground:
+        'Alpha Centauri looks like one dazzling star to our eyes, but through a telescope it splits into a trio of stars! In 2016, scientists discovered Proxima b—a rocky Earth-sized exoplanet right next door.',
+    },
+    funFacts: [
+      'Alpha Centauri is actually a triple-star family—two bright golden stars plus little red Proxima Centauri!',
+      'Even at the speed of light, a radio message to Alpha Centauri takes over 4 years to arrive.',
+      'Its rocky exoplanet Proxima b orbits in the cozy zone where liquid water could exist!',
+      'Future miniature laser-sail spacecraft may one day visit Alpha Centauri to snap close-up photos.',
+    ],
+  },
+  {
+    id: 'sirius-system',
+    name: 'Sirius Blue Star',
+    type: 'Star system',
+    scaleTier: 'interstellar',
+    cosmicPos: [-46000, -4800, -32000],
+    radius: 310,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.09,
+    tilt: 0.15,
+    color: '#7DD3FC',
+    secondaryColor: '#38BDF8',
+    atmosphereColor: '#E0F2FE',
+    exoplanets: [
+      { name: 'Sirius Frost', color: '#67E8F9', radius: 30, orbitRadius: 880, orbitSpeed: 0.06, hasRings: true },
+      { name: 'Aurelia', color: '#818CF8', radius: 44, orbitRadius: 1580, orbitSpeed: 0.035 },
+    ],
+    shortTagline: 'The brightest blue-white diamond star blazing across Earth’s night sky.',
+    badgeTitle: 'Blue Diamond Navigator',
+    discoveryHint: 'Cruise into Deep Space toward the dazzling icy-blue star system!',
+    basicInfo: {
+      distanceFromSun: '8.6 light-years away',
+      diameter: 'Nearly twice as wide as our Sun',
+      lengthOfDay: 'Spins rapidly in about 5.5 Earth days',
+      lengthOfYear: 'Companion white dwarf orbits every 50 years',
+      moons: 'Paired with dense white dwarf Sirius B',
+      temperature: 'Super hot 9,940 °C blue-white glow!',
+      age: 'About 240 million years (a young star!)',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Ancient Egyptian & Greek astronomers',
+      discoveryDate: 'Over 5,000 years ago (Sirius B seen in 1862)',
+      howDiscovered: 'Unmistakable as the brightest sparkling star in the night sky.',
+      historicalBackground:
+        'Ancient Egyptians watched Sirius rise right before the Nile River flooded each year, using it as a giant cosmic calendar! Centuries later, telescopes spotted its tiny, super-heavy white dwarf partner, Sirius B.',
+    },
+    funFacts: [
+      'Sirius shines more than 25 times brighter than our own Sun!',
+      'Its nickname is the “Dog Star” because it sits in the constellation Canis Major (the Big Dog).',
+      'Sirius has a tiny partner star called Sirius B that is the size of Earth yet weighs as much as the Sun!',
+      'Its blazing blue-white color means its surface is nearly twice as hot as our Sun.',
+    ],
+  },
+  {
+    id: 'trappist-1',
+    name: 'TRAPPIST-1 System',
+    type: 'Star system',
+    scaleTier: 'interstellar',
+    cosmicPos: [36000, -6400, 44000],
+    radius: 195,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.1,
+    tilt: 0.08,
+    color: '#FB7185',
+    secondaryColor: '#E11D48',
+    atmosphereColor: '#FDA4AF',
+    exoplanets: [
+      { name: 'TRAPPIST-1e', color: '#38BDF8', radius: 20, orbitRadius: 580, orbitSpeed: 0.11 },
+      { name: 'TRAPPIST-1f', color: '#C084FC', radius: 22, orbitRadius: 960, orbitSpeed: 0.075 },
+      { name: 'TRAPPIST-1g', color: '#4ADE80', radius: 26, orbitRadius: 1420, orbitSpeed: 0.05 },
+    ],
+    shortTagline: 'A cozy ruby-red dwarf star surrounded by seven tightly packed Earth-sized worlds!',
+    badgeTitle: 'Exoplanet Hunter',
+    discoveryHint: 'Fly into Deep Space to spot a glowing coral-red star with three colorful exoplanets.',
+    basicInfo: {
+      distanceFromSun: 'About 40 light-years away',
+      diameter: 'Just slightly larger than Jupiter!',
+      lengthOfDay: 'Spins once every 3.3 Earth days',
+      lengthOfYear: 'Planets zip around in 1.5 to 19 days',
+      moons: '7 rocky Earth-sized exoplanets!',
+      temperature: 'Cozy red glow around 2,300 °C',
+      age: 'About 7.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Michaël Gillon & the TRAPPIST telescope team',
+      discoveryDate: '2016–2017 (all 7 planets confirmed)',
+      howDiscovered: 'Found by watching tiny dips in starlight as planets passed in front of their star.',
+      historicalBackground:
+        'Using the TRAPPIST telescope in Chile and NASA’s Spitzer Space Telescope, astronomers were amazed to uncover seven rocky worlds huddled warmly around one tiny red dwarf star.',
+    },
+    funFacts: [
+      'TRAPPIST-1 is an ultra-cool red dwarf star barely bigger than Jupiter!',
+      'Its seven planets orbit so close together that standing on one, you could see the other planets floating in the sky larger than our Moon!',
+      'Because red dwarfs sip their fuel slowly, TRAPPIST-1 will keep shining for trillions of years.',
+      'The James Webb Space Telescope is studying TRAPPIST-1 to check its planets for atmospheres!',
+    ],
+  },
+  {
+    id: 'kepler-haven',
+    name: 'Kepler Golden Haven',
+    type: 'Star system',
+    scaleTier: 'interstellar',
+    cosmicPos: [-39000, 8200, 40000],
+    radius: 235,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.08,
+    tilt: 0.12,
+    color: '#F59E0B',
+    secondaryColor: '#D97706',
+    atmosphereColor: '#FDE68A',
+    exoplanets: [
+      { name: 'Kepler-186f', color: '#22C55E', radius: 24, orbitRadius: 780, orbitSpeed: 0.07 },
+      { name: 'Kepler Rings', color: '#FBBF24', radius: 38, orbitRadius: 1480, orbitSpeed: 0.04, hasRings: true },
+    ],
+    shortTagline: 'A warm amber star hosting famous ringed giants and lush Earth-sized cousins.',
+    badgeTitle: 'Kepler Starfarer',
+    discoveryHint: 'Look high in Deep Space for a warm golden star with a sparkling ringed world.',
+    basicInfo: {
+      distanceFromSun: 'About 580 light-years away',
+      diameter: 'Half the width of our Sun',
+      lengthOfDay: 'Star spins every 33 Earth days',
+      lengthOfYear: 'Kepler-186f orbits in 130 Earth days',
+      moons: '5 known exoplanets in the system',
+      temperature: 'Warm orange-gold star around 3,500 °C',
+      age: 'About 4 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'NASA Kepler Space Telescope team',
+      discoveryDate: 'April 17, 2014',
+      howDiscovered: 'Detected tiny shadow transits across thousands of distant stars.',
+      historicalBackground:
+        'Kepler-186f made history as the very first Earth-sized planet ever discovered in the habitable “Goldilocks zone” of another star—proving small rocky worlds are common across our galaxy!',
+    },
+    funFacts: [
+      'Kepler-186f was the first Earth-sized exoplanet ever spotted in a star’s cozy liquid-water zone!',
+      'Because its star shines a warm orange-red, plants on Kepler-186f might grow red or golden leaves instead of green!',
+      'The Kepler Space Telescope discovered more than 2,600 planets orbiting distant stars.',
+      'Every time you look up at the Milky Way, there are more planets out there than stars!',
+    ],
+  },
+  // --- LEVEL 4: GALACTIC SCALE (25x SCALE) ---
+  {
+    id: 'milky-way-core',
+    name: 'Milky Way Core',
+    type: 'Galactic core',
+    scaleTier: 'galactic',
+    cosmicPos: [0, 3000, -125000],
+    radius: 3800,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.03,
+    tilt: 0.2,
+    color: '#FDE68A',
+    secondaryColor: '#F59E0B',
+    atmosphereColor: '#FBBF24',
+    shortTagline: 'The dazzling golden heart of our Milky Way spiral galaxy swirling with billions of stars!',
+    badgeTitle: 'Galactic Core Voyager',
+    discoveryHint: 'Zoom out to Galactic Scale to behold the blazing golden center of the Milky Way!',
+    basicInfo: {
+      distanceFromSun: 'About 26,000 light-years from Earth',
+      diameter: 'Milky Way spans 105,000 light-years across!',
+      lengthOfDay: 'Swirls with millions of tightly packed stars',
+      lengthOfYear: 'Our Sun orbits the Core every 230 million years',
+      moons: 'Home to 100 to 400 billion stars!',
+      temperature: 'Glowing golden starlight & swirling cosmic gas',
+      age: 'About 13.6 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Galileo (starry band) & Event Horizon Telescope (Sagittarius A*)',
+      discoveryDate: '1610 (first resolved) & 2022 (first core image)',
+      howDiscovered: 'Mapped using radio, infrared, and globe-spanning Earth telescopes.',
+      historicalBackground:
+        'Our entire Solar System sits out in a quiet spiral arm of the Milky Way. At the very center sits Sagittarius A*, a gentle giant supermassive black hole surrounded by millions of ancient golden stars.',
+    },
+    funFacts: [
+      'Our Milky Way galaxy holds over 100 billion stars—and probably even more planets!',
+      'If our entire Solar System were the size of a tiny coin, the Milky Way would be as wide as a whole continent!',
+      'In 2022, scientists linked telescopes all over Earth to snap the very first picture of the Milky Way’s glowing heart.',
+      'All four spiral arms of the Milky Way slowly pinwheel through space like a cosmic carousel.',
+    ],
+  },
+  // --- LEVEL 5: UNIVERSE / INTERGALACTIC SCALE (25x SCALE) ---
+  {
+    id: 'andromeda-galaxy',
+    name: 'Andromeda Galaxy',
+    type: 'Spiral galaxy',
+    scaleTier: 'universe',
+    cosmicPos: [255000, 42000, -195000],
+    radius: 14500,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.02,
+    tilt: 0.52,
+    color: '#A78BFA',
+    secondaryColor: '#38BDF8',
+    atmosphereColor: '#C4B5FD',
+    shortTagline: 'Our giant neighboring spiral galaxy glowing with one trillion sparkling stars!',
+    badgeTitle: 'Intergalactic Explorer',
+    discoveryHint: 'Zoom out to Universe Scale to discover the grand violet-blue spiral of Andromeda!',
+    basicInfo: {
+      distanceFromSun: '2.5 million light-years away!',
+      diameter: 'About 220,000 light-years across',
+      lengthOfDay: 'Trillions of stars shining across spiral arms',
+      lengthOfYear: 'Slowly gliding toward the Milky Way',
+      moons: 'Over 1 trillion stars & 14+ dwarf companion galaxies',
+      temperature: 'Mix of hot blue nurseries & golden ancient cores',
+      age: 'About 10 billion years',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Abd al-Rahman al-Sufi (first recorded) & Edwin Hubble',
+      discoveryDate: '964 CE (recorded) · 1924 (proved a separate galaxy)',
+      howDiscovered: 'Spotted as a soft fuzzy cloud in the night sky—the farthest thing human eyes can see!',
+      historicalBackground:
+        'For centuries astronomers called Andromeda a “little cloud.” In 1924, Edwin Hubble proved it was an entire separate galaxy millions of light-years away—suddenly making our universe seem billions of times bigger!',
+    },
+    funFacts: [
+      'Andromeda is the farthest object you can spot with just your eyes on a dark, clear night!',
+      'It holds roughly ONE TRILLION stars—more than twice as many as our Milky Way.',
+      'The light reaching Earth from Andromeda tonight left its stars 2.5 million years ago!',
+      'In about 4.5 billion years, Andromeda and the Milky Way will gently dance together into one giant galaxy.',
+    ],
+  },
+  {
+    id: 'whirlpool-galaxy',
+    name: 'Whirlpool Galaxy',
+    type: 'Spiral galaxy',
+    scaleTier: 'universe',
+    cosmicPos: [-238000, -36000, -215000],
+    radius: 13200,
+    orbitRadius: 0,
+    orbitSpeed: 0,
+    initialAngle: 0,
+    rotationSpeed: 0.024,
+    tilt: -0.4,
+    color: '#F472B6',
+    secondaryColor: '#38BDF8',
+    atmosphereColor: '#F9A8D4',
+    shortTagline: 'A breathtaking pink-and-cyan pinwheel galaxy dancing with a tiny companion!',
+    badgeTitle: 'Cosmic Spiral Master',
+    discoveryHint: 'Venture across Universe Scale to find a glowing rose-cyan spiral pinwheel!',
+    basicInfo: {
+      distanceFromSun: 'About 31 million light-years away',
+      diameter: 'About 76,000 light-years wide',
+      lengthOfDay: 'Bright pink star nurseries light up its arms',
+      lengthOfYear: 'Twirls gracefully across deep cosmic space',
+      moons: 'Dancing with companion dwarf galaxy NGC 5195',
+      temperature: 'Radiant newborn blue stars & pink nebulae',
+      age: 'Over 400 million years of spiral arms',
+    },
+    discoveryInfo: {
+      discoveredBy: 'Charles Messier (spiral arms first drawn by Lord Rosse)',
+      discoveryDate: 'October 13, 1773',
+      howDiscovered: 'Cataloged as Messier 51 while searching for comets.',
+      historicalBackground:
+        'In 1845, astronomer William Parsons built a giant mirror telescope and sketched the Whirlpool’s sweeping pinwheel curves—making it the very first galaxy ever recognized as a spiral!',
+    },
+    funFacts: [
+      'The Whirlpool Galaxy was the very first spiral galaxy ever sketched by astronomers!',
+      'Its glowing pink patches are gigantic star nurseries where brand-new baby stars are being born.',
+      'A smaller neighbor galaxy tugs gently on its outer arm, making its spiral swirls extra dramatic and bright!',
+      'Hubble and James Webb telescope pictures of the Whirlpool look like a glittering cosmic seashell.',
+    ],
+  },
+];
+
+export const DID_YOU_KNOW_FACTS: string[] = [
+  'Space is completely silent because there is no air for sound waves to travel through!',
+  'A day on Venus is longer than an entire year on Venus.',
+  'Saturn could float in a gigantic bathtub of water because it is made mostly of light gases.',
+  'There are more stars in the universe than grains of sand on all the beaches on Earth!',
+  'Footprints left by astronauts on the Moon can stay there for millions of years because there is no wind.',
+  'Jupiter’s Great Red Spot is a swirling storm that has been blowing for over 300 years!',
+  'Sunlight takes about 8 minutes to zip from the Sun to Earth—and over 4 hours to reach Neptune!',
+  'On Mars, sunsets glow a peaceful icy blue because of fine Martian dust in the air.',
+  'Uranus spins sideways like a rolling ball as it travels around the Sun.',
+  'Pluto has a giant frosty heart-shaped plain made of frozen snow!',
+  'The International Space Station zips all the way around Earth 16 times every single day!',
+  'Beneath Europa’s icy crust hides a saltwater ocean with twice as much water as all of Earth’s oceans!',
+  'Andromeda Galaxy holds about ONE TRILLION stars—and you can see its soft glow without a telescope!',
+  'Alpha Centauri is our closest star neighbor, yet light still takes over 4 years to travel there!',
+];
+
+export function getCelestialBodyById(id: string): CelestialBodyData | undefined {
+  return CELESTIAL_BODIES.find((b) => b.id === id);
+}

@@ -30,6 +30,7 @@
     { slug: "paddleclub", title: "Paddle Club", type: "game" },
     { slug: "snake", title: "Snake", type: "game" },
     { slug: "soundbar", title: "Sound Bar", type: "page" },
+    { slug: "space-expo", title: "Space Expo", type: "game" },
     { slug: "spend-bill-gates-money", title: "Spend Bill Gates Money", type: "page" },
     { slug: "spot", title: "Spot", type: "game" },
     { slug: "standing", title: "Standing", type: "page" },
@@ -287,6 +288,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "space-expo",
     "hunch",
     "what-beats",
     "trust-issues",

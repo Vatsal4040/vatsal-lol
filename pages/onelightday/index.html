@@ -5,23 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title> VATSAL.LOL | One Light Day </title>
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <!-- Lucide Icons CDN -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Compiled Local Utility Stylesheet -->
+  <link rel="stylesheet" href="./theme.css">
   
   <!-- Custom Stylesheet (Local & standalone relative link) -->
  <link rel="stylesheet" href="./style.css">
@@ -102,9 +87,15 @@
         <button 
           id="launch-btn"
           onclick="launchMission()"
-          class="w-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 rounded-2xl py-4 font-mono text-xs uppercase tracking-widest hover:bg-cyan-500/20 hover:border-cyan-400/60 active:scale-95 transition-all shadow-[0_0_20px_rgba(6,182,212,0.1)] group flex items-center justify-center gap-2"
+          aria-label="Launch Cosmic Telemetry"
+          class="w-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 rounded-2xl py-4 font-mono text-xs uppercase tracking-widest hover:bg-cyan-500/20 hover:border-cyan-400/60 active:scale-95 transition-all shadow-[0_0_20px_rgba(6,182,212,0.1)] group flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-400"
         >
-          <i data-lucide="rocket" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+          <svg class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
           Launch Cosmic Telemetry
         </button>
         <span class="text-[9px] text-zinc-500 font-mono text-center block tracking-wide uppercase">
@@ -141,18 +132,37 @@
     </div>
   </div>
 
+  <!-- Mobile Bottom Info Bar -->
+  <div id="mobile-infobar" class="fixed bottom-0 inset-x-0 z-40 xl:hidden flex items-center justify-between px-4 py-2.5 bg-black/85 backdrop-blur-md border-t border-white/10 text-xs font-mono opacity-0 transition-opacity duration-1000 pointer-events-auto">
+    <div class="flex flex-col">
+      <span class="text-[8px] text-zinc-500 uppercase tracking-widest">Active Target</span>
+      <span id="mobile-milestone-name" class="font-bold text-white uppercase text-xs">Earth</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="text-[8px] text-zinc-500 uppercase tracking-widest">Distance</span>
+      <span id="mobile-distance" class="font-bold text-cyan-300">0 KM</span>
+    </div>
+    <div class="flex flex-col items-end">
+      <span class="text-[8px] text-zinc-500 uppercase tracking-widest">Light Delay</span>
+      <span id="mobile-lighttime" class="font-bold text-zinc-300">0.00s</span>
+    </div>
+  </div>
+
   <!-- Floating Left Timeline (Milestone Quick-Navigation Map) -->
-  <div id="left-timeline" class="fixed left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-2 z-40 opacity-0 transition-opacity duration-1000 pointer-events-auto bg-black/20 backdrop-blur-sm p-4 rounded-2xl border border-white/5">
+  <nav aria-label="Cosmic Milestones Timeline" id="left-timeline" class="fixed left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col gap-2 z-40 opacity-0 transition-opacity duration-1000 pointer-events-auto bg-black/20 backdrop-blur-sm p-4 rounded-2xl border border-white/5">
     <div class="flex items-center gap-2 border-b border-white/5 pb-2 mb-2">
-      <i data-lucide="compass" class="w-3.5 h-3.5 text-cyan-400"></i>
+      <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10"/>
+        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+      </svg>
       <span class="text-[9px] font-mono text-zinc-400 tracking-widest uppercase">COSMIC TRACKS</span>
     </div>
     
     <!-- Timeline scroll tracker line -->
-    <div class="relative flex flex-col gap-3 pl-3 border-l border-white/10" id="timeline-nodes-container">
+    <div class="relative flex flex-col gap-3 pl-3 border-l border-white/10" id="timeline-nodes-container" role="list">
       <!-- Generated dynamically by script.js -->
     </div>
-  </div>
+  </nav>
 
   <!-- Floating Right Telemetry Console Panel -->
   <div id="right-console" class="fixed right-6 top-[15%] bottom-[8%] hidden xl:flex flex-col justify-between w-80 z-40 opacity-0 transition-opacity duration-1000 pointer-events-auto bg-black/30 backdrop-blur-md border border-white/5 p-5 rounded-2xl shadow-2xl">
@@ -188,9 +198,13 @@
         <button 
           id="audio-mute-btn" 
           onclick="toggleAudio()" 
-          class="p-1 rounded bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors"
+          aria-label="Toggle Cosmic Drone Synth Audio"
+          class="p-1 rounded bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400"
         >
-          <i data-lucide="volume-2" id="mute-icon" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <svg id="mute-icon" class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
         </button>
       </div>
       
@@ -218,47 +232,61 @@
     <!-- =======================================================
         SECTION 1: THE COSMIC BLACKOUT / ENDING (Top of page)
        ======================================================= -->
-    <section class="min-h-screen w-full flex flex-col items-center justify-center text-center bg-black transition-all duration-1000 relative" style="z-index: 50;">
-      <div class="max-w-2xl flex flex-col gap-8 opacity-90">
-        <h2 class="text-3xl font-bold tracking-[0.1em] text-zinc-400 uppercase">
+    <section class="min-h-screen w-full flex flex-col items-center justify-center text-center bg-black transition-all duration-1000 relative px-6 py-24" style="z-index: 50;">
+      <div class="max-w-2xl w-full flex flex-col items-center gap-8 opacity-95">
+        
+        <!-- Cosmic scale shrink line visualization -->
+        <div class="w-full max-w-md py-6 flex flex-col items-center gap-3">
+          <div class="flex justify-between w-full text-[9px] font-mono text-zinc-500 uppercase tracking-widest">
+            <span class="text-cyan-400 font-bold">Voyager 1 (1 Light Day)</span>
+            <span class="text-emerald-400 font-bold">Alpha Centauri (1,547 Light Days)</span>
+          </div>
+          <div class="w-full h-1 bg-white/10 rounded-full relative flex items-center overflow-hidden">
+            <div class="absolute left-0 w-1.5 h-full bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.9)] animate-pulse"></div>
+            <div class="absolute right-0 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.9)]"></div>
+          </div>
+          <span class="text-[9px] font-mono text-zinc-600">The entire journey you just took shrinks to a single glowing point on the left.</span>
+        </div>
+
+        <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white uppercase">
           You traveled one light day.
         </h2>
         
-        <div class="flex flex-col gap-2 font-mono text-xs md:text-sm text-zinc-500">
-          <span class="text-white font-semibold">49 years of silent flight.</span>
-          <span>24+ billion kilometers traversed.</span>
+        <div class="flex flex-col gap-2 font-mono text-xs md:text-sm text-zinc-400 max-w-lg mx-auto">
+          <span class="text-cyan-300 font-semibold">49 years of silent flight.</span>
+          <span>25+ billion kilometers traversed.</span>
           <span>The greatest exploratory voyage in human history.</span>
         </div>
 
-        <div class="h-[1px] w-12 bg-zinc-800 mx-auto" />
+        <div class="h-[1px] w-16 bg-zinc-800 mx-auto"></div>
 
-        <div class="flex flex-col gap-2 text-zinc-400 leading-relaxed text-sm">
+        <div class="flex flex-col gap-3 text-zinc-400 leading-relaxed text-sm max-w-lg mx-auto">
           <p>Yet, the nearest star, Alpha Centauri...</p>
-          <p class="font-bold text-white text-lg">Is still over 4.24 light-years away.</p>
-          <p class="text-zinc-600 text-xs mt-2 italic">Humanity has barely stepped outside its front door.</p>
+          <p class="font-bold text-white text-xl">Is still over 4.24 light-years away.</p>
+          <p class="text-zinc-500 text-xs mt-1 italic">Humanity has barely stepped outside its front door.</p>
         </div>
 
-        <div class="mt-12 text-[10px] font-mono text-zinc-700 uppercase tracking-widest animate-pulse">
+        <div class="mt-8 text-[10px] font-mono text-zinc-600 uppercase tracking-widest animate-pulse">
           Waiting to receive transmission from the next galaxy...
         </div>
         
-        <span class="text-zinc-800 font-mono text-xs mt-4">Safe travels explorer.</span>
+        <span class="text-zinc-700 font-mono text-xs mt-2">Safe travels explorer.</span>
       </div>
     </section>
 
     <!-- =======================================================
         SECTION 2: FINAL COMPARISON (Voyager vs Alpha Centauri)
        ======================================================= -->
-    <section class="min-h-screen w-full max-w-4xl flex flex-col items-center justify-center text-center py-20">
+    <section class="min-h-screen w-full max-w-4xl flex flex-col items-center justify-center text-center py-20 px-6">
       <div class="flex flex-col gap-1.5 mb-8">
         <span class="text-[10px] tracking-[0.2em] text-blue-400 font-bold uppercase font-mono">Perspective</span>
         <h3 class="text-3xl font-extrabold uppercase">Scale of the Cosmos</h3>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 w-full mt-6">
         <!-- Voyager 1 Bar -->
         <div class="flex flex-col items-center p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-          <span class="text-xs text-blue-400 font-mono">VOYAGER 1</span>
+          <span class="text-xs text-blue-400 font-mono uppercase tracking-wider font-bold">VOYAGER 1</span>
           <span class="text-2xl font-bold mt-2">1 Light Day</span>
           <p class="text-[11px] text-zinc-400 mt-1">49 years of travel at 17.0 km/s</p>
           <div class="w-full bg-white/10 h-3 rounded-full mt-6 overflow-hidden">
@@ -269,7 +297,7 @@
 
         <!-- Alpha Centauri Bar -->
         <div class="flex flex-col items-center p-6 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
-          <span class="text-xs text-emerald-400 font-mono">ALPHA CENTAURI</span>
+          <span class="text-xs text-emerald-400 font-mono uppercase tracking-wider font-bold">ALPHA CENTAURI</span>
           <span class="text-2xl font-bold mt-2">1,547 Light Days</span>
           <p class="text-[11px] text-zinc-400 mt-1">≈ 4.24 Light Years (Nearest Star)</p>
           <div class="w-full bg-white/10 h-3 rounded-full mt-6 overflow-hidden">
@@ -285,7 +313,13 @@
        ======================================================= -->
     <section class="py-24 w-full max-w-4xl flex flex-col gap-16">
       <div class="text-center flex flex-col items-center gap-2">
-        <i data-lucide="sparkles" class="w-6 h-6 text-blue-400 animate-pulse"></i>
+        <svg class="w-6 h-6 text-blue-400 animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+          <path d="M5 3v4"/>
+          <path d="M19 17v4"/>
+          <path d="M3 5h4"/>
+          <path d="M17 19h4"/>
+        </svg>
         <h2 class="text-3xl font-extrabold tracking-tight uppercase">Voyager Museum Exhibit</h2>
         <p class="text-zinc-400 text-xs font-mono uppercase tracking-widest mt-1">The Golden Legacy of Exploration</p>
       </div>
@@ -345,7 +379,7 @@
       
               <!-- Planetary radio astronomy antenna wire -->
               <line x1="36" y1="54" x2="4" y2="44" stroke="#71717a" stroke-width="0.5" />
-              <line x1="64" y1="54" x2="96" y2="44" stroke="#71717a" strokeWidth="0.5" />
+              <line x1="64" y1="54" x2="96" y2="44" stroke="#71717a" stroke-width="0.5" />
             </svg>
             <div class="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full border border-blue-500/30 animate-ping"></div>
           </div>
@@ -375,10 +409,22 @@
       <div class="h-[120vh] flex items-center justify-center">
         <span class="text-zinc-500 text-xs font-mono uppercase tracking-[0.2em] italic">No human has ever gone this far.</span>
       </div>
+      <div class="h-[140vh] flex items-center justify-center">
+        <span class="text-zinc-500 text-xs font-mono uppercase tracking-[0.2em] italic">Entering the Kuiper Belt — cold, ancient remnant shards of the dawn.</span>
+      </div>
+      <div class="h-[140vh] flex items-center justify-center">
+        <span class="text-zinc-500 text-xs font-mono uppercase tracking-[0.2em] italic">Crossing the Termination Shock — solar winds slow to subsonic whisper.</span>
+      </div>
+      <div class="h-[140vh] flex items-center justify-center">
+        <span class="text-zinc-500 text-xs font-mono uppercase tracking-[0.2em] italic">Traversing the Heliopause — leaving the solar bubble forever.</span>
+      </div>
       <div class="h-[120vh] flex items-center justify-center">
         <div class="flex flex-col items-center gap-3">
           <span class="text-zinc-500 text-xs font-mono uppercase tracking-[0.2em] italic">Voyager 1 is still ahead.</span>
-          <i data-lucide="compass" class="w-4 h-4 text-zinc-600 animate-spin"></i>
+          <svg class="w-4 h-4 text-zinc-600 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
         </div>
       </div>
     </section>
@@ -386,65 +432,67 @@
     <!-- =======================================================
         SECTION 6: PLUTO & THE PALE BLUE DOT SCENE
        ======================================================= -->
-    <section data-milestone-id="pluto" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20 relative">
-      <div class="flex flex-col items-center gap-8 max-w-2xl relative z-10">
-        <!-- Pluto Render -->
-        <div class="relative w-24 h-24 md:w-32 md:h-32 rounded-full bg-gradient-to-tr from-zinc-950 via-zinc-800 to-zinc-400 shadow-[0_0_25px_rgba(255,255,255,0.12)] overflow-hidden">
-          <div class="absolute bottom-[15%] right-[20%] w-12 h-10 bg-amber-50/20 rounded-full blur-[2px] rotate-[-25deg] transform scale-x-[1.2]">
-            <div class="w-8 h-8 bg-amber-100/15 rounded-full rotate-45 transform translate-x-2 translate-y-1"></div>
+    <section data-milestone-id="pluto" class="pinned-scene-container" style="height: 320vh;">
+      <div class="pinned-scene-sticky text-center flex flex-col items-center justify-center p-6">
+        <div class="flex flex-col items-center gap-6 max-w-2xl relative z-10">
+          <!-- Pluto Render -->
+          <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full shadow-[0_0_25px_rgba(255,255,255,0.12)] overflow-hidden flex items-center justify-center">
+            <canvas id="pluto-canvas" class="w-full h-full object-cover"></canvas>
+            <div id="pluto-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-800 to-zinc-400"></div>
           </div>
-        </div>
-        
-        <div class="flex flex-col gap-2">
-          <span class="text-[10px] tracking-[0.2em] text-blue-400 font-bold uppercase font-mono">Historical Milestone — February 14, 1990</span>
-          <h3 class="text-3xl font-extrabold uppercase">The Pale Blue Dot</h3>
-        </div>
+          
+          <div class="flex flex-col gap-1.5">
+            <span class="text-[10px] tracking-[0.2em] text-blue-400 font-bold uppercase font-mono">Historical Milestone — February 14, 1990</span>
+            <h3 class="text-3xl font-extrabold uppercase">The Pale Blue Dot</h3>
+          </div>
 
-        <!-- Cinematic actual Pale Blue Dot Voyager 1 photo with perfect edge merging -->
-        <div class="relative w-full max-w-lg h-72 bg-[#020205] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center group">
-          <!-- Layer 1: Actual remastered NASA/JPL Voyager 1 image from Wikimedia Commons -->
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Pale_Blue_Dot.png/640px-Pale_Blue_Dot.png"
-            alt="Remastered JPL Voyager 1 Photograph of the Pale Blue Dot"
-            class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700 select-none pointer-events-none"
-            referrerpolicy="no-referrer"
-          />
+          <!-- Cinematic actual Pale Blue Dot photo with slow zoom container -->
+          <div id="pbd-frame" class="relative w-full max-w-lg h-72 md:h-80 bg-[#020205] border border-white/5 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center group transition-transform duration-300 ease-out origin-[71.5%_56.3%]">
+            <img 
+              id="pbd-image"
+              src="./assets/pale-blue-dot.jpg"
+              alt="NASA/JPL Voyager 1 Photograph of the Pale Blue Dot (2020 reprocessing)"
+              class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-transform duration-300 ease-out select-none pointer-events-none origin-[71.5%_56.3%]"
+            />
 
-          <!-- Layer 2: Master radial blending vignette (makes the square borders vanish) -->
-          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_50%,_#020205_96%)] pointer-events-none"></div>
+            <!-- Radial blending vignette -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_50%,_#020205_96%)] pointer-events-none"></div>
 
-          <!-- Layer 3: Cardinal edge fade gradients -->
-          <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#020205] to-transparent pointer-events-none"></div>
-          <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#020205] to-transparent pointer-events-none"></div>
-          <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#020205] to-transparent pointer-events-none"></div>
-          <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#020205] to-transparent pointer-events-none"></div>
+            <!-- Edge fade gradients -->
+            <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#020205] to-transparent pointer-events-none"></div>
+            <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#020205] to-transparent pointer-events-none"></div>
+            <div class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#020205] to-transparent pointer-events-none"></div>
+            <div class="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#020205] to-transparent pointer-events-none"></div>
 
-          <!-- Layer 4: Interactive locator HUD reticle (pins Earth's actual pixel coordinate inside the sunbeam) -->
-          <div class="absolute top-[56.3%] left-[71.5%] -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-            <div class="w-8 h-8 border border-blue-400/40 rounded-full animate-ping absolute -top-2.5 -left-2.5"></div>
-            <div class="w-3 h-3 border border-cyan-400/60 rounded-full absolute -top-0.5 -left-0.5"></div>
-            
-            <!-- Horizontal & vertical laser target lines -->
-            <div class="absolute left-[5px] -top-3 w-[1px] h-2 bg-cyan-400/50"></div>
-            <div class="absolute left-[5px] top-4 w-[1px] h-2 bg-cyan-400/50"></div>
-            <div class="absolute -left-3 top-[5px] w-2 h-[1px] bg-cyan-400/50"></div>
-            <div class="absolute top-[5px] left-4 w-2 h-[1px] bg-cyan-400/50"></div>
+            <!-- Interactive locator HUD reticle (pins Earth's actual pixel coordinate inside the sunbeam) -->
+            <div class="absolute top-[56.3%] left-[71.5%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+              <div class="w-8 h-8 border border-blue-400/40 rounded-full animate-ping absolute -top-2.5 -left-2.5"></div>
+              <div class="w-3 h-3 border border-cyan-400/60 rounded-full absolute -top-0.5 -left-0.5"></div>
+              
+              <div class="absolute left-[5px] -top-3 w-[1px] h-2 bg-cyan-400/50"></div>
+              <div class="absolute left-[5px] top-4 w-[1px] h-2 bg-cyan-400/50"></div>
+              <div class="absolute -left-3 top-[5px] w-2 h-[1px] bg-cyan-400/50"></div>
+              <div class="absolute top-[5px] left-4 w-2 h-[1px] bg-cyan-400/50"></div>
 
-            <!-- Locator tooltip -->
-            <div class="absolute left-6 -top-2 bg-black/80 border border-blue-500/30 text-[9px] font-mono text-cyan-300 px-1.5 py-0.5 rounded whitespace-nowrap shadow-md opacity-80 group-hover:opacity-100 transition-opacity">
-              EARTH • 0.12 pixel
+              <div class="absolute left-6 -top-2 bg-black/80 border border-blue-500/30 text-[9px] font-mono text-cyan-300 px-1.5 py-0.5 rounded whitespace-nowrap shadow-md opacity-90">
+                EARTH • 0.12 pixel
+              </div>
+            </div>
+
+            <div class="absolute bottom-3 left-4 text-[9px] text-zinc-400 font-mono uppercase tracking-widest bg-black/70 px-2 py-0.5 rounded border border-white/10 z-10">
+              Feb 14, 1990 • Earth is less than one pixel • 2020 reprocessing (NASA/JPL-Caltech)
             </div>
           </div>
 
-          <div class="absolute bottom-3 left-4 text-[9px] text-zinc-500 font-mono uppercase tracking-widest bg-black/60 px-2 py-0.5 rounded border border-white/5">
-            NASA/JPL Voyager 1 Original Remaster
-          </div>
+          <!-- Sagan Quote line-by-line reveal container -->
+          <blockquote id="sagan-quote" class="text-zinc-300 text-xs md:text-sm leading-relaxed max-w-xl italic border-l-2 border-blue-500/40 pl-6 text-left space-y-1">
+            <span class="sagan-line block transition-opacity duration-500 opacity-30">"Look again at that dot. That's here. That's home. That's us.</span>
+            <span class="sagan-line block transition-opacity duration-500 opacity-20">On it everyone you love, everyone you know, everyone you ever heard of,</span>
+            <span class="sagan-line block transition-opacity duration-500 opacity-20">every human being who ever was, lived out their lives...</span>
+            <span class="sagan-line block transition-opacity duration-500 opacity-20">on a mote of dust suspended in a sunbeam."</span>
+            <cite class="block text-[10px] text-zinc-500 uppercase tracking-widest font-mono mt-2 not-italic">— Carl Sagan</cite>
+          </blockquote>
         </div>
-
-        <blockquote class="text-zinc-300 text-xs md:text-sm leading-relaxed max-w-xl italic border-l-2 border-blue-500/40 pl-6 text-left">
-          "Look again at that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives... on a mote of dust suspended in a sunbeam."
-          <cite class="block text-[10px] text-zinc-500 uppercase tracking-widest font-mono mt-2 not-italic">— Carl Sagan</cite>
-        </blockquote>
       </div>
     </section>
 
@@ -454,10 +502,9 @@
     <section data-milestone-id="neptune" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
       <div class="flex flex-col items-center gap-6">
         <!-- Neptune Render -->
-        <div class="relative w-44 h-44 md:w-52 md:h-52 rounded-full bg-gradient-to-tr from-zinc-950 via-blue-950 to-indigo-400 shadow-[0_0_40px_rgba(59,130,246,0.3)] overflow-hidden">
-          <div class="absolute top-[40%] left-[25%] w-10 h-6 bg-blue-950 border border-blue-900 rounded-full blur-[1px] rotate-12 shadow-[inset_1px_1px_4px_rgba(0,0,0,0.8)]"></div>
-          <div class="absolute top-[25%] left-[10%] w-12 h-1 bg-white/30 rounded-full blur-[1px] rotate-3"></div>
-          <div class="absolute top-[68%] right-[20%] w-16 h-1 bg-white/20 rounded-full blur-[1px] -rotate-3"></div>
+        <div class="relative w-44 h-44 md:w-52 md:h-52 flex items-center justify-center">
+          <canvas id="neptune-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="neptune-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-blue-950 to-indigo-400"></div>
         </div>
         
         <div class="flex flex-col gap-1">
@@ -472,11 +519,10 @@
        ======================================================= -->
     <section data-milestone-id="uranus" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
       <div class="flex flex-col items-center gap-6">
-        <!-- Uranus Render (with Vertical rings) -->
-        <div class="relative w-64 h-64 flex items-center justify-center">
-          <div class="absolute w-[12px] h-[280px] border-[2px] border-cyan-400/30 rounded-full rotate-[82deg] z-0 scale-x-[0.2]"></div>
-          <div class="relative w-36 h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-tr from-zinc-950 via-teal-800 to-cyan-300 shadow-[0_0_45px_rgba(6,182,212,0.25)] overflow-hidden z-10"></div>
-          <div class="absolute w-[12px] h-[280px] border-[2px] border-cyan-400/30 border-l-transparent border-b-transparent rounded-full rotate-[82deg] z-20 scale-x-[0.2]"></div>
+        <!-- Uranus Render -->
+        <div class="relative w-44 h-44 md:w-52 md:h-52 flex items-center justify-center">
+          <canvas id="uranus-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="uranus-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-teal-800 to-cyan-300"></div>
         </div>
 
         <div class="flex flex-col gap-1">
@@ -489,21 +535,13 @@
     <!-- =======================================================
         SECTION 9: SATURN
        ======================================================= -->
-    <section data-milestone-id="saturn" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
+    <section data-milestone-id="saturn" class="pinned-scene-container">
+      <div class="pinned-scene-sticky text-center">
       <div class="flex flex-col items-center gap-4">
-        <!-- Saturn Render (3D layered rings) -->
-        <div class="relative w-80 h-80 flex items-center justify-center">
-          <div class="absolute w-[450px] h-20 border-[16px] border-amber-400/20 border-b-transparent border-r-transparent rounded-full -rotate-[15deg] scale-y-[0.25] blur-[1px] z-0"></div>
-          <div class="absolute w-[420px] h-18 border-[12px] border-orange-300/35 border-b-transparent border-r-transparent rounded-full -rotate-[15deg] scale-y-[0.25] blur-[0.5px] z-0"></div>
-
-          <div class="relative w-44 h-44 md:w-56 md:h-56 rounded-full bg-gradient-to-tr from-zinc-950 via-amber-800 to-amber-300 shadow-[0_0_50px_rgba(253,186,116,0.2)] overflow-hidden z-10">
-            <div class="absolute top-[30%] left-0 right-0 h-4 bg-amber-900/40 blur-[1px]"></div>
-            <div class="absolute top-[45%] left-0 right-0 h-6 bg-orange-950/30 blur-[2px]"></div>
-            <div class="absolute top-[65%] left-0 right-0 h-5 bg-amber-900/30 blur-[1px]"></div>
-          </div>
-
-          <div class="absolute w-[450px] h-20 border-[16px] border-amber-400/20 border-t-transparent border-l-transparent rounded-full -rotate-[15deg] scale-y-[0.25] shadow-[0_4px_10px_rgba(0,0,0,0.8)] z-20"></div>
-          <div class="absolute w-[420px] h-18 border-[12px] border-orange-300/35 border-t-transparent border-l-transparent rounded-full -rotate-[15deg] scale-y-[0.25] z-20"></div>
+        <!-- Saturn Render -->
+        <div class="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center">
+          <canvas id="saturn-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="saturn-css-fallback" class="hidden absolute w-44 h-44 rounded-full bg-gradient-to-tr from-zinc-950 via-amber-800 to-amber-300"></div>
         </div>
 
         <div class="flex flex-col gap-1 mt-4">
@@ -511,31 +549,26 @@
           <h3 class="text-2xl font-bold uppercase">Saturn</h3>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- =======================================================
         SECTION 10: JUPITER
        ======================================================= -->
-    <section data-milestone-id="jupiter" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
+    <section data-milestone-id="jupiter" class="pinned-scene-container">
+      <div class="pinned-scene-sticky text-center">
       <div class="flex flex-col items-center gap-6">
         <!-- Jupiter Render -->
-        <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-tr from-zinc-950 via-amber-900 to-amber-200 shadow-[0_0_60px_rgba(245,158,11,0.25)] overflow-hidden">
-          <div class="absolute top-[15%] left-0 right-0 h-6 bg-amber-950/40 blur-[1px]"></div>
-          <div class="absolute top-[28%] left-0 right-0 h-10 bg-orange-950/50 blur-[2px]"></div>
-          <div class="absolute top-[45%] left-0 right-0 h-12 bg-amber-950/30 blur-[1px]"></div>
-          <div class="absolute top-[65%] left-0 right-0 h-8 bg-orange-950/40 blur-[2px]"></div>
-          <div class="absolute top-[78%] left-0 right-0 h-6 bg-amber-950/30 blur-[1px]"></div>
-
-          <!-- Great Red Spot -->
-          <div class="absolute top-[60%] right-[30%] w-12 h-8 rounded-full bg-red-600 border border-amber-800 shadow-[0_0_15px_rgba(220,38,38,0.5)] flex items-center justify-center rotate-[-5deg]">
-            <div class="w-8 h-4 rounded-full bg-orange-500 opacity-60 filter blur-[1px]"></div>
-          </div>
+        <div class="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+          <canvas id="jupiter-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="jupiter-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-amber-900 to-amber-200"></div>
         </div>
 
         <div class="flex flex-col gap-1">
           <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">778 Million Kilometers</span>
           <h3 class="text-2xl font-bold uppercase">Jupiter</h3>
         </div>
+      </div>
       </div>
     </section>
 
@@ -559,19 +592,20 @@
     <!-- =======================================================
         SECTION 12: MARS
        ======================================================= -->
-    <section data-milestone-id="mars" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
+    <section data-milestone-id="mars" class="pinned-scene-container">
+      <div class="pinned-scene-sticky text-center">
       <div class="flex flex-col items-center gap-6">
         <!-- Mars Render -->
-        <div class="relative w-36 h-36 md:w-48 md:h-48 rounded-full bg-gradient-to-tr from-zinc-950 via-red-900 to-orange-500 shadow-[0_0_40px_rgba(239,68,68,0.3)] overflow-hidden">
-          <div class="absolute top-[5%] left-[45%] w-8 h-2 bg-white/80 rounded-full blur-[1px]"></div>
-          <div class="absolute top-[35%] left-[-10%] w-[120%] h-8 bg-zinc-950/40 rounded-full rotate-6 blur-[3px]"></div>
-          <div class="absolute top-[60%] left-[-10%] w-[120%] h-6 bg-zinc-950/30 rounded-full -rotate-3 blur-[4px]"></div>
+        <div class="relative w-36 h-36 md:w-48 md:h-48 flex items-center justify-center">
+          <canvas id="mars-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="mars-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-red-900 to-orange-500"></div>
         </div>
 
         <div class="flex flex-col gap-1">
           <span class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">150 Million Kilometers</span>
           <h3 class="text-2xl font-bold uppercase">Mars</h3>
         </div>
+      </div>
       </div>
     </section>
 
@@ -608,16 +642,13 @@
     <!-- =======================================================
         SECTION 14: THE MOON
        ======================================================= -->
-    <section data-milestone-id="moon" class="min-h-screen w-full flex flex-col items-center justify-center text-center py-20">
+    <section data-milestone-id="moon" class="pinned-scene-container">
+      <div class="pinned-scene-sticky text-center">
       <div class="flex flex-col items-center gap-6">
         <!-- Moon Render -->
-        <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-tr from-zinc-950 via-zinc-800 to-zinc-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] overflow-hidden">
-          <div class="absolute top-[25%] left-[30%] w-10 h-10 rounded-full bg-zinc-900/40 border border-zinc-700/20 shadow-[inset_2px_2px_4px_rgba(0,0,0,0.6)]"></div>
-          <div class="absolute top-[60%] left-[40%] w-14 h-14 rounded-full bg-zinc-900/50 border border-zinc-700/20 shadow-[inset_3px_3px_6px_rgba(0,0,0,0.6)]"></div>
-          <div class="absolute top-[45%] left-[70%] w-8 h-8 rounded-full bg-zinc-900/30 border border-zinc-700/20 shadow-[inset_1px_1px_3px_rgba(0,0,0,0.6)]"></div>
-          <div class="absolute top-[75%] left-[20%] w-6 h-6 rounded-full bg-zinc-900/40 border border-zinc-700/20 shadow-[inset_1px_1px_2px_rgba(0,0,0,0.6)]"></div>
-          <div class="absolute top-0 bottom-0 left-[50%] w-[1px] bg-white/5 blur-[2px]"></div>
-          <div class="absolute left-0 right-0 top-[50%] h-[1px] bg-white/5 blur-[2px]"></div>
+        <div class="relative w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center">
+          <canvas id="moon-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="moon-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-zinc-800 to-zinc-300"></div>
         </div>
 
         <div class="flex flex-col gap-1">
@@ -625,6 +656,7 @@
           <h3 class="text-2xl font-bold uppercase font-sans">The Moon</h3>
           <p class="text-[11px] text-zinc-400 mt-1 italic">"Light from Earth reaches here in only 1.3 seconds."</p>
         </div>
+      </div>
       </div>
     </section>
 
@@ -755,31 +787,17 @@
           </p>
         </div>
 
+        <!-- YOU Position Marker (Visible on Earth) -->
+        <div id="you-marker" class="flex flex-col items-center gap-1 transition-opacity duration-700 pointer-events-none z-20">
+          <span class="text-[9px] font-mono font-bold tracking-widest text-cyan-300 uppercase px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-400/40 shadow-[0_0_10px_rgba(6,182,212,0.4)]">YOU ARE HERE</span>
+          <div class="w-[1px] h-6 bg-gradient-to-b from-cyan-400 to-transparent"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#22d3ee] animate-pulse -mt-1"></div>
+        </div>
+
         <!-- High-Resolution NASA Rotating Earth Globe Layered Assembly -->
-        <div class="relative w-80 h-80 md:w-[480px] md:h-[480px] rounded-full shadow-[0_0_120px_rgba(59,130,246,0.65)] overflow-hidden bg-black border border-blue-500/10">
-          <!-- Layer 1: Real NASA high-resolution Blue Marble globe, slowly rotating -->
-          <div 
-            class="absolute inset-0 bg-cover bg-center opacity-95"
-            style="background-image: url('https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?auto=format&fit=crop&w=1200&q=90'); background-size: 105%; animation: globe-spin 350s linear infinite;"
-          ></div>
-
-          <!-- Layer 2: Translucent atmospheric clouds rotating independently -->
-          <div 
-            class="absolute inset-0 opacity-25 mix-blend-screen scale-110"
-            style="background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80'); background-size: cover; filter: contrast(1.2) brightness(1.1); animation: globe-spin 190s linear infinite;"
-          ></div>
-
-          <!-- Layer 3: Extra high-altitude procedural clouds to add depth and motion -->
-          <div class="absolute inset-0 opacity-20 mix-blend-overlay bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/30 via-transparent to-transparent animate-deep-pulse"></div>
-
-          <!-- Layer 4: Stationary twilight/night-time terminator shadow -->
-          <div class="absolute inset-0 bg-gradient-to-tr from-black/95 via-black/60 to-transparent opacity-90 pointer-events-none"></div>
-
-          <!-- Layer 5: Scientific Atmospheric Blue Fringe / Scattering Ring -->
-          <div class="absolute inset-0 rounded-full border-[2px] border-cyan-400/30 shadow-[inset_0_0_80px_rgba(56,189,248,0.55)] pointer-events-none"></div>
-
-          <!-- Layer 6: Subtle polar ice cap reflection glow -->
-          <div class="absolute top-0 left-1/4 right-1/4 h-12 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+        <div class="relative w-80 h-80 md:w-[480px] md:h-[480px] rounded-full flex items-center justify-center">
+          <canvas id="earth-canvas" class="w-full h-full object-cover"></canvas>
+          <div id="earth-css-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-950 via-blue-900 to-cyan-400"></div>
         </div>
 
         <!-- Upward scroll guide indicator -->
@@ -795,35 +813,14 @@
 
   </div>
 
-  <!-- Draggable / Closable Floating Download Helper Banner -->
-  <div id="download-tip" class="fixed bottom-6 left-6 right-6 md:left-auto md:w-96 z-50 bg-cyan-950/95 border border-cyan-500/30 p-5 rounded-2xl shadow-2xl backdrop-blur-lg transform translate-y-20 opacity-0 transition-all duration-700 flex flex-col gap-3">
-    <div class="flex items-start justify-between">
-      <div class="flex items-center gap-2">
-        <i data-lucide="download" class="w-4 h-4 text-cyan-400"></i>
-        <h5 class="text-xs font-mono font-bold tracking-wider text-cyan-300">LOCAL OFFLINE VERSION</h5>
-      </div>
-      <button onclick="closeTip()" class="text-zinc-500 hover:text-white transition-colors">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-    </div>
-    <p class="text-xs text-zinc-300 leading-relaxed">
-      You can open or download this entire high-fidelity offline project directly on your computer! 
-      Click <strong class="text-white">Settings</strong> in the top-right corner of Google AI Studio and select <strong class="text-white">Export to ZIP</strong> to save it forever.
-    </p>
-    <div class="flex gap-2">
-      <button onclick="closeTip()" class="flex-1 bg-cyan-500/20 border border-cyan-500/30 text-[10px] font-mono py-1.5 rounded-lg hover:bg-cyan-500/30 text-cyan-200 transition-colors">
-        GOT IT, THANKS!
-      </button>
-    </div>
-  </div>
-
   <!-- Footer block -->
   <footer class="relative z-10 py-12 text-center border-t border-white/5 text-[10px] font-mono text-zinc-500">
-    <p>© 2026 VATSAL.LOL PROJECT ONE LIGHT DAY • STANDALONE OFFLINE BUNDLE</p>
-    <p class="mt-1 text-zinc-600">Double-click index.html locally to run completely offline without servers</p>
+    <p>© 2026 VATSAL.LOL • ONE LIGHT DAY</p>
+    <p class="mt-1 text-zinc-600">Planet textures: Solar System Scope (CC BY 4.0), based on NASA data. Pale Blue Dot: NASA/JPL-Caltech. Earth: NASA Earth Observatory.</p>
   </footer>
 
   <!-- Internal script boot -->
+    <script src="./planet-renderer.js"></script>
   <script src="./script.js"></script>
   <!-- PWA Service Worker Registration & Update Notification -->
   <script>

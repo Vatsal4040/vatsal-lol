@@ -186,3 +186,54 @@ section{
 
     display:inline-block;
 }
+
+/* =========================================================
+   WORKSTREAM 1: PINNED SCENES & CINEMATIC PACING
+   ========================================================= */
+
+.pinned-scene-container {
+  position: relative;
+  width: 100%;
+  height: 240vh; /* Scroll room for pinning */
+}
+
+.pinned-scene-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .pinned-scene-container {
+    height: auto !important;
+  }
+  .pinned-scene-sticky {
+    position: relative !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+}
+
+/* Gentle 7-second bobbing animation for the YOU location marker */
+@keyframes you-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+#you-marker {
+  animation: you-bob 7s ease-in-out infinite;
+  will-change: transform, opacity;
+}

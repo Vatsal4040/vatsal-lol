@@ -1,0 +1,952 @@
+/* ==========================================================================
+   Precision Aerospace HUD, Azimuth Tape, Astrometric Radar & 3D Labels
+   ========================================================================== */
+
+.hud-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.hud-restore-wrap {
+  position: fixed;
+  top: calc(12px + var(--safe-top));
+  right: calc(12px + var(--safe-right));
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.hud-restore-btn {
+  padding: 8px 13px;
+  font-size: 12px;
+  color: var(--accent-sky-bright);
+  border-color: var(--border-accent);
+}
+
+/* 1st-Person Cockpit Flight-Path Reticle */
+.cockpit-reticle {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Top HUD Band */
+.hud-top {
+  position: fixed;
+  top: calc(12px + var(--safe-top));
+  left: calc(12px + var(--safe-left));
+  right: calc(12px + var(--safe-right));
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.hud-top--surface {
+  align-items: center;
+}
+
+/* Top-Left Telemetry Column */
+.hud-left-col {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 264px;
+  max-width: calc(100vw - 24px);
+}
+
+.hud-card {
+  padding: 9px 11px;
+}
+
+.hud-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hud-kicker {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hud-scale-name {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.hud-scale-grid {
+  display: none;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  margin-top: 7px;
+}
+
+.hud-scale-btn {
+  padding: 5px 3px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  background-color: rgba(15, 23, 42, 0.9);
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  transition: background-color 140ms ease, color 140ms ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hud-scale-btn:hover {
+  color: var(--text-primary);
+  background-color: rgba(30, 41, 59, 0.95);
+}
+
+.hud-scale-btn.is-active {
+  color: var(--text-dark);
+}
+
+.hud-scale-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.hud-scale-level {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+/* Telemetry Pod */
+.hud-location {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.hud-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hud-location-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hud-speed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-sky-bright);
+  white-space: nowrap;
+}
+
+.hud-speed.is-boosting {
+  color: var(--accent-amber-bright);
+}
+
+.hud-speed-tag {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.hud-vel-bar {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 5px;
+  margin-top: 8px;
+}
+
+.hud-vel-seg {
+  flex: 1;
+  height: 100%;
+  border-radius: 1px;
+  background-color: rgba(30, 41, 59, 0.95);
+  transition: background-color 120ms ease;
+}
+
+.hud-vel-seg.is-sky {
+  background-color: var(--accent-sky);
+}
+
+.hud-vel-seg.is-amber {
+  background-color: var(--accent-amber);
+}
+
+.hud-telem-toggle {
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(51, 65, 85, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.hud-telem-toggle:hover {
+  color: var(--text-primary);
+}
+
+.hud-telem-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.hud-telem-hdg {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+
+.hud-telem-grid {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(51, 65, 85, 0.45);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 10px;
+  font-size: 11px;
+}
+
+.hud-telem-key {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.hud-telem-val {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.hud-telem-val--pos {
+  color: var(--accent-emerald);
+}
+
+.hud-telem-val--neg {
+  color: var(--accent-amber-bright);
+}
+
+.hud-telem-span {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hud-telem-target {
+  padding-top: 6px;
+  border-top: 1px solid rgba(51, 65, 85, 0.45);
+}
+
+/* Discovery Progress Mini Card */
+.hud-progress-btn {
+  width: 100%;
+  padding: 9px 11px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 140ms ease, background-color 140ms ease;
+}
+
+.hud-progress-btn:hover {
+  border-color: var(--border-amber);
+  background-color: var(--surface-hud-elevated);
+}
+
+.hud-progress-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.hud-progress-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-amber-bright);
+}
+
+.progress-track {
+  width: 100%;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background-color: rgba(30, 41, 59, 0.95);
+  overflow: hidden;
+}
+
+.progress-track--lg {
+  height: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-amber);
+  transition: width 260ms ease;
+}
+
+/* Top-Center Aerospace Horizontal Azimuth Heading Tape & Target Lock Bar */
+.hud-center-col {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.azimuth-tape {
+  position: relative;
+  width: 340px;
+  height: 44px;
+  overflow: hidden;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.azimuth-tape__scale {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.azimuth-tape__tick {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.azimuth-tape__tick-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.azimuth-tape__tick-label.is-cardinal {
+  color: var(--accent-sky-bright);
+  font-weight: 700;
+}
+
+.azimuth-tape__tick-line {
+  width: 1px;
+  height: 4px;
+  background-color: rgba(148, 163, 184, 0.45);
+}
+
+.azimuth-tape__tick-line.is-major {
+  height: 6px;
+  background-color: rgba(186, 230, 253, 0.72);
+}
+
+.azimuth-tape__lubber {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.azimuth-tape__hdg-badge {
+  background-color: var(--surface-hud-solid);
+  border: 1px solid var(--border-amber);
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-amber-bright);
+  line-height: 1.25;
+}
+
+.azimuth-tape__bodies {
+  position: relative;
+  width: 100%;
+  height: 22px;
+}
+
+.azimuth-pip {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 5px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+}
+
+.azimuth-pip:hover {
+  background-color: rgba(30, 41, 59, 0.92);
+}
+
+.azimuth-pip__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Active Locked Target Strip */
+.target-bar {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.target-bar__info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.target-bar__name {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  max-width: 132px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.target-bar__dist {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-sky-bright);
+  white-space: nowrap;
+}
+
+.target-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+/* Top-Right Precision Astrometric Radar Scope */
+.radar-pod {
+  pointer-events: auto;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+  width: 146px;
+}
+
+.radar-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  width: 100%;
+  padding: 2px;
+  border-radius: var(--radius-xs);
+  background-color: rgba(2, 6, 14, 0.95);
+  border: 1px solid rgba(51, 65, 85, 0.55);
+}
+
+.radar-tab {
+  padding: 3px 2px;
+  border-radius: 3px;
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: center;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.radar-tab:hover {
+  color: var(--text-primary);
+}
+
+.radar-tab.is-active {
+  background-color: var(--accent-sky);
+  color: var(--text-dark);
+}
+
+.radar-svg {
+  display: block;
+  width: 126px;
+  height: 126px;
+}
+
+.radar-range-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--text-muted);
+  padding: 0 2px;
+}
+
+.radar-map-btn {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: 10.5px;
+  color: var(--accent-sky-bright);
+}
+
+/* Surface Exploration Header */
+.surface-header-card {
+  pointer-events: auto;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.surface-header-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.surface-header-sub {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Discovery & Arrival Toasts */
+.toast-wrap {
+  position: fixed;
+  top: calc(92px + var(--safe-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  pointer-events: none;
+  padding: 0 16px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+}
+
+.toast-card {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toast-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--accent-amber-soft);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  color: var(--accent-amber-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.toast-kicker {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-amber-bright);
+}
+
+.toast-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Proximity Approach Prompt */
+.approach-prompt {
+  position: fixed;
+  top: calc(144px + var(--safe-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: auto;
+  max-width: 94vw;
+}
+
+.approach-prompt__inner {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.approach-prompt__meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.approach-prompt__name {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.approach-prompt__dist {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--accent-sky-bright);
+  white-space: nowrap;
+}
+
+.approach-prompt__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+/* Bottom Command Dock */
+.hud-dock-wrap {
+  position: fixed;
+  bottom: calc(12px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 96vw;
+}
+
+.hud-dock-toggle {
+  margin-bottom: 5px;
+  padding: 4px 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.hud-dock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  overflow-x: auto;
+  max-width: 95vw;
+}
+
+/* 3D-to-2D Optical Target Reticle Overlay */
+.reticle-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.reticle-onscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform, opacity;
+}
+
+.reticle-brackets {
+  position: relative;
+  width: 66px;
+  height: 66px;
+}
+
+.reticle-tag {
+  margin-top: 6px;
+  padding: 3px 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.reticle-tag__name {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.reticle-tag__dist {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-sky-bright);
+}
+
+.reticle-offscreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  transition: border-color 140ms ease;
+}
+
+.reticle-offscreen:hover {
+  border-color: var(--border-accent);
+}
+
+.reticle-offscreen__arrow {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+.reticle-offscreen__text {
+  text-align: left;
+  line-height: 1.2;
+}
+
+/* 60fps 3D-to-2D Projected Celestial Body Labels */
+.celestial-labels-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.celestial-label {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background-color: rgba(4, 8, 16, 0.84);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  transition: border-color 120ms ease, background-color 120ms ease;
+}
+
+.celestial-label:hover {
+  background-color: rgba(14, 165, 233, 0.28);
+  border-color: var(--accent-sky);
+}
+
+.celestial-label.is-selected {
+  background-color: rgba(14, 165, 233, 0.92);
+  border-color: #bae6fd;
+  color: var(--text-dark);
+}
+
+.celestial-label__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.celestial-label__star {
+  color: var(--accent-amber-bright);
+  font-size: 10px;
+}
+
+.celestial-label.is-selected .celestial-label__star {
+  color: var(--text-dark);
+}
+
+/* Responsive Breakpoints */
+@media (min-width: 640px) {
+  .hud-top {
+    top: calc(16px + var(--safe-top));
+    left: calc(18px + var(--safe-left));
+    right: calc(18px + var(--safe-right));
+  }
+
+  .hud-left-col {
+    width: 292px;
+  }
+
+  .hud-scale-grid {
+    display: grid;
+  }
+
+  .hud-scale-mobile {
+    display: none;
+  }
+
+  .radar-pod {
+    display: flex;
+  }
+
+  .approach-prompt {
+    top: auto;
+    bottom: calc(92px + var(--safe-bottom));
+  }
+}
+
+@media (min-width: 820px) {
+  .hud-center-col {
+    display: flex;
+  }
+}
+
+@media (min-width: 1080px) {
+  .azimuth-tape {
+    width: 400px;
+  }
+}
+
+/* Compact Mobile Landscape HUD Tuning (short viewport height on rotated phones) */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hud-top {
+    top: calc(8px + var(--safe-top));
+    left: calc(10px + var(--safe-left));
+    right: calc(10px + var(--safe-right));
+    gap: 8px;
+  }
+
+  .hud-left-col {
+    width: 224px;
+    gap: 5px;
+  }
+
+  .hud-card {
+    padding: 6px 8px;
+  }
+
+  .hud-progress-btn {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .hud-scale-btn {
+    padding: 4px 2px;
+    font-size: 9.5px;
+  }
+
+  .azimuth-tape {
+    width: 270px;
+    height: 38px;
+  }
+
+  .radar-pod {
+    width: 118px;
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .radar-svg {
+    width: 96px;
+    height: 96px;
+  }
+
+  .toast-wrap {
+    top: calc(56px + var(--safe-top));
+  }
+
+  .approach-prompt {
+    top: auto;
+    bottom: calc(60px + var(--safe-bottom));
+  }
+
+  .hud-dock-wrap {
+    bottom: calc(6px + var(--safe-bottom));
+  }
+
+  .hud-dock {
+    padding: 5px;
+    gap: 4px;
+  }
+}
+

@@ -1,0 +1,10 @@
+{
+  "name": "Mini Universe Explorer",
+  "short_name": "Mini Universe",
+  "description": "Pilot a spaceship across a 3D low-poly solar system and universe in landscape view.",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#000000",
+  "theme_color": "#000000"
+}

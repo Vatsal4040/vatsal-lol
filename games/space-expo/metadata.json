@@ -1,0 +1,8 @@
+{
+  "name": "Remix Mini Universe Explorer",
+  "description": "An interactive 3D miniature solar system adventure where children pilot a spaceship, visit low-poly planets, earn discovery badges, and learn fascinating facts about space.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,5 +1,11 @@
 [
   {
+    "slug": "space-expo",
+    "title": "Space Expo",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/space-expo.webp"
+  },
+  {
     "slug": "hunch",
     "title": "Hunch",
     "type": "game",
