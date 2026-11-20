@@ -82,11 +82,11 @@ To work with a local copy:
 4. Test functionality across desktop and mobile browsers.
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone (https://github.com/Vatsal4040/vatsal-lol)
 cd VATSAL.LOL
 ```
 
-Replace `YOUR_REPOSITORY_URL` with the actual repository URL.
+Replace `(https://github.com/Vatsal4040/vatsal-lol)` with the actual repository URL.
 
 ## 🌐 Deployment
 
