@@ -7,7 +7,7 @@
     return '/';
   }
 
-  // Inject top-left vatsal.lol branding link
+  // Inject bottom-right vatsal.lol branding watermark
   function initBranding() {
     if (document.getElementById('vatsal-v4-logo')) return;
 
