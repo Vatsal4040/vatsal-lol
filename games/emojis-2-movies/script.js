@@ -240,7 +240,7 @@ let attempts = 0;
 let corrects = 0;
 let wrongs = 0;
 
-let history = [];
+let gameHistory = [];
 
 let timer;
 let timeLeft = 15;
@@ -250,7 +250,7 @@ let roundTime = 15;
 START GAME
 =========================== */
 
-function startGame(mode){
+function startGame(mode, pushHistory = true){
 
     currentMode = mode;
 
@@ -272,6 +272,10 @@ function startGame(mode){
         mode.toUpperCase()+" MODE";
 
     document.querySelector('.vatsal-related')?.setAttribute('hidden', '');
+
+    if (pushHistory && (!window.history.state || window.history.state.screen !== 'play')) {
+        window.history.pushState({ screen: 'play', mode: mode }, '', window.location.href);
+    }
 
     resetGame();
 
@@ -455,7 +459,7 @@ function selectOption(option,selectedButton){
                 ✔️ Correct! +${points}
             </span>`;
 
-        history.push({
+        gameHistory.push({
             emoji:currentMovie.emoji,
             answer:currentMovie.answer,
             status:"right"
@@ -513,7 +517,7 @@ function wrongAnswer(text,alreadyRevealed=false){
     combo=0;
     lives--;
 
-    history.push({
+    gameHistory.push({
         emoji:currentMovie.emoji,
         answer:currentMovie.answer,
         status:"wrong"
@@ -599,7 +603,7 @@ function skipQuestion(){
     lives--;
     combo=0;
 
-    history.push({
+    gameHistory.push({
         emoji:currentMovie.emoji,
         answer:currentMovie.answer,
         status:"wrong"
@@ -687,7 +691,7 @@ function gameOver(){
 
     historyDiv.innerHTML="";
 
-    history.forEach(item=>{
+    gameHistory.forEach(item=>{
 
         const div=document.createElement("div");
 
@@ -731,22 +735,19 @@ function resetGame(){
     corrects=0;
     wrongs=0;
 
-    history=[];
+    gameHistory=[];
 
     updateStats();
 }
 
 function restartGame(){
 
-    document.getElementById("scoreScreen").style.display="none";
-
-    document.getElementById("startScreen") .style.display="flex"; 
-     document.querySelector('.vatsal-related') ?.setAttribute('hidden','');
-     const related = document.querySelector('.vatsal-related');
-    if(related){
-        related.setAttribute('hidden','');
-        document.body.appendChild(related);
+    if (window.history.state && window.history.state.screen === 'play') {
+        window.history.back();
+        return;
     }
+
+    exitToHomeScreen();
 }
 
 /* ===========================
@@ -771,3 +772,45 @@ document.addEventListener("keydown",(e)=>{
         selectOption(currentOptions[index],buttons[index]);
     }
 });
+/* ===========================
+BROWSER BACK NAVIGATION
+=========================== */
+
+function initNavigation() {
+    if (!window.history.state || !window.history.state.screen) {
+        window.history.replaceState({ screen: 'home' }, '', window.location.href);
+    }
+
+    window.addEventListener('popstate', (e) => {
+        const state = e.state;
+        if (state && state.screen === 'play') {
+            if (document.getElementById('gameScreen').style.display !== 'flex') {
+                startGame(state.mode || currentMode, false);
+            }
+        } else {
+            exitToHomeScreen();
+        }
+    });
+}
+
+function exitToHomeScreen() {
+    clearInterval(timer);
+    roundLocked = true;
+
+    document.getElementById('gameScreen').style.display = 'none';
+    document.getElementById('scoreScreen').style.display = 'none';
+    document.getElementById('startScreen').style.display = 'flex';
+
+    const siteHeader = document.getElementById('siteHeader');
+    if (siteHeader) siteHeader.style.display = 'flex';
+
+    const related = document.querySelector('.vatsal-related');
+    if (related) {
+        related.setAttribute('hidden', '');
+        document.body.appendChild(related);
+    }
+
+    resetGame();
+}
+
+initNavigation();

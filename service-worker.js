@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vatsal-lol-cache-v4.1.8';
+const CACHE_NAME = 'vatsal-lol-cache-v4.1.9';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
