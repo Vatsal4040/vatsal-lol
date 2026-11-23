@@ -25,6 +25,7 @@ body{
     color:white;
     overflow:hidden;
     height:100vh;
+    height:100dvh;
     display:flex;
     flex-direction:column;
 }
@@ -659,6 +660,16 @@ GAME OVER
     padding:12px 14px;
     font-size:.9rem;
 }
+
+    .guess-title{
+        font-size:1.6rem;
+        margin:4px 0 8px;
+    }
+
+    .game-screen{
+        overflow-y:auto;
+        -webkit-overflow-scrolling:touch;
+    }
 }
 
 .guess-title{

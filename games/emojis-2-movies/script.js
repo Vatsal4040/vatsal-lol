@@ -265,7 +265,8 @@ function startGame(mode){
     document.getElementById("startScreen").style.display="none";
 
     document.getElementById("gameScreen").style.display="flex";
-    document.getElementById("siteHeader").style.display="none";
+    const siteHeader = document.getElementById("siteHeader");
+    if (siteHeader) siteHeader.style.display="none";
 
     document.getElementById("modeTitle").innerText =
         mode.toUpperCase()+" MODE";
@@ -383,6 +384,7 @@ function renderOptions(){
 
         btn.className = "option-btn";
         btn.type = "button";
+        btn.dataset.answer = option;
         btn.innerText = formatMovieTitle(option);
         btn.onclick = ()=>selectOption(option,btn);
 
@@ -478,7 +480,10 @@ function revealOptions(selectedButton){
 
         btn.disabled = true;
 
-        if(btn.innerText.toLowerCase()===correctLabel){
+        const isCorrect = (btn.dataset.answer && btn.dataset.answer === currentMovie.answer) ||
+                          (btn.innerText.trim().toLowerCase() === correctLabel);
+
+        if(isCorrect){
             btn.classList.add("correct-choice");
         }else if(btn===selectedButton){
             btn.classList.add("wrong-choice");
@@ -579,6 +584,8 @@ function skipQuestion(){
 
     clearInterval(timer);
 
+    revealOptions(null);
+
     document.getElementById("message").innerHTML =
     `
     ⏭ Question Skipped
@@ -617,7 +624,8 @@ function gameOver(){
     document.getElementById("scoreScreen")
     .style.display="flex";
     // window.VatsalLolGameComplete?.();
-    document.getElementById("siteHeader").style.display="flex";
+    const siteHeader = document.getElementById("siteHeader");
+    if (siteHeader) siteHeader.style.display="flex";
     const related = document.querySelector('.vatsal-related');
     if(related){
         document.getElementById('scoreScreen')
