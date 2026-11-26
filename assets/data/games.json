@@ -1,5 +1,11 @@
 [
   {
+    "slug": "shadow-caster",
+    "title": "Shadow Caster",
+    "type": "game",
+    "thumbnail": "assets/thumbnails/shadow-caster.webp"
+  },
+  {
     "slug": "space-expo",
     "title": "Space Expo",
     "type": "game",

@@ -28,6 +28,7 @@
     { slug: "memory-tiles", title: "Memory Tiles", type: "game" },
     { slug: "onelightday", title: "One Light Day", type: "page" },
     { slug: "paddleclub", title: "Paddle Club", type: "game" },
+    { slug: "shadow-caster", title: "Shadow Caster", type: "game" },
     { slug: "snake", title: "Snake", type: "game" },
     { slug: "soundbar", title: "Sound Bar", type: "page" },
     { slug: "space-expo", title: "Space Expo", type: "game" },
@@ -288,6 +289,7 @@ const LivingSkyState = {
   }
 
   const homeOrder = [
+    "shadow-caster",
     "space-expo",
     "hunch",
     "what-beats",
