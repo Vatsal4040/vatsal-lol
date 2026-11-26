@@ -1,324 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Guess & Challenge</title>
-    <link rel="canonical" href="https://vatsal.lol/pages/which-number/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Which Number — Digit Decoder | VATSAL.LOL</title>
+<link rel="canonical" href="https://vatsal.lol/pages/which-number/">
 <meta property="og:url" content="https://vatsal.lol/pages/which-number/">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../../assets/vatsal-v4.css">
+<style>
+@font-face{font-family:"Vatsal-logo";src:url("../../assets/data/vatsal-logo-font.woff2") format("woff2");font-display:swap}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#000;--panel:#141416;--panel2:#1d1d20;--line:#2c2c30;--text:#f4f1ea;--muted:#8d8d94;
+--brass:#e8b04a;--brass-d:#d19b38;--up:#6ec6ff;--dn:#ff7a66;--ok:#5ee0a0;--bad:#ff5d5d}
+html{color-scheme:dark}
+body{font-family:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;min-height:100dvh;-webkit-font-smoothing:antialiased}
+.app{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;align-items:center;padding:20px;padding-bottom:max(20px,env(safe-area-inset-bottom))}
+.view{width:100%;max-width:420px;animation:in .25s ease}
+.view[hidden]{display:none}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+button{font:inherit;color:inherit;border:0;cursor:pointer;touch-action:manipulation;transition:background .15s,transform .1s,filter .15s}
+button:active{transform:scale(.97)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+h1{font-family:"Bungee","Arial Black",system-ui,sans-serif;font-weight:400;font-size:2.6rem;line-height:1.08;letter-spacing:.01em;text-align:center;margin-bottom:16px;color:#ffd98a;text-shadow:0 1px 0 #f0b94d,0 2px 0 #d99d31,0 3px 0 #c28722,0 4px 0 #a9731a,0 5px 0 #8f6016,0 6px 0 #765013,0 14px 16px rgba(232,176,74,.3)}
+h2{font-size:.9rem;font-weight:600;color:var(--muted);margin-bottom:8px}
+.lead{color:var(--muted);line-height:1.5;margin:0 auto 30px;min-height:3em;max-width:30ch;text-align:center}
+.section{margin-bottom:22px}
+.seg{display:grid;gap:8px}.seg.two{grid-template-columns:1fr 1fr}.seg.three{grid-template-columns:repeat(3,1fr)}
+.seg button{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:14px;padding:15px 8px;font-size:.95rem}
+.seg button:hover{background:var(--panel2)}
+.seg button[aria-pressed=true]{background:var(--brass);border-color:var(--brass);color:#1a1205;font-weight:700}
+.info{color:var(--muted);font-size:.9rem;margin-top:12px;min-height:1.3em}
+.primary{width:100%;background:var(--brass);color:#1a1205;border-radius:16px;padding:17px;font-size:1.1rem;font-weight:800}
+.primary:hover{background:var(--brass-d)}.primary:disabled{opacity:.3;cursor:not-allowed}
+.ghost{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;width:100%}
+.ghost:hover{background:var(--panel2)}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.back{background:none;color:var(--muted);padding:8px 10px 8px 0;font-size:.95rem}.back:hover{color:var(--text)}
+.tag{color:var(--muted);font-size:.9rem}
+/* range dial: ticks every 10%, bright bar = numbers still possible */
+.track{height:14px;border-radius:99px;background:var(--panel);border:1px solid var(--line);position:relative;overflow:hidden;
+background-image:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),var(--line) calc(10% - 1px) 10%)}
+.track i{position:absolute;top:0;bottom:0;left:0;width:100%;min-width:12px;background:var(--brass);border-radius:99px;transition:left .4s cubic-bezier(.2,.8,.2,1),width .4s cubic-bezier(.2,.8,.2,1)}
+.lab{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin:8px 2px 24px;font-variant-numeric:tabular-nums}
+.lab b{color:var(--text)}
+/* code slots */
+.disp{display:flex;justify-content:center;gap:10px}
+.disp b{font-family:"Bungee",system-ui,sans-serif;width:64px;height:84px;display:grid;place-items:center;font-size:2.4rem;font-weight:400;font-variant-numeric:tabular-nums;background:var(--panel);border:1.5px solid var(--line);border-radius:16px}
+.disp b.on{border-color:var(--brass);box-shadow:0 0 0 3px rgba(232,176,74,.18)}
+.msg{text-align:center;min-height:1.6em;margin:14px 0 14px;font-weight:700;color:var(--muted)}
+.msg.up{color:var(--up)}.msg.dn{color:var(--dn)}.msg.bad{color:var(--bad)}
+.msg.shake{animation:shake .3s}@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.pips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-bottom:6px}
+.pips span{width:9px;height:9px;border-radius:50%;border:1.5px solid #55555c}.pips span.u{background:#55555c}
+.tries{text-align:center;font-size:.85rem;color:var(--muted);margin-bottom:16px}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.num{background:var(--panel);border:1px solid var(--line);border-radius:16px;font-size:1.3rem;font-weight:700;min-height:54px}
+.num:hover{background:var(--panel2)}.num:active{background:var(--brass);color:#1a1205}
+.num.fn{color:var(--muted);font-size:1.05rem}
+.hist{list-style:none;display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px;min-height:30px}
+.hist li{background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.hist li b{color:var(--text)}.hist em{font-style:normal}.hist li.up em{color:var(--up)}.hist li.dn em{color:var(--dn)}
+.ask{text-align:center;color:var(--muted);margin-bottom:12px}
+.ans{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:6px 0 10px}
+.ans button{border-radius:16px;padding:18px 6px;font-weight:700;color:#0b0b0c}
+.ans .lo{background:var(--dn)}.ans .ok{background:var(--ok)}.ans .hi{background:var(--up)}
+.ans button:hover{filter:brightness(1.1)}
+.undo{background:none;color:var(--muted);width:100%;padding:10px;font-size:.9rem}
+.undo:disabled{opacity:.35;cursor:default}.undo:not(:disabled):hover{color:var(--text)}
+.res-title{font-size:2rem}
+#resLines{color:var(--muted);line-height:1.7;margin:14px 0 28px}
+#resLines p:first-child{color:var(--text);font-size:1.15rem}
+.res-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.res-btns .primary{grid-column:1/-1;font-size:1rem;padding:15px}
+#pwa-update-toast{position:fixed;bottom:20px;right:20px;max-width:320px;background:rgba(10,10,20,.95);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px 20px;font-size:14px;z-index:10000;box-shadow:0 10px 30px rgba(0,0,0,.5);backdrop-filter:blur(10px);display:flex;flex-direction:column;gap:10px}
+#pwa-update-toast div{color:#aaa;font-size:13px}#pwa-update-toast .row{display:flex;gap:12px;justify-content:flex-end}
+#pwa-update-toast button{background:none;color:#aaa;padding:6px 12px;font-size:13px}
+#pwa-update-toast .go{background:#fff;color:#000;font-weight:600;border-radius:8px}
+@media(max-width:768px){#pwa-update-toast{left:20px;right:20px;max-width:none}}
+@media(max-width:480px){h1{font-size:2.1rem}.disp{gap:8px}.disp b{width:56px;height:72px;font-size:2.4rem}.num{min-height:48px}}
+@media(max-height:700px){.disp b{height:60px;font-size:2rem}.num{min-height:42px}.lab{margin-bottom:14px}.msg{margin:8px 0}h1{font-size:1.8rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.vatsal-header{font-family:"Vatsal-logo"!important;color:#fff!important;text-decoration:none!important;font-size:20px!important}
+</style>
+<link rel="stylesheet" href="../../assets/vatsal-v4.css">
 <link rel="stylesheet" href="../../assets/mobile-v3.css">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Play Which Number instantly on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:title" content="Which Number | VATSAL.LOL">
-  <meta property="og:description" content="Play Which Number instantly on VATSAL.LOL. No install, no login - just fun!">
-  <meta property="og:image" content="https://vatsal.lol/assets/logo.png">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="vatsal.lol">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Which Number | VATSAL.LOL">
-  <meta name="twitter:description" content="Play Which Number instantly on VATSAL.LOL. No install, no login - just fun!">
-  <meta name="twitter:image" content="https://vatsal.lol/assets/logo.png">
-  <link rel="manifest" href="/manifest.json">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;600;700;800&display=swap">
+<meta name="theme-color" content="#000000">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="description" content="Crack the secret code or challenge the AI in this sleek digit deduction puzzle on VATSAL.LOL.">
+<meta property="og:title" content="Which Number — Digit Decoder | VATSAL.LOL">
+<meta property="og:description" content="Crack the secret code or challenge the AI in this sleek digit deduction puzzle on VATSAL.LOL.">
+<meta property="og:image" content="https://vatsal.lol/assets/thumbnails/which-number.webp">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="vatsal.lol">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Which Number — Digit Decoder | VATSAL.LOL">
+<meta name="twitter:description" content="Crack the secret code or challenge the AI in this sleek digit deduction puzzle on VATSAL.LOL.">
+<meta name="twitter:image" content="https://vatsal.lol/assets/thumbnails/which-number.webp">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 </head>
 <body>
-     <main class="app">
+<main class="app">
 
-        <!-- START SCREEN -->
-        <section id="startScreen" class="screen active">
+  <!-- START -->
+  <section id="start" class="view">
+    <h1>Digit<br>Decoder</h1>
+    <p id="lead" class="lead"></p>
 
-      <div class="game-wrap">
+    <div class="section">
+      <h2>Mode</h2>
+      <div class="seg two" id="modes">
+        <button data-mode="guess" aria-pressed="true">Crack the code</button>
+        <button data-mode="challenge" aria-pressed="false">Stump the AI</button>
+      </div>
+    </div>
 
-                <h1>GUESS & CHALLENGE</h1>
+    <div class="section">
+      <h2>Difficulty</h2>
+      <div class="seg three" id="levels">
+        <button data-range="100" data-tries="10" aria-pressed="true">Easy</button>
+        <button data-range="500" data-tries="12" aria-pressed="false">Medium</button>
+        <button data-range="1000" data-tries="15" aria-pressed="false">Hard</button>
+      </div>
+      <div id="info" class="info"></div>
+    </div>
 
-                <p id="modeDescription" class="description">
-                    Find the hidden number before you run out of attempts.
-                </p>
+    <button id="play" class="primary">Play</button>
+  </section>
 
-                <!-- MODE -->
-                <div class="section">
-                    <h2>Mode</h2>
+  <!-- GUESS -->
+  <section id="guess" class="view" hidden>
+    <div class="top">
+      <button class="back" data-home>← Home</button>
+      <span class="tag">Crack the code</span>
+    </div>
 
-                    <div class="mode-toggle">
-                        <button class="mode-btn active" data-mode="guess">
-                            Guess The Number
-                        </button>
+    <div class="track" data-track aria-hidden="true"><i></i></div>
+    <div class="lab" data-lab><span></span><span></span></div>
 
-                        <button class="mode-btn" data-mode="challenge">
-                            Challenge The AI
-                        </button>
-                    </div>
-                </div>
+    <div id="disp" class="disp" aria-live="polite"></div>
+    <div id="msg" class="msg" aria-live="polite"></div>
 
-                <!-- DIFFICULTY -->
-                <div class="section">
-                    <h2>Difficulty</h2>
+    <div id="pips" class="pips" aria-hidden="true"></div>
+    <div id="tries" class="tries"></div>
 
-                    <div class="difficulty-selector">
-                        <button class="difficulty-btn active"
-                                data-range="100"
-                                data-attempts="10">
-                            Easy
-                        </button>
+    <div class="numpad" id="numpad">
+      <button class="num">1</button><button class="num">2</button><button class="num">3</button>
+      <button class="num">4</button><button class="num">5</button><button class="num">6</button>
+      <button class="num">7</button><button class="num">8</button><button class="num">9</button>
+      <button class="num fn" id="clr" aria-label="Clear">C</button>
+      <button class="num">0</button>
+      <button class="num fn" id="bksp" aria-label="Delete last digit">⌫</button>
+    </div>
+    <button id="submit" class="primary" disabled>Guess</button>
+    <ul id="hist" class="hist" aria-label="Previous guesses"></ul>
+  </section>
 
-                        <button class="difficulty-btn"
-                                data-range="500"
-                                data-attempts="12">
-                            Medium
-                        </button>
+  <!-- AI -->
+  <section id="ai" class="view" hidden>
+    <div class="top">
+      <button class="back" data-home>← Home</button>
+      <span class="tag" id="aiCount"></span>
+    </div>
 
-                        <button class="difficulty-btn"
-                                data-range="1000"
-                                data-attempts="15">
-                            Hard
-                        </button>
-                    </div>
+    <div class="track" data-track aria-hidden="true"><i></i></div>
+    <div class="lab" data-lab><span></span><span></span></div>
 
-                    <div id="difficultyInfo" class="difficulty-info">
-                        1–100 • 10 tries
-                    </div>
-                </div>
+    <p class="ask">Think of a number. Is it…</p>
+    <div id="aiGuess" class="disp" aria-live="polite"></div>
+    <div id="aiMsg" class="msg" aria-live="polite"></div>
 
-                <button id="playBtn" class="play-btn">
-                    PLAY
-                </button>
+    <div class="ans">
+      <button class="lo" id="lower" title="Arrow down">▼ Lower</button>
+      <button class="ok" id="correct" title="Enter">Correct</button>
+      <button class="hi" id="higher" title="Arrow up">▲ Higher</button>
+    </div>
+    <button class="undo" id="undo" disabled>Undo last answer</button>
+    <ul id="aiHist" class="hist" aria-label="Answers so far"></ul>
+  </section>
 
-            </div>
+  <!-- RESULT -->
+  <section id="result" class="view" hidden>
+    <h1 id="resTitle" class="res-title"></h1>
+    <div id="resLines"></div>
+    <div class="res-btns">
+      <button class="primary" id="again">Play again</button>
+      <button class="ghost" id="share" hidden>Share</button>
+      <button class="ghost" data-home>Home</button>
+    </div>
+  </section>
 
-        </section>
+</main>
 
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const views = {start: $('#start'), guess: $('#guess'), ai: $('#ai'), result: $('#result')};
+  const slots = (s, n, act) => Array.from({length: n}, (_, i) => `<b${act && i === s.length ? ' class="on"' : ''}>${s[i] ?? ''}</b>`).join('');
+  const buzz = p => { try { navigator.vibrate && navigator.vibrate(p); } catch {} };
 
-        <!-- GUESS THE NUMBER -->
-        <section id="guessScreen" class="screen">
+  // --- saved best scores (safe if storage is blocked) ---
+  const store = {
+    get() { try { return JSON.parse(localStorage.getItem('wn-best')) || {}; } catch { return {}; } },
+    set(v) { try { localStorage.setItem('wn-best', JSON.stringify(v)); } catch {} }
+  };
 
-            <div class="card">
+  let mode = 'guess', cfg = {range: 100, tries: 10}, cur = 'start', shareText = '';
 
-                <h1>Guess The Number</h1>
-
-                <div id="attemptInfo" class="attempt-info" aria-live="polite">
-                    Attempts: 0 / 10
-                </div>
-
-                <div class="guess-input-row">
-                    <input
-                        type="text"
-                        id="guessInput"
-                        inputmode="none"
-                        readonly
-                        aria-label="Enter your guess"
-                        placeholder="Enter Number"
-                    >
-
-                    <button id="guessBtn">
-                        Guess
-                    </button>
-                </div>
-                
-<div id="guessHistory" class="history" aria-live="polite">
-                </div>
-
-                <div id="numpad" class="numpad">
-                    <button class="num-btn" data-num="1">1</button>
-                    <button class="num-btn" data-num="2">2</button>
-                    <button class="num-btn" data-num="3">3</button>
-                    <button class="num-btn" data-num="4">4</button>
-                    <button class="num-btn" data-num="5">5</button>
-                    <button class="num-btn" data-num="6">6</button>
-                    <button class="num-btn" data-num="7">7</button>
-                    <button class="num-btn" data-num="8">8</button>
-                    <button class="num-btn" data-num="9">9</button>
-                    <button class="num-btn clear-btn" id="numClear">C</button>
-                    <button class="num-btn" data-num="0">0</button>
-                    <button class="num-btn backspace-btn" id="numBackspace">⌫</button>
-                </div>
-
-                
-
-                <button class="home-btn">
-                    Home
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- CHALLENGE AI -->
-        <section id="challengeScreen" class="screen">
-
-            <div class="card">
-
-                <h1>Challenge The AI</h1>
-
-                <div id="rangeInfo" class="range-info">
-                    Range: 1 - 100
-                </div>
-
-               <div id="chatHistory" class="chat-history" aria-live="polite">
-                </div>
-
-                <div id="currentGuess" class="current-guess" aria-live="polite">
-                    Is your number 50?
-                </div>
-
-                <div class="response-buttons">
-
-                    <button id="lowerBtn">
-                        Lower
-                    </button>
-
-                    <button id="correctBtn">
-                        Correct
-                    </button>
-
-                    <button id="higherBtn">
-                        Higher
-                    </button>
-
-                </div>
-
-                <button class="home-btn">
-                    Home
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <!-- RESULT SCREEN -->
-        <section id="resultScreen" class="screen">
-
-            <div class="card">
-
-                <h1 id="resultTitle">
-                    Result
-                </h1>
-
-                <p id="resultText" aria-live="polite">
-                </p>
-
-                <div class="result-buttons">
-
-                    <button id="playAgainBtn">
-                        Play Again
-                    </button>
-
-                    <button id="resultHomeBtn">
-                        Home
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <script src="script.js"></script>
-  <!-- PWA Service Worker Registration & Update Notification -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => {
-            console.log('Service Worker registered', reg);
-            
-            // Check for updates
-            reg.addEventListener('updatefound', () => {
-              const newWorker = reg.installing;
-              newWorker.addEventListener('statechange', () => {
-                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                  showUpdateToast(reg);
-                }
-              });
-            });
-
-            // If there's already a waiting worker
-            if (reg.waiting) {
-              showUpdateToast(reg);
-            }
-          })
-          .catch(err => console.error('Service Worker registration failed', err));
-      });
-
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        if (!refreshing) {
-          refreshing = true;
-          window.location.reload();
-        }
-      });
+  function show(name, push = true) {
+    cur = name;
+    for (const k in views) views[k].hidden = k !== name;
+    document.querySelector('.vatsal-related')?.setAttribute('hidden', '');
+    window.scrollTo(0, 0);
+    if (push && name !== 'start' && (!window.history.state || window.history.state.screen !== name)) {
+      window.history.pushState({ screen: name }, '', window.location.href);
     }
+  }
 
-    function showUpdateToast(reg) {
-      if (document.getElementById('pwa-update-toast')) return;
-      
-      const toast = document.createElement('div');
-      toast.id = 'pwa-update-toast';
-      toast.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: rgba(10, 10, 20, 0.95);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        padding: 16px 20px;
-        color: #fff;
-        font-family: system-ui, -apple-system, sans-serif;
-        font-size: 14px;
-        z-index: 10000;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        max-width: 320px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        box-sizing: border-box;
-      `;
-
-      if (window.innerWidth < 768) {
-        toast.style.left = '20px';
-        toast.style.right = '20px';
-        toast.style.bottom = '20px';
-        toast.style.maxWidth = 'calc(100% - 40px)';
+  function initNavigation() {
+    if (!window.history.state || !window.history.state.screen) {
+      window.history.replaceState({ screen: 'start' }, '', window.location.href);
+    }
+    window.addEventListener('popstate', (e) => {
+      const s = e.state?.screen;
+      if (s && views[s]) {
+        show(s, false);
+      } else {
+        updateInfo();
+        show('start', false);
       }
+    });
+  }
 
-      toast.innerHTML = `
-        <div style="font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px;">
-          <span style="width: 8px; height: 8px; background: #5500ff; border-radius: 50%;"></span>
-          Update Available
-        </div>
-        <div style="color: #aaa; font-size: 13px; line-height: 1.4;">A new version of VATSAL.LOL is available.</div>
-        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 4px;">
-          <button id="pwa-later-btn" style="background: transparent; border: none; color: #aaa; font-weight: 500; cursor: pointer; padding: 6px 12px; font-size: 13px; outline: none;">Later</button>
-          <button id="pwa-refresh-btn" style="background: #fff; border: none; color: #000; font-weight: 600; cursor: pointer; padding: 6px 16px; border-radius: 8px; font-size: 13px; outline: none; box-shadow: 0 2px 8px rgba(255,255,255,0.2);">Refresh</button>
-        </div>
-      `;
+  // --- range track: shows the window of numbers still possible ---
+  function drawTrack(root, lo, hi) {
+    const r = cfg.range;
+    const i = root.querySelector('[data-track] i');
+    i.style.left = ((lo - 1) / r * 100) + '%';
+    i.style.width = ((hi - lo + 1) / r * 100) + '%';
+    const l = root.querySelector('[data-lab]').children;
+    l[0].innerHTML = `<b>${lo}</b>`;
+    l[1].innerHTML = `<b>${hi}</b>`;
+  }
 
-      document.body.appendChild(toast);
-
-      document.getElementById('pwa-later-btn').onclick = () => {
-        toast.style.opacity = '0';
-        toast.style.transition = 'opacity 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      };
-
-      document.getElementById('pwa-refresh-btn').onclick = () => {
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
-      };
+  // --- start screen ---
+  const leads = {
+    guess: 'A secret number is locked. Find it before your tries run out.',
+    challenge: 'Pick a number in your head. The AI will try to decode it.'
+  };
+  function updateInfo() {
+    $('#lead').textContent = leads[mode];
+    const {range, tries} = cfg;
+    if (mode === 'guess') {
+      const best = store.get()[range];
+      $('#info').textContent = `1 to ${range}, ${tries} tries` + (best ? `. Your best: ${best}` : '');
+    } else {
+      $('#info').textContent = `1 to ${range}. The AI needs ${Math.ceil(Math.log2(range))} guesses or fewer.`;
     }
-  </script>
+  }
+  $('#modes').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $$('#modes button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    mode = b.dataset.mode; updateInfo();
+  });
+  $('#levels').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $$('#levels button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    cfg = {range: +b.dataset.range, tries: +b.dataset.tries}; updateInfo();
+  });
+  const start = () => mode === 'guess' ? startGuess() : startAI();
+  $('#play').addEventListener('click', start);
+  $('#again').addEventListener('click', start);
+  $('[data-home]').forEach(b => b.addEventListener('click', () => {
+    if (window.history.state && window.history.state.screen !== 'start') {
+      window.history.back();
+      return;
+    }
+    updateInfo();
+    show('start', false);
+  }));
 
+  // --- result screen ---
+  function finish(title, lines, win, share) {
+    const t = $('#resTitle');
+    t.textContent = title;
+    t.className = 'res-title' + (win ? ' win' : '');
+    $('#resLines').replaceChildren(...lines.map(s => { const p = document.createElement('p'); p.textContent = s; return p; }));
+    shareText = share || '';
+    $('#share').hidden = !share;
+    show('result');
+    if (win) { buzz([30, 40, 30]); window.VatsalLolGameComplete?.(); }
+  }
+  $('#share').addEventListener('click', async () => {
+    const text = shareText + ' https://vatsal.lol/pages/which-number/';
+    try {
+      if (navigator.share) await navigator.share({text});
+      else { await navigator.clipboard.writeText(text); $('#share').textContent = 'Copied'; setTimeout(() => $('#share').textContent = 'Share', 1500); }
+    } catch {}
+  });
+
+  // ================= GUESS MODE =================
+  let secret, used, lo, hi, entry, hist;
+  const disp = $('#disp'), msg = $('#msg');
+
+  function startGuess() {
+    secret = Math.floor(Math.random() * cfg.range) + 1;
+    used = 0; lo = 1; hi = cfg.range; entry = ''; hist = [];
+    msg.textContent = ''; msg.className = 'msg';
+    renderGuess(); show('guess');
+  }
+  function renderGuess() {
+    disp.innerHTML = slots(entry, String(cfg.range).length, true);
+    $('#submit').disabled = !entry;
+    $('#pips').innerHTML = Array.from({length: cfg.tries}, (_, i) => `<span class="${i < used ? 'u' : ''}"></span>`).join('');
+    $('#tries').textContent = `${cfg.tries - used} of ${cfg.tries} tries left`;
+    $('#hist').innerHTML = hist.slice(0, 6).map(h =>
+      `<li class="${h.up ? 'up' : 'dn'}"><b>${h.g}</b> <em>${h.up ? '▲' : '▼'}</em></li>`).join('');
+    drawTrack(views.guess, lo, hi);
+  }
+  function say(text, cls) {
+    msg.textContent = text; msg.className = 'msg ' + cls;
+    if (cls === 'bad') { void msg.offsetWidth; msg.classList.add('shake'); buzz(60); }
+  }
+  function press(d) {
+    if (entry.length >= String(cfg.range).length) return;
+    if (!entry && d === '0') return;
+    entry += d; renderGuess();
+  }
+  function submit() {
+    const g = +entry;
+    if (!g) return;
+    if (g < 1 || g > cfg.range) { say(`Pick a number from 1 to ${cfg.range}`, 'bad'); return; }
+    if (hist.some(h => h.g === g)) { say(`You already tried ${g}`, 'bad'); entry = ''; renderGuess(); return; }
+    used++;
+    if (g === secret) {
+      const best = store.get();
+      const isBest = !best[cfg.range] || used < best[cfg.range];
+      if (isBest) { best[cfg.range] = used; store.set(best); }
+      const par = Math.ceil(Math.log2(cfg.range));
+      finish('You got it!', [
+        `The number was ${secret}.`,
+        `Solved in ${used} ${used === 1 ? 'try' : 'tries'}. Perfect play needs ${par} or fewer.`,
+        isBest ? 'New personal best!' : `Your best: ${best[cfg.range]}`
+      ], true, `I found the number (1–${cfg.range}) in ${used} tries on Digit Decoder.`);
+      return;
+    }
+    const up = g < secret;
+    if (up) lo = Math.max(lo, g + 1); else hi = Math.min(hi, g - 1);
+    hist.unshift({g, up}); entry = '';
+    const d = Math.abs(g - secret) / cfg.range, heat = d < .03 ? 'Burning' : d < .1 ? 'Hot' : d < .25 ? 'Warm' : 'Cold';
+    say(`${heat}. Go ${up ? 'higher ▲' : 'lower ▼'}`, up ? 'up' : 'dn');
+    buzz(15);
+    if (used >= cfg.tries) {
+      finish('Out of tries', [`The number was ${secret}.`, 'Narrow the range with each guess and aim for the middle.'], false);
+      return;
+    }
+    renderGuess();
+  }
+  $('#numpad').addEventListener('click', e => {
+    const b = e.target.closest('.num'); if (!b) return;
+    if (b.id === 'clr') { entry = ''; renderGuess(); }
+    else if (b.id === 'bksp') { entry = entry.slice(0, -1); renderGuess(); }
+    else press(b.textContent);
+  });
+  $('#submit').addEventListener('click', submit);
+
+  // ================= AI MODE =================
+  let aMin, aMax, aGuess, aCount, stack;
+  const aiMsg = $('#aiMsg');
+
+  function startAI() {
+    aMin = 1; aMax = cfg.range; aCount = 0; stack = [];
+    aiMsg.textContent = ''; aiMsg.className = 'msg';
+    nextAI(); show('ai');
+  }
+  function nextAI() {
+    aGuess = (aMin + aMax) >> 1; aCount++;
+    $('#aiGuess').innerHTML = slots(String(aGuess), String(cfg.range).length, false);
+    $('#aiCount').textContent = `Guess ${aCount}`;
+    $('#undo').disabled = !stack.length;
+    $('#aiHist').innerHTML = stack.slice(-6).reverse().map(s =>
+      `<li class="${s.ans === 'higher' ? 'up' : 'dn'}"><b>${s.guess}</b> <em>${s.ans === 'higher' ? '▲' : '▼'}</em></li>`).join('');
+    drawTrack(views.ai, aMin, aMax);
+  }
+  function answer(ans) {
+    if (ans === 'correct') {
+      finish('Number found', [
+        `Your number is ${aGuess}.`,
+        `The AI needed ${aCount} ${aCount === 1 ? 'guess' : 'guesses'}.`
+      ], true, `The AI found my number (1–${cfg.range}) in ${aCount} guesses on Digit Decoder.`);
+      return;
+    }
+    const snap = {aMin, aMax, aGuess, aCount, ans, guess: aGuess};
+    const nMin = ans === 'higher' ? aGuess + 1 : aMin;
+    const nMax = ans === 'lower' ? aGuess - 1 : aMax;
+    if (nMin > nMax) {
+      aiMsg.textContent = 'That leaves no numbers. Check your last answer or tap Undo.';
+      aiMsg.className = 'msg bad'; void aiMsg.offsetWidth; aiMsg.classList.add('shake'); buzz(60);
+      return;
+    }
+    aiMsg.textContent = ''; stack.push(snap);
+    aMin = nMin; aMax = nMax; nextAI(); buzz(10);
+  }
+  function undo() {
+    if (!stack.length) return;
+    const s = stack.pop();
+    aMin = s.aMin; aMax = s.aMax; aCount = s.aCount - 1;
+    aiMsg.textContent = ''; nextAI();
+  }
+  $('#lower').addEventListener('click', () => answer('lower'));
+  $('#higher').addEventListener('click', () => answer('higher'));
+  $('#correct').addEventListener('click', () => answer('correct'));
+  $('#undo').addEventListener('click', undo);
+
+  // ================= KEYBOARD =================
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (cur === 'guess') {
+      if (/^\d$/.test(e.key)) press(e.key);
+      else if (e.key === 'Backspace') { entry = entry.slice(0, -1); renderGuess(); }
+      else if (e.key === 'Escape') { entry = ''; renderGuess(); }
+      else if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    } else if (cur === 'ai') {
+      if (e.key === 'ArrowUp') answer('higher');
+      else if (e.key === 'ArrowDown') answer('lower');
+      else if (e.key === 'Enter' && document.activeElement.tagName !== 'BUTTON') answer('correct');
+      else if (e.key === 'Backspace') undo();
+    }
+  });
+
+  updateInfo();
+  initNavigation();
+})();
+</script>
+
+<!-- PWA Service Worker Registration & Update Notification -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(reg => {
+      reg.addEventListener('updatefound', () => {
+        const w = reg.installing;
+        w.addEventListener('statechange', () => {
+          if (w.state === 'installed' && navigator.serviceWorker.controller) showUpdateToast(reg);
+        });
+      });
+      if (reg.waiting) showUpdateToast(reg);
+    }).catch(err => console.error('Service Worker registration failed', err));
+  });
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!refreshing) { refreshing = true; location.reload(); }
+  });
+}
+function showUpdateToast(reg) {
+  if (document.getElementById('pwa-update-toast')) return;
+  const t = document.createElement('div');
+  t.id = 'pwa-update-toast';
+  t.innerHTML = '<strong>Update available</strong><div>A new version of VATSAL.LOL is ready.</div><div class="row"><button id="pwa-later-btn">Later</button><button class="go" id="pwa-refresh-btn">Refresh</button></div>';
+  document.body.appendChild(t);
+  document.getElementById('pwa-later-btn').onclick = () => t.remove();
+  document.getElementById('pwa-refresh-btn').onclick = () => reg.waiting && reg.waiting.postMessage({type: 'SKIP_WAITING'});
+}
+</script>
 <script src="../../assets/vatsal-sdk.js" defer></script>
 </body>
 </html>
