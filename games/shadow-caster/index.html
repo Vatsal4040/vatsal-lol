@@ -42,7 +42,7 @@
 *{box-sizing:border-box;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;overflow:hidden;background:#050507;color:#ffe9a8;font:22px 'VT323',monospace;touch-action:none}
 canvas{display:block;width:100%;height:100%;cursor:none;touch-action:none}
-#hud{position:fixed;top:0;left:0;right:0;display:none;justify-content:space-between;align-items:flex-start;gap:8px;padding:10px 14px;pointer-events:none}
+#hud{position:fixed;top:0;left:0;right:0;display:none;justify-content:space-between;align-items:flex-start;gap:8px;padding:calc(6px + env(safe-area-inset-top, 0px)) calc(14px + env(safe-area-inset-right, 0px)) 6px calc(14px + env(safe-area-inset-left, 0px));pointer-events:none}
 #hud>*{pointer-events:auto}
 #badge{font:10px 'Press Start 2P',monospace;color:#ffd23f;text-shadow:2px 2px 0 #000}
 #ttl{font:13px 'Press Start 2P',monospace;margin:8px 0 4px;color:#fff3c4;text-shadow:2px 2px 0 #7a1f00}
@@ -51,15 +51,59 @@ canvas{display:block;width:100%;height:100%;cursor:none;touch-action:none}
 .b{min-width:48px;min-height:46px;padding:10px 14px;border:3px solid #ffd23f;background:#3a1f0a;color:#ffe9a8;font:10px 'Press Start 2P','Courier New',monospace;cursor:pointer;box-shadow:4px 4px 0 #000;text-transform:uppercase}
 .b:hover{background:#5a3210}.b:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #000}
 .b.off{opacity:.4;border-color:#777;cursor:not-allowed}
-#hint{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);width:94%;max-width:820px;text-align:center;font-size:21px;color:#ffe9a8;background:rgba(20,10,3,.85);border:3px solid #8a5a1e;padding:5px 12px;pointer-events:none;display:none}
-.ov{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;background:rgba(5,3,2,.92);z-index:5;overflow:auto}
+#hint{position:fixed;bottom:calc(8px + env(safe-area-inset-bottom, 0px));left:50%;transform:translateX(-50%);width:94%;max-width:820px;text-align:center;font-size:21px;color:#ffe9a8;background:rgba(20,10,3,.85);border:3px solid #8a5a1e;padding:5px 12px;pointer-events:none;display:none}
+.ov{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(14px + env(safe-area-inset-top, 0px)) calc(20px + env(safe-area-inset-right, 0px)) calc(14px + env(safe-area-inset-bottom, 0px)) calc(20px + env(safe-area-inset-left, 0px));background:rgba(5,3,2,.92);z-index:5;overflow:auto}
 .ov h1{font:clamp(20px,5.2vw,52px)/1.3 'Press Start 2P',monospace;margin:8px 0 14px;color:#ffd23f;text-shadow:4px 4px 0 #b32d00,8px 8px 0 #000}
 .ov h2{font:clamp(14px,3vw,24px) 'Press Start 2P',monospace;color:#ffd23f;text-shadow:3px 3px 0 #b32d00;margin:6px 0 16px}
 .ov p{max-width:560px;line-height:1.15;color:#d9c8a0;margin:4px}
 .col{display:flex;flex-direction:column;gap:12px;margin-top:14px;min-width:min(300px,80vw)}
 #grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:10px 0}
 #grid .b{min-width:58px;font-size:12px}
+
+/* Mobile Portrait Rotation Lock Screen */
+.rotate-screen{position:fixed;inset:0;z-index:100000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(20px + env(safe-area-inset-top, 0px)) calc(20px + env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) calc(20px + env(safe-area-inset-left, 0px));background:#050507;color:#ffe9a8;touch-action:none}
+.rotate-box{background:rgba(19,19,25,.96);border:3px solid #8a5a1e;box-shadow:0 0 0 2px #000,6px 6px 0 #000;padding:36px 24px;max-width:360px;width:90%;display:flex;flex-direction:column;align-items:center;text-align:center}
+.rotate-icon{margin-bottom:22px;display:flex;align-items:center;justify-content:center}
+.rotate-svg{display:block;animation:phoneRotateAnim 2.2s cubic-bezier(.4,0,.2,1) infinite;transform-origin:center center}
+@keyframes phoneRotateAnim{0%,15%{transform:rotate(0deg)}50%,65%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
+@media (prefers-reduced-motion:reduce){.rotate-svg{animation:none;transform:rotate(-90deg)}}
+.rotate-box h2{font:16px/1.35 'Press Start 2P',monospace;color:#ffd23f;text-shadow:3px 3px 0 #7a1f00,4px 4px 0 #000;margin:0 0 16px;letter-spacing:.05em}
+.rotate-box p{font:22px/1.3 'VT323',monospace;color:#ffe9a8;margin:0;max-width:280px}
+
+/* Instant CSS fallback for narrow mobile portrait */
+@media screen and (orientation: portrait) and (max-width: 767px){
+  .rotate-screen{display:flex !important}
+  #hud,#hint,.ov{display:none !important}
+}
+
+/* Compact Mobile Landscape Viewport Tuning */
+@media (max-height: 520px) and (orientation: landscape){
+  #hud{padding:calc(4px + env(safe-area-inset-top, 0px)) calc(12px + env(safe-area-inset-right, 0px)) 4px calc(12px + env(safe-area-inset-left, 0px))}
+  #badge{font-size:9px}
+  #ttl{font-size:11px;margin:4px 0 2px}
+  #info{font-size:16px}
+  .b{min-width:42px;min-height:38px;padding:7px 11px;font-size:9px}
+  #hint{font-size:17px;padding:3px 10px;max-width:min(760px,92vw);border-width:2px;bottom:calc(6px + env(safe-area-inset-bottom, 0px))}
+  .ov h1{font-size:clamp(18px,4vw,36px);margin:4px 0 8px}
+  .ov h2{font-size:clamp(13px,2.8vw,20px);margin:4px 0 10px}
+  .ov p{font-size:18px;margin:3px}
+  .col{margin-top:10px;gap:8px}
+}
 </style></head><body>
+<div id="rotateScreen" class="rotate-screen" role="dialog" aria-modal="true" aria-label="Rotate Your Phone">
+<div class="rotate-box">
+<div class="rotate-icon" aria-hidden="true">
+<svg viewBox="0 0 80 80" width="72" height="72" fill="none" class="rotate-svg">
+<rect x="24" y="14" width="32" height="52" rx="5" stroke="#ffd23f" stroke-width="2.5" fill="#131319" />
+<line x1="36" y1="20" x2="44" y2="20" stroke="#ffd23f" stroke-width="2" stroke-linecap="round" />
+<circle cx="40" cy="58" r="2.5" fill="#ffd23f" />
+<path d="M 64 32 C 68 38 68 46 62 52" stroke="#ffe9a8" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3" />
+<polygon points="61,48 64,54 58,54" fill="#ffe9a8" />
+</svg>
+</div>
+<h2>ROTATE YOUR PHONE</h2>
+<p>Please turn your device sideways to play Shadow-caster.</p>
+</div></div>
 <canvas id="c"></canvas>
 <div id="hud"><div><span id="badge"></span><div id="ttl"></div><div id="info"></div></div>
 <div class="bar"><button class="b" id="bF">Freeze</button><button class="b" id="bR">&#8634;</button><button class="b" id="bMn">Menu</button></div></div>
@@ -128,19 +172,50 @@ function load(i,snd){li=i;const d=L[i];solids=d.s.map(([x,y,w,h])=>({x,y,w,h}));
  $('badge').textContent=`LEVEL ${i+1}/${N}`;$('ttl').textContent=d.t.toUpperCase();$('hint').textContent=d.h;$('bF').textContent='Freeze';info();if(snd)Snd.reset()}
 const info=()=>$('info').textContent=`Deaths ${deaths}`+(frozen?'  ·  FROZEN':'');
 
-/* ---------- viewport & input ---------- */
+/* ---------- viewport, orientation & input ---------- */
+let isPortraitBlocked=false;
+const isNarrowPortrait=()=>(window.innerHeight>window.innerWidth)&&(window.innerWidth<768);
+function checkOrientation(){
+ const blocked=isNarrowPortrait();
+ if(blocked!==isPortraitBlocked){
+  isPortraitBlocked=blocked;
+  const rot=$('rotateScreen');
+  if(rot)rot.style.display=isPortraitBlocked?'flex':'none';
+  if(!isPortraitBlocked){
+   resize();
+   const hud=state==='play'||state==='menu';
+   $('hud').style.display=hud?'flex':'none';
+   $('hint').style.display=hud?'block':'none';
+   show(state);
+   refresh();
+  }else{
+   $('hud').style.display='none';
+   $('hint').style.display='none';
+   for(const o of['title','menu','sel','win'])$(o).style.display='none';
+  }
+ }
+}
+const onOrient=()=>{checkOrientation();resize()};
+addEventListener('resize',onOrient);
+addEventListener('orientationchange',()=>{onOrient();setTimeout(onOrient,120);setTimeout(onOrient,320)});
+if(window.screen&&screen.orientation)screen.orientation.addEventListener('change',onOrient);
+if(window.visualViewport)visualViewport.addEventListener('resize',onOrient);
+addEventListener('visibilitychange',()=>{if(!document.hidden)onOrient()});
+addEventListener('pageshow',onOrient);
+try{screen.orientation?.lock?.('landscape').catch(()=>{})}catch(e){}
+addEventListener('pointerdown',()=>{try{screen.orientation?.lock?.('landscape').catch(()=>{})}catch(e){}},{once:true});
+
 const vig=document.createElement('canvas');vig.width=W;vig.height=H;
 function mkVig(){const g=vig.getContext('2d'),r=g.createRadialGradient(W/2,H/2,W*.32,W/2,H/2,W*.72);r.addColorStop(0,'rgba(0,0,0,0)');r.addColorStop(1,'rgba(0,0,0,.6)');g.clearRect(0,0,W,H);g.fillStyle=r;g.fillRect(0,0,W,H)}
 const dk=document.createElement('canvas');dk.width=W;dk.height=H;const dg=dk.getContext('2d');
 function resize(){const d=Math.min(devicePixelRatio||1,1.5),w=innerWidth,h=innerHeight;cv.width=w*d;cv.height=h*d;ctx.setTransform(d,0,0,d,0,0);sc=Math.min(w/W,h/H);ox=(w-W*sc)/2;oy=(h-H*sc)/2}
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
-addEventListener('resize',resize);
-function aim(e){const y=e.clientY-(e.pointerType==='touch'?70:0);light.tx=clamp((e.clientX-ox)/sc,0,W);light.ty=clamp((y-oy)/sc,0,H)}
+function aim(e){if(isPortraitBlocked)return;const y=e.clientY-(e.pointerType==='touch'?70:0);light.tx=clamp((e.clientX-ox)/sc,0,W);light.ty=clamp((y-oy)/sc,0,H)}
 addEventListener('pointermove',aim);addEventListener('pointerdown',aim);
-function freeze(){if(state!=='play')return;frozen=!frozen;$('bF').textContent=frozen?'Walk':'Freeze';info()}
-const retry=()=>{if(state==='play')load(li,true)};
-function show(id){for(const o of['title','menu','sel','win'])$(o).style.display=o===id?'flex':'none'}
-function go(s){state=s;const hud=s==='play'||s==='menu';$('hud').style.display=hud?'flex':'none';$('hint').style.display=hud?'block':'none';show(s);refresh();if(s==='win')window.VatsalLolGameComplete?.();}
+function freeze(){if(state!=='play'||isPortraitBlocked)return;frozen=!frozen;$('bF').textContent=frozen?'Walk':'Freeze';info()}
+const retry=()=>{if(state==='play'&&!isPortraitBlocked)load(li,true)};
+function show(id){for(const o of['title','menu','sel','win'])$(o).style.display=(o===id&&!isPortraitBlocked)?'flex':'none'}
+function go(s){state=s;if(isPortraitBlocked)return;const hud=s==='play'||s==='menu';$('hud').style.display=hud?'flex':'none';$('hint').style.display=hud?'block':'none';show(s);refresh();if(s==='win')window.VatsalLolGameComplete?.()}
 function startLevel(i){Snd.click();go('play');load(i,false)}
 const unlocked=()=>ST.best>=5;
 function menuItems(inGame){const r=[];
@@ -156,6 +231,7 @@ function refresh(){fill('title',menuItems(false));fill('menu',menuItems(true));c
 $('selBack').onclick=()=>go(from==='menu'?'menu':'title');$('winBtn').onclick=()=>go('title');
 $('bF').onclick=e=>{freeze();e.currentTarget.blur()};$('bR').onclick=e=>{retry();e.currentTarget.blur()};$('bMn').onclick=e=>{if(state==='play'){from='menu';go('menu')}e.currentTarget.blur()};
 addEventListener('keydown',e=>{
+ if(isPortraitBlocked)return;
  if(e.code==='Space'){e.preventDefault();freeze()}else if(e.code==='KeyR')retry();
  else if(e.code==='Escape'||e.code==='KeyP'){if(state==='play'){from='menu';go('menu')}else if(state==='menu')go('play')}
  else if(e.code==='KeyM'){ST.snd=!ST.snd;save();refresh()}
@@ -274,11 +350,12 @@ function drawP(){const cx=P.x+P.w/2,by=P.y+P.h,bob=P.ground?Math.abs(Math.sin(P.
 function drawDead(){const p=1-Math.max(0,P.dead/.6),cx=P.x+P.w/2,cy=P.y+P.h/2;
  for(let i=0;i<14;i++){const a=i/14*6.283+p*2;ctx.fillStyle=`rgba(252,165,165,${1-p})`;ctx.beginPath();ctx.arc(cx+Math.cos(a)*p*48,cy+Math.sin(a)*p*48-p*20,2.5*(1-p),0,7);ctx.fill()}}
 
-mkVig();resize();refresh();go('title');load(0,false);
+mkVig();checkOrientation();resize();refresh();go('title');load(0,false);
 let last=performance.now();
-(function loop(n){const dt=Math.min((n-last)/1000,.1);last=n;update(dt);render();requestAnimationFrame(loop)})(last);
-window.__sc={load,step,light,P,ST,get alive(){return P.alive},get fs(){return fs},get li(){return li},get N(){return N},get portal(){return portal},play(){state='play'},
- snap(){return JSON.stringify({P,T,fs,fade,light:{...light}})},rest(s){const o=JSON.parse(s);Object.assign(P,o.P);T=o.T;fs=o.fs;fade=o.fade;Object.assign(light,o.light)}};
+(function loop(n){const dt=Math.min((n-last)/1000,.1);last=n;if(!isPortraitBlocked){update(dt);render()}requestAnimationFrame(loop)})(last);
+window.__sc={load,step,light,P,ST,get alive(){return P.alive},get fs(){return fs},get li(){return li},get N(){return N},get portal(){return portal},play(){go('play')},
+ snap(){return JSON.stringify({P,T,fs,fade,light:{...light}})},rest(s){const o=JSON.parse(s);Object.assign(P,o.P);T=o.T;fs=o.fs;fade=o.fade;Object.assign(light,o.light)},
+ get isPortraitBlocked(){return isPortraitBlocked},checkOrientation,resize};
 })();
 </script>
 <script src="../../assets/vatsal-sdk.js" defer></script>
